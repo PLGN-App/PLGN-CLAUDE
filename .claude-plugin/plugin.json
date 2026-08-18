@@ -16,7 +16,9 @@
     "plgn",
     "scheduling"
   ],
-  "commands": [],
+  "commands": [
+    "./commands/demo.md"
+  ],
   "agents": [
     "./agents/plgn-researcher.md",
     "./agents/plgn-strategist.md",

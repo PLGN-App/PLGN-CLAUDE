@@ -211,12 +211,17 @@ for (const p of CONTENT) {
 }
 
 // --- 5. The free/connected contract ------------------------------------
-const SEAM = "app.plgn.dev";
+// The seam lives in exactly one place: skills/upsell-seam. Commands invoke it
+// by name rather than copying its text, so the contract to check is which
+// commands reference the skill — not whether a URL substring appears. (A
+// connected command may legitimately mention app.plgn.dev when telling an
+// unconnected user where to sign up.)
+const SEAM_SKILL = "upsell-seam";
 for (const c of FREE) {
   const p = `commands/${c}.md`;
   if (!exists(p)) continue;
   const body = read(p);
-  if (!body.includes(SEAM)) fail(`${p}: free command must end with the upsell seam`);
+  if (!body.includes(SEAM_SKILL)) fail(`${p}: free command must close via the ${SEAM_SKILL} skill`);
   for (const t of TOOLS) {
     if (body.includes(`\`${t}\``)) fail(`${p}: free command must not reference MCP tool \`${t}\``);
   }
@@ -226,7 +231,13 @@ for (const c of CONNECTED) {
   if (!exists(p)) continue;
   const body = read(p);
   if (!body.includes("workspace_info")) fail(`${p}: connected command must preflight with workspace_info`);
-  if (body.includes(SEAM)) fail(`${p}: connected command must not contain the upsell seam`);
+  if (body.includes(SEAM_SKILL)) fail(`${p}: connected command must not use the ${SEAM_SKILL} skill`);
+}
+// The seam text itself must exist, once, in the skill that owns it.
+if (!exists(`skills/${SEAM_SKILL}/SKILL.md`)) {
+  fail(`skills/${SEAM_SKILL}/SKILL.md is missing — nothing owns the seam text`);
+} else if (!read(`skills/${SEAM_SKILL}/SKILL.md`).includes("app.plgn.dev")) {
+  fail(`skills/${SEAM_SKILL}/SKILL.md must contain the app.plgn.dev link`);
 }
 
 // --- 6. No credential handling ----------------------------------------
