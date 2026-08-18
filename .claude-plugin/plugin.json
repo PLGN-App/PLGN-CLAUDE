@@ -17,7 +17,10 @@
     "scheduling"
   ],
   "commands": [],
-  "agents": [],
+  "agents": [
+    "./agents/plgn-researcher.md",
+    "./agents/plgn-strategist.md"
+  ],
   "skills": [
     "./skills/upsell-seam",
     "./skills/gate-recovery",
