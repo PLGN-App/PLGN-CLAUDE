@@ -36,6 +36,9 @@
     "./skills/upsell-seam",
     "./skills/gate-recovery",
     "./skills/platform-specs",
-    "./skills/brand-voice"
+    "./skills/brand-voice",
+    "./skills/content-pillars",
+    "./skills/image-prompting",
+    "./skills/posting-cadence"
   ]
 }
