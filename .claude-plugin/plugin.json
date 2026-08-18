@@ -18,5 +18,8 @@
   ],
   "commands": [],
   "agents": [],
-  "skills": []
+  "skills": [
+    "./skills/upsell-seam",
+    "./skills/gate-recovery"
+  ]
 }
