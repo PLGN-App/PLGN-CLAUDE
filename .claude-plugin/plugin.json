@@ -24,7 +24,15 @@
     "./commands/competitors.md",
     "./commands/calendar.md",
     "./commands/setup.md",
-    "./commands/month.md"
+    "./commands/brand.md",
+    "./commands/knowledge.md",
+    "./commands/month.md",
+    "./commands/post.md",
+    "./commands/repurpose.md",
+    "./commands/topics.md",
+    "./commands/library.md",
+    "./commands/images.md",
+    "./commands/review.md"
   ],
   "agents": [
     "./agents/plgn-researcher.md",

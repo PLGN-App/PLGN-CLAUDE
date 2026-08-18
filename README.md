@@ -95,10 +95,17 @@ the plugin ships the connection.
 |---|---|
 | `/plgn setup` | Connect, pick a brand, seed its voice from your site |
 | `/plgn month <topic>` | A month of posts: drafted, illustrated, scheduled |
+| `/plgn post <idea>` | One post, drafted and created — the ten-times-a-day command |
+| `/plgn repurpose <url>` | One asset into many platform-native posts, plus saved snippets |
+| `/plgn review` | Triage the queue: blocked, no image, thin, ready — and fix it |
+| `/plgn images` | Backfill missing artwork, with the credit cost confirmed first |
+| `/plgn topics` | Pipeline health: which pillars are exhausted, which are starved |
+| `/plgn library` | Prune duplicate snippets and overlapping hashtag sets |
+| `/plgn knowledge` | Audit the brand profile for gaps, staleness, and contradictions |
+| `/plgn brand` | List, create, update, archive, and restore brands |
 
-> More connected commands are landing across the next releases — single-post
-> drafting, repurposing, queue review, image backfill, library curation, and
-> monthly reporting.
+> Landing next: `/plgn refresh` to rewrite and reschedule older posts, and
+> `/plgn report` for a monthly summary.
 
 ---
 
