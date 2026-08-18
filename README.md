@@ -103,9 +103,8 @@ the plugin ships the connection.
 | `/plgn library` | Prune duplicate snippets and overlapping hashtag sets |
 | `/plgn knowledge` | Audit the brand profile for gaps, staleness, and contradictions |
 | `/plgn brand` | List, create, update, archive, and restore brands |
-
-> Landing next: `/plgn refresh` to rewrite and reschedule older posts, and
-> `/plgn report` for a monthly summary.
+| `/plgn refresh` | Rewrite and reschedule still-relevant older posts |
+| `/plgn report` | What shipped, pillar balance, cadence held, what to do next |
 
 ---
 
