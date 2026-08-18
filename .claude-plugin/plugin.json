@@ -19,7 +19,9 @@
   "commands": [],
   "agents": [
     "./agents/plgn-researcher.md",
-    "./agents/plgn-strategist.md"
+    "./agents/plgn-strategist.md",
+    "./agents/plgn-copywriter.md",
+    "./agents/plgn-visual.md"
   ],
   "skills": [
     "./skills/upsell-seam",
