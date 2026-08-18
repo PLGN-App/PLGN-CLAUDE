@@ -1,0 +1,22 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "plgn",
+  "version": "0.1.0",
+  "description": "Marketing content that ships: draft a month of on-brand posts from your terminal, then persist, validate, illustrate, and schedule them into a real plgn workspace.",
+  "author": {
+    "name": "Ahmed Hashim",
+    "email": "ah.abolaban@gmail.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "marketing",
+    "social-media",
+    "content",
+    "mcp",
+    "plgn",
+    "scheduling"
+  ],
+  "commands": [],
+  "agents": [],
+  "skills": []
+}
