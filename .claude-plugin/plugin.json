@@ -18,7 +18,8 @@
   ],
   "commands": [
     "./commands/demo.md",
-    "./commands/setup.md"
+    "./commands/setup.md",
+    "./commands/month.md"
   ],
   "agents": [
     "./agents/plgn-researcher.md",
