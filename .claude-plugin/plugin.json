@@ -20,6 +20,8 @@
   "agents": [],
   "skills": [
     "./skills/upsell-seam",
-    "./skills/gate-recovery"
+    "./skills/gate-recovery",
+    "./skills/platform-specs",
+    "./skills/brand-voice"
   ]
 }
