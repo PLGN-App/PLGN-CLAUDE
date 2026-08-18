@@ -18,6 +18,11 @@
   ],
   "commands": [
     "./commands/demo.md",
+    "./commands/audit.md",
+    "./commands/strategy.md",
+    "./commands/voice.md",
+    "./commands/competitors.md",
+    "./commands/calendar.md",
     "./commands/setup.md",
     "./commands/month.md"
   ],

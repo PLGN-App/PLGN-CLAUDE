@@ -83,6 +83,11 @@ the plugin ships the connection.
 | Command | What you get |
 |---|---|
 | `/plgn demo <url>` | 7 platform-native posts drafted from any website |
+| `/plgn audit <url>` | A 0–100 score across six weighted dimensions, plus three fixes |
+| `/plgn strategy <url>` | Positioning and 3–5 content pillars, with the evidence for each |
+| `/plgn voice <url>` | Tone, vocabulary, rhythm, banned words, before/after rewrites |
+| `/plgn competitors <url>` | What rivals all say — and the gaps none of them cover |
+| `/plgn calendar <topic>` | A 30-day plan: date, platform, pillar, hook, brief |
 
 ### Connected — writes to your workspace
 
@@ -91,9 +96,9 @@ the plugin ships the connection.
 | `/plgn setup` | Connect, pick a brand, seed its voice from your site |
 | `/plgn month <topic>` | A month of posts: drafted, illustrated, scheduled |
 
-> More commands are landing across the next releases — a scored social audit,
-> strategy and voice guides, competitor research, single-post drafting, queue
-> review, and image backfill.
+> More connected commands are landing across the next releases — single-post
+> drafting, repurposing, queue review, image backfill, library curation, and
+> monthly reporting.
 
 ---
 
