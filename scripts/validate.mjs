@@ -95,9 +95,17 @@ if (manifest) {
       fail(`commands/${f} exists on disk but is not in plugin.json`);
     }
   }
-  const listedAgents = new Set((manifest.agents ?? []).map((r) => r.replace(/^\.\/agents\//, "")));
-  for (const f of ls("agents")) {
-    if (f.endsWith(".md") && !listedAgents.has(f)) fail(`agents/${f} is not in plugin.json`);
+  // Agents must NOT be declared. Verified against `claude plugin details`:
+  // an explicit "agents" array of file paths suppresses discovery entirely
+  // (inventory reported "Agents (0)" with all 7 files present on disk).
+  // Omitting the key lets the loader discover agents/*.md — reported 7/7.
+  // "commands", by contrast, MUST stay declared: without it the loader reads
+  // commands/*.md as skills (inventory jumped to "Skills (26)").
+  if (manifest.agents) {
+    fail(`plugin.json must not declare "agents" — it suppresses agent discovery; delete the key`);
+  }
+  if (!manifest.commands) {
+    fail(`plugin.json must declare "commands" — without it, command files are loaded as skills`);
   }
 }
 

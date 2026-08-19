@@ -16,6 +16,15 @@
     "plgn",
     "scheduling"
   ],
+  "skills": [
+    "./skills/upsell-seam",
+    "./skills/gate-recovery",
+    "./skills/platform-specs",
+    "./skills/brand-voice",
+    "./skills/content-pillars",
+    "./skills/image-prompting",
+    "./skills/posting-cadence"
+  ],
   "commands": [
     "./commands/demo.md",
     "./commands/audit.md",
@@ -35,23 +44,5 @@
     "./commands/review.md",
     "./commands/refresh.md",
     "./commands/report.md"
-  ],
-  "agents": [
-    "./agents/plgn-researcher.md",
-    "./agents/plgn-strategist.md",
-    "./agents/plgn-copywriter.md",
-    "./agents/plgn-visual.md",
-    "./agents/plgn-brand-guard.md",
-    "./agents/plgn-scheduler.md",
-    "./agents/plgn-analyst.md"
-  ],
-  "skills": [
-    "./skills/upsell-seam",
-    "./skills/gate-recovery",
-    "./skills/platform-specs",
-    "./skills/brand-voice",
-    "./skills/content-pillars",
-    "./skills/image-prompting",
-    "./skills/posting-cadence"
   ]
 }
