@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "plgn": {
+      "type": "http",
+      "url": "https://app.plgn.dev/api/mcp",
+      "note": "Uses OAuth — you'll be prompted to authorize on first use."
+    }
+  }
+}

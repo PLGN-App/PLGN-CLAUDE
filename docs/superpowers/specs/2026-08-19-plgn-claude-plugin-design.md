@@ -66,7 +66,7 @@ plgn-claude takes the judgment layering from the first and the distribution mech
 ```
 plgn-claude/
 ├── .claude-plugin/
-│   ├── plugin.json          # name, version, command + agent manifest
+│   ├── plugin.json          # name, version, commands + skills (never agents)
 │   └── marketplace.json     # makes the repo itself installable
 ├── .mcp.json                # ships the plgn OAuth connection
 ├── commands/                # user entry points
@@ -91,6 +91,20 @@ MCP tools   the server       — validation, persistence, tenant scoping
 ```
 
 The `skills/` layer is what `ai-marketing-claude` lacks, and is the reason 18 command files will not drift apart: platform character caps, brand-voice application, and gate-recovery behaviour are each defined in exactly one place.
+
+### Manifest quirk, verified empirically
+
+`plugin.json` must declare `commands` and `skills`, and must **not** declare
+`agents`. Confirmed against `claude plugin details` during Wave 4:
+
+| Manifest | Result |
+|---|---|
+| `agents` declared as file paths | **Agents (0)** — declaring the key suppresses discovery, despite all 7 files being present |
+| `agents` key omitted | **Agents (7)** — the loader discovers `agents/*.md` itself |
+| `commands` key omitted | **Skills (26)** — all 19 command files are loaded as skills |
+| `commands` declared, `agents` omitted | **Skills (7), Agents (7)** ✅ correct |
+
+The validator enforces both halves, so the mistake cannot be reintroduced.
 
 ### `.mcp.json`
 

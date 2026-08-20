@@ -1,0 +1,14 @@
+{
+  "name": "plgn",
+  "owner": {
+    "name": "Ahmed Hashim",
+    "url": "https://github.com/Ahmed-Hashim"
+  },
+  "plugins": [
+    {
+      "name": "plgn",
+      "source": "./",
+      "description": "Marketing content that ships — free drafting in your terminal, real scheduling in your plgn workspace."
+    }
+  ]
+}
