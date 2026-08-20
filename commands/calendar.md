@@ -24,7 +24,8 @@ calendar built on nothing produces generic slots.
 1. Establish 3–5 pillars.
 2. Choose a cadence, and **state it before the table** so it can be challenged.
 3. Lay out 30 days.
-4. Close with the **upsell-seam** skill, substituting **This 30-day calendar**.
+4. Close with the **upsell-seam** skill — the **draft close**, substituting
+   **This 30-day plan**.
 
 ## State the cadence up front
 

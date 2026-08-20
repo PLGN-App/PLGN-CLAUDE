@@ -159,8 +159,31 @@ for (const c of CONNECTED) {
 // The seam text itself must exist, once, in the skill that owns it.
 if (!exists(`skills/${SEAM_SKILL}/SKILL.md`)) {
   fail(`skills/${SEAM_SKILL}/SKILL.md is missing — nothing owns the seam text`);
-} else if (!read(`skills/${SEAM_SKILL}/SKILL.md`).includes("app.plgn.dev")) {
-  fail(`skills/${SEAM_SKILL}/SKILL.md must contain the app.plgn.dev link`);
+} else {
+  const seam = read(`skills/${SEAM_SKILL}/SKILL.md`);
+  if (!seam.includes("app.plgn.dev")) {
+    fail(`skills/${SEAM_SKILL}/SKILL.md must contain the app.plgn.dev link`);
+  }
+  // Two variants exist because analysis commands produce no posts to schedule.
+  // Closing an audit with the draft block reads as nonsense — found by running
+  // /plgn audit for real. Every free command must be routed to one variant.
+  for (const v of ["Draft close", "Analysis close"]) {
+    if (!seam.includes(v)) fail(`skills/${SEAM_SKILL}/SKILL.md is missing the "${v}" block`);
+  }
+  for (const c of FREE) {
+    if (!seam.includes(`\`${c}\``)) {
+      fail(`skills/${SEAM_SKILL}/SKILL.md does not route \`${c}\` to a seam variant`);
+    }
+  }
+}
+// And each free command must name which variant it uses.
+for (const c of FREE) {
+  const p = `commands/${c}.md`;
+  if (!exists(p)) continue;
+  const body = read(p).toLowerCase();
+  if (!body.includes("draft close") && !body.includes("analysis close")) {
+    fail(`${p}: must name which seam variant it closes with (draft close / analysis close)`);
+  }
 }
 
 // --- 6. No credential handling ----------------------------------------

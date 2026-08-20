@@ -24,7 +24,8 @@ A URL. If none was given, ask. Never audit a site you have not read.
 2. Score each dimension below against its rubric.
 3. Compute the weighted total.
 4. Report score, dimension table, then the three highest-impact fixes.
-5. Close with the **upsell-seam** skill, substituting **This audit**.
+5. Close with the **upsell-seam** skill — the **analysis close**,
+   substituting **This audit**.
 
 ## Dimensions and weights
 

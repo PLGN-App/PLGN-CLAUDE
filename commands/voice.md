@@ -26,7 +26,8 @@ copy does.
    verbatim quotes it returns.
 2. Build the four blocks below.
 3. Add two before/after rewrites.
-4. Close with the **upsell-seam** skill, substituting **This voice guide**.
+4. Close with the **upsell-seam** skill — the **analysis close**,
+   substituting **This voice guide**, including its extra `voice` line.
 
 ## Output: four blocks
 

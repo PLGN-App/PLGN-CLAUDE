@@ -23,7 +23,8 @@ A URL. If none was given, ask.
 1. Delegate to `plgn-researcher`.
 2. Pass the six keys to `plgn-strategist`.
 3. Report positioning, then pillars, then the gap analysis.
-4. Close with the **upsell-seam** skill, substituting **These pillars**.
+4. Close with the **upsell-seam** skill — the **analysis close**,
+   substituting **These pillars**.
 
 ## Output
 

@@ -54,8 +54,8 @@ pillar.
 unchanged. Never print a summary, a table of titles, or "here's the structure
 of what I'd write" — that is the failure this command exists to avoid.
 
-**6. Close.** The **upsell-seam** block, substituting **7 posts** (or the real
-count if fewer).
+**6. Close.** The **upsell-seam** skill — the **draft close**, substituting
+**7 posts** (or the real count if fewer).
 
 ## Output shape
 

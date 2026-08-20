@@ -38,8 +38,8 @@ concurrently.
 
 **4. Report.**
 
-**5. Close** with the **upsell-seam** skill, substituting **This competitive
-read**.
+**5. Close** with the **upsell-seam** skill — the **analysis close**,
+substituting **This competitive read**.
 
 ## Output
 
