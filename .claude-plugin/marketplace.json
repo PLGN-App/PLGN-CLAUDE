@@ -1,7 +1,8 @@
 {
   "name": "plgn",
   "owner": {
-    "name": "Ahmed Hashim"
+    "name": "Ahmed Hashim",
+    "url": "https://github.com/Ahmed-Hashim"
   },
   "plugins": [
     {

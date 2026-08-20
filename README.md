@@ -61,7 +61,7 @@ paste.
 ## Install
 
 ```
-/plugin marketplace add <github-user>/plgn-claude
+/plugin marketplace add Ahmed-Hashim/plgn-claude
 /plugin install plgn
 ```
 
