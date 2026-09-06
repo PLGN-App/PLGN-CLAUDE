@@ -8,7 +8,12 @@
     {
       "name": "plgn",
       "source": "./",
-      "description": "Marketing content that ships — free drafting in your terminal, real scheduling in your plgn workspace."
+      "description": "Marketing content that ships. Draft a month of on-brand social posts from your terminal, then save, check, illustrate and schedule them into a real plgn workspace. Six commands work with no account at all. Character limits and your brand's banned words are enforced server-side, so a post that breaks them cannot be published.",
+      "author": {
+        "name": "Ahmed Hashim"
+      },
+      "category": "productivity",
+      "homepage": "https://useplgn.com"
     }
   ]
 }
