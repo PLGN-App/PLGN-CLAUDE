@@ -11,7 +11,7 @@ noticing that a pillar has been restating one idea for six weeks.
 
 ## 1. Preflight
 
-Call `workspace_info`. On failure, point at app.plgn.dev and stop.
+Call `workspace_info`. On failure, point at useplgn.com and stop.
 
 Call `knowledge_get` for the brand's pillars and voice.
 

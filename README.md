@@ -26,7 +26,7 @@ Proceed? yes
     post's point depends on it
   1 has no image — generation timed out; the post is scheduled without one
 
-Review at app.plgn.dev
+Review at useplgn.com
 ```
 
 Three pillars drafted in parallel, every post checked against your banned-word

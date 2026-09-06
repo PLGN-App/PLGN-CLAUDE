@@ -37,7 +37,7 @@ for (const p of [".claude-plugin/plugin.json", ".claude-plugin/marketplace.json"
     if (p.endsWith("plugin.json")) manifest = json;
     if (p === ".mcp.json") {
       const url = json?.mcpServers?.plgn?.url;
-      if (url !== "https://app.plgn.dev/api/mcp") fail(`.mcp.json plgn url is "${url}"`);
+      if (url !== "https://useplgn.com/api/mcp") fail(`.mcp.json plgn url is "${url}"`);
       if (json?.mcpServers?.plgn?.type !== "http") fail(".mcp.json plgn type must be http");
     }
   } catch (e) { fail(`invalid JSON in ${p}: ${e.message}`); }
@@ -137,7 +137,7 @@ for (const p of CONTENT) {
 // The seam lives in exactly one place: skills/upsell-seam. Commands invoke it
 // by name rather than copying its text, so the contract to check is which
 // commands reference the skill — not whether a URL substring appears. (A
-// connected command may legitimately mention app.plgn.dev when telling an
+// connected command may legitimately mention useplgn.com when telling an
 // unconnected user where to sign up.)
 const SEAM_SKILL = "upsell-seam";
 for (const c of FREE) {
@@ -161,8 +161,8 @@ if (!exists(`skills/${SEAM_SKILL}/SKILL.md`)) {
   fail(`skills/${SEAM_SKILL}/SKILL.md is missing — nothing owns the seam text`);
 } else {
   const seam = read(`skills/${SEAM_SKILL}/SKILL.md`);
-  if (!seam.includes("app.plgn.dev")) {
-    fail(`skills/${SEAM_SKILL}/SKILL.md must contain the app.plgn.dev link`);
+  if (!seam.includes("useplgn.com")) {
+    fail(`skills/${SEAM_SKILL}/SKILL.md must contain the useplgn.com link`);
   }
   // Two variants exist because analysis commands produce no posts to schedule.
   // Closing an audit with the draft block reads as nonsense — found by running

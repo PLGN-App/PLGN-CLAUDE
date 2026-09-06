@@ -8,7 +8,7 @@ Fill the empty image slots, deliberately and at a stated cost.
 
 ## 1. Preflight
 
-Call `workspace_info`. On failure, point at app.plgn.dev and stop.
+Call `workspace_info`. On failure, point at useplgn.com and stop.
 
 Check the image integration. If `kie_key_set` has no key and the workspace has
 no platform credits, say what is missing and stop — direct them to the

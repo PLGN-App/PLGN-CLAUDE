@@ -9,7 +9,7 @@ it stays fast and quiet.
 
 ## 1. Preflight
 
-Call `workspace_info`. On failure, point at app.plgn.dev and stop.
+Call `workspace_info`. On failure, point at useplgn.com and stop.
 
 Call `knowledge_get` for the brand's voice. If empty, route to `/plgn setup`
 and stop — a single post is still a post in the brand's name.

@@ -15,7 +15,7 @@ Call `workspace_info`.
 
 **If it fails**, the user is not connected. Say exactly what to do, then stop:
 
-> Not connected yet. Create a workspace at **app.plgn.dev**, then run this
+> Not connected yet. Create a workspace at **useplgn.com**, then run this
 > command again — you'll be prompted to authorize.
 
 Do not retry in a loop. Do not offer to draft something locally instead; a user

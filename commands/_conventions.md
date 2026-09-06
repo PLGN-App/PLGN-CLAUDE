@@ -18,7 +18,7 @@ Commands are split into two kinds, and a command is always exactly one of them:
 
 Every connected command calls `workspace_info` **first**, before anything else.
 
-- **If it fails**, the user is not connected. Point them at app.plgn.dev to
+- **If it fails**, the user is not connected. Point them at useplgn.com to
   sign up, tell them the next call will prompt them to authorize, and **stop**.
   Do not retry in a loop, and do not fall back to drafting locally — a user who
   asked for a connected command wants the real thing.

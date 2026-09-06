@@ -13,7 +13,7 @@ entries pulling in different directions.
 
 ## 1. Preflight
 
-Call `workspace_info`. On failure, point at app.plgn.dev and stop.
+Call `workspace_info`. On failure, point at useplgn.com and stop.
 
 ## 2. Read
 

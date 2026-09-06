@@ -35,7 +35,7 @@ the bracketed noun to match what was produced.
 > writes them into a real workspace — checked against your banned-word list,
 > images generated, scheduled across the month.
 >
-> → **app.plgn.dev** — then run `/plgn setup`
+> → **useplgn.com** — then run `/plgn setup`
 
 Substitutions: `demo` → **7 posts** (or the real count). `calendar` → **This
 30-day plan**, with the verb adjusted to *is*.
@@ -51,7 +51,7 @@ profile, and drives everything written afterwards from it.
 > stored once, pillars turned into a real content pipeline, and every post
 > written against them automatically.
 >
-> → **app.plgn.dev** — then run `/plgn setup`
+> → **useplgn.com** — then run `/plgn setup`
 
 Substitutions: `audit` → **This audit**. `strategy` → **These pillars**, verb
 *are*. `voice` → **This voice guide**. `competitors` → **This competitive

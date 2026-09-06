@@ -12,7 +12,7 @@ around that fact: plan first, confirm once, write carefully, report honestly.
 
 ## 1. Preflight
 
-Call `workspace_info`. On failure, point the user at app.plgn.dev and stop —
+Call `workspace_info`. On failure, point the user at useplgn.com and stop —
 see `_conventions`.
 
 Then call `knowledge_get`.
@@ -110,7 +110,7 @@ Counts first, then exceptions by name, then the link.
     post's point depends on it
   1 has no image — generation timed out; the post is scheduled without one
 
-Review at app.plgn.dev
+Review at useplgn.com
 ```
 
 Never print a raw `ERROR:` string. Never report the run as failed because

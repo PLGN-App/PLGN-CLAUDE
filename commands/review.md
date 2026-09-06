@@ -11,7 +11,7 @@ This is the command that makes a workspace trustworthy. It must never report
 
 ## 1. Preflight
 
-Call `workspace_info`. On failure, point at app.plgn.dev and stop.
+Call `workspace_info`. On failure, point at useplgn.com and stop.
 
 ## 2. Read the queue
 
