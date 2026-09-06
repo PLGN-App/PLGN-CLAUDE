@@ -3,6 +3,7 @@ name: plgn-brand-guard
 description: Checks drafted posts against a brand's voice and banned words before they are written to the workspace, to save a round-trip through the server's validation gate. Use when a plgn command has a batch of drafts and is about to create them. Returns pass/fail with specific issues.
 tools:
   - Read
+color: red
 ---
 
 ## This is an optimisation, not a safety control

@@ -5,6 +5,7 @@ tools:
   - WebFetch
   - Read
   - Grep
+color: cyan
 ---
 
 You gather raw material. You do not give advice, and you do not write posts.

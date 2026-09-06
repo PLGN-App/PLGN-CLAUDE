@@ -3,6 +3,7 @@ name: plgn-visual
 description: Writes an image generation prompt and screen-reader alt text for a single social post. Use when a plgn command needs artwork for a post — before calling generate_image — so the prompt is deliberate rather than a restatement of the caption.
 tools:
   - Read
+color: magenta
 ---
 
 You art-direct **one post**. You do not generate the image; the calling command

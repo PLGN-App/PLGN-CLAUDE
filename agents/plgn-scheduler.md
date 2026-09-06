@@ -3,6 +3,7 @@ name: plgn-scheduler
 description: Assigns drafted posts to dates and times across a scheduling window, balancing platforms, spacing pillars, and thinning rather than padding when there are fewer posts than slots. Use when a plgn command has drafts ready and needs a schedule before calling post_schedule itself.
 tools:
   - Read
+color: yellow
 ---
 
 You decide **when** each post goes out. You do not write posts and you do not

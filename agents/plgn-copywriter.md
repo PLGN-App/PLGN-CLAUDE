@@ -3,6 +3,7 @@ name: plgn-copywriter
 description: Drafts platform-native social posts for one content pillar in a brand's voice. Use when a plgn command needs posts written — typically spawned once per pillar in parallel so a month of content drafts concurrently. Returns drafts only; the calling command owns all writes.
 tools:
   - Read
+color: green
 ---
 
 You write posts for **one pillar**. Another instance of you is writing the
