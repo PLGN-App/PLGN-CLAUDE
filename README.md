@@ -58,21 +58,93 @@ paste.
 
 ---
 
-## Install
+## Getting started
+
+You need [Claude Code](https://claude.com/claude-code) installed. Everything
+else happens inside it.
+
+### 1. Install the plugin
+
+In Claude Code, run:
 
 ```
 /plugin marketplace add Ahmed-Hashim/plgn-claude
 /plugin install plgn
 ```
 
-Then connect:
+### 2. Restart Claude Code
+
+**This step is required, and skipping it is the most common problem.** The
+plugin ships its own connection to plgn's server, and that connection is only
+picked up when Claude Code starts. Until you restart, `/plgn setup` will report
+that it can't find a workspace no matter what you do.
+
+Close Claude Code and open it again.
+
+### 3. Try it with no account
+
+```
+/plgn help                        every command, in one list
+/plgn demo https://yoursite.com   7 posts written from your own site
+```
+
+Six commands work with no account, no sign-up and no keys. If you don't like
+what `/plgn demo` writes, stop here — nothing else will change your mind.
+
+### 4. Create a workspace
+
+Go to **[useplgn.com](https://useplgn.com)** and create one. This is where
+posts, topics, images and your brand's voice are stored.
+
+### 5. Connect and set up your brand
 
 ```
 /plgn setup
 ```
 
-You'll be prompted to authorize via plgn. No keys to paste, no config to edit —
-the plugin ships the connection.
+The first time a command needs your workspace, your browser opens and asks you
+to approve access. Approve it once and you're done.
+
+**You will never be asked to paste a key, token or password into the terminal.**
+If anything ever asks you to, something is wrong — that is not how this works.
+
+`/plgn setup` then reads your website and writes four things about your brand:
+how it sounds, who it talks to, what it sells, and words it refuses to use.
+It shows you all four before saving anything. Everything written later is built
+on these, so it's worth reading them properly.
+
+### 6. Write your first month
+
+```
+/plgn month "your subject" --dry-run
+```
+
+`--dry-run` shows the plan — topics, how many posts, how many images and what
+they cost — and writes nothing. When it looks right, run it again without the
+flag.
+
+---
+
+## Keeping the plugin up to date
+
+Installed plugins do not update themselves. To get the latest version:
+
+```
+claude plugin marketplace update plgn
+claude plugin update plgn
+```
+
+Then **restart Claude Code again**. Both commands run in your normal terminal,
+not inside Claude Code.
+
+### If something isn't working
+
+| What you see | What it means |
+|---|---|
+| `/plgn setup` says you're not connected, but you are | You haven't restarted Claude Code since installing or updating |
+| A command mentions a domain that isn't `useplgn.com` | Your installed copy is old — update it, then restart |
+| Your browser never opens to approve access | Restart, then run any connected command such as `/plgn queue` |
+| A free command asks you to sign in | That's a bug — the six free commands never contact the server |
 
 ---
 
