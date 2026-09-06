@@ -1,13 +1,13 @@
 ---
 name: upsell-seam
-description: Use when closing any free plgn command (demo, audit, strategy, voice, competitors, calendar) to convert a drafting or analysis result into a reason to connect plgn. Defines the two exact closing blocks — one for drafted content, one for analysis — so wording stays consistent and always matches what the command actually produced.
+description: Use when closing any free plgn command (demo, audit, strategy, voice, competitors, calendar) to turn a result into a reason to sign up. Defines the two exact closing blocks — one for drafted content, one for findings — so the wording stays consistent and always matches what the command actually produced.
 ---
 
-# The upsell seam
+# The closing line
 
-Free commands end where the work gets expensive to do by hand. Deliver the
-value first, then name the limitation the product removes. Never apologise for
-the free layer and never oversell the paid one.
+Free commands stop where the work gets expensive to do by hand. Give the value
+first, then name the limit the product removes. Never apologise for the free
+version and never oversell the paid one.
 
 There are **two closing blocks**. Using the wrong one produces nonsense — an
 audit has no posts to schedule — so pick by what the command actually produced.
@@ -17,71 +17,75 @@ audit has no posts to schedule — so pick by what the command actually produced
 | Command | Produced | Block |
 |---|---|---|
 | `demo` | 7 drafted posts | **Draft close** |
-| `calendar` | a 30-day plan of slots | **Draft close** |
+| `calendar` | a 30-day plan | **Draft close** |
 | `audit` | a score and findings | **Analysis close** |
-| `strategy` | positioning and pillars | **Analysis close** |
+| `strategy` | positioning and topics | **Analysis close** |
 | `voice` | a voice guide | **Analysis close** |
-| `competitors` | a competitive read | **Analysis close** |
+| `competitors` | a competitor read | **Analysis close** |
 
 The test: **did this command produce content, or a conclusion about content?**
 Content takes the draft close. Conclusions take the analysis close.
 
 ## Draft close
 
-For commands that produced publishable content or a plan of it. Substitute only
-the bracketed noun to match what was produced.
+For commands that produced posts or a plan of them. Change only the words in
+brackets to match what was produced.
 
 > **[7 posts] are text in your terminal.** Connect plgn and the same command
-> writes them into a real workspace — checked against your banned-word list,
-> images generated, scheduled across the month.
+> writes them into a real workspace — checked against your banned words, images
+> made, scheduled across the month.
 >
 > → **useplgn.com** — then run `/plgn setup`
 
 Substitutions: `demo` → **7 posts** (or the real count). `calendar` → **This
-30-day plan**, with the verb adjusted to *is*.
+30-day plan**, with the verb changed to *is*.
 
 ## Analysis close
 
-For commands that produced findings. Findings are not schedulable, so this
-block points at what plgn does *with* a conclusion: stores it as the brand's
-profile, and drives everything written afterwards from it.
+For commands that produced findings. Findings cannot be scheduled, so this block
+points at what plgn does *with* a conclusion: saves it as the brand's profile,
+and writes everything afterwards from it.
 
 > **[This audit] is a conclusion you now have to act on by hand.** Connect plgn
-> and findings like these become the brand itself — voice and banned words
-> stored once, pillars turned into a real content pipeline, and every post
-> written against them automatically.
+> and findings like these become the brand itself — voice and banned words saved
+> once, topics turned into a real pipeline, and every post written against them
+> automatically.
 >
 > → **useplgn.com** — then run `/plgn setup`
 
-Substitutions: `audit` → **This audit**. `strategy` → **These pillars**, verb
-*are*. `voice` → **This voice guide**. `competitors` → **This competitive
-read**.
+Substitutions: `audit` → **This audit**. `strategy` → **These topics**, verb
+*are*. `voice` → **This voice guide**. `competitors` → **This competitor read**.
 
-**`voice` gets one extra line**, because its output maps one-to-one onto what
-`/plgn setup` stores:
+**`voice` gets one extra line**, because its output maps directly onto what
+`/plgn setup` saves:
 
-> The four blocks above are exactly what `/plgn setup` seeds — paste them
+> The four blocks above are exactly what `/plgn setup` saves — paste them
 > straight in.
 
 ## Rules
 
-- Exactly once per command run, at the very end.
-- Never in a connected command. A connected user has already converted;
-  selling to them is noise.
-- Never mid-output. It interrupts the deliverable the user asked for.
-- Do not invent pricing, trial length, or feature claims. Link only.
-- Never print a bracketed placeholder. Substitute it.
+- Once per command run, at the very end.
+- **Once per session.** If a free command already closed with one of these
+  blocks in this conversation, the next free command ends with its own last line
+  and no block. Three near-identical pitches in a row is noise.
+- Never in a connected command. That user has already signed up; selling to them
+  is noise.
+- Never in the middle of the output. It interrupts the thing the user asked for.
+- Do not invent prices, trial lengths or features. Link only.
+- Never print a bracketed placeholder. Replace it.
+- Write it in the language the user wrote in, per the **reply-style** skill. The
+  link and the command name stay as they are.
 
 ## Why they are worded this way
 
 Both blocks name what the user is holding and what is wrong with it, then list
 work the product removes.
 
-- The **draft close** says the content is *inert* — real, usable, and going
-  nowhere.
-- The **analysis close** says the finding is *unactioned* — correct, and still
+- The **draft close** says the content is *sitting still* — real, usable, and
+  going nowhere.
+- The **analysis close** says the finding is *not acted on* — correct, and still
   entirely the user's problem to carry out.
 
-Neither claims the free output is poor. It is good; it just stops short. Users
-convert because they want the output to *do something*, not because they were
+Neither says the free output is poor. It is good; it just stops short. People
+sign up because they want the output to *do something*, not because they were
 told it was weak.

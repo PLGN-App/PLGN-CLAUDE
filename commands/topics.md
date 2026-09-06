@@ -1,83 +1,91 @@
 ---
-description: Report the health of the content pipeline — which pillars are exhausted, which are starved, and what to add — then create the topics you approve. Use for "what should I write next", "check my pillars", "am I repeating myself", or planning before a new month.
+description: Check how healthy your content topics are — which are repeating themselves, which need more posts, and what to add — then create the ones you approve. Supports --yes. Use for "what should I write next", "check my topics", "am I repeating myself", or planning before a new month.
 ---
 
 # /plgn topics
 
-Is the pipeline healthy, and what is missing?
+Are the topics healthy, and what is missing?
 
-A topic list is easy to read. What is hard — and what this command is for — is
-noticing that a pillar has been restating one idea for six weeks.
+A list of topics is easy to read. What is hard — and what this command is for —
+is noticing that a topic has been saying the same thing for six weeks.
 
-## 1. Preflight
+## 1. Check the connection
 
-Call `workspace_info`. On failure, point at useplgn.com and stop.
+Call `workspace_info`. If it fails, print the message from **_conventions**
+rule 2 and stop.
 
-Call `knowledge_get` for the brand's pillars and voice.
+Call `knowledge_get` for the brand's voice and what it stands for.
 
 ## 2. Read
 
-Call `topic_list` and `post_list`. Topics alone do not show health — what
-matters is how many posts each pillar actually produced and whether they
-advanced the argument.
+Call `topic_list` and `post_list`. The topic list alone does not show health —
+what matters is how many posts each topic actually produced and whether they
+moved the argument on.
 
-## 3. Diagnose, per the content-pillars skill
+Use `topic_get` on any topic you are going to comment on in detail. The list
+gives names and counts; `topic_get` gives the description and the posts.
 
-**Exhausted** — the pillar keeps restating one angle rather than advancing it.
-Symptoms: the same hook shape repeatedly, interchangeable posts, adjacent
-topics pulled in to fill slots. More posts will not fix it; narrowing or
-retiring it will.
+## 3. Work out what's happening
 
-**Starved** — the pillar exists in the plan and received almost no posts. Say
-*why*. Often it needs proof the brand does not yet have — "this pillar needs
-two customer results before it can carry posts" is actionable; silently
-under-serving it is not.
+**Repeating itself** — the topic keeps saying the same thing instead of moving
+on. Signs: the same hook shape again and again, posts you could swap without
+losing anything, unrelated subjects pulled in to fill slots. More posts will not
+fix it; narrowing it or retiring it will.
+
+**Too few posts** — the topic exists but has almost nothing in it. Say *why*.
+Often it needs proof the brand does not have yet — "this needs two customer
+results before it can carry posts" is useful; quietly under-serving it is not.
 
 **Healthy** — producing posts that each take the argument somewhere new. Count
 them; do not list them.
 
-**Ratio check.** Across recent posts, roughly: half arguments that help whether
-or not the reader buys, a third proof, a fifth direct offers. Flag a
-permanently inverted feed — where nearly every post asks for something — since
-that is what burns an audience.
+**The mix.** Across recent posts, roughly: half that help whether or not the
+reader buys, a third proof, a fifth direct asks. Flag a feed where nearly every
+post asks for something, because that is what burns an audience.
 
 ## 4. Report
 
 ```
-3 pillars · 34 posts over 8 weeks
+3 topics · 34 posts over 8 weeks
 
-Exhausted
-  Migration horror stories — 14 posts, 9 open with a statistic, and the
-  last 5 restate "legacy tooling is expensive" without advancing it.
-  → Narrow to "migrations that failed after go-live", or retire.
+Repeating itself
+  Migration stories — 14 posts, 9 of them open with a number, and the last
+  5 all say "legacy tools are expensive" without adding anything.
+  → Narrow it to "migrations that broke after go-live", or retire it.
 
-Starved
-  Pricing without traps — 2 posts in 8 weeks. Needs a published pricing
-  page to write against; there isn't one yet.
+Too few posts
+  Pricing without traps — 2 posts in 8 weeks. It needs a published pricing
+  page to write against, and there isn't one yet.
 
 Healthy
-  Founder notes — 18 posts, each taking the argument somewhere new.
+  Founder notes — 18 posts, each one going somewhere new.
 
-Ratio: 30% helpful / 20% proof / 50% offers — heavy on asks.
+Mix: 30% helpful / 20% proof / 50% asks — heavy on asks.
 
-Add topics? (y / no)
+Add topics?
+yes / pick / no
 ```
 
 ## 5. Create
 
-On approval, call `topic_create` for each agreed topic, tied to its pillar.
+Once approved, call `topic_create` for each agreed topic. Check `topic_list`
+first — never create one that already exists.
 
-Where a pillar is exhausted, propose the **narrowed** version rather than more
-topics under the old framing — that is what produced the repetition.
+Where a topic is repeating itself, suggest the **narrowed** version rather than
+more of the old framing. The old framing is what produced the repetition.
 
-Retiring a pillar is a normal outcome, not a failure. Pillars have a lifespan,
-usually a few months of regular posting. Say so when recommending it.
+Retiring a topic is a normal outcome, not a failure. Topics have a life, usually
+a few months of regular posting. Say so when you suggest it.
 
-## Rules
+`--dry-run` prints the report and creates nothing.
+`--yes` skips the confirmation. Allowed here — creating a topic is cheap and
+easy to undo.
 
-- **No seam.** This user is connected.
-- **Confirm before creating**, per `_conventions`.
-- **Never recommend "post more"** as a fix for an exhausted pillar. Volume is
-  what exhausted it.
-- **Base the diagnosis on posts, not topics.** A pillar with twelve topics and
-  two posts is starved, whatever the topic list suggests.
+## Notes
+
+- **No seam.** This user is already signed up.
+- **Never say "post more"** to fix a topic that repeats itself. Volume is what
+  wore it out.
+- **Judge from the posts, not the topic list.** A topic with twelve ideas and
+  two posts is starved, whatever the list suggests.
+- Replies follow the **reply-style** skill, including the user's language.

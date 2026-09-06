@@ -1,5 +1,5 @@
 ---
-description: Research 3-5 competitors in parallel and report their positioning, shared themes, and the gaps none of them cover. No plgn account needed. Use for "competitor analysis", "what are competitors posting", "competitive research", or finding an angle nobody has taken.
+description: Research 3-5 competitors at the same time and report their positioning, shared themes, and the gaps none of them cover. No plgn account needed. Use for "competitor analysis", "what are competitors posting", "competitive research", or finding an angle nobody has taken.
 ---
 
 # /plgn competitors
@@ -7,11 +7,11 @@ description: Research 3-5 competitors in parallel and report their positioning, 
 Find the space nobody is standing in.
 
 The summaries are supporting evidence. **The gaps are the deliverable** — what
-every competitor fails to say is where a brand can be first rather than better.
+every competitor fails to say is where a brand can be first instead of better.
 
-## No account required
+## No account needed
 
-Call **zero** MCP tools.
+Call **zero** tools.
 
 ## Argument
 
@@ -19,67 +19,68 @@ The user's own URL. If none was given, ask.
 
 ## Steps
 
-**1. Research the user's own site.** Delegate to `plgn-researcher` so the
-comparison has a baseline.
+**1. Read the user's own site.** Start `plgn-researcher` so the comparison has
+a baseline.
 
-**2. Propose a competitor list, and confirm it.** Identify 3–5 candidates from
-the site's own comparisons, its category language, and obvious alternatives.
+**2. Suggest a list, and check it.** Find 3–5 candidates from the site's own
+comparisons, the words it uses for its category, and the obvious alternatives.
 
-**Always confirm before researching.** Never assume who a competitor is — the
-list you infer is frequently wrong in ways only the user knows:
+**Always check before researching.** Never assume who a competitor is — the
+list you work out is often wrong in ways only the user knows:
 
-> I'd research these: <a>, <b>, <c>. Right list? Add or swap any.
+> I'd look at these: <a>, <b>, <c>. Right list?
+> yes / edit / no
 
-Include "doing nothing" or the incumbent manual process where it is the real
-alternative. It usually is, and it is the competitor nobody researches.
+Include "doing nothing" or the manual process people use today where that is
+the real alternative. It usually is, and it is the competitor nobody researches.
 
-**3. Research each in parallel.** Spawn one `plgn-researcher` per competitor,
-concurrently.
+**3. Read each one at the same time.** Start one `plgn-researcher` per
+competitor, together rather than one after another.
 
 **4. Report.**
 
-**5. Close** with the **upsell-seam** skill — the **analysis close**,
-substituting **This competitive read**.
+**5. Close** with the **upsell-seam** skill — the **analysis close**, using
+**This competitor read**.
 
 ## Output
 
 ```
-Baseline: <user's brand> — <one-line positioning>
+You: <brand> — <one-line positioning>
 
 ── Competitors ──────────────────────────
-<name>   <one-line positioning> · proof: <what they demonstrate>
+<name>   <one-line positioning> · proof: <what they show>
 <name>   ...
 
 ── What everyone says ───────────────────
-<theme>  — claimed by <n>/<total>, none demonstrate it
+<theme>  — claimed by <n>/<total>, none of them prove it
 <theme>  — ...
 
 ── What nobody says ─────────────────────
 <gap>
    Why it's open: <why competitors avoid or miss it>
-   Your angle:    <the pillar this suggests>
+   Your angle:    <the topic this suggests>
 ```
 
 ## Reading the field
 
-- **Separate claims from demonstrations.** Five competitors claiming "fastest"
-  and none showing a benchmark is itself the finding — the category has an
-  unearned claim, and evidence would win it.
-- **Shared themes are table stakes, not opportunities.** If everyone covers it,
-  covering it better rarely moves anyone. Note them so the brand knows what it
-  cannot skip, then move on.
-- **A gap is not automatically an opportunity.** Sometimes nobody says it
-  because buyers do not care. Say which gaps look genuinely open and which look
-  avoided for a reason — an audit that flags every silence as a goldmine is
-  noise.
+- **Separate claims from proof.** Five competitors saying "fastest" and none
+  showing a number is itself the finding — the whole category has an unearned
+  claim, and evidence would win it.
+- **Shared themes are the price of entry, not an opening.** If everyone covers
+  it, covering it better rarely moves anyone. Note them so the brand knows what
+  it cannot skip, then move on.
+- **A gap is not automatically an opening.** Sometimes nobody says it because
+  buyers do not care. Say which gaps look genuinely open and which look avoided
+  for a reason — a report that calls every silence a goldmine is noise.
 
 ## Rules
 
-- **Confirm the list before researching.** Researching the wrong five companies
-  wastes the run and produces confidently wrong strategy.
+- **Check the list before researching.** Reading the wrong five companies
+  wastes the run and produces confident, wrong advice.
 - **Report what the sites say**, not market gossip. Findings come from the
-  pages read.
-- **Never disparage.** This is a read of positioning, not a takedown. It is
-  frequently read aloud to clients.
-- **Name the sample.** "Based on 4 competitors' public sites, read today" —
-  scope stated is scope defensible.
+  pages you read.
+- **Never attack anyone.** This is a read of how they position themselves, not
+  a takedown. It often gets read out loud to clients.
+- **Say how many you read.** "Based on 4 competitors' public sites, read today"
+  — a stated scope is a defensible scope.
+- Replies follow the **reply-style** skill, including the user's language.

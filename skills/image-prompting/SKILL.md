@@ -1,100 +1,100 @@
 ---
 name: image-prompting
-description: Use when generating images for plgn posts — writing the prompt, and handling the asynchronous generate_image then check_generation polling cycle including timeouts and credit cost. Covers what makes a usable social image and when a post is better with none.
+description: Use when making images for plgn posts — writing the description, and handling the generate_image then check_generation waiting cycle including timeouts and credit cost. Covers what makes a usable social image and when a post is better with none.
 ---
 
-# Image prompting and generation
+# Making images
 
-Two separate things: writing a prompt worth spending a credit on, and handling
-the asynchronous generation that follows.
+Two separate things: writing a description worth spending a credit on, and
+handling the wait that follows.
 
-## Writing the prompt
+## Writing the description
 
 Describe four things, in this order:
 
-1. **Subject** — what is in frame, concretely. "A desk with one open notebook
-   and a closed laptop", not "productivity".
-2. **Composition** — framing, viewpoint, where the subject sits, negative
-   space. Leave room where platforms crop; square-ish framing survives more
-   placements than wide.
-3. **Lighting** — direction, hardness, time of day. This sets mood more than
-   any adjective.
-4. **Mood** — tied to the post's *argument*, not its topic.
+1. **Subject** — what is in the picture, concretely. "A desk with one open
+   notebook and a closed laptop", not "productivity".
+2. **Framing** — the viewpoint, where the subject sits, how much empty space.
+   Leave room where platforms crop; roughly square survives more places than
+   wide.
+3. **Light** — direction, hard or soft, time of day. This sets the mood more
+   than any adjective.
+4. **Mood** — tied to what the post *argues*, not what it is about.
 
-Then constrain: a colour direction consistent with the brand, and an explicit
-medium — photograph, flat illustration, 3D render. An unstated medium produces
-an unpredictable one.
+Then set two limits: a colour direction that matches the brand, and what kind of
+image it is — photograph, flat illustration, 3D render. Leave that out and you
+get something unpredictable.
 
-## Never ask for text in the image
+## Never ask for words in the image
 
-No words, letterforms, numbers, logos, or UI labels. Generated text renders
-unreliably — misspelled, malformed, subtly wrong — and a post carrying a
-garbled word is worse than a post with no image at all.
+No text, letters, numbers, logos or interface labels. Generated text comes out
+wrong — misspelt, malformed, subtly off — and a post carrying a broken word is
+worse than a post with no picture at all.
 
 The caption carries the words. The image carries the mood.
 
-## Do not illustrate the caption literally
+## Don't just draw the caption
 
 A post about wasted planning time does not need a picture of a calendar. The
 literal illustration is the first idea and almost always the weakest — it adds
 nothing the reader just read.
 
-Aim one step sideways: the mood of the argument, or its consequence rather than
-its subject. Empty chairs after a meeting says more about wasted meetings than
-a clock does.
+Aim one step sideways: the mood of the argument, or what it leads to rather than
+what it is about. Empty chairs after a meeting says more about wasted meetings
+than a clock does.
 
-## When to generate nothing
+## When to make nothing
 
 Skip the image, and say why, when:
 
-- The post is a text-first argument that reads stronger unadorned — common for
-  long-form LinkedIn.
-- The only prompt available is generic, and the result would feel like stock.
-  A stock-feeling image costs a credit *and* credibility.
-- The brand has no configured image integration. Report it; do not retry.
+- The post is a written argument that reads stronger plain — common for long
+  LinkedIn posts.
+- The only description you can write is generic, and the result would look like
+  stock. A stock-looking image costs a credit *and* some credibility.
+- The brand has no image setup. Say so; do not retry.
 
 Spending no credit is a valid outcome. Report it as a decision, not a failure.
 
-## The asynchronous contract
+## The waiting cycle
 
-`generate_image` **returns a task id, not an image.** Treat generation as a job
-to be polled.
+`generate_image` **returns a job number, not an image.** Treat it as a job to
+check on.
 
-1. Call `generate_image` — keep the returned task id.
-2. Poll `check_generation` with that id every **5 seconds**.
-3. Give up after **90 seconds** (roughly 18 polls) per image.
+1. Call `generate_image` — keep the job number it returns.
+2. Check with `check_generation` every **5 seconds**.
+3. Give up after **90 seconds** (about 18 checks) per image.
 
-On timeout:
+If it times out:
 
-- Leave the post's image slot empty.
-- Record the post for the run's report.
-- **Continue.** A missing image never blocks scheduling — a post that ships
-  text-only is fine; a month that stalls waiting on a render is not.
+- Leave the post's picture slot empty.
+- Note the post for the report.
+- **Carry on.** A missing image never blocks scheduling — a post that goes out
+  text-only is fine; a month that stalls waiting on a picture is not.
 
-Never poll indefinitely, and never abandon a task without reporting it. A
-silent timeout looks identical to a post nobody wanted an image for.
+Never wait forever, and never abandon a job without saying so. A silent timeout
+looks exactly like a post nobody wanted a picture for.
 
-## Batching
+## Doing many at once
 
-When generating for many posts, start all generations first, then poll. Issuing
-generate → poll → generate → poll serially turns a 90-second worst case into a
-30-minute one.
+When making images for several posts, start **all** of them first, then check on
+them. Going make → check → make → check one at a time turns a 90-second worst
+case into half an hour.
 
-Apply the same 90-second ceiling per image from the moment that image's
-generation started, not from when polling began.
+Apply the same 90-second limit per image from the moment *that* image started,
+not from when you began checking.
 
-## Credits are real
+## Credits are real money
 
-Image generation draws down a workspace's credit pool or the brand's own key.
+Making images draws down a workspace's credits or the brand's own key.
 
-- **State the cost before generating**, in the plan, not after.
-- Where the count exceeds what is available, say so and generate for the
-  highest-value posts rather than failing partway with no explanation.
-- Never regenerate an image just because the first result was unexciting; that
-  is a second credit for a marginal gain. Regenerate only on a genuine failure.
+- **Say the cost before making anything**, in the plan, not after.
+- Where the number is more than they have, say so and make images for the most
+  valuable posts rather than stopping partway with no explanation.
+- Never remake an image just because the first one was dull; that is a second
+  credit for a small gain. Remake only when one genuinely failed.
 
 ## Alt text
 
-Every generated image gets alt text — it is written by `plgn-visual`, not here.
-It describes what is visibly in the image in one sentence, leads with the
-subject, omits "image of", and never repeats the post body.
+Every image gets alt text — written by `plgn-visual`, not here. It describes what
+is visibly in the picture in one sentence, starts with the subject, leaves out
+"image of", and never repeats the post.

@@ -1,94 +1,102 @@
 ---
-description: Find older posts worth running again, rewrite the strongest ones, and reschedule them after your approval. Use for "refresh old content", "repost the good ones", "reuse what worked", or filling a thin month from the archive.
+description: Find older posts worth running again, rewrite the strongest ones, and reschedule them after your approval. Use for "refresh old content", "repost the good ones", "reuse what worked", or filling a thin month from what you already have.
 ---
 
 # /plgn refresh
 
-Good arguments outlive their first posting. Most of an audience never saw them.
+Good points outlive their first posting. Most of an audience never saw them.
 
 This command reuses the strongest older posts — rewritten, not reposted. It
-never republishes anything without showing it first.
+never republishes anything without showing it to you first.
 
-## 1. Preflight
+## 1. Check the connection
 
-Call `workspace_info`, then `knowledge_get`. On failure or empty knowledge,
-route as `_conventions` requires and stop.
+Call `workspace_info`, then `knowledge_get`. If either fails or the voice is
+empty, follow **_conventions** rule 2 and stop.
 
 ## 2. Find candidates
 
-Call `post_list` for published posts older than **90 days**. Newer than that and
-a meaningful share of the audience still remembers it.
+Call `post_list` for published posts older than **90 days**. Any newer and a
+real share of the audience still remembers them.
 
-If nothing is old enough, say so and stop. A workspace two months old has
-nothing to refresh, and inventing candidates wastes the run.
+If nothing is old enough, say so and stop. A two-month-old workspace has nothing
+to refresh, and inventing candidates wastes the run.
 
-## 3. Select — do not refresh everything
+## 3. Choose — don't refresh everything
 
-**State the selection criteria**, then apply them. plgn holds no engagement
-data, so selection is on content, not performance — say that plainly rather
-than implying you know what did well:
+**Say how you chose**, then choose. plgn cannot see likes or reach, so this is
+based on the content, not on how it did — say that plainly rather than implying
+you know what worked:
 
-- **Still true.** Nothing in it contradicts the brand's current offers, pricing,
-  or positioning. Check against `knowledge_get`.
-- **Still argued.** It makes a case, not an announcement. Launch posts and
-  event notices do not refresh; arguments do.
-- **Belongs to a live pillar.** A post from a retired pillar reintroduces an
-  argument the brand moved on from.
-- **Not recently echoed.** If a recent post makes the same case, refreshing
+- **Still true.** Nothing in it contradicts the brand's current offers, prices
+  or position. Check against `knowledge_get`.
+- **Still makes a point.** It argues something, rather than announcing an event.
+  Launch posts and event notices do not refresh; arguments do.
+- **Belongs to a live topic.** A post from a retired topic brings back something
+  the brand moved on from.
+- **Not said again recently.** If a recent post makes the same point, refreshing
   this one creates the repetition `/plgn topics` flags.
 
-Take the strongest handful — typically 3 to 6 per run. Refreshing thirty posts
-is republishing the archive, which is what makes a feed feel automated.
+Take the strongest handful — usually 3 to 6 per run. Refreshing thirty posts is
+republishing the archive, which is what makes a feed feel automated.
 
 ## 4. Rewrite
 
-Delegate to `plgn-copywriter` with the original post and the brand's **current**
+Start `plgn-copywriter` with the original post and the brand's **current**
 voice.
+
+Per **_conventions** rule 6, put the original text, the current voice, the
+banned words and the platform limit into the prompt.
 
 A refresh is a **rewrite**, not a repost:
 
-- New hook. The old one, verbatim, is what makes readers notice a repeat.
-- Current voice — the brand's writing may have moved since.
-- Updated specifics: numbers, product names, anything `knowledge_get` shows has
+- A new opening. The old one word for word is what makes readers spot a repeat.
+- The current voice — the brand's writing may have moved on.
+- Updated details: numbers, product names, anything `knowledge_get` shows has
   changed.
-- Optionally a different platform than the original ran on.
+- Possibly a different platform than it first ran on.
 
-## 5. Show every rewrite, then confirm
+## 5. Show every rewrite, then ask
 
-Never silently republish. Show original and rewrite side by side:
+Never republish quietly. Show the old and the new side by side:
 
 ```
-Originally posted Mar 4 · LinkedIn
+First posted Mar 4 · LinkedIn
 
   Before: <original opening>
   After:  <rewritten opening>
-  Changed: new hook; "Starter tier" → "Base plan"
+  Changed: new opening; "Starter tier" → "Base plan"
 
-4 posts to refresh. Reschedule these? (y / pick / cancel)
+4 posts to refresh. Reschedule these?
+yes / pick / no
 ```
 
-## 6. Create and schedule
+`--dry-run` stops here and writes nothing.
+**`--yes` is not accepted.** This republishes to a real audience.
 
-On approval, create the rewrites as **new posts** with `post_create` — never
+## 6. Save and schedule
+
+Once approved, save the rewrites as **new posts** with `post_create` — never
 overwrite the original with `post_update`. The original is the brand's history,
 and a refresh that erases it loses the record of what was said when.
 
-Then `post_schedule` them per the **posting-cadence** skill, spaced into gaps
-rather than stacked. Apply **gate-recovery** on `ERROR:`.
+Then `post_schedule` following the **posting-cadence** skill, spread into gaps
+rather than stacked. Follow **gate-recovery** on any `ERROR:`.
 
 ## 7. Report
 
 ```
-4 refreshed posts created and scheduled
+4 refreshed posts saved and scheduled
 
-  1 skipped — "Pricing update" names a tier removed in March
+  1 skipped — "Pricing update" names a plan you removed in March
 ```
 
-## Rules
+## Notes
 
-- **No seam.** This user is connected.
-- **Never claim performance.** "Reposting your best performer" is a claim plgn
-  cannot support. Say "still-relevant arguments" instead.
+- **No seam.** This user is already signed up.
+- **Never say a post did well.** "Reposting your best performer" is something
+  plgn cannot know. Say "points that still hold" instead.
 - **Never overwrite the original.**
 - **Never refresh in bulk.** If a user asks for thirty, say why fewer is better
   and let them decide.
+- Replies follow the **reply-style** skill, including the user's language.

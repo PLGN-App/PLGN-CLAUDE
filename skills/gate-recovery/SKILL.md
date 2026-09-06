@@ -1,73 +1,74 @@
 ---
 name: gate-recovery
-description: Use when any plgn MCP tool returns a string starting with "ERROR:" — especially post_create, post_update, or post_schedule failing the server validation gate on character caps or banned words. Defines revise-and-retry behaviour so commands recover instead of reporting failure.
+description: Use when any plgn tool returns a result starting with "ERROR:" — especially post_create, post_update or post_schedule failing plgn's checks on length or banned words. Defines the fix-and-retry behaviour so commands recover instead of reporting failure.
 ---
 
-# Recovering from the validation gate
+# Recovering when a check blocks a post
 
-plgn enforces per-platform character caps and the brand's banned-word list
-**server-side**. A post cannot become scheduled or published while a check
-fails. This is a guarantee, not an obstacle: it means drafts can be bold,
-because bad ones cannot escape.
+plgn checks character limits and the brand's banned words **on the server**. A
+post cannot be scheduled or published while a check fails. This is a guarantee,
+not an obstacle: it means drafts can be bold, because bad ones cannot get out.
 
-Never reimplement these checks. Never describe them to the user as the
+Never rebuild these checks yourself. Never describe them to the user as the
 plugin's protection — they are the server's.
 
-## Procedure
+## What to do
 
-1. **Read the error.** Tool handlers return a plain `ERROR: <reason>` string,
-   never a stack trace. The reason names the failing check.
-2. **Revise the draft for that reason only.**
-   - Over the character cap → tighten the copy. Cut qualifiers and repeated
-     ideas first. Never truncate mid-sentence or drop the call to action.
-   - Banned word → replace the word, preserving the sentence's intent. If the
-     whole idea depends on the banned word, change the idea.
-3. **Retry once.**
-4. **On a second failure, stop retrying.** Leave the post as a draft, and
-   record it for the run's report as needing a human.
+1. **Read the reason.** Tools return a plain `ERROR: <reason>` string, never a
+   stack trace. The reason names what failed.
+2. **Fix that reason only.**
+   - Too long → tighten the writing. Cut qualifiers and repeated points first.
+     Never cut off mid-sentence, and never drop the call to action.
+   - Banned word → replace the word, keeping the sentence's meaning. If the whole
+     point depends on that word, the point has to change.
+3. **Try once more.**
+4. **If it fails again, stop.** Leave the post as a draft and note it for the
+   report as needing a person.
 
-## Reporting
+## Telling the user
 
-Report gate activity as a fact, not a fault:
+Describe it as a fact, not a fault, and follow the **reply-style** skill — a
+normal sentence in their language, never the raw error:
 
-> 2 posts were revised to fit LinkedIn's cap. 1 post is left as a draft —
-> "growth hack" is on your banned-word list and the post's point depends on it.
+> 2 posts were shortened to fit LinkedIn. 1 is still a draft — it uses "growth
+> hack", a word you banned, and the post's point depends on it.
 
-Never surface a raw `ERROR:` string to the user, and never report the whole
-run as failed because individual posts needed revision.
+Never show a raw `ERROR:` string, and never call the whole run a failure because
+a few posts needed changing.
 
 ## Why one retry, not three
 
-A cap failure is arithmetic: one honest tightening pass fixes it or reveals
-the post is carrying two ideas and should be two posts. A banned-word failure
-is editorial: if the first substitution does not work, the post's premise
-conflicts with the brand's stated position, and that is a decision for a
-person, not a retry loop.
+Being too long is arithmetic: one honest tightening pass fixes it, or shows the
+post is carrying two ideas and should be two posts.
 
-Repeated retries also burn tokens re-deriving the same draft and, worse, tend
-to degrade copy — each pass strips more voice to satisfy a constraint. Two
-attempts and an honest hand-off beats five attempts and a bland post.
+A banned word is editorial: if the first replacement does not work, the post's
+premise disagrees with what the brand stands for, and that is a decision for a
+person, not a loop.
 
-## What never counts as recovery
+Repeated tries also burn effort rebuilding the same draft and, worse, tend to
+make the writing worse — each pass strips out more voice to satisfy a rule. Two
+attempts and an honest hand-off beats five attempts and a flat post.
 
-- **Truncating to fit.** A post cut mid-sentence passes the cap and fails the
-  reader. Rewrite shorter instead.
-- **Dropping the call to action.** It is the most cuttable-looking line and
-  the reason the post exists.
-- **Deleting the post.** A draft the gate rejected still holds a usable idea.
-  Leave it as a draft; never call `post_delete` to clear a failure.
-- **Scheduling anyway.** The server will refuse, and attempting it produces a
-  second error the user then has to interpret.
+## What does not count as recovering
 
-## Errors that are not gate failures
+- **Cutting it off to fit.** A post cut mid-sentence passes the check and fails
+  the reader. Rewrite it shorter instead.
+- **Dropping the call to action.** It looks like the easiest line to cut and it
+  is the reason the post exists.
+- **Deleting the post.** A blocked draft still holds a usable idea. Leave it as
+  a draft; never call `post_delete` to clear a problem.
+- **Trying to schedule it anyway.** The server will refuse, and you get a second
+  error the user then has to interpret.
 
-Not every `ERROR:` comes from `runGate`. Handle these differently — revising
-copy will not fix any of them:
+## Errors that are not about the checks
 
-- **Permission** (`minRole`) → the user's role cannot perform this action.
-  Report it plainly and stop; do not retry.
-- **Not found** → an id from earlier in the run is stale. Re-read with
-  `post_get` or `topic_list` rather than guessing a new id.
-- **Missing integration** → image generation needs a configured key. Report
-  what is missing, continue with the rest of the run, and leave image slots
-  empty rather than aborting.
+Not every `ERROR:` comes from the content checks. These need different handling —
+rewriting the copy will not fix any of them:
+
+- **Not allowed** → the user's role cannot do this. Say so plainly and stop; do
+  not retry.
+- **Not found** → an id from earlier in the run is stale. Read it back with
+  `post_get` or `topic_list` rather than guessing a new one.
+- **Something isn't connected** → making images needs a key. Say what is
+  missing, carry on with the rest of the run, and leave the picture out rather
+  than stopping.

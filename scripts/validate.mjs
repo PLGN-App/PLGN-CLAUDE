@@ -22,7 +22,9 @@ const TOOLS = new Set([
 
 const FREE = ["demo", "audit", "strategy", "voice", "competitors", "calendar"];
 const CONNECTED = ["setup", "brand", "knowledge", "month", "post", "repurpose",
-  "topics", "library", "images", "review", "refresh", "report"];
+  "topics", "library", "images", "queue", "refresh", "report"];
+// `help` is neither free nor connected: it calls nothing and carries no seam.
+const NEITHER = ["help"];
 
 const read = (p) => readFileSync(join(ROOT, p), "utf8");
 const exists = (p) => existsSync(join(ROOT, p));
@@ -183,6 +185,49 @@ for (const c of FREE) {
   const body = read(p).toLowerCase();
   if (!body.includes("draft close") && !body.includes("analysis close")) {
     fail(`${p}: must name which seam variant it closes with (draft close / analysis close)`);
+  }
+}
+
+// --- 5b. Reply style is declared, referenced, and consistently shaped ---
+// Added after a review found six different confirmation prompts across the
+// commands, and no rule anywhere about the language or reading level of the
+// replies themselves. These checks keep both from drifting back.
+{
+  const declared = new Set([...FREE, ...CONNECTED, ...NEITHER]);
+  for (const f of ls("commands")) {
+    if (!f.endsWith(".md") || f === "_conventions.md") continue;
+    const name = f.replace(/\.md$/, "");
+    if (!declared.has(name)) {
+      fail(`commands/${f}: not listed as free, connected, or neither in validate.mjs`);
+    }
+  }
+
+  const conv = exists("commands/_conventions.md") ? read("commands/_conventions.md") : "";
+  if (!conv.includes("reply-style")) {
+    fail("commands/_conventions.md must point at the reply-style skill");
+  }
+
+  const rs = "skills/reply-style/SKILL.md";
+  if (!exists(rs)) {
+    fail(`${rs} is missing — nothing owns how plgn talks to the user`);
+  } else {
+    const body = read(rs);
+    for (const fmt of ["yes / pick / no", "yes / edit / no"]) {
+      if (!body.includes(fmt)) fail(`${rs} must define the "${fmt}" question format`);
+    }
+  }
+
+  // Only two question formats are allowed. These are the shapes the review
+  // found in the wild; each one is a command inventing its own vocabulary.
+  const BAD_PROMPTS = ["(y / ", "(y/n)", "(y / n)", "Proceed?"];
+  for (const f of ls("commands")) {
+    if (!f.endsWith(".md")) continue;
+    const body = read(`commands/${f}`);
+    for (const bad of BAD_PROMPTS) {
+      if (body.includes(bad)) {
+        fail(`commands/${f}: uses "${bad}" — the only question formats are "yes / pick / no" and "yes / edit / no"`);
+      }
+    }
   }
 }
 

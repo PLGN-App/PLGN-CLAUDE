@@ -1,84 +1,88 @@
 ---
 name: brand-voice
-description: Use when writing or reviewing copy that must sound like a specific brand — reading a stored voice from plgn knowledge, applying it to new posts, inferring a voice from a website when none is stored, or checking a batch of drafts for voice drift.
+description: Use when writing or checking copy that must sound like a specific brand — reading a saved voice from plgn, applying it to new posts, working one out from a website when none is saved, or checking a batch of drafts for drift. This is about the brand's posts, not about how plgn talks to the user.
 ---
 
 # Brand voice
 
-Voice is the difference between content a brand publishes and content that
-could belong to anyone. Treat it as a constraint on *how* to write, never as a
-topic to write about.
+Voice is the difference between content a brand publishes and content that could
+belong to anyone. Treat it as a rule about *how* to write, never as a subject to
+write about.
 
-## Reading a stored voice
+**This skill is about the posts.** How plgn talks to the user in chat is a
+different thing entirely, and the **reply-style** skill owns it. Never apply a
+brand's voice to a reply, and never apply reply rules to a post.
 
-Call `knowledge_get`. A brand configured by `/plgn setup` has four categories:
+## Reading a saved voice
 
-| Category | Holds |
+Call `knowledge_get`. A brand set up by `/plgn setup` has four entries:
+
+| Entry | Holds |
 |---|---|
-| **voice** | Tone descriptors, vocabulary to use and avoid, sentence rhythm |
-| **audience** | Who is being addressed, what they already know, what they care about |
-| **offers** | What the brand sells, and how it names those things |
-| **banned words** | Terms the brand refuses to use |
+| **voice** | Tone, words to use and avoid, sentence rhythm |
+| **audience** | Who is addressed, what they know, what they care about |
+| **offers** | What the brand sells, and what it calls those things |
+| **banned words** | Words the brand refuses to use |
 
-Read all four before drafting. The audience shapes voice as much as the voice
-entry does — the same brand writes differently to practitioners than to buyers.
+Read all four before writing. The audience shapes the voice as much as the voice
+entry does — the same brand writes differently to people who do the work than to
+people who buy it.
 
 ## Applying it
 
-Match **rhythm and vocabulary**, not just topic.
+Match the **rhythm and the words**, not just the subject.
 
-- **Sentence length and variation.** A brand that writes in short declaratives
-  does not suddenly produce a 40-word subordinate clause. Copy the pattern of
-  long-then-short, not just the average.
-- **Vocabulary.** Use the brand's own words for its own things. If they say
-  "workspace", never "account". If they say "customers", never "users".
-- **Stance.** Formality, humour, and how much jargon the audience is assumed to
-  handle. Getting this wrong reads as a different company.
-- **What they never do.** Often more diagnostic than what they do. A brand that
+- **Sentence length and variety.** A brand that writes in short flat statements
+  does not suddenly produce a 40-word sentence. Copy the pattern of long-then-
+  short, not just the average.
+- **Their words for their things.** If they say "workspace", never "account". If
+  they say "customers", never "users".
+- **Where they stand.** How formal, how funny, and how much specialist language
+  the audience is assumed to handle. Getting this wrong reads as a different
+  company.
+- **What they never do.** Often more telling than what they do. A brand that
   never uses exclamation marks, never opens with a question, or never mentions
-  competitors has a voice defined by those refusals.
+  competitors has a voice built on those refusals.
 
-**Banned words are absolute.** They are enforced server-side, but a draft that
-respects them from the start is a draft that does not need revising. Replace
-the word *and* the idea that required it — a banned word usually marks a banned
-posture, not just a banned string.
+**Banned words are absolute.** The server enforces them, but a draft that
+respects them from the start is a draft nobody has to fix. Replace the word *and*
+the idea that needed it — a banned word usually marks a banned attitude, not just
+a banned string.
 
-## When no stored voice exists
+## When no voice is saved
 
-Free commands have no workspace to read from. Infer the voice from the site's
+Free commands have no account to read from. Work the voice out from the site's
 own copy:
 
 1. Read the homepage headline, the about page, and one product page.
-2. Extract **voice markers** — recurring phrasings, the reading level, whether
-   they address the reader as "you", how they name their own product.
-3. Prefer marketing copy the brand wrote over UI strings or legal text.
+2. Pull out **voice markers** — repeated phrasings, how hard it is to read,
+   whether they say "you", what they call their own product.
+3. Prefer marketing copy the brand wrote over interface text or legal text.
 
-Then **say that you inferred it.** Print one line before the deliverable:
+Then **say that you worked it out.** Print one line before the result:
 
-> Voice inferred from your homepage and about page — not from a configured
-> brand profile.
+> This voice is my read of your homepage and about page — not a saved profile.
 
-This matters. An inferred voice is a guess from a sample of a few pages, and
-the user must know which parts of the output rest on it. Never present an
-inference as though it were the brand's stated voice.
+This matters. A worked-out voice is a guess from a few pages, and the user must
+know which parts of the output rest on it. Never present a guess as though it
+were the brand's stated voice.
 
-## Voice drift checklist
+## Checking a batch for drift
 
-Run over a batch of drafts before writing them anywhere. Drift is easiest to
-see across posts, not within one.
+Run this over a set of drafts before saving them anywhere. Drift shows up across
+posts, not within one.
 
-- [ ] **One author?** Read the batch straight through. Does it sound like one
+- [ ] **One writer?** Read the batch straight through. Does it sound like one
       person, or like a model imitating three?
-- [ ] **Vocabulary consistent?** The same concept named the same way every
-      time — not "workspace" here and "dashboard" there.
-- [ ] **Rhythm consistent?** Not three punchy posts followed by two essays,
+- [ ] **Same words for the same things?** Not "workspace" here and "dashboard"
+      there.
+- [ ] **Same rhythm?** Not three short punchy posts followed by two essays,
       unless the platform mix explains it.
-- [ ] **No borrowed register.** Generic LinkedIn-influencer cadence — one-line
-      paragraphs, manufactured suspense, "Here's the thing:" — is a voice, and
-      it is not the brand's unless they actually write that way.
-- [ ] **Banned words absent**, including near-misses and the postures behind
-      them.
-- [ ] **Would the founder post this?** The final check. If a specific post
-      would embarrass them, it fails regardless of the other boxes.
+- [ ] **No borrowed style.** Generic influencer rhythm — one-line paragraphs,
+      manufactured suspense, "Here's the thing:" — is a voice, and it is not this
+      brand's unless they actually write that way.
+- [ ] **No banned words**, including close variants and the attitude behind them.
+- [ ] **Would the founder post this?** The last check. If one post would
+      embarrass them, it fails whatever the other boxes say.
 
-Where a draft fails, revise that draft — do not loosen the voice to fit it.
+Where a draft fails, fix that draft — do not loosen the voice to fit it.

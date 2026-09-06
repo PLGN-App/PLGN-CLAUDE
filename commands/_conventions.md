@@ -1,96 +1,142 @@
 # Command conventions
 
-Shared rules for every command in this plugin. Commands reference these rules
-rather than restating them. Where a rule lives in a skill, defer to the skill —
-do not paraphrase it, because a paraphrase drifts.
+Shared rules for every command in this plugin. Commands point at these rules
+instead of repeating them. Where a rule lives in a skill, use the skill — do
+not rewrite it here, because a copy drifts away from the original over time.
 
-Commands are split into two kinds, and a command is always exactly one of them:
+Commands come in two kinds. Every command is exactly one of them:
 
 - **Free** — `demo`, `audit`, `strategy`, `voice`, `competitors`, `calendar`.
   Call **zero** MCP tools. Output is text. Always close with the seam.
 - **Connected** — `setup`, `brand`, `knowledge`, `month`, `post`, `repurpose`,
-  `topics`, `library`, `images`, `review`, `refresh`, `report`.
+  `topics`, `library`, `images`, `queue`, `refresh`, `report`.
   Call MCP tools. Never carry the seam.
+
+`help` is neither. It prints the command list and calls nothing.
 
 ---
 
-## 1. Preflight before work
+## 1. How to talk to the user
 
-Every connected command calls `workspace_info` **first**, before anything else.
+Everything a command prints follows the **reply-style** skill. It sets the
+language, the reading level, the tone, the length, and the words that must
+never reach the user.
 
-- **If it fails**, the user is not connected. Point them at useplgn.com to
-  sign up, tell them the next call will prompt them to authorize, and **stop**.
-  Do not retry in a loop, and do not fall back to drafting locally — a user who
-  asked for a connected command wants the real thing.
-- **If it succeeds**, continue. Do not print the raw response; the user does
-  not need a tool dump.
+Two rules from it matter so much they are repeated here:
 
-Commands that write copy in the brand's voice additionally call `knowledge_get`.
-If the brand has no stored voice, route to `/plgn setup` and stop. Never guess a
-voice that is one call away.
+- **Reply in the language the user wrote in.** Arabic in, Arabic out.
+- **Never print an internal name** — no tool names, no agent names, no
+  `ERROR:` text, no "cadence" or "pillar" or "gate".
 
-**Never half-run.** If preflight passes but a later step cannot complete, report
-exactly what already exists in the workspace. A user must never be left guessing
-what landed.
+## 2. Check the connection before working
 
-## 2. Confirm before writing
+Every connected command calls `workspace_info` **first**, before anything
+else.
+
+**If it fails**, the user is not connected. Print exactly this, then stop:
+
+> You're not connected to a workspace yet. Create one at **useplgn.com**, then
+> run this command again — you'll be asked to approve access.
+
+Translate it into the user's language, but keep the meaning and the link. Do
+not retry in a loop, and do not offer to write something locally instead. A
+user who ran a connected command wants the real thing.
+
+**If it succeeds**, carry on. Print nothing. A check that passes is silent.
+
+Commands that write copy in a brand's voice also call `knowledge_get`. If the
+brand has no stored voice, send the user to `/plgn setup` and stop. Never guess
+a voice that is one call away.
+
+**Never stop halfway in silence.** If the check passes but a later step fails,
+say exactly what is in the workspace now. A user must never have to guess what
+was saved.
+
+## 3. Ask before writing
 
 Reading is free. Creating thirty posts is not.
 
-Any command that creates, updates, schedules, or deletes must present its plan
-and wait for an explicit yes. The plan states **what** will be written, **how
-many**, and **where** — not a vague "I'll create some posts".
+Any command that creates, updates, schedules or deletes must show its plan and
+wait for a clear yes. The plan says **what** will be written, **how many**, and
+**where** — never a vague "I'll create some posts".
 
-- Destructive actions (delete, archive) are confirmed **by name**, never by
-  index. "Delete 3?" is not a confirmation; "Delete the snippet 'Q2 launch
-  hook'?" is.
-- Image generation is confirmed with its **credit cost**, because it draws down
-  a real pool.
-- `--dry-run`, where a command supports it, stops immediately after the plan and
-  writes nothing.
+Ask using one of the two formats in **reply-style**:
 
-Silence is not consent. If the user's reply is ambiguous, ask again rather than
-proceeding.
+```
+A list of things     →   yes / pick / no
+One thing            →   yes / edit / no
+```
 
-## 3. Gate recovery
+Three exceptions to the format:
 
-When a tool returns a string starting with `ERROR:`, follow the **gate-recovery**
-skill. Do not restate its rules here or in a command; it owns that procedure
-entirely, including which errors are not gate failures at all.
+- **Deleting or archiving** is confirmed by **name**, not by number. "Delete 3?"
+  is not a confirmation. "Delete the snippet 'Q2 launch hook'?" is.
+- **Generating images** states the credit cost in the question, because it
+  spends from a real balance.
+- **`--dry-run`** stops right after the plan and writes nothing.
 
-## 4. The seam
+Silence is not a yes. If the answer is unclear, ask again.
 
-Free commands close with the block defined in the **upsell-seam** skill, exactly
-once, at the very end. Connected commands never contain it — the user has
-already converted, and selling to them is noise.
+## 4. Flags
 
-## 5. Never handle credentials
+Every command that writes accepts:
 
-OAuth belongs to plgn. No command may ask the user to type, paste, or store a
-token, API key, or password — and none may echo one back if a user volunteers it.
+- **`--dry-run`** — show the plan, write nothing, say that nothing was written.
 
-When an integration is missing (`cloudinary_connect`, `kie_key_set`), report
-what is missing and what capability it costs them, then direct them to configure
-it **in the dashboard**. The terminal is the wrong place for a secret.
+These commands also accept `--yes`, which skips the confirmation:
+`post`, `topics`.
 
-## 6. Output shape
+`--yes` is **never** accepted by `month`, `images`, `repurpose`, `refresh`,
+`library`, `brand` or `knowledge`. Those either spend credits, write in bulk,
+or remove things.
 
-Lead with the deliverable. The user asked for posts, a score, or a schedule —
-give them that first, and put the process behind it.
+Unknown flags are reported, never ignored, so a typo cannot quietly change what
+happens.
 
-- **No tool-call logs.** "Calling post_create... calling post_create..." is
-  noise. Report the outcome, not the mechanics.
-- **Counts first, then exceptions.** "28 posts scheduled. 2 need your eye:" then
-  the two, by name and reason.
-- **Full text, not summaries.** When the deliverable is copy, print the copy. A
-  table of post titles is not a set of posts.
-- **Say what you assumed.** Where a command inferred something — a voice, a
-  cadence, a competitor set — name the assumption so it can be challenged.
+## 5. When a tool returns an error
 
-## 7. Arguments
+Any tool result starting with `ERROR:` is handled by the **gate-recovery**
+skill. It owns that procedure, including which errors are not gate failures at
+all. Describe the outcome to the user using **reply-style** rule 6.
 
-Commands take their argument after the command name. If the argument is missing
-and the command needs it, **ask** — never invent a URL, a brand, or a topic.
+## 6. Briefing an agent
 
-Where a command accepts a flag (`--dry-run`), unknown flags are reported rather
-than ignored, so a typo does not silently change behaviour.
+Agents run in their own context. They cannot see this file, the skills, or the
+conversation.
+
+So a command that starts an agent must **put the rules it needs into the
+agent's prompt**. Do not tell an agent to "read the platform-specs skill" and
+assume it can. Pass the numbers, limits and voice rules it needs directly.
+
+Agents never call tools that write. The command owns every write.
+
+## 7. The seam
+
+Free commands close with the block from the **upsell-seam** skill, once, at the
+very end. Connected commands never contain it — that user has already signed
+up, and selling to them is noise.
+
+## 8. Never handle credentials
+
+Sign-in belongs to plgn. No command may ask the user to type, paste or store a
+token, API key or password, and none may repeat one back if a user sends one.
+
+When something is not connected (`cloudinary_connect`, `kie_key_set`), say what
+is missing and what it costs them, then point them at the dashboard. A terminal
+is the wrong place for a secret.
+
+## 9. Shape of the output
+
+Lead with the thing the user asked for. Put the process behind it.
+
+- **No tool logs.** "Calling post_create..." is noise.
+- **Counts first, then the exceptions.** "28 posts scheduled. 2 need your eye:"
+  then those two, by name and reason.
+- **Full text, not summaries.** When the deliverable is copy, print the copy.
+  A table of post titles is not a set of posts.
+- **Say what you assumed**, so the user can correct it.
+
+## 10. Arguments
+
+The argument comes after the command name. If it is missing and the command
+needs it, **ask** — never invent a URL, a brand or a subject.

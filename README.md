@@ -82,29 +82,30 @@ the plugin ships the connection.
 
 | Command | What you get |
 |---|---|
-| `/plgn demo <url>` | 7 platform-native posts drafted from any website |
-| `/plgn audit <url>` | A 0–100 score across six weighted dimensions, plus three fixes |
-| `/plgn strategy <url>` | Positioning and 3–5 content pillars, with the evidence for each |
-| `/plgn voice <url>` | Tone, vocabulary, rhythm, banned words, before/after rewrites |
+| `/plgn help` | Every command in one list — no account needed |
+| `/plgn demo <url>` | 7 ready-to-post drafts from any website |
+| `/plgn audit <url>` | A 0–100 score across six weighted areas, plus three fixes |
+| `/plgn strategy <url>` | Positioning and 3–5 content topics, with the evidence for each |
+| `/plgn voice <url>` | Tone, words, rhythm, banned words, before/after rewrites |
 | `/plgn competitors <url>` | What rivals all say — and the gaps none of them cover |
-| `/plgn calendar <topic>` | A 30-day plan: date, platform, pillar, hook, brief |
+| `/plgn calendar <subject>` | A 30-day plan: date, platform, topic, hook, brief |
 
 ### Connected — writes to your workspace
 
 | Command | What it does |
 |---|---|
-| `/plgn setup` | Connect, pick a brand, seed its voice from your site |
-| `/plgn month <topic>` | A month of posts: drafted, illustrated, scheduled |
-| `/plgn post <idea>` | One post, drafted and created — the ten-times-a-day command |
-| `/plgn repurpose <url>` | One asset into many platform-native posts, plus saved snippets |
-| `/plgn review` | Triage the queue: blocked, no image, thin, ready — and fix it |
-| `/plgn images` | Backfill missing artwork, with the credit cost confirmed first |
-| `/plgn topics` | Pipeline health: which pillars are exhausted, which are starved |
-| `/plgn library` | Prune duplicate snippets and overlapping hashtag sets |
-| `/plgn knowledge` | Audit the brand profile for gaps, staleness, and contradictions |
-| `/plgn brand` | List, create, update, archive, and restore brands |
-| `/plgn refresh` | Rewrite and reschedule still-relevant older posts |
-| `/plgn report` | What shipped, pillar balance, cadence held, what to do next |
+| `/plgn setup` | Connect, pick a brand, learn its voice from your site |
+| `/plgn month <subject>` | A month of posts: written, illustrated, scheduled |
+| `/plgn post <idea>` | One post — the ten-times-a-day command |
+| `/plgn repurpose <url>` | One article into many posts, plus saved snippets |
+| `/plgn queue` | What's blocked, missing an image, too short, or ready — and fix it |
+| `/plgn images` | Fill in missing pictures, with the credit cost stated first |
+| `/plgn topics` | Which topics repeat themselves, and which need more posts |
+| `/plgn library` | Tidy duplicate snippets and overlapping hashtag sets |
+| `/plgn knowledge` | Check the brand profile for gaps, stale entries and conflicts |
+| `/plgn brand` | List, create, rename, archive and restore brands |
+| `/plgn refresh` | Rewrite and reschedule older posts that still hold up |
+| `/plgn report` | What went out, how topics balanced, how the plan held |
 
 ---
 
@@ -122,8 +123,8 @@ stops being enough:
 | Scheduled | ❌ | ✅ |
 | Reviewable by your team | ❌ | ✅ dashboard |
 
-The validation gate is worth calling out: character caps and banned words are
-enforced **on the server**, not by the agent. A post cannot be scheduled while
+The checks are worth calling out: character limits and banned words are enforced
+**on the server**, not by the agent. A post cannot be scheduled while
 a check fails — regardless of what the model does. Drafts can be bold, because
 bad ones can't escape.
 
@@ -141,10 +142,14 @@ skills/     shared know-how  — imported by many commands, one source of truth
 MCP tools   the server       — validation, persistence, tenant scoping
 ```
 
-`/plgn month` spawns one copywriter per pillar so a month drafts concurrently
-rather than serially. Platform caps, brand-voice application, and gate recovery
-each live in exactly one skill file, so commands can't drift apart as the
-surface grows.
+`/plgn month` starts one copywriter per topic so a month is written in parallel
+rather than one post at a time. Platform limits, brand voice, error recovery and
+**how plgn talks to you** each live in exactly one skill file, so commands can't
+drift apart as the plugin grows.
+
+Because agents run in their own context and cannot read those skill files,
+commands pass the rules an agent needs directly in its prompt — see
+`commands/_conventions.md` rule 6.
 
 Nothing runs locally except Markdown. The plugin ships no scripts, stores no
 state, and never handles a credential — OAuth belongs to plgn.

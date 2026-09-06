@@ -1,44 +1,44 @@
 ---
-description: Turn one asset — a blog post, case study, talk, or pasted text — into a set of platform-native posts, saving the reusable pieces as snippets. Use for "repurpose this", "turn this into posts", "make social from this article", or getting more out of content you already have.
+description: Turn one thing you already have — a blog post, case study, talk, or pasted text — into a set of posts that fit each platform, saving the reusable parts as snippets. Use for "repurpose this", "turn this into posts", or getting more out of content you already have.
 ---
 
 # /plgn repurpose
 
-One asset, many posts. Not one post reshaped many times.
+One article, many posts. Not one post reshaped many times.
 
-Most repurposing fails the same way: the same paragraph pasted across three
+Most repurposing fails the same way: the same paragraph pasted onto three
 platforms with the length trimmed. That is one post published three times, and
-readers who follow a brand on two platforms see exactly that.
+anyone who follows the brand in two places sees exactly that.
 
-## 1. Preflight
+## 1. Check the connection
 
-Call `workspace_info`, then `knowledge_get`. On failure or empty knowledge,
-route as `_conventions` requires and stop.
+Call `workspace_info`, then `knowledge_get`. If either fails or the voice is
+empty, follow **_conventions** rule 2 and stop.
 
-## 2. Input
+## 2. What to read
 
 Accept any of:
 
 - **A URL** — fetch and read it.
-- **A snippet id** — read it with `snippet_get`.
+- **A saved snippet** — read it with `snippet_get`.
 - **Pasted text** — use it directly.
 
 If none was given, ask which.
 
-## 3. Extract the durable ideas
+## 3. Pull out the separate ideas
 
-Read the asset and pull out the **separable arguments** — each one a claim that
-stands on its own, with its own evidence.
+Read it and pull out the points that **stand on their own**, each with its own
+evidence.
 
 A 2,000-word article usually holds three to five. It rarely holds ten; if you
-find ten, most are restatements of the same point, and turning restatements
-into posts produces a repetitive feed.
+find ten, most are the same point said again, and turning those into posts
+produces a repetitive feed.
 
-Report what you found before drafting:
+Say what you found before writing anything:
 
 ```
 Four ideas in this piece:
-  1. <idea> — evidence: <what backs it>
+  1. <idea> — backed by: <what supports it>
   2. ...
 ```
 
@@ -46,51 +46,57 @@ Four ideas in this piece:
 posts on the same platform** — that is the repetition this command exists to
 avoid.
 
-## 4. Draft
+## 4. Write
 
-Spawn `plgn-copywriter` per idea, in parallel, with the platforms requested.
-Each returns platform-native expressions of that idea, per **platform-specs** —
-different argument shape per platform, not a trimmed copy.
+Start one `plgn-copywriter` per idea, at the same time, with the platforms
+asked for. Each returns a version that fits each platform — a different shape of
+argument, not a trimmed copy.
 
-## 5. Save the reusable pieces
+Per **_conventions** rule 6, put the voice, the banned words and each platform's
+character limit into every writer's prompt.
 
-For each durable idea, call `snippet_create` with the core claim and its
-evidence.
+## 5. Save the reusable parts
 
-This is what makes the command compound: the next `/plgn month` can draw on
-snippets rather than re-reading the source. Say so in the report — users
-otherwise never notice the library filling up.
+For each separate idea, call `snippet_create` with the point and its evidence.
 
-## 6. Confirm before writing
+This is what makes the command build up over time: the next `/plgn month` can
+draw on saved snippets instead of re-reading the source. Say so in the report —
+users otherwise never notice the library filling up.
+
+## 6. Show everything, then ask
 
 Show the full set — every post, grouped by idea — with the counts:
 
 ```
 4 ideas → 9 posts (LinkedIn 4 · X 3 · Instagram 2) + 4 snippets saved
 
-Create all? (y / pick / cancel)
+Create all of these?
+yes / pick / no
 ```
 
-`pick` lets them select a subset. Then call `post_create` per approved post,
-applying **gate-recovery** on `ERROR:`.
+`pick` lets them choose some. Then call `post_create` per approved post,
+following **gate-recovery** on any `ERROR:`.
+
+`--dry-run` stops here and writes nothing.
+**`--yes` is not accepted.** This writes in bulk.
 
 ## 7. Report
 
 ```
-9 posts created as drafts · 4 snippets saved
+9 posts saved as drafts · 4 snippets saved
 
-  1 revised to fit X's cap
+  1 was shortened to fit X
 
-Schedule these with /plgn review, or leave as drafts.
+Schedule them with /plgn queue, or leave them as drafts.
 ```
 
-## Rules
+## Notes
 
-- **No seam.** This user is connected.
-- **Never publish the source verbatim.** A post that reproduces the article's
-  opening paragraph gives a reader no reason to click through.
-- **Attribute where the asset is not the brand's own.** Repurposing someone
-  else's talk or article without naming them is not a workflow this command
-  supports.
-- **Drafts, not scheduled.** Repurposing is bursty; scheduling belongs to a
-  deliberate pass, so leave the posts as drafts unless asked.
+- **No seam.** This user is already signed up.
+- **Never republish the source word for word.** A post that repeats the
+  article's opening gives a reader no reason to click.
+- **Credit the source when it isn't the brand's own.** Repurposing someone
+  else's talk or article without naming them is not something this command does.
+- **Drafts, not scheduled.** Repurposing comes in bursts; scheduling is a
+  deliberate pass, so leave them as drafts unless asked.
+- Replies follow the **reply-style** skill, including the user's language.

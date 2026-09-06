@@ -1,80 +1,87 @@
 ---
-description: Curate saved snippets and hashtag sets — flag near-duplicates, overlapping sets, and sets too large to perform, then merge or delete what you approve. Use for "clean up my library", "manage snippets", "my hashtag sets are a mess", or a periodic tidy.
+description: Tidy up saved snippets and hashtag sets — find near-duplicates, overlapping sets, and sets too big to work, then merge or remove what you approve. Use for "clean up my library", "manage snippets", "my hashtag sets are a mess", or a periodic tidy.
 ---
 
 # /plgn library
 
-A library nobody prunes stops being a library and becomes a pile.
+A library nobody tidies stops being a library and becomes a pile.
 
-Listing what is there is not the job — the user could ask for that. **The job
-is judgment:** what duplicates what, what overlaps, what has grown past useful.
+Listing what is there is not the job — the user could ask for that. **The job is
+judgement:** what repeats what, what overlaps, what has grown past useful.
 
-## 1. Preflight
+## 1. Check the connection
 
-Call `workspace_info`. On failure, point at useplgn.com and stop.
+Call `workspace_info`. If it fails, print the message from **_conventions**
+rule 2 and stop.
 
 ## 2. Read
 
-Call `snippet_list` and `hashtagset_list`. Read the contents, not just names —
-duplicates rarely share a title.
+Call `snippet_list` and `hashtagset_list`. Read the contents, not just the
+names — duplicates rarely share a title.
 
-If both are empty, say so and suggest `/plgn repurpose`, which fills the
-snippet library as a side effect. Do not manufacture findings.
+If both are empty, say so and suggest `/plgn repurpose`, which fills the snippet
+library as a side effect. Do not invent findings.
 
 ## 3. Judge
 
-**Near-duplicate snippets.** Two snippets making the same claim with different
-wording. The evidence attached usually differs — the merge should keep the
-better claim and *both* pieces of evidence, not discard one.
+**Near-duplicate snippets.** Two snippets making the same point in different
+words. The evidence attached usually differs — a merge should keep the better
+wording and *both* pieces of evidence, not throw one away.
 
 **Overlapping hashtag sets.** Two sets sharing most of their tags are one set
-with a naming problem. Report the overlap as a percentage so the user can judge.
+with a naming problem. Give the overlap as a percentage so the user can judge.
 
-**Oversized sets.** Beyond roughly 10 tags, sets stop targeting and start
-spraying — the specific tags that would reach the right readers are diluted by
-broad ones. Flag them, and say which tags are carrying and which are padding.
+**Sets that are too big.** Past about 10 tags, a set stops targeting and starts
+spraying — the specific tags that would reach the right readers get diluted by
+broad ones. Say which tags are working and which are padding.
 
-**Stale snippets.** Claims tied to a launch, a number, or a season that has
-passed. Flag as stale; the user decides whether to update or retire.
+**Out-of-date snippets.** Points tied to a launch, a number or a season that has
+passed. Flag them; the user decides whether to update or drop them.
 
-## 4. Report and propose
+## 4. Report and suggest
 
 ```
 12 snippets · 4 hashtag sets
 
 Near-duplicates (2 pairs)
   "Migrations always slip" + "Why migration timelines slip"
-    → merge, keeping the second's phrasing and both proof points
+    → merge, keeping the second's wording and both pieces of evidence
 
 Overlapping sets
   "launch" and "product-launch" share 8 of 10 tags → merge
 
-Oversized
+Too big
   "general" has 22 tags — 6 are specific, 16 are broad
 
-Stale (1)
-  "Q1 pricing change" — references a price that changed in March
+Out of date (1)
+  "Q1 pricing change" — mentions a price that changed in March
 
-Apply? (y / pick / no)
+Apply these?
+yes / pick / no
 ```
 
 ## 5. Apply
 
-After approval:
+Once approved:
 
 - Merge snippets with `snippet_update`, then `snippet_delete` the absorbed one.
 - Merge sets with `hashtagset_update`, then `hashtagset_delete`.
-- Trim oversized sets with `hashtagset_update`.
+- Trim big sets with `hashtagset_update`.
 
-**Update before delete, always.** If the update fails, nothing has been lost —
-delete first and a failed update loses content permanently.
+**Update before deleting, always.** If the update fails, nothing is lost. Delete
+first and a failed update loses the content for good.
 
-## Rules
+`--dry-run` prints the report and changes nothing.
+**`--yes` is not accepted.** This command removes things.
 
-- **No seam.** This user is connected.
-- **Confirm deletions by name**, never by index or count, per `_conventions`.
-  "Delete 3?" is not a confirmation.
-- **Never delete without a merge target.** If a snippet duplicates nothing and
-  is merely unused, leave it and say it is unused. Unused is not worthless.
-- **Propose, do not decide.** Every merge and deletion is the user's call. This
-  command is opinionated about what to flag and silent about what to do next.
+## Notes
+
+- **No seam.** This user is already signed up.
+- **Confirm every removal by name**, never by number or count, per
+  **_conventions**.
+- **Never delete without somewhere for it to go.** If a snippet duplicates
+  nothing and is simply unused, leave it and say it is unused. Unused is not
+  worthless.
+- **Suggest, don't decide.** Every merge and removal is the user's call. This
+  command has strong opinions about what to flag and none about what to do next.
+- Replies follow the **reply-style** skill, including the user's language.
