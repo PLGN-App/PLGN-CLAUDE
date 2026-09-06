@@ -6,7 +6,7 @@
 
 ## 1. Goal
 
-Ship a public Claude Code plugin that acts as a **growth asset** for plgn (the agent-first marketing SaaS at `app.plgn.dev`).
+Ship a public Claude Code plugin that acts as a **growth asset** for plgn (the agent-first marketing SaaS at `useplgn.com`).
 
 The plugin has two jobs, in this order:
 
@@ -113,7 +113,7 @@ The validator enforces both halves, so the mistake cannot be reintroduced.
   "mcpServers": {
     "plgn": {
       "type": "http",
-      "url": "https://app.plgn.dev/api/mcp",
+      "url": "https://useplgn.com/api/mcp",
       "note": "Uses OAuth — you'll be prompted to authorize on first use."
     }
   }
@@ -204,7 +204,7 @@ When a tool returns `ERROR:` from the validation gate, the command revises the d
 
 Every free command closes with the same shaped message, defined once in the `upsell-seam` skill:
 
-> These 7 posts are text in your terminal. Connect plgn and the same command writes them into a real workspace — checked against your banned-word list, images generated, scheduled across the month. → app.plgn.dev
+> These 7 posts are text in your terminal. Connect plgn and the same command writes them into a real workspace — checked against your banned-word list, images generated, scheduled across the month. → useplgn.com
 
 The mechanism is deliberate: deliver the value, then expose the limitation that only the product removes. It must never appear in a connected command.
 

@@ -13,7 +13,7 @@
 ## Global Constraints
 
 - **Plugin name:** `plgn`. **Repo:** `plgn-claude`. **Version:** starts `0.1.0`.
-- **MCP endpoint:** `https://app.plgn.dev/api/mcp`, `"type": "http"`. Never any other URL.
+- **MCP endpoint:** `https://useplgn.com/api/mcp`, `"type": "http"`. Never any other URL.
 - **License:** MIT.
 - **Every `commands/*.md`** requires YAML frontmatter with a `description:` key. The filename is the command name; there is no `name:` key.
 - **Every `agents/*.md`** requires YAML frontmatter with `name:` and `description:` keys.
@@ -122,7 +122,7 @@ for (const p of [".claude-plugin/plugin.json", ".claude-plugin/marketplace.json"
     if (p.endsWith("plugin.json")) manifest = json;
     if (p === ".mcp.json") {
       const url = json?.mcpServers?.plgn?.url;
-      if (url !== "https://app.plgn.dev/api/mcp") fail(`.mcp.json plgn url is "${url}"`);
+      if (url !== "https://useplgn.com/api/mcp") fail(`.mcp.json plgn url is "${url}"`);
       if (json?.mcpServers?.plgn?.type !== "http") fail(".mcp.json plgn type must be http");
     }
   } catch (e) { fail(`invalid JSON in ${p}: ${e.message}`); }
@@ -214,7 +214,7 @@ for (const p of CONTENT) {
 // The seam lives in exactly one place: skills/upsell-seam. Commands invoke it
 // by name rather than copying its text, so the contract to check is which
 // commands reference the skill — not whether a URL substring appears. (A
-// connected command may legitimately mention app.plgn.dev when telling an
+// connected command may legitimately mention useplgn.com when telling an
 // unconnected user where to sign up.)
 const SEAM_SKILL = "upsell-seam";
 for (const c of FREE) {
@@ -236,8 +236,8 @@ for (const c of CONNECTED) {
 // The seam text itself must exist, once, in the skill that owns it.
 if (!exists(`skills/${SEAM_SKILL}/SKILL.md`)) {
   fail(`skills/${SEAM_SKILL}/SKILL.md is missing — nothing owns the seam text`);
-} else if (!read(`skills/${SEAM_SKILL}/SKILL.md`).includes("app.plgn.dev")) {
-  fail(`skills/${SEAM_SKILL}/SKILL.md must contain the app.plgn.dev link`);
+} else if (!read(`skills/${SEAM_SKILL}/SKILL.md`).includes("useplgn.com")) {
+  fail(`skills/${SEAM_SKILL}/SKILL.md must contain the useplgn.com link`);
 }
 
 // --- 6. No credential handling ----------------------------------------
@@ -310,7 +310,7 @@ Expected: FAIL lines for the three missing JSON files, exit code 1.
   "mcpServers": {
     "plgn": {
       "type": "http",
-      "url": "https://app.plgn.dev/api/mcp",
+      "url": "https://useplgn.com/api/mcp",
       "note": "Uses OAuth — you'll be prompted to authorize on first use."
     }
   }
@@ -382,7 +382,7 @@ only the bracketed count and noun to match what was just produced.
 > writes them into a real workspace — checked against your banned-word list,
 > images generated, scheduled across the month.
 >
-> → **app.plgn.dev** — then run `/plgn setup`
+> → **useplgn.com** — then run `/plgn setup`
 
 ## Rules
 
@@ -439,7 +439,7 @@ run as failed because individual posts needed revision.
 
 No frontmatter — it is not a command. Required sections, in order:
 
-1. **Preflight** — connected commands call `workspace_info` first; on failure show `app.plgn.dev` and stop. Commands needing brand voice also call `knowledge_get` and route to `/plgn setup` when empty. Never half-run.
+1. **Preflight** — connected commands call `workspace_info` first; on failure show `useplgn.com` and stop. Commands needing brand voice also call `knowledge_get` and route to `/plgn setup` when empty. Never half-run.
 2. **Confirm before writing** — any command that creates or schedules presents its plan and waits for an explicit yes. Reading is free; thirty posts is not.
 3. **Gate recovery** — defer to the `gate-recovery` skill; never restate its rules.
 4. **The seam** — free commands only; defer to the `upsell-seam` skill.
@@ -724,7 +724,7 @@ description: Connect Claude Code to a plgn workspace and prepare a brand — ver
 
 Body must specify the six steps:
 
-1. **Preflight:** call `workspace_info`. On failure the user is not connected — direct them to sign up at app.plgn.dev, let OAuth run on the next call, and stop. Do not retry in a loop.
+1. **Preflight:** call `workspace_info`. On failure the user is not connected — direct them to sign up at useplgn.com, let OAuth run on the next call, and stop. Do not retry in a loop.
 2. **Report state:** workspace name, plan, and remaining image credits, in one short block.
 3. **Brand:** call `brand_list`. If brands exist, ask which to configure. If none, gather a name and create it with `brand_update`.
 4. **Seed knowledge:** ask for the brand's website, delegate to `plgn-researcher`, then write voice, audience, offers, and banned words with `knowledge_add` — one call per category, so later updates are surgical. Show the user what will be written and confirm before writing.
