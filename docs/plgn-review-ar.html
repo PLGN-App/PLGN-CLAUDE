@@ -1,0 +1,848 @@
+<title>مراجعة plgn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --violet:#1A1033; --lime:#C8FF3D; --ember:#FF5A1F; --amber:#FFB020;
+  --ground:#FBF9FD; --surface:#FFFFFF; --surface-2:#F4F1F9;
+  --ink:#1A1033; --ink-2:#3A2F57; --muted:#6E6688;
+  --line:#E4DEEF; --line-2:#D3CAE6;
+  --accent:#6B2BD9; --accent-soft:#F0E8FF;
+  --code-bg:#F2EEF9; --code-ink:#4A2A8A;
+  --term-bg:#1A1033; --term-ink:#E8E2F5; --term-dim:#8C82AD;
+
+  --hi:#D93D0B; --hi-bg:rgba(255,90,31,.10); --hi-line:#FF5A1F;
+  --md:#9A6400; --md-bg:rgba(255,176,32,.13); --md-line:#FFB020;
+  --lo:#2563EB; --lo-bg:rgba(37,99,235,.09); --lo-line:#3B82F6;
+  --ok:#4F7A00; --ok-bg:rgba(200,255,61,.18); --ok-line:#A8D42B;
+
+  --shadow:0 1px 2px rgba(26,16,51,.05), 0 8px 24px -12px rgba(26,16,51,.18);
+  --max:78rem; --read:70ch; --r:10px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#120A26; --surface:#1B1138; --surface-2:#241748;
+    --ink:#F2EEFB; --ink-2:#CFC5E8; --muted:#9B90BC;
+    --line:#2E2054; --line-2:#3D2C6B;
+    --accent:#C8FF3D; --accent-soft:#2A1F4E;
+    --code-bg:#241748; --code-ink:#D6C9F5;
+    --term-bg:#0C0619; --term-ink:#E8E2F5; --term-dim:#7E729F;
+    --hi:#FF8B5C; --hi-bg:rgba(255,90,31,.14);
+    --md:#FFC85C; --md-bg:rgba(255,176,32,.13);
+    --lo:#7EA9FF; --lo-bg:rgba(59,130,246,.14);
+    --ok:#C8FF3D; --ok-bg:rgba(200,255,61,.12); --ok-line:#5E7F00;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#120A26; --surface:#1B1138; --surface-2:#241748;
+  --ink:#F2EEFB; --ink-2:#CFC5E8; --muted:#9B90BC;
+  --line:#2E2054; --line-2:#3D2C6B;
+  --accent:#C8FF3D; --accent-soft:#2A1F4E;
+  --code-bg:#241748; --code-ink:#D6C9F5;
+  --term-bg:#0C0619; --term-ink:#E8E2F5; --term-dim:#7E729F;
+  --hi:#FF8B5C; --hi-bg:rgba(255,90,31,.14);
+  --md:#FFC85C; --md-bg:rgba(255,176,32,.13);
+  --lo:#7EA9FF; --lo-bg:rgba(59,130,246,.14);
+  --ok:#C8FF3D; --ok-bg:rgba(200,255,61,.12); --ok-line:#5E7F00;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+body{direction:rtl;background:var(--ground);color:var(--ink);font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif;font-size:17px;line-height:1.9;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:Cairo,"Segoe UI",Tahoma,sans-serif;line-height:1.4;text-wrap:balance;margin:0}
+h1{font-weight:900;font-size:clamp(2.1rem,5.5vw,3.4rem);letter-spacing:-.01em}
+h2{font-weight:800;font-size:clamp(1.55rem,3.4vw,2.15rem)}
+h3{font-weight:700;font-size:1.2rem}
+h4{font-weight:700;font-size:1.02rem}
+p{margin:0}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+code,.mono,.cmd{font-family:"IBM Plex Mono",ui-monospace,Consolas,monospace;direction:ltr;unicode-bidi:isolate}
+code{background:var(--code-bg);color:var(--code-ink);padding:.12em .42em;border-radius:5px;font-size:.86em;font-weight:500}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)}
+.shell{max-width:var(--max);margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem) 6rem;display:grid;grid-template-columns:minmax(0,1fr);gap:0 3.5rem}
+@media (min-width:1040px){.shell{grid-template-columns:15rem minmax(0,1fr)}}
+.rail-inner{position:sticky;top:0;padding:2.5rem 0 2rem}
+.rail-title{font-family:"IBM Plex Mono",monospace;direction:ltr;unicode-bidi:isolate;text-align:right;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:.9rem}
+.rail nav{display:flex;flex-direction:column;gap:.1rem}
+.rail nav a{color:var(--ink-2);text-decoration:none;font-size:.94rem;padding:.36rem .7rem;border-radius:7px;border-right:2px solid transparent;transition:background .15s,border-color .15s}
+.rail nav a:hover{background:var(--surface-2);color:var(--ink);border-right-color:var(--line-2)}
+.rail nav a .n{font-family:"IBM Plex Mono",monospace;direction:ltr;unicode-bidi:isolate;color:var(--muted);font-size:.78rem;margin-left:.5rem}
+@media (max-width:1039px){
+  .rail-inner{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--ground) 92%,transparent);backdrop-filter:blur(10px);padding:.7rem 0;border-bottom:1px solid var(--line);margin-bottom:1.5rem}
+  .rail-title{display:none}
+  .rail nav{flex-direction:row;gap:.4rem;overflow-x:auto;scrollbar-width:none;padding-bottom:.15rem}
+  .rail nav::-webkit-scrollbar{display:none}
+  .rail nav a{white-space:nowrap;border:1px solid var(--line);border-radius:99px;font-size:.85rem;padding:.3rem .8rem}
+  .rail nav a .n{display:none}
+}
+main{min-width:0}
+@media (min-width:1040px){main{padding-top:2.5rem}}
+
+.hero{border-bottom:1px solid var(--line);padding:clamp(2.5rem,7vw,4.5rem) 0 clamp(2rem,5vw,3rem)}
+.eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:"IBM Plex Mono",monospace;direction:ltr;unicode-bidi:isolate;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line-2);border-radius:99px;padding:.3rem .8rem;margin-bottom:1.4rem}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--ember);flex:none}
+.hero h1{max-width:20ch}
+.hero .lede{margin-top:1.1rem;max-width:56ch;font-size:clamp(1.05rem,2.2vw,1.2rem);color:var(--ink-2)}
+.scorecard{display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:.75rem;margin-top:2rem;max-width:52rem}
+.sc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:.9rem 1rem;border-top:3px solid var(--c,var(--line-2))}
+.sc b{display:block;font-family:"IBM Plex Mono",monospace;direction:ltr;unicode-bidi:isolate;font-size:1.7rem;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.2;color:var(--ink)}
+.sc span{font-size:.85rem;color:var(--muted)}
+
+section{padding:clamp(2.8rem,6vw,4.2rem) 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.sec-head{display:flex;align-items:baseline;gap:.9rem;margin-bottom:.9rem}
+.sec-num{font-family:"IBM Plex Mono",monospace;direction:ltr;unicode-bidi:isolate;font-size:.76rem;font-weight:600;letter-spacing:.1em;color:var(--muted);flex:none;padding-top:.35rem}
+.sec-intro{max-width:var(--read);color:var(--ink-2);margin-bottom:2rem}
+.sec-intro p+p{margin-top:.85rem}
+.prose{max-width:var(--read)}
+.prose p+p{margin-top:.9rem}
+
+.note{border-right:3px solid var(--lime);background:var(--surface);padding:.95rem 1.15rem;border-radius:0 var(--r) var(--r) 0;margin:1.4rem 0;max-width:var(--read)}
+.note.warn{border-right-color:var(--ember)}
+.note.tip{border-right-color:var(--amber)}
+.note b{font-family:Cairo,sans-serif;font-weight:700}
+
+.goods{display:grid;gap:.8rem;grid-template-columns:1fr;margin-top:1.4rem}
+@media (min-width:820px){.goods{grid-template-columns:1fr 1fr}}
+.good{display:grid;grid-template-columns:auto 1fr;gap:.85rem;align-items:start;background:var(--surface);border:1px solid var(--line);border-right:3px solid var(--ok-line);border-radius:0 var(--r) var(--r) 0;padding:.95rem 1.1rem}
+.good .mk{color:var(--ok);font-weight:700;font-size:1.05rem;line-height:1.5}
+.good h4{font-size:.99rem;margin-bottom:.15rem}
+.good p{font-size:.89rem;color:var(--ink-2)}
+
+.finding{background:var(--surface);border:1px solid var(--line);border-right:4px solid var(--sev-line,var(--line-2));border-radius:0 var(--r) var(--r) 0;padding:1.35rem;margin-bottom:1.1rem}
+.f-top{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin-bottom:.6rem}
+.f-no{font-family:"IBM Plex Mono",monospace;direction:ltr;unicode-bidi:isolate;font-size:.78rem;font-weight:600;color:var(--muted);border:1px solid var(--line-2);border-radius:6px;padding:.1rem .45rem}
+.f-top h3{font-size:1.1rem;flex:1;min-width:14rem}
+.prio{font-family:Cairo,sans-serif;font-size:.73rem;font-weight:700;padding:.16rem .6rem;border-radius:99px;white-space:nowrap;background:var(--sev-bg);color:var(--sev);border:1px solid var(--sev-line)}
+.sev-hi{--sev:var(--hi);--sev-bg:var(--hi-bg);--sev-line:var(--hi-line)}
+.sev-md{--sev:var(--md);--sev-bg:var(--md-bg);--sev-line:var(--md-line)}
+.sev-lo{--sev:var(--lo);--sev-bg:var(--lo-bg);--sev-line:var(--lo-line)}
+.f-block{margin-top:.85rem}
+.f-lbl{font-family:Cairo,sans-serif;font-weight:700;font-size:.78rem;color:var(--muted);display:block;margin-bottom:.25rem}
+.f-block p{font-size:.94rem;color:var(--ink-2)}
+.f-block ul{margin:.3rem 0 0;padding-inline-start:1.15rem;display:flex;flex-direction:column;gap:.28rem}
+.f-block li{font-size:.91rem;color:var(--ink-2)}
+.f-block li b{color:var(--ink)}
+.f-fix{background:var(--surface-2);border-radius:8px;padding:.8rem .95rem;margin-top:.9rem}
+.f-fix .f-lbl{color:var(--ink)}
+.f-fix p{font-size:.93rem;color:var(--ink-2)}
+
+.evid{direction:ltr;unicode-bidi:isolate;text-align:left;background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:.75rem .9rem;margin-top:.4rem;font-family:"IBM Plex Mono",monospace;font-size:.79rem;line-height:1.75;color:var(--ink-2);overflow-x:auto;white-space:pre}
+.evid .hl{color:var(--hi);font-weight:600}
+.evid .dim{color:var(--muted)}
+
+.term{direction:ltr;unicode-bidi:isolate;background:var(--term-bg);border:1px solid var(--line-2);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.term.rtl pre{direction:rtl;text-align:right;font-family:"IBM Plex Sans Arabic",sans-serif;white-space:pre-wrap}
+.term-bar{display:flex;align-items:center;gap:.4rem;padding:.55rem .85rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.term-bar i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.16);flex:none}
+.term-bar .name{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--term-dim)}
+.term pre{margin:0;padding:1rem 1.1rem 1.15rem;overflow-x:auto;font-family:"IBM Plex Mono",ui-monospace,Consolas,monospace;font-size:.8rem;line-height:1.8;color:var(--term-ink);white-space:pre}
+.term .p{color:var(--lime);font-weight:600}
+.term .c{color:var(--term-dim)}
+.term .k{color:var(--amber)}
+.term .e{color:var(--ember)}
+
+.ba{display:grid;gap:.9rem;grid-template-columns:1fr;margin:1.3rem 0}
+@media (min-width:900px){.ba{grid-template-columns:1fr 1fr}}
+.ba-col{display:flex;flex-direction:column;gap:.5rem;min-width:0}
+.ba-cap{display:flex;align-items:center;gap:.5rem;font-family:Cairo,sans-serif;font-weight:700;font-size:.86rem}
+.ba-cap .m{width:1.25rem;height:1.25rem;border-radius:4px;display:grid;place-items:center;font-size:.8rem;font-weight:700;flex:none}
+.ba-bad .m{background:var(--hi-bg);color:var(--hi);border:1px solid var(--hi-line)}
+.ba-good .m{background:var(--ok-bg);color:var(--ok);border:1px solid var(--ok-line)}
+.ba .term{flex:1}
+
+.t-scroll{overflow-x:auto;margin:1.5rem 0;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:32rem;font-size:.92rem}
+th,td{text-align:right;padding:.68rem .95rem;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{background:var(--surface-2);font-family:Cairo,sans-serif;font-weight:700;font-size:.85rem;white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.lbl{font-weight:600;color:var(--ink)}
+.bad-w{color:var(--hi);font-weight:600}
+.good-w{color:var(--ok);font-weight:600}
+
+/* the reply-rules list — numbered because they are checked in order */
+.rules{display:flex;flex-direction:column;gap:.75rem;margin-top:1.5rem}
+.rule{display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:1.05rem 1.15rem}
+.rule .no{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:.82rem;color:var(--violet);background:var(--lime);width:1.85rem;height:1.85rem;border-radius:6px;display:grid;place-items:center;flex:none}
+.rule h4{margin-bottom:.2rem;font-size:1rem}
+.rule p{font-size:.91rem;color:var(--ink-2)}
+.rule .ex{margin-top:.5rem;font-size:.87rem;color:var(--muted);border-top:1px dashed var(--line);padding-top:.45rem}
+.rule .ex b{color:var(--ink-2)}
+
+.dial{display:grid;gap:.8rem;grid-template-columns:1fr;margin:1.4rem 0}
+@media (min-width:820px){.dial{grid-template-columns:repeat(3,1fr)}}
+.dl{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--c,var(--line-2));border-radius:var(--r);padding:1rem 1.1rem}
+.dl .t{font-family:Cairo,sans-serif;font-weight:700;font-size:.9rem;margin-bottom:.4rem;color:var(--c2,var(--ink))}
+.dl q{display:block;font-size:.89rem;color:var(--ink-2);font-style:normal}
+.dl .n{display:block;margin-top:.5rem;font-size:.83rem;color:var(--muted)}
+
+.plan{display:flex;flex-direction:column;gap:.75rem;margin-top:1.5rem}
+.pl{display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:.95rem 1.1rem}
+@media (max-width:700px){.pl{grid-template-columns:auto 1fr}.pl .pl-meta{grid-column:2}}
+.pl .step{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:.85rem;color:var(--violet);background:var(--lime);width:1.9rem;height:1.9rem;border-radius:6px;display:grid;place-items:center;flex:none}
+.pl h4{font-size:.99rem;margin-bottom:.15rem}
+.pl p{font-size:.87rem;color:var(--ink-2)}
+.pl-meta{display:flex;gap:.35rem;flex-wrap:wrap;justify-content:flex-end}
+.tagx{font-family:Cairo,sans-serif;font-size:.72rem;font-weight:700;padding:.14rem .55rem;border-radius:99px;white-space:nowrap;border:1px solid var(--line-2);color:var(--muted);background:var(--surface-2)}
+.tagx.win{border-color:var(--ok-line);color:var(--ok);background:var(--ok-bg)}
+.tagx.big{border-color:var(--hi-line);color:var(--hi);background:var(--hi-bg)}
+
+.ideas{display:grid;gap:.85rem;grid-template-columns:1fr;margin-top:1.5rem}
+@media (min-width:820px){.ideas{grid-template-columns:1fr 1fr}}
+.idea{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:1.05rem 1.15rem}
+.idea h4{margin-bottom:.25rem;font-size:.99rem}
+.idea p{font-size:.89rem;color:var(--ink-2)}
+.idea .tagx{margin-top:.6rem;display:inline-block}
+
+footer{padding:2.5rem 0 3rem;color:var(--muted);font-size:.87rem;border-top:1px solid var(--line)}
+footer p+p{margin-top:.4rem}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+
+<div class="page" dir="rtl" lang="ar">
+
+<header class="hero wrap">
+  <span class="eyebrow"><span class="dot"></span>Review · plgn-claude 1.0.1</span>
+  <h1>مراجعة plgn — إزاي البلجن يكلّمك</h1>
+  <p class="lede">
+    قريت الـ ٣٣ ملف كلهم — ٢٬٩٠٩ سطر تعليمات. أكبر فجوة لقيتها إن
+    <b>مفيش أي قاعدة عن الردود اللي البلجن بيرد بيها عليك في الشات</b>: لا نبرة،
+    لا مستوى لغة، ولا حتى باللغة اللي إنت بتكتب بيها.
+  </p>
+
+  <div class="scorecard">
+    <div class="sc" style="--c:var(--line-2)"><b>33</b><span>ملف اتقرا</span></div>
+    <div class="sc" style="--c:var(--hi-line)"><b>0</b><span>قاعدة عن نبرة الرد</span></div>
+    <div class="sc" style="--c:var(--hi-line)"><b>0</b><span>قاعدة عن لغة الرد</span></div>
+    <div class="sc" style="--c:var(--md-line)"><b>5</b><span>ملاحظات تانية</span></div>
+    <div class="sc" style="--c:var(--lo-line)"><b>1</b><span>لازم تتأكد منها الأول</span></div>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="rail">
+    <div class="rail-inner">
+      <div class="rail-title">المحتوى</div>
+      <nav>
+        <a href="#scope"><span class="n">01</span>إحنا بنتكلم عن إيه</a>
+        <a href="#gap"><span class="n">02</span>الفجوة</a>
+        <a href="#spec"><span class="n">03</span>مواصفات الرد</a>
+        <a href="#banned"><span class="n">04</span>ممنوع تقولها</a>
+        <a href="#examples"><span class="n">05</span>أمثلة قبل وبعد</a>
+        <a href="#good"><span class="n">06</span>اللي شغال كويس</a>
+        <a href="#verify"><span class="n">07</span>تأكد من دي الأول</a>
+        <a href="#rest"><span class="n">08</span>ملاحظات تانية</a>
+        <a href="#plan"><span class="n">09</span>خطة التنفيذ</a>
+        <a href="#ideas"><span class="n">10</span>أفكار إضافية</a>
+      </nav>
+    </div>
+  </aside>
+
+  <main>
+
+  <!-- 01 SCOPE -->
+  <section id="scope">
+    <div class="sec-head"><span class="sec-num">01</span><h2>إحنا بنتكلم عن إيه بالظبط</h2></div>
+    <div class="sec-intro prose">
+      <p>
+        في <b>تلات أصوات مختلفة</b> في البلجن، وسهل جداً تتلخبط. الصفحة دي عن
+        واحد بس منهم.
+      </p>
+    </div>
+
+    <div class="t-scroll">
+      <table>
+        <thead><tr><th>الصوت</th><th>بيتكلم مع مين</th><th>مين ماسكه دلوقتي</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="lbl">صوت البوستات</td>
+            <td>جمهور البراند على السوشيال</td>
+            <td class="good-w">مهارة <code>brand-voice</code> — متظبطة</td>
+          </tr>
+          <tr>
+            <td class="lbl">لغة ملفات التعليمات</td>
+            <td>الموديل نفسه</td>
+            <td>الملفات — مكتوبة إنجليزي أدبي</td>
+          </tr>
+          <tr style="background:var(--hi-bg)">
+            <td class="lbl">↓ <b>ردود البلجن ليك في الشات</b></td>
+            <td><b>إنت</b>، وإنت قاعد على التيرمنال</td>
+            <td class="bad-w">مفيش حاجة ماسكاه</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note warn">
+      <b>الصفحة دي عن الصف التالت بس.</b> يعني لما تكتب
+      <code>/plgn calendar</code> ويرد عليك — الرد ده هو اللي بنتكلم عنه.
+      مش البوستات اللي بيكتبها للبراند، ودي حاجة تانية خالص وشغالة كويس.
+    </div>
+
+    <div class="prose">
+      <p>
+        وده مش تفصيلة صغيرة: الرد ده هو <b>المنتج اللي إنت بتشوفه</b>. البوستات
+        بتروح على المنصات، بس الرد ده بتقراه إنت شخصياً بعد كل أمر، كل يوم.
+      </p>
+    </div>
+  </section>
+
+  <!-- 02 GAP -->
+  <section id="gap">
+    <div class="sec-head"><span class="sec-num">02</span><h2>الفجوة — ومحتواها بالظبط</h2></div>
+
+    <div class="finding sev-hi">
+      <div class="f-top"><span class="f-no">R1</span><h3>مفيش أي قاعدة عن شكل الرد</h3><span class="prio">عالية</span></div>
+
+      <div class="f-block">
+        <span class="f-lbl">اللي موجود دلوقتي</span>
+        <p>
+          ملف <code>_conventions</code> فيه قسم اسمه «Output shape» — وهو
+          <b>صح</b>، بس كله عن <b>الترتيب</b> مش عن <b>الكلام</b>:
+        </p>
+        <div class="evid">## 6. Output shape
+
+Lead with the deliverable.        <span class="dim">← ترتيب</span>
+No tool-call logs.                <span class="dim">← ترتيب</span>
+Counts first, then exceptions.    <span class="dim">← ترتيب</span>
+Full text, not summaries.         <span class="dim">← ترتيب</span>
+Say what you assumed.             <span class="dim">← ترتيب</span></div>
+      </div>
+
+      <div class="f-block">
+        <span class="f-lbl">واللي <b>مش</b> موجود — ولا في ملف واحد من الـ ٣٣</span>
+        <ul>
+          <li><b>اللغة</b> — لو المستخدم كتب عربي، يرد بإيه؟ مفيش إجابة. هيرد إنجليزي غالباً.</li>
+          <li><b>المستوى</b> — مفيش أي كلام عن بساطة الجمل ولا الكلمات.</li>
+          <li><b>النبرة</b> — ودود؟ رسمي؟ مفيش.</li>
+          <li><b>المصطلحات</b> — مفيش قايمة بالكلمات التقنية الممنوعة في الرد.</li>
+          <li><b>الطول</b> — مفيش حد أقصى للرد. ممكن يرد بفقرة على حاجة سطر يكفيها.</li>
+        </ul>
+      </div>
+
+      <div class="f-block">
+        <span class="f-lbl">النتيجة</span>
+        <p>
+          كل أمر بيرد بطريقته، والمستوى بيتغير من رد للتاني، والمصطلحات الداخلية
+          بتتسرّب للمستخدم. والأهم: <b>لو بتكتب عربي، البلجن هيرد عليك إنجليزي</b>
+          — مش عشان قرار، عشان محدش قاله.
+        </p>
+      </div>
+
+      <div class="f-fix">
+        <span class="f-lbl">الحل</span>
+        <p>
+          مهارة جديدة اسمها <code>reply-style</code> فيها الثمن قواعد اللي في
+          <a href="#spec">القسم الجاي</a>، وكل أمر وكل وكيل بيرجعوا ليها — بالظبط
+          زي ما بيرجعوا لـ <code>gate-recovery</code> دلوقتي.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 SPEC -->
+  <section id="spec">
+    <div class="sec-head"><span class="sec-num">03</span><h2>مواصفات الرد — الثمن قواعد</h2></div>
+    <div class="sec-intro prose">
+      <p>
+        ده اللي هيتكتب في مهارة <code>reply-style</code>. القواعد مرتبة زي ما
+        بتتطبّق: اللغة الأول، وبعدها الشكل، وبعدها الممنوعات.
+      </p>
+    </div>
+
+    <div class="rules">
+      <div class="rule"><span class="no">1</span><div>
+        <h4>رد بلغة المستخدم</h4>
+        <p>لو كتب عربي، رد عربي. لو كتب إنجليزي، رد إنجليزي. لو خلط، رد باللغة اللي كتب بيها آخر رسالة.</p>
+        <p class="ex"><b>استثناء واحد:</b> أسماء الأوامر وأسماء البراندات والمنصات تفضل زي ما هي — <code>/plgn month</code> مش بتترجم.</p>
+      </div></div>
+
+      <div class="rule"><span class="no">2</span><div>
+        <h4>مستوى B2 — بسيط في أي لغة</h4>
+        <p>جمل قصيرة (١٥–٢٠ كلمة). فكرة واحدة في الجملة. الكلمة الشايعة بدل النادرة. مبني للمعلوم.</p>
+        <p class="ex"><b>الاختبار:</b> هل حد مش شغّال في التسويق هيفهم الرد ده من أول قراية؟</p>
+      </div></div>
+
+      <div class="rule"><span class="no">3</span><div>
+        <h4>نبرة زميل شاطر</h4>
+        <p>مش روبوت، ومش مندوب مبيعات. زميل بيقولك خلّصت إيه وإيه اللي محتاج عينك.</p>
+        <p class="ex"><b>يعني:</b> من غير «عظيم!» و«يا سلام!»، ومن غير «تم تنفيذ العملية بنجاح» برضه.</p>
+      </div></div>
+
+      <div class="rule"><span class="no">4</span><div>
+        <h4>الرد بقد الحاجة</h4>
+        <p>بوست واحد اتعمل = <b>سطر واحد</b>. شهر كامل = ٦–١٠ سطور. مفيش فقرة بتشرح إنت عملت إيه.</p>
+        <p class="ex"><b>القاعدة:</b> لو الرد أطول من الحاجة اللي المستخدم طلبها، في حاجة غلط.</p>
+      </div></div>
+
+      <div class="rule"><span class="no">5</span><div>
+        <h4>النتيجة الأول، والسؤال في الآخر</h4>
+        <p>سطر النتيجة ← التفاصيل اللي محتاجة عينه ← السؤال. مفيش سؤال في نص الكلام.</p>
+        <p class="ex"><b>وممنوع</b> تبدأ بشرح اللي هتعمله. اعمله وقول النتيجة.</p>
+      </div></div>
+
+      <div class="rule"><span class="no">6</span><div>
+        <h4>الأخطاء تتشرح بجملة عادية</h4>
+        <p>قول إيه اللي حصل وإيه اللي ممكن يتعمل. من غير اعتذار، ومن غير رسالة خطأ خام، ومن غير مصطلح داخلي.</p>
+        <p class="ex"><b>مثال:</b> «في بوست مش هيقدر يطلع — فيه كلمة ممنوعة عندك. أعيد كتابته؟»</p>
+      </div></div>
+
+      <div class="rule"><span class="no">7</span><div>
+        <h4>الافتراضات تتقال</h4>
+        <p>أي حاجة اتفترضت — عدد الكُتّاب، أيام الشغل، المنصات — تتقال في سطر قبل النتيجة.</p>
+        <p class="ex"><b>ليه:</b> المستخدم مش هيقدر يصحّح افتراض هو أصلاً مش شايفه.</p>
+      </div></div>
+
+      <div class="rule"><span class="no">8</span><div>
+        <h4>سؤال واحد بصيغة واحدة</h4>
+        <p><code>yes / pick / no</code> للقوايم، و<code>yes / edit / no</code> للحاجة الواحدة. وبس.</p>
+        <p class="ex"><b>دلوقتي في ٦ صيغ مختلفة</b> — بتتشرح في <a href="#rest">قسم الملاحظات</a>.</p>
+      </div></div>
+    </div>
+
+    <h3 style="margin-top:2.5rem">قرص النبرة</h3>
+    <p class="prose" style="margin-top:.5rem;font-size:.94rem">نفس المعلومة، بتلات نبرات. التالتة هي المطلوبة.</p>
+    <div class="dial">
+      <div class="dl" style="--c:var(--hi-line);--c2:var(--hi)">
+        <span class="t">✗ روبوت</span>
+        <q>Operation completed successfully. 28 entities created and scheduled. 2 validation exceptions occurred during processing.</q>
+        <span class="n">دقيق، بس مش بني آدم.</span>
+      </div>
+      <div class="dl" style="--c:var(--md-line);--c2:var(--md)">
+        <span class="t">✗ مبالغ</span>
+        <q>Amazing! 🎉 Your month is all set and looking fantastic! Just a tiny couple of things to peek at when you get a sec!</q>
+        <span class="n">ودود أوي لدرجة إنه بيخبّي المشاكل.</span>
+      </div>
+      <div class="dl" style="--c:var(--ok-line);--c2:var(--ok)">
+        <span class="t">✓ زميل شاطر</span>
+        <q>Your month is scheduled — 28 posts, 24 with images. Two need a look before they go out.</q>
+        <span class="n">واضح، ودود، وبيقول المشكلة.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 BANNED -->
+  <section id="banned">
+    <div class="sec-head"><span class="sec-num">04</span><h2>الكلمات الممنوعة في الرد</h2></div>
+    <div class="sec-intro prose">
+      <p>
+        دي كلمات بتظهر <b>فعلاً</b> في مخرجات البلجن دلوقتي، والمستخدم مش المفروض
+        يشوفها. القايمة دي تتحط في مهارة <code>reply-style</code> زي ما الكلمات
+        الممنوعة بتتحط لكل براند.
+      </p>
+    </div>
+
+    <div class="t-scroll">
+      <table>
+        <thead><tr><th>ممنوع يقول</th><th>ليه</th><th>يقول بدالها</th></tr></thead>
+        <tbody>
+          <tr><td class="lbl bad-w">workspace_info · post_create<br>knowledge_get · أي اسم أداة</td><td>المستخدم عمره ما شاف الأدوات دي</td><td class="good-w">متتقالش أصلاً</td></tr>
+          <tr><td class="lbl bad-w">MCP</td><td>مصطلح بروتوكول</td><td class="good-w">متتقالش</td></tr>
+          <tr><td class="lbl bad-w">preflight</td><td>مصطلح داخلي — والفحص المفروض يكون صامت</td><td class="good-w">متتقالش</td></tr>
+          <tr><td class="lbl bad-w">delegating to plgn-copywriter<br>spawning agents in parallel</td><td>ده شغل داخلي، مش نتيجة</td><td class="good-w">متتقالش</td></tr>
+          <tr><td class="lbl bad-w">the validation gate refuses it</td><td>«gate» مصطلح داخلي</td><td class="good-w">plgn's checks blocked it<br><span style="color:var(--muted)">فحص plgn وقفه</span></td></tr>
+          <tr><td class="lbl bad-w">ERROR: ...</td><td>دي رسالة لمبرمج مش لمستخدم</td><td class="good-w">اشرح بجملة عادية</td></tr>
+          <tr><td class="lbl bad-w">cadence</td><td>كلمة C1</td><td class="good-w">how often you post<br><span style="color:var(--muted)">كام بوست في الأسبوع</span></td></tr>
+          <tr><td class="lbl bad-w">a starved pillar</td><td>استعارة مش مفهومة</td><td class="good-w">a topic with too few posts<br><span style="color:var(--muted)">موضوع خد بوستات قليلة</span></td></tr>
+          <tr><td class="lbl bad-w">an exhausted pillar</td><td>استعارة مش مفهومة</td><td class="good-w">a topic repeating itself<br><span style="color:var(--muted)">موضوع بيكرر نفسه</span></td></tr>
+          <tr><td class="lbl bad-w">a thin post</td><td>استعارة مش مفهومة</td><td class="good-w">a post that says too little<br><span style="color:var(--muted)">بوست مش بيقول حاجة</span></td></tr>
+          <tr><td class="lbl bad-w">postId · id · index</td><td>تفاصيل تقنية</td><td class="good-w">اسم البوست</td></tr>
+          <tr><td class="lbl bad-w">pillar</td><td>مصطلح تسويقي — مش الكل يعرفه</td><td class="good-w">topic · موضوع<br><span style="color:var(--muted)">أو اشرحها أول مرة بس</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note tip">
+      <b>كلمات عادية سيبها زي ما هي:</b> draft، schedule، post، image، credit،
+      LinkedIn — دي كلمات المستخدم فاهمها وبيستخدمها بنفسه. القاعدة مش «بسّط كل
+      حاجة»، القاعدة <b>«متستخدمش كلمة المستخدم معرفهاش»</b>.
+    </div>
+  </section>
+
+  <!-- 05 EXAMPLES -->
+  <section id="examples">
+    <div class="sec-head"><span class="sec-num">05</span><h2>أمثلة — قبل وبعد</h2></div>
+    <div class="sec-intro prose">
+      <p>كل مثال هنا رد حقيقي ممكن يحصل دلوقتي، وجنبه الرد بالمواصفات الجديدة.</p>
+    </div>
+
+    <h3><code>/plgn calendar</code></h3>
+    <div class="ba">
+      <div class="ba-col ba-bad">
+        <span class="ba-cap"><span class="m">✗</span>قبل</span>
+        <div class="term"><div class="term-bar"><i></i><i></i><i></i><span class="name">before</span></div>
+<pre><span class="c">Preflight complete.</span>
+<span class="c">Delegating to plgn-researcher</span>
+<span class="c">for site analysis...</span>
+<span class="c">Strategist returned 4 pillars.</span>
+<span class="c">Applying posting-cadence skill</span>
+<span class="c">for slot distribution.</span>
+
+Cadence set: LinkedIn 3/wk,
+X 5/wk, IG 2/wk = 43 slots.
+Hook shapes varied per
+platform-specs. Final week
+under-allocated per slack rule.</pre></div>
+      </div>
+      <div class="ba-col ba-good">
+        <span class="ba-cap"><span class="m">✓</span>بعد</span>
+        <div class="term"><div class="term-bar"><i></i><i></i><i></i><span class="name">after</span></div>
+<pre><span class="k">A month of posts, ready to write.</span>
+
+3 a week on LinkedIn, 5 on X,
+2 on Instagram — 43 in 30 days.
+
+<span class="c">I assumed one person writing,
+no video, weekdays only. Tell
+me if that's wrong.</span>
+
+<span class="p">Week 1</span>
+  Mon 01  LinkedIn
+    "The migration that failed
+     after go-live"</pre></div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:2.2rem">نفس الأمر — لما المستخدم يكتب عربي</h3>
+    <div class="ba">
+      <div class="ba-col ba-bad">
+        <span class="ba-cap"><span class="m">✗</span>قبل — بيرد إنجليزي</span>
+        <div class="term"><div class="term-bar"><i></i><i></i><i></i><span class="name">before</span></div>
+<pre><span class="p">&gt;</span> /plgn calendar <span class="c">اعملي تقويم</span>
+<span class="c">                للشهر الجاي</span>
+
+Here's your 30-day content
+calendar. Cadence: LinkedIn
+3/wk, X 5/wk, Instagram 2/wk.
+43 slots total across 4 weeks
+with the final week
+deliberately lighter.</pre></div>
+      </div>
+      <div class="ba-col ba-good">
+        <span class="ba-cap"><span class="m">✓</span>بعد — بيرد عربي</span>
+        <div class="term rtl"><div class="term-bar"><i></i><i></i><i></i><span class="name">after</span></div>
+<pre><span class="k">خطة شهر كامل، جاهزة للكتابة.</span>
+
+٣ بوستات في الأسبوع على لينكدإن،
+٥ على X، واتنين على إنستجرام —
+يعني ٤٣ بوست في ٣٠ يوم.
+
+<span class="c">افترضت إن في شخص واحد بيكتب،
+من غير فيديو، وأيام الشغل بس.
+لو ده مش مظبوط قولّي وأعدّلها.</span>
+
+<span class="p">الأسبوع الأول</span>
+  الاتنين ١ — لينكدإن</pre></div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:2.2rem">لما يحصل خطأ</h3>
+    <div class="ba">
+      <div class="ba-col ba-bad">
+        <span class="ba-cap"><span class="m">✗</span>قبل</span>
+        <div class="term"><div class="term-bar"><i></i><i></i><i></i><span class="name">before</span></div>
+<pre><span class="e">ERROR: runGate validation
+failed — bannedWord match
+at body index 3</span>
+
+I apologise, the post_create
+call did not succeed. The
+validation gate rejected the
+payload. Retrying once per
+gate-recovery...</pre></div>
+      </div>
+      <div class="ba-col ba-good">
+        <span class="ba-cap"><span class="m">✓</span>بعد</span>
+        <div class="term"><div class="term-bar"><i></i><i></i><i></i><span class="name">after</span></div>
+<pre><span class="k">27 of 28 posts are scheduled.</span>
+
+<span class="e">One can't go out yet:</span>
+  <span class="c">"Why migrations fail" uses
+  "growth hack" — a word you
+  asked us never to use.</span>
+
+Rewrite it without that word?
+<span class="p">yes / edit / no</span></pre></div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:2.2rem"><code>/plgn post</code> — الأمر السريع</h3>
+    <div class="ba">
+      <div class="ba-col ba-bad">
+        <span class="ba-cap"><span class="m">✗</span>قبل</span>
+        <div class="term"><div class="term-bar"><i></i><i></i><i></i><span class="name">before</span></div>
+<pre>I've successfully created your
+post as a draft in the
+workspace. The post_create
+call returned id 6f2a91b and
+it passed the validation gate
+on the first attempt. It is
+currently unscheduled. Would
+you like me to schedule it?</pre></div>
+      </div>
+      <div class="ba-col ba-good">
+        <span class="ba-cap"><span class="m">✓</span>بعد</span>
+        <div class="term"><div class="term-bar"><i></i><i></i><i></i><span class="name">after</span></div>
+<pre><span class="k">Saved as a draft · LinkedIn</span>
+
+Schedule it?  <span class="p">yes / no</span></pre></div>
+      </div>
+    </div>
+
+    <div class="note">
+      <b>لاحظ الحاجة المشتركة في الأربعة:</b> الرد «بعد» دايماً <b>أقصر</b> —
+      مش عشان معلومات اتشالت، عشان الشغل الداخلي اتشال والنتيجة فضلت.
+    </div>
+  </section>
+
+  <!-- 06 GOOD -->
+  <section id="good">
+    <div class="sec-head"><span class="sec-num">06</span><h2>اللي شغال كويس — ممنوع يتلمس</h2></div>
+    <div class="sec-intro prose">
+      <p>أي مراجعة بتقول المشاكل بس بتبقى ناقصة. دي الحاجات المتعوب فيها فعلاً.</p>
+    </div>
+    <div class="goods">
+      <div class="good"><span class="mk">✓</span><div>
+        <h4>«مفيش سطور أدوات» مكتوبة فعلاً</h4>
+        <p><code>_conventions</code> بيمنع «Calling post_create...» صراحة. النية موجودة — الناقص بس التفاصيل حواليها.</p>
+      </div></div>
+      <div class="good"><span class="mk">✓</span><div>
+        <h4>الأرقام الأول والاستثناءات بالاسم</h4>
+        <p>القاعدة دي موجودة ومطبّقة في أمثلة كتير. دي أساس ممتاز يتبني عليه.</p>
+      </div></div>
+      <div class="good"><span class="mk">✓</span><div>
+        <h4>«قول اللي افترضته»</h4>
+        <p>موجودة في <code>_conventions</code> و<code>calendar</code> و<code>posting-cadence</code>. فكرة ممتازة ومحتاجة بس تتطبق في كل مكان.</p>
+      </div></div>
+      <div class="good"><span class="mk">✓</span><div>
+        <h4>ممنوع رسالة خطأ خام</h4>
+        <p><code>gate-recovery</code> بيقول «Never surface a raw ERROR: string». القاعدة صح — محتاجة بس تتوسّع لباقي المصطلحات.</p>
+      </div></div>
+      <div class="good"><span class="mk">✓</span><div>
+        <h4>بيعترف باللي مش عارفه</h4>
+        <p>«plgn مش شايف التفاعل» مكتوبة صريحة في ٣ ملفات. ده أندر حاجة في المنتجات دي.</p>
+      </div></div>
+      <div class="good"><span class="mk">✓</span><div>
+        <h4>الأمان على السيرفر</h4>
+        <p>الكلمات الممنوعة والحدود server-side، والبلجن بيقول كده ومبيدّعيش إنه هو الحماية.</p>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- 07 VERIFY -->
+  <section id="verify">
+    <div class="sec-head"><span class="sec-num">07</span><h2>الحاجة اللي لازم تتأكد منها قبل أي حاجة</h2></div>
+
+    <div class="finding sev-lo">
+      <div class="f-top"><span class="f-no">V1</span><h3>هل الوكلاء أصلاً قادرين يقروا المهارات؟</h3><span class="prio">تأكد الأول</span></div>
+      <div class="f-block">
+        <span class="f-lbl">المشكلة</span>
+        <p>
+          وكيل <code>plgn-copywriter</code> متكتوب في تعليماته إنه يقرا مهارتين
+          قبل ما يكتب. بس قايمة أدواته فيها <code>Read</code> بس — مفيش أداة
+          <code>Skill</code>، ومحدش داله مسار الملفات.
+        </p>
+      </div>
+      <div class="f-block">
+        <span class="f-lbl">الدليل — من <code>agents/plgn-copywriter.md</code></span>
+        <div class="evid">tools:
+  - Read          <span class="dim">← أداة واحدة بس، مفيش Skill</span>
+...
+## Read these first
+- <span class="hl">platform-specs</span>   <span class="dim">← اسم من غير مسار</span>
+- <span class="hl">brand-voice</span>      <span class="dim">← اسم من غير مسار</span></div>
+      </div>
+      <div class="f-block">
+        <span class="f-lbl">ليه دي أهم حاجة</span>
+        <p>
+          لو حقيقية، يبقى الكاتب بيكتب من غير حدود المنصات ومن غير قواعد الصوت.
+          <b>وكمان بتأثر على المراجعة دي نفسها:</b> لو الوكلاء مش قادرين يقروا
+          المهارات، يبقى مهارة <code>reply-style</code> الجديدة مش هتوصلهم
+          كمان — والحل هيبقى إن الأمر يبعت القواعد جوه رسالة الوكيل.
+        </p>
+      </div>
+      <div class="f-fix">
+        <span class="f-lbl">الحل</span>
+        <p>
+          <b>لو حقيقية:</b> ضيف <code>Skill</code> لقايمة أدوات الوكلاء، أو خلي
+          الأمر يحط القواعد جوه الرسالة — والتاني أضمن.
+          <b>لو مش حقيقية:</b> اكتب المسارات صريحة عشان الملف يفضل واضح.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 REST -->
+  <section id="rest">
+    <div class="sec-head"><span class="sec-num">08</span><h2>ملاحظات تانية</h2></div>
+    <div class="sec-intro prose">
+      <p>دي كلها بتخدم نفس الهدف — تجربة أبسط — بس مش عن نبرة الرد.</p>
+    </div>
+
+    <div class="finding sev-hi">
+      <div class="f-top"><span class="f-no">O1</span><h3>ست صيغ مختلفة لسؤال «أوافق؟»</h3><span class="prio">عالية</span></div>
+      <div class="f-block">
+        <span class="f-lbl">الدليل — من الملفات حرفياً</span>
+        <div class="evid">post        Create this?           <span class="hl">(y / edit / cancel)</span>
+review      Fix the blocked posts? <span class="hl">(y / pick / no)</span>
+library     Apply?                 <span class="hl">(y / pick / no)</span>
+repurpose   Create all?            <span class="hl">(y / pick / cancel)</span>
+brand       Apply?                 <span class="hl">(y / n)</span>
+topics      Add topics?            <span class="hl">(y / no)</span>
+images      Generate 5 images? ...  <span class="hl">← مفيش صيغة رد</span>
+month       "wait for an explicit yes" <span class="hl">← مفيش سؤال</span>
+README      Proceed? yes           <span class="hl">← شكل سادس</span></div>
+      </div>
+      <div class="f-fix"><span class="f-lbl">الحل</span><p>صيغتين بس: <code>yes / pick / no</code> للقوايم، <code>yes / edit / no</code> للحاجة الواحدة. ونص واحد بالظبط لرسالة «مش متصل» بدل ما كل أمر يصيغها من دماغه.</p></div>
+    </div>
+
+    <div class="finding sev-hi">
+      <div class="f-top"><span class="f-no">O2</span><h3>١٨ أمر من غير خريطة</h3><span class="prio">عالية</span></div>
+      <div class="f-block">
+        <span class="f-lbl">المشكلة</span>
+        <p>مفيش <code>/plgn help</code>. وفي أسماء بتتلخبط في بعض:</p>
+        <ul>
+          <li><code>review</code> / <code>report</code> — نفس أول ٣ حروف، شغل مختلف تماماً</li>
+          <li><code>calendar</code> / <code>month</code> — واحد بيخطط، والتاني بيكتب ويجدول</li>
+          <li><code>strategy</code> / <code>topics</code> — واحد مجاني من موقع، والتاني بيقرا حسابك</li>
+          <li><code>voice</code> / <code>knowledge</code> — واحد مجاني، والتاني بيعدّل المحفوظ</li>
+        </ul>
+      </div>
+      <div class="f-fix"><span class="f-lbl">الحل</span><p>أمر <code>/plgn help</code> يعرض الـ ١٨ في مجموعتين بسطر لكل واحد. وغيّر <code>review</code> لـ <code>queue</code>.</p></div>
+    </div>
+
+    <div class="finding sev-md">
+      <div class="f-top"><span class="f-no">O3</span><h3><code>--dry-run</code> في أمر واحد بس · ومفيش <code>--yes</code></h3><span class="prio">متوسطة</span></div>
+      <div class="f-block">
+        <span class="f-lbl">المشكلة</span>
+        <p>
+          <code>_conventions</code> بيقول «في الأوامر اللي بتدعمه» — بس
+          <code>month</code> بس هو الموثّق. والمستخدم مش قادر يتوقع.
+          وكمان <code>/plgn post</code> موصوف إنه «بيتشغّل ١٠ مرات في اليوم»،
+          يعني ١٠ تأكيدات، ومفيش مخرج.
+        </p>
+      </div>
+      <div class="f-fix"><span class="f-lbl">الحل</span><p><code>--dry-run</code> في كل أمر بيكتب. و<code>--yes</code> على الرخيص بس (<code>post</code>، <code>topics</code>) — <b>ممنوع</b> على <code>month</code> و<code>images</code> لإنهم بيصرفوا كريدت.</p></div>
+    </div>
+
+    <div class="finding sev-md">
+      <div class="f-top"><span class="f-no">O4</span><h3>سطر البيع بيتكرر في نفس الجلسة</h3><span class="prio">متوسطة</span></div>
+      <div class="f-block"><span class="f-lbl">المشكلة</span><p>شغّل <code>audit</code> وبعده <code>strategy</code> وبعده <code>voice</code> — هتشوف ٣ رسايل بيع شبه بعض.</p></div>
+      <div class="f-fix"><span class="f-lbl">الحل</span><p>قاعدة في <code>upsell-seam</code>: مرة واحدة في الجلسة.</p></div>
+    </div>
+
+    <div class="finding sev-md">
+      <div class="f-top"><span class="f-no">O5</span><h3>ملفات التعليمات مكتوبة بإنجليزي صعب</h3><span class="prio">متوسطة</span></div>
+      <div class="f-block">
+        <span class="f-lbl">الدليل</span>
+        <div class="evid">"content formats <span class="hl">wearing the costume of</span> strategy"
+"padding <span class="hl">feels free and is not</span>"
+"scaffolding should be <span class="hl">nearly invisible</span>"</div>
+      </div>
+      <div class="f-block">
+        <span class="f-lbl">ليه ده يهم للردود</span>
+        <p>
+          <b>الموديل بيقلّد أسلوب الملف اللي بيقراه.</b> فتعليمات بإنجليزي أدبي
+          كثيف بتخلي الردود كثيفة — حتى لو مهارة <code>reply-style</code>
+          بتقول العكس. يعني ده <b>بيدعم</b> القاعدة الجديدة مش بديل ليها.
+        </p>
+      </div>
+      <div class="f-fix"><span class="f-lbl">الحل</span><p>إعادة صياغة الـ ٣٣ ملف بإنجليزي بسيط. <b>القواعد متتغيّرش</b> — الصياغة بس. و<code>validate.mjs</code> هيمسك أي كسر.</p></div>
+    </div>
+  </section>
+
+  <!-- 09 PLAN -->
+  <section id="plan">
+    <div class="sec-head"><span class="sec-num">09</span><h2>خطة التنفيذ</h2></div>
+    <div class="sec-intro prose"><p>الأرخص واللي بيبان أثره بسرعة الأول.</p></div>
+
+    <div class="plan">
+      <div class="pl"><span class="step">1</span>
+        <div><h4>اتأكد من مشكلة الوكلاء والمهارات</h4><p>الإجابة بتحدد إزاي هنوصّل <code>reply-style</code> للوكلاء أصلاً.</p></div>
+        <div class="pl-meta"><span class="tagx">شغل قليل</span><span class="tagx big">تأثير كبير</span></div>
+      </div>
+      <div class="pl"><span class="step">2</span>
+        <div><h4>اعمل مهارة <code>reply-style</code></h4><p>الثمن قواعد + قايمة الكلمات الممنوعة + الأمثلة. ملف واحد.</p></div>
+        <div class="pl-meta"><span class="tagx">شغل متوسط</span><span class="tagx big">تأثير كبير</span></div>
+      </div>
+      <div class="pl"><span class="step">3</span>
+        <div><h4>اربطها في <code>_conventions</code> وكل أمر</h4><p>سطر في كل أمر: «الردود حسب مهارة <code>reply-style</code>».</p></div>
+        <div class="pl-meta"><span class="tagx">شغل قليل</span><span class="tagx win">مكسب سريع</span></div>
+      </div>
+      <div class="pl"><span class="step">4</span>
+        <div><h4>وحّد صيغة السؤال ورسالة «مش متصل»</h4><p>تعديل في <code>_conventions</code> + ٩ أوامر.</p></div>
+        <div class="pl-meta"><span class="tagx">شغل متوسط</span><span class="tagx win">مكسب سريع</span></div>
+      </div>
+      <div class="pl"><span class="step">5</span>
+        <div><h4>ضيف <code>/plgn help</code></h4><p>ملف واحد. الـ README فيه المعلومات جاهزة.</p></div>
+        <div class="pl-meta"><span class="tagx">شغل قليل</span><span class="tagx win">مكسب سريع</span></div>
+      </div>
+      <div class="pl"><span class="step">6</span>
+        <div><h4>ظبّط الفلاجات وغيّر <code>review</code> لـ <code>queue</code></h4><p>الاسم لازم يتعدّل في <code>plugin.json</code> و<code>validate.mjs</code> كمان.</p></div>
+        <div class="pl-meta"><span class="tagx">شغل متوسط</span></div>
+      </div>
+      <div class="pl"><span class="step">7</span>
+        <div><h4>أعد صياغة الـ ٣٣ ملف بإنجليزي بسيط</h4><p>أكبر شغلانة، بس ميكانيكية — وبتثبّت كل اللي فوقها.</p></div>
+        <div class="pl-meta"><span class="tagx big">شغل كبير</span><span class="tagx big">تأثير كبير</span></div>
+      </div>
+    </div>
+
+    <div class="note tip">
+      <b>بعد كل خطوة:</b> شغّل <code>node scripts/validate.mjs</code> — بيمسك
+      المسارات الناقصة والأدوات المخترعة وكسر عقد المجاني/المتصل.
+    </div>
+  </section>
+
+  <!-- 10 IDEAS -->
+  <section id="ideas">
+    <div class="sec-head"><span class="sec-num">10</span><h2>أفكار إضافية</h2></div>
+    <div class="sec-intro prose"><p>مش مشاكل — أفكار طلعت وأنا بقرا.</p></div>
+
+    <div class="ideas">
+      <div class="idea">
+        <h4>فحص آلي على صيغة السؤال</h4>
+        <p><code>validate.mjs</code> بيتأكد من البنية بس. ممكن يرفض أي أمر فيه صيغة تأكيد غير الصيغتين المعتمدتين — يعني القاعدة تتفرض مش تتمنّى.</p>
+        <span class="tagx">يستاهل تفكير</span>
+      </div>
+      <div class="idea">
+        <h4>فحص على الكلمات الممنوعة في الردود</h4>
+        <p>نفس الفكرة: السكريبت يدوّر على <code>ERROR:</code> و<code>cadence</code> وأسماء الأدوات في أمثلة المخرجات ويرفضها.</p>
+        <span class="tagx">يستاهل تفكير</span>
+      </div>
+      <div class="idea">
+        <h4>أمر تراجع — <code>/plgn undo</code></h4>
+        <p>لو <code>month</code> عمل ٢٨ بوست وندمت، مفيش طريقة ترجّعهم غير واحد واحد. <code>post_delete</code> موجودة بس مفيش أمر بيستخدمها بأمان.</p>
+        <span class="tagx">يستاهل تفكير</span>
+      </div>
+      <div class="idea">
+        <h4>سطر خلاصة في <code>report</code></h4>
+        <p>التقرير بيبدأ بالأرقام وده صح — بس ممكن يبدأ بجملة: «الشهر ده أضعف من اللي قبله، والسبب موضوع واحد وقف».</p>
+        <span class="tagx">يستاهل تفكير</span>
+      </div>
+      <div class="idea">
+        <h4>الشارة تبان قبل التشغيل</h4>
+        <p>المستخدم مش قادر يعرف الأمر مجاني ولا محتاج حساب غير لما يشغّله. <code>/plgn help</code> يحل ده.</p>
+        <span class="tagx">سهلة</span>
+      </div>
+      <div class="idea">
+        <h4>حالة الحساب الفاضي</h4>
+        <p>حساب جديد هيشغّل <code>review</code> ويلاقي مفيش حاجة. الأوامر بتتعامل مع ده كويس بس ممكن توجّهه على <code>/plgn month</code> بوضوح أكتر.</p>
+        <span class="tagx">سهلة</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>مراجعة plgn-claude 1.0.1 · ٣٣ ملف · ٢٬٩٠٩ سطر تعليمات</p>
+    <p>الصفحة دي مكمّلة لصفحة الدليل — الدليل بيشرح البلجن زي ما هو، ودي بتشرح المقترح تغييره.</p>
+  </footer>
+
+  </main>
+</div>
+</div>
