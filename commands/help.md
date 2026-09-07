@@ -6,7 +6,7 @@ description: Show every plgn command in one list, split into the ones that need 
 
 Print the command list. Call no tools. Answer nothing else.
 
-This exists because twenty-one commands is more than anyone remembers, and the
+This exists because twenty-two commands is more than anyone remembers, and the
 README is not open while someone is working.
 
 ## Rules
@@ -50,6 +50,8 @@ NEEDS AN ACCOUNT
   /plgn repurpose <url>     Turn one article into a set of posts
   /plgn visuals <refs>      Work out how a brand's pictures look, and save it
   /plgn images              Add images to posts that have none
+
+  /plgn undo                Take back the last batch — unschedule or delete
 
   Keeping it healthy
   /plgn queue               What's blocked, what's missing, what's ready

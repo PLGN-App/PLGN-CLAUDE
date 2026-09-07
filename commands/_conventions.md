@@ -8,7 +8,7 @@ Commands come in two kinds. Every command is exactly one of them:
 
 - **Free** — `demo`, `audit`, `strategy`, `voice`, `competitors`, `calendar`.
   Call **zero** MCP tools. Output is text. Always close with the seam.
-- **Connected** — `setup`, `brandkit`, `brand`, `knowledge`, `month`, `post`,
+- **Connected** — `setup`, `brandkit`, `brand`, `knowledge`, `month`, `post`, `undo`,
   `repurpose`, `topics`, `library`, `images`, `visuals`, `queue`, `refresh`,
   `report`.
   Call MCP tools. Never carry the seam.
@@ -87,7 +87,7 @@ Every command that writes accepts:
 These commands also accept `--yes`, which skips the confirmation:
 `post`, `topics`.
 
-`--yes` is **never** accepted by `month`, `images`, `visuals`, `brandkit`,
+`--yes` is **never** accepted by `month`, `images`, `visuals`, `brandkit`, `undo`,
 `repurpose`, `refresh`, `library`, `brand` or `knowledge`. Those either spend
 credits, write in bulk, or remove things.
 

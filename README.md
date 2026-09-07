@@ -183,6 +183,7 @@ not inside Claude Code.
 | `/plgn library` | Tidy duplicate snippets and overlapping hashtag sets |
 | `/plgn knowledge` | Check the brand profile for gaps, stale entries and conflicts |
 | `/plgn brand` | List, create, rename, archive and restore brands |
+| `/plgn undo` | Take back the last batch of posts — unschedule or delete |
 | `/plgn refresh` | Rewrite and reschedule older posts that still hold up |
 | `/plgn report` | What went out, how topics balanced, how the plan held |
 

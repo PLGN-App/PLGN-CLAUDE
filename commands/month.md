@@ -108,6 +108,11 @@ belongs in the final report.
 Call `topic_create` **only for topics that do not already exist**. Then call
 `post_create` per post, as drafts.
 
+**Stamp every post in this run with the same run marker**, per the
+**brand-knowledge-map** skill. It costs nothing, the reader never sees it, and
+it is the only thing that makes `/plgn undo` able to take this run back. A
+month saved without it can only be undone by hand, thirty posts at a time.
+
 **Record the ids the tools return.** Never assume the order matches your draft
 order, and never guess an id — read it from the response. If a later step needs
 a post you cannot identify, read it back with `post_get` or `post_list`.
