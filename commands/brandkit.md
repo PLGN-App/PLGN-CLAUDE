@@ -76,6 +76,11 @@ Choose them by how much breaks if they are wrong. The **brand-onboarding**
 skill sets the order — the words this brand refuses to use come first, because
 every post is checked against them.
 
+One of the five asks where this brand publishes: **which languages, and which
+timezone**. Both are invisible when wrong. A brand posting to Riyadh from a
+server thinking in UTC publishes in the middle of the night for months before
+anyone connects the two.
+
 Anything past the fifth is printed as an assumption, not asked. Per
 **reply-style** rule 7, a user cannot correct an assumption they cannot see.
 
@@ -111,7 +116,7 @@ The order matters and the **brand-onboarding** skill owns it:
 | # | Pass | Where it goes |
 |---|---|---|
 | 1 | The brand record — languages, and the words to refuse | `brand_update` |
-| 2 | Voice, audience, offers, search terms, example posts | knowledge entries |
+| 2 | Voice, audience, offers, publishing, search terms, example posts | knowledge entries |
 | 3 | The look, and its reference picture | knowledge entry, plus the picture |
 | 4 | Competitors, one each | knowledge entries |
 | 5 | Topics | `topic_create` |

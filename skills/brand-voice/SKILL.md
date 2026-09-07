@@ -28,6 +28,12 @@ Read all four before writing. The audience shapes the voice as much as the voice
 entry does — the same brand writes differently to people who do the work than to
 people who buy it.
 
+**The languages are not in knowledge.** They sit on the brand record and come
+back from `brand_list`, alongside the banned words. Read them, because a voice
+is language-specific: a brand that sounds plain and direct in English does not
+automatically sound that way when the same rules are applied to Arabic. Match
+the intent in each language rather than translating the rules literally.
+
 ## Applying it
 
 Match the **rhythm and the words**, not just the subject.

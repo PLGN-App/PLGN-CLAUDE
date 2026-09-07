@@ -15,7 +15,12 @@ around that: plan first, ask once, write carefully, report honestly.
 Call `workspace_info`. If it fails, print the message from **_conventions**
 rule 2 and stop.
 
-Then call `knowledge_get`.
+Then call `brand_list` and `knowledge_get`.
+
+`brand_list` carries two things this command must not guess: the brand's
+**banned words** and the **languages it publishes in**. Read both before
+writing anything. The languages are the brand's, not the user's — someone
+writing to plgn in English may publish only in Arabic.
 
 **If the brand has no saved voice, stop and send them to `/plgn setup`.** Do
 not work a voice out from a website here. Guessing is the free layer's
@@ -88,8 +93,11 @@ Start one `plgn-copywriter` per topic, **at the same time**.
 
 Per **_conventions** rule 6, each writer's prompt must carry what it needs:
 the topic and its argument, the brand's voice and banned words, the platforms,
-the character limits for those platforms, and how many posts to write. Agents
-cannot read skills or see this file.
+the character limits for those platforms, the **languages the brand publishes
+in**, and how many posts to write. Agents cannot read skills or see this file.
+
+A brand with two languages gets each post written in both, saved as captions
+keyed by language — not one caption with a translation underneath.
 
 If a writer returns fewer posts than asked because the topic was thin, take the
 shortfall. Do not ask again — a thin topic is information about the plan, and it
