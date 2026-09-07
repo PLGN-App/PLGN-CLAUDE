@@ -63,10 +63,15 @@ Work out the shape of the month, then show it as a short table:
 ```
 Topics:     <name> · <name> · <name>
 Platforms:  LinkedIn, X, Instagram
+Languages:  <the brand's, from its record>
 Posting:    <n>/week — <n> posts total
-Images:     <n> to make (<n> credits)
-Dates:      <start> → <end>
+Images:     <n> to make — <n> credits, leaving <n>
+Dates:      <start> → <end>, <timezone>
 ```
+
+Four of those lines exist to be corrected. Languages and timezone come from the
+brand, not from the conversation, and both are invisible when wrong. The credit
+line says what is left afterwards, because that is the number people decide on.
 
 Where the topics are new, get them from `plgn-strategist` using the subject and
 the brand's saved knowledge. Where you are adding to a topic that already
@@ -90,6 +95,14 @@ bulk.
 ## 4. Write, all at once
 
 Start one `plgn-copywriter` per topic, **at the same time**.
+
+Print one line before this starts and one before the images, per
+**reply-style** rule 5b — writing and illustrating are the two phases long
+enough that silence reads as a crash:
+
+```
+Writing 28 posts across 3 topics...
+```
 
 Per **_conventions** rule 6, each writer's prompt must carry what it needs:
 the topic and its argument, the brand's voice and banned words, the platforms,
@@ -129,8 +142,16 @@ hand-off is a successful run. Track anything left as a draft for the report.
 
 ## 7. Images
 
+Say the phase is starting and how long it takes, per **reply-style** rule 5b:
+
+```
+Making 24 images — this takes a few minutes...
+```
+
 For each post that should have one, get the description from `plgn-visual`,
-then call `generate_image`.
+then call `generate_image`. Pass the brand's saved **visual direction** into
+every `plgn-visual` prompt, so a month's pictures look like one brand rather
+than twenty-four separate guesses.
 
 **Making an image takes time.** `generate_image` returns a job number, not an
 image. Check with `check_generation` on the schedule in the **image-prompting**

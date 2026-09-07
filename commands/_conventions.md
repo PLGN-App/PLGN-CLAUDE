@@ -34,13 +34,23 @@ Two rules from it matter so much they are repeated here:
 Every connected command calls `workspace_info` **first**, before anything
 else.
 
-**If it fails**, the user is not connected. Print exactly this, then stop:
+**If it fails**, there are two causes and the message must name both, because
+the second one looks exactly like the first and wastes people an afternoon.
+Print this, then stop:
 
-> You're not connected to a workspace yet. Create one at **useplgn.com**, then
-> run this command again — you'll be asked to approve access.
+> I can't reach your workspace. Two things cause this:
+>
+> **You haven't restarted** since installing or updating plgn. Restart Claude
+> Code and run this again — that fixes it most of the time.
+>
+> **You don't have a workspace yet.** Create one at **useplgn.com**, then run
+> this again — you'll be asked to approve access in your browser.
 
-Translate it into the user's language, but keep the meaning and the link. Do
-not retry in a loop, and do not offer to write something locally instead. A
+Translate it into the user's language, but keep both causes, in that order, and
+keep the link. Restart comes first because it is the more common cause and the
+cheaper thing to try.
+
+Do not retry in a loop, and do not offer to write something locally instead. A
 user who ran a connected command wants the real thing.
 
 **If it succeeds**, carry on. Print nothing. A check that passes is silent.
@@ -131,6 +141,9 @@ is the wrong place for a secret.
 Lead with the thing the user asked for. Put the process behind it.
 
 - **No tool logs.** "Calling post_create..." is noise.
+- **But a long job says it is working.** A run that takes minutes prints one
+  line per phase, per **reply-style** rule 5b. Silence for three minutes reads
+  as broken, and a user who stops it halfway loses finished work.
 - **Counts first, then the exceptions.** "28 posts scheduled. 2 need your eye:"
   then those two, by name and reason.
 - **Full text, not summaries.** When the deliverable is copy, print the copy.

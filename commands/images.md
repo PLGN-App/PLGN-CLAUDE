@@ -31,8 +31,13 @@ Say what you found and how many are worth filling:
 Not every post should have a picture. Send each candidate to `plgn-visual`,
 which returns nothing when a post reads better plain.
 
-Per **_conventions** rule 6, put the post text, the brand's colours and its
-audience into the agent's prompt.
+Per **_conventions** rule 6, put the post text, the brand's audience and its
+**visual direction** into the agent's prompt — the whole direction, not just
+the colours. It is the saved answer to how this brand's pictures are built, and
+an agent that cannot see it invents a look per post.
+
+If none is saved, say so once and offer `/plgn visuals`, which works it out
+from pictures the brand already published.
 
 Say which ones you are skipping, rather than quietly leaving them out:
 

@@ -64,6 +64,9 @@ NEEDS AN ACCOUNT
 /plgn visuals decides how pictures should look. /plgn images makes them.
 
 New here? Try /plgn demo with your website. It needs no account.
+
+Just installed or updated plgn? Restart Claude Code first, or the commands
+won't be there yet.
 ```
 
 ## Notes
