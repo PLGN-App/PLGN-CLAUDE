@@ -298,6 +298,22 @@ for (const p of CONTENT) {
     }
   }
 
+  // Agents are discovered from disk, never declared in the manifest, so a
+  // missing or renamed agent file fails silently at runtime. This list is the
+  // only place that notices.
+  const AGENTS = [
+    "plgn-analyst", "plgn-art-director", "plgn-brand-architect", "plgn-brand-guard",
+    "plgn-copywriter", "plgn-librarian", "plgn-researcher", "plgn-scheduler",
+    "plgn-strategist", "plgn-visual",
+  ];
+  const onDisk = ls("agents").filter((f) => f.endsWith(".md")).map((f) => f.replace(/\.md$/, ""));
+  for (const a of AGENTS) {
+    if (!onDisk.includes(a)) fail(`agents/${a}.md is missing`);
+  }
+  for (const a of onDisk) {
+    if (!AGENTS.includes(a)) fail(`agents/${a}.md is not listed in validate.mjs AGENTS`);
+  }
+
   // Skills on disk must be registered. The existing check runs manifest →
   // disk; a skill that is written but never listed loads for nobody.
   if (manifest) {
