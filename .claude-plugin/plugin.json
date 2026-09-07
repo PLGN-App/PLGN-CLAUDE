@@ -24,6 +24,7 @@
     "./skills/gate-recovery",
     "./skills/platform-specs",
     "./skills/brand-voice",
+    "./skills/brand-knowledge-map",
     "./skills/content-topics",
     "./skills/image-prompting",
     "./skills/posting-cadence"

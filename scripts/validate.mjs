@@ -123,10 +123,16 @@ const walk = (dir) => {
   return out;
 };
 const CONTENT = [...walk("commands"), ...walk("agents"), ...walk("skills")];
+// Knowledge type values are API literals that happen to match the tool-name
+// shape. They are not tools, and every file that documents storage names them.
+const KNOWLEDGE_TYPES = new Set([
+  "brand_voice", "competitor_data", "seo_guidelines", "example_article",
+]);
 for (const p of CONTENT) {
   const body = read(p);
   for (const m of body.matchAll(/`([a-z]+_[a-z0-9_]+)`/g)) {
     const name = m[1];
+    if (KNOWLEDGE_TYPES.has(name)) continue;
     // only judge names that look like plgn tools: a known prefix
     if (/^(brand|post|topic|snippet|hashtagset|knowledge|workspace|list|delete|upload|generate|check|cloudinary|kie)_/.test(name)
       && !TOOLS.has(name)) {
@@ -236,6 +242,42 @@ for (const p of CONTENT) {
   const body = read(p).toLowerCase();
   for (const phrase of ["ask the user for their api key", "paste your token", "store the token"]) {
     if (body.includes(phrase)) fail(`${p}: must not handle credentials ("${phrase}")`);
+  }
+}
+
+// --- 7. Where brand knowledge lives ------------------------------------
+// Added after finding that /plgn setup saved banned words with knowledge_add
+// while the server-side gate reads them from the brand record. A brand set up
+// that way holds a banned-word list nothing enforces.
+{
+  const MAP = "skills/brand-knowledge-map/SKILL.md";
+  if (!exists(MAP)) {
+    fail(`${MAP} is missing — nothing owns where brand knowledge is stored`);
+  } else {
+    const body = read(MAP);
+    if (!body.includes("brand_update")) {
+      fail(`${MAP} must name \`brand_update\` as where banned words are written`);
+    }
+    for (const t of ["brand_voice", "competitor_data", "seo_guidelines", "example_article"]) {
+      if (!body.includes(t)) fail(`${MAP} must list the knowledge type "${t}"`);
+    }
+  }
+
+  // No file may instruct saving banned words with knowledge_add. The map skill
+  // itself is exempt: it states the rule, so it necessarily names both.
+  const near = (body, a, b, window) => {
+    for (const m of body.matchAll(new RegExp(a, "gi"))) {
+      const from = Math.max(0, m.index - window);
+      const slice = body.slice(from, m.index + m[0].length + window);
+      if (new RegExp(b, "i").test(slice)) return true;
+    }
+    return false;
+  };
+  for (const p of CONTENT) {
+    if (p === MAP) continue;
+    if (near(read(p), "banned word", "knowledge_add", 200)) {
+      fail(`${p}: banned words are written with \`brand_update\`, never \`knowledge_add\``);
+    }
   }
 }
 
