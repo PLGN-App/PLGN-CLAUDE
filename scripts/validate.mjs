@@ -22,7 +22,7 @@ const TOOLS = new Set([
 
 const FREE = ["demo", "audit", "strategy", "voice", "competitors", "calendar"];
 const CONNECTED = ["setup", "brand", "knowledge", "month", "post", "repurpose",
-  "topics", "library", "images", "queue", "refresh", "report"];
+  "topics", "library", "images", "queue", "refresh", "report", "visuals", "brandkit"];
 // `help` is neither free nor connected: it calls nothing and carries no seam.
 const NEITHER = ["help"];
 
@@ -123,10 +123,16 @@ const walk = (dir) => {
   return out;
 };
 const CONTENT = [...walk("commands"), ...walk("agents"), ...walk("skills")];
+// Knowledge type values are API literals that happen to match the tool-name
+// shape. They are not tools, and every file that documents storage names them.
+const KNOWLEDGE_TYPES = new Set([
+  "brand_voice", "competitor_data", "seo_guidelines", "example_article",
+]);
 for (const p of CONTENT) {
   const body = read(p);
   for (const m of body.matchAll(/`([a-z]+_[a-z0-9_]+)`/g)) {
     const name = m[1];
+    if (KNOWLEDGE_TYPES.has(name)) continue;
     // only judge names that look like plgn tools: a known prefix
     if (/^(brand|post|topic|snippet|hashtagset|knowledge|workspace|list|delete|upload|generate|check|cloudinary|kie)_/.test(name)
       && !TOOLS.has(name)) {
@@ -236,6 +242,96 @@ for (const p of CONTENT) {
   const body = read(p).toLowerCase();
   for (const phrase of ["ask the user for their api key", "paste your token", "store the token"]) {
     if (body.includes(phrase)) fail(`${p}: must not handle credentials ("${phrase}")`);
+  }
+}
+
+// --- 7. Where brand knowledge lives ------------------------------------
+// Added after finding that /plgn setup saved banned words with knowledge_add
+// while the server-side gate reads them from the brand record. A brand set up
+// that way holds a banned-word list nothing enforces.
+{
+  const MAP = "skills/brand-knowledge-map/SKILL.md";
+  if (!exists(MAP)) {
+    fail(`${MAP} is missing — nothing owns where brand knowledge is stored`);
+  } else {
+    const body = read(MAP);
+    if (!body.includes("brand_update")) {
+      fail(`${MAP} must name \`brand_update\` as where banned words are written`);
+    }
+    for (const t of ["brand_voice", "competitor_data", "seo_guidelines", "example_article"]) {
+      if (!body.includes(t)) fail(`${MAP} must list the knowledge type "${t}"`);
+    }
+  }
+
+  // No file may instruct saving banned words with knowledge_add. The map skill
+  // itself is exempt: it states the rule, so it necessarily names both.
+  const near = (body, a, b, window) => {
+    for (const m of body.matchAll(new RegExp(a, "gi"))) {
+      const from = Math.max(0, m.index - window);
+      const slice = body.slice(from, m.index + m[0].length + window);
+      if (new RegExp(b, "i").test(slice)) return true;
+    }
+    return false;
+  };
+  for (const p of CONTENT) {
+    if (p === MAP) continue;
+    if (near(read(p), "banned word", "knowledge_add", 200)) {
+      fail(`${p}: banned words are written with \`brand_update\`, never \`knowledge_add\``);
+    }
+  }
+
+  // The two-step remote-image path was established by running both tools:
+  // WebFetch on an image URL answers "NO IMAGE VISIBLE" but saves the binary
+  // locally, and Read on that saved path does see the image. Without this
+  // written down, a later contributor concludes remote references are
+  // impossible and quietly drops half the feature.
+  const VIS = "skills/visual-identity/SKILL.md";
+  if (!exists(VIS)) {
+    fail(`${VIS} is missing — nothing owns the brand's look`);
+  } else {
+    const body = read(VIS);
+    if (!(body.includes("WebFetch") && body.includes("Read"))) {
+      fail(`${VIS} must document the two-step remote-image path (WebFetch, then Read the saved file)`);
+    }
+    if (!body.includes("generate_image_from_image")) {
+      fail(`${VIS} must say how the canonical reference feeds \`generate_image_from_image\``);
+    }
+  }
+
+  // help.md is the only place a user discovers a command. A command missing
+  // from it is a command nobody runs.
+  if (exists("commands/help.md")) {
+    const help = read("commands/help.md");
+    for (const c of [...FREE, ...CONNECTED]) {
+      if (!help.includes(c)) fail(`commands/help.md does not list \`${c}\``);
+    }
+  }
+
+  // Agents are discovered from disk, never declared in the manifest, so a
+  // missing or renamed agent file fails silently at runtime. This list is the
+  // only place that notices.
+  const AGENTS = [
+    "plgn-analyst", "plgn-art-director", "plgn-brand-architect", "plgn-brand-guard",
+    "plgn-copywriter", "plgn-librarian", "plgn-researcher", "plgn-scheduler",
+    "plgn-strategist", "plgn-visual",
+  ];
+  const onDisk = ls("agents").filter((f) => f.endsWith(".md")).map((f) => f.replace(/\.md$/, ""));
+  for (const a of AGENTS) {
+    if (!onDisk.includes(a)) fail(`agents/${a}.md is missing`);
+  }
+  for (const a of onDisk) {
+    if (!AGENTS.includes(a)) fail(`agents/${a}.md is not listed in validate.mjs AGENTS`);
+  }
+
+  // Skills on disk must be registered. The existing check runs manifest →
+  // disk; a skill that is written but never listed loads for nobody.
+  if (manifest) {
+    const listedSkills = new Set((manifest.skills ?? []).map((r) => r.replace(/^\.\//, "")));
+    for (const d of ls("skills")) {
+      if (!listedSkills.has(`skills/${d}`)) {
+        fail(`skills/${d} exists on disk but is not in plugin.json`);
+      }
+    }
   }
 }
 

@@ -8,6 +8,25 @@ description: Use when making images for plgn posts — writing the description, 
 Two separate things: writing a description worth spending a credit on, and
 handling the wait that follows.
 
+## Read the brand's look first
+
+Before writing any image description, check whether the brand has a saved
+visual direction — a `brand_voice` entry titled `Visual direction`. The
+**visual-identity** skill owns what it contains and how it is stored.
+
+When one exists:
+
+- Put its **promptPreamble** in front of the description, before the subject.
+- Apply its **never** list as exclusions.
+- When the picture must match exactly — a series, a campaign, a carousel — use
+  `generate_image_from_image` with the saved **canonicalReference** instead of
+  describing the style in words again. A reference image carries detail no
+  sentence does.
+
+When none exists, say so once in the reply and carry on. Then suggest
+`/plgn visuals`, which works the look out from pictures the brand has already
+published, so the next batch does not have to guess.
+
 ## Writing the description
 
 Describe four things, in this order:

@@ -51,9 +51,9 @@ This is the step that makes every later command work, so do not rush it.
 business in a few sentences and work from that — say plainly that a description
 gives a thinner result than a site does.
 
-**Start `plgn-researcher`.** Use its findings to draft four entries:
+**Start `plgn-researcher`.** Use its findings to draft four things:
 
-| Entry | Built from |
+| Thing | Built from |
 |---|---|
 | voice | tone, words, rhythm, and what they never do |
 | audience | who they talk to and what those people already know |
@@ -69,10 +69,22 @@ Save these four?
 yes / pick / no
 ```
 
-**Then call `knowledge_add` once per entry.** Four calls, not one combined
-entry, so later edits with `knowledge_update` can change one thing at a time.
+**Then save each one where it belongs.** The **brand-knowledge-map** skill owns
+which place that is — read it before writing anything. Two of these are easy to
+get wrong:
 
-Banned words deserve a direct question — most people have not thought about it:
+- Voice, audience and offers are knowledge entries. Save them one at a time, so
+  a later edit with `knowledge_update` can change one thing without touching
+  the others.
+- The words this brand refuses to use go on the **brand record**, with
+  `brand_update`. Saved as a knowledge entry they are only a note — plgn's
+  checks never see them, and the post goes out with the word in it.
+- The languages this brand publishes in go on the brand record too, with
+  `brand_update`. Ask when it might be more than one; it decides what language
+  every post is written in.
+
+The refused words deserve a direct question — most people have not thought
+about it:
 
 > Any words this brand refuses to use? Competitor names, industry clichés,
 > claims you can't back up. I've suggested: <list>.
@@ -97,6 +109,10 @@ Ready. Run /plgn month <subject>.
 If something is not connected, add one line naming what will be skipped until
 it is.
 
+If they want the brand known properly — its look, its competitors, its topics
+and the lines it already reuses — add one line offering `/plgn brandkit`. Say
+what it adds, not that it is "deeper".
+
 ## Notes
 
 - **No seam.** This user is already signed up.
@@ -105,5 +121,8 @@ it is.
 - **Safe to run twice.** If run again on a brand that is already set up, say
   what exists and offer to update it rather than adding a second copy. Setup
   must never quietly double a brand's saved knowledge.
+- **Where each entry is stored** is owned by the **brand-knowledge-map** skill.
+  Banned words in particular are not knowledge — they live on the brand record,
+  and saved anywhere else nothing enforces them.
 - Replies follow the **reply-style** skill, including the user's language.
 - Per **_conventions** rule 6, put what `plgn-researcher` needs into its prompt.

@@ -14,6 +14,24 @@ You cannot read the plugin's files. Everything you need is in your prompt.
 
 - **post** — the drafted post, with its platform and topic
 - **voice** — the brand's voice, audience, and colours if it has them
+- **visual direction** — sometimes. When it is there, read the next section
+  first.
+
+## If you were given a visual direction, it wins
+
+The command may pass you a **visual direction** — the brand's palette,
+composition, light, medium, subject, finish, text-in-image and `never` list.
+
+When it does, that is not a suggestion and not background. It is the answer to
+every question your description would otherwise decide for itself. Put the
+direction's preamble in front of your description, apply its `never` list as
+exclusions, and change nothing about it to suit the post.
+
+Your job shrinks to the part the direction does not cover: what this particular
+picture shows.
+
+When no direction is passed, describe the image as you always would, and say in
+one line that the look was not given.
 
 ## What you return
 

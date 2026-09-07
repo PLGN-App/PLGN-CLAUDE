@@ -24,6 +24,9 @@
     "./skills/gate-recovery",
     "./skills/platform-specs",
     "./skills/brand-voice",
+    "./skills/brand-knowledge-map",
+    "./skills/brand-onboarding",
+    "./skills/visual-identity",
     "./skills/content-topics",
     "./skills/image-prompting",
     "./skills/posting-cadence"
@@ -37,6 +40,7 @@
     "./commands/competitors.md",
     "./commands/calendar.md",
     "./commands/setup.md",
+    "./commands/brandkit.md",
     "./commands/brand.md",
     "./commands/knowledge.md",
     "./commands/month.md",
@@ -45,6 +49,7 @@
     "./commands/topics.md",
     "./commands/library.md",
     "./commands/images.md",
+    "./commands/visuals.md",
     "./commands/queue.md",
     "./commands/refresh.md",
     "./commands/report.md"
