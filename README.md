@@ -113,6 +113,11 @@ how it sounds, who it talks to, what it sells, and words it refuses to use.
 It shows you all four before saving anything. Everything written later is built
 on these, so it's worth reading them properly.
 
+Want the brand known properly — its look, its competitors, its topics and the
+lines it already reuses? Run `/plgn brandkit <url>` after setup. It reads your
+own posts as well as your site, and asks at most five questions, each one with
+an answer already drafted.
+
 ### 6. Write your first month
 
 ```
@@ -167,10 +172,12 @@ not inside Claude Code.
 | Command | What it does |
 |---|---|
 | `/plgn setup` | Connect, pick a brand, learn its voice from your site |
+| `/plgn brandkit <url>` | Learn a brand in one run — voice, look, competitors, topics, reusable lines |
 | `/plgn month <subject>` | A month of posts: written, illustrated, scheduled |
 | `/plgn post <idea>` | One post — the ten-times-a-day command |
 | `/plgn repurpose <url>` | One article into many posts, plus saved snippets |
 | `/plgn queue` | What's blocked, missing an image, too short, or ready — and fix it |
+| `/plgn visuals <refs>` | Work out how the brand's pictures look, and save it so new images match |
 | `/plgn images` | Fill in missing pictures, with the credit cost stated first |
 | `/plgn topics` | Which topics repeat themselves, and which need more posts |
 | `/plgn library` | Tidy duplicate snippets and overlapping hashtag sets |

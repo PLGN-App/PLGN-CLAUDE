@@ -298,6 +298,15 @@ for (const p of CONTENT) {
     }
   }
 
+  // help.md is the only place a user discovers a command. A command missing
+  // from it is a command nobody runs.
+  if (exists("commands/help.md")) {
+    const help = read("commands/help.md");
+    for (const c of [...FREE, ...CONNECTED]) {
+      if (!help.includes(c)) fail(`commands/help.md does not list \`${c}\``);
+    }
+  }
+
   // Agents are discovered from disk, never declared in the manifest, so a
   // missing or renamed agent file fails silently at runtime. This list is the
   // only place that notices.

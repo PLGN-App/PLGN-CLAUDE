@@ -6,7 +6,7 @@ description: Show every plgn command in one list, split into the ones that need 
 
 Print the command list. Call no tools. Answer nothing else.
 
-This exists because eighteen commands is more than anyone remembers, and the
+This exists because twenty-one commands is more than anyone remembers, and the
 README is not open while someone is working.
 
 ## Rules
@@ -39,6 +39,8 @@ NEEDS AN ACCOUNT
 
   Setting up
   /plgn setup               Connect, then teach plgn how a brand sounds
+  /plgn brandkit <url>      Learn a brand properly — voice, look, rivals,
+                            topics and the lines it already reuses
   /plgn brand               Add, rename, archive or restore a brand
   /plgn knowledge           Check and fix what plgn knows about a brand
 
@@ -46,6 +48,7 @@ NEEDS AN ACCOUNT
   /plgn month <subject>     A month of posts: written, illustrated, scheduled
   /plgn post <idea>         One idea, one post
   /plgn repurpose <url>     Turn one article into a set of posts
+  /plgn visuals <refs>      Work out how a brand's pictures look, and save it
   /plgn images              Add images to posts that have none
 
   Keeping it healthy
@@ -55,6 +58,8 @@ NEEDS AN ACCOUNT
   /plgn refresh             Rewrite good old posts and run them again
   /plgn report              What went out, and how the plan held
 
+
+/plgn visuals decides how pictures should look. /plgn images makes them.
 
 New here? Try /plgn demo with your website. It needs no account.
 ```

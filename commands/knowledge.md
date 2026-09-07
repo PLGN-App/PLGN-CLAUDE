@@ -26,6 +26,7 @@ Call `knowledge_get`. Check it against the four entries `/plgn setup` saves:
 | **audience** | Who is addressed, what they know, what they care about |
 | **offers** | What is sold, named exactly as the brand names it |
 | **banned words** | Words the brand refuses to use |
+| **the look** | Colours, composition, light, and what the pictures never show |
 
 If nothing is saved, send them to `/plgn setup` and stop — that command owns
 setting these up, and doing it here would mean two places to fix later.
@@ -93,6 +94,10 @@ is lost if the write fails.
 - **No seam.** This user is already signed up.
 - **One brand per run.** Checking four brands at once produces a report nobody
   acts on.
+- **Where each entry is stored** is the **brand-knowledge-map** skill's job.
+  Some of what a brand knows does not live in knowledge at all.
+- **A missing look is filled by `/plgn visuals`**, not here. This command can
+  say it is missing; that command works it out from real pictures.
 - **Never invent a voice.** If the site is gone and the user cannot describe the
   brand, say the entry cannot be filled responsibly.
 - **Specific beats complete.** Four sharp entries beat eight vague ones — vague
