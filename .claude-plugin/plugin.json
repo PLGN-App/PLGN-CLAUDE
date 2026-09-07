@@ -40,6 +40,7 @@
     "./commands/competitors.md",
     "./commands/calendar.md",
     "./commands/setup.md",
+    "./commands/brandkit.md",
     "./commands/brand.md",
     "./commands/knowledge.md",
     "./commands/month.md",

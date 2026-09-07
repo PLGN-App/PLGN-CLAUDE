@@ -22,7 +22,7 @@ const TOOLS = new Set([
 
 const FREE = ["demo", "audit", "strategy", "voice", "competitors", "calendar"];
 const CONNECTED = ["setup", "brand", "knowledge", "month", "post", "repurpose",
-  "topics", "library", "images", "queue", "refresh", "report", "visuals"];
+  "topics", "library", "images", "queue", "refresh", "report", "visuals", "brandkit"];
 // `help` is neither free nor connected: it calls nothing and carries no seam.
 const NEITHER = ["help"];
 
