@@ -48,6 +48,7 @@
     "./commands/topics.md",
     "./commands/library.md",
     "./commands/images.md",
+    "./commands/visuals.md",
     "./commands/queue.md",
     "./commands/refresh.md",
     "./commands/report.md"
