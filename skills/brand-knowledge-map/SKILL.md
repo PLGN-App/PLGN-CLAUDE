@@ -22,6 +22,7 @@ Read this before saving anything about a brand.
 | Audience | knowledge, type `brand_voice` | `knowledge_add` |
 | Offers | knowledge, type `brand_voice` | `knowledge_add` |
 | Visual direction | knowledge, type `brand_voice` | `knowledge_add` |
+| Timezone and when they publish | knowledge, type `brand_voice` | `knowledge_add` |
 | SEO and keyword rules | knowledge, type `seo_guidelines` | `knowledge_add` |
 | Posts worth imitating | knowledge, type `example_article` | `knowledge_add` |
 | A competitor | knowledge, type `competitor_data` | `knowledge_add` |
@@ -59,9 +60,41 @@ needs, and they are stored as `brand_voice` entries told apart by their title:
 | Audience | `brand_voice` | `Audience` | `{ "kind": "audience" }` |
 | Offers | `brand_voice` | `Offers` | `{ "kind": "offers" }` |
 | Visual direction | `brand_voice` | `Visual direction` | `{ "kind": "visual" }` |
+| Publishing | `brand_voice` | `Publishing` | `{ "kind": "publishing" }` |
 
 Always set the metadata. The title is what a person reads; the metadata is what
-lets a later command find one entry among four of the same type.
+lets a later command find one entry among five of the same type.
+
+## The timezone has nowhere else to go
+
+`Publishing` holds the brand's **timezone** and the days and hours it posts.
+
+It is not stored on the brand record, because the record takes only a name,
+languages and banned words. So it lives here, and every command that schedules
+must read it.
+
+This matters more than it looks. A time with no timezone is a time in whatever
+zone the server happens to think in, and nobody finds out until a client
+notices their nine o'clock post arrived at two in the morning. **Never schedule
+against an assumed timezone without saying so in the reply.**
+
+## Marking which run made a post
+
+A command that writes many posts at once stamps each one with the same run
+marker, in `post_create`'s `external_post_id` field:
+
+```
+plgn-run-2026-09-07-1
+```
+
+That field exists for identifiers from other systems, it is not shown to the
+reader, and it is the only free string a post carries. Posts have **no tags and
+no metadata** — this is the whole mechanism.
+
+`post_list` cannot filter by it. So a later command narrows by what `post_list`
+*can* filter — status and the scheduled window — and then confirms membership
+by reading the marker on each candidate. For a run of thirty posts that is
+thirty cheap reads, and it is what makes a run undoable.
 
 ## Reading it back
 

@@ -13,8 +13,10 @@ brand with no saved voice makes every later command guess.
 
 Call `workspace_info`.
 
-**If it fails**, the user is not connected. Print the message from
-**_conventions** rule 2, in their language, then stop.
+**If it fails**, print the message from **_conventions** rule 2, in their
+language, then stop. It names both causes, and here the first one — not having
+restarted since installing — is the likely one. This is the first command
+anyone runs, and it is usually run minutes after installing.
 
 Do not retry in a loop. Do not offer to write something locally instead — a
 user who ran `setup` wants a connection, not a consolation prize.

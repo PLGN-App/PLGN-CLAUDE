@@ -34,6 +34,19 @@ hold.
 - **Selling to people** — evenings and weekends tend to do better.
 - **Avoid** Friday afternoons and public holidays where the audience is.
 
+**Which timezone?** The brand's, saved in its `Publishing` entry — the
+**brand-knowledge-map** skill says where that lives. Read it before choosing
+any time.
+
+If nothing is saved, do not quietly pick one. Say which you used, in one line,
+before the schedule:
+
+> I scheduled these in <zone>. Tell me if that's wrong.
+
+A time without a timezone is a time in whatever zone the server thinks in, and
+the mistake stays invisible until a post lands in the middle of someone's
+night.
+
 Never claim a time gets more attention. Say "a sensible default" and move on.
 
 ## Spreading it out

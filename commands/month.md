@@ -15,7 +15,12 @@ around that: plan first, ask once, write carefully, report honestly.
 Call `workspace_info`. If it fails, print the message from **_conventions**
 rule 2 and stop.
 
-Then call `knowledge_get`.
+Then call `brand_list` and `knowledge_get`.
+
+`brand_list` carries two things this command must not guess: the brand's
+**banned words** and the **languages it publishes in**. Read both before
+writing anything. The languages are the brand's, not the user's — someone
+writing to plgn in English may publish only in Arabic.
 
 **If the brand has no saved voice, stop and send them to `/plgn setup`.** Do
 not work a voice out from a website here. Guessing is the free layer's
@@ -58,10 +63,15 @@ Work out the shape of the month, then show it as a short table:
 ```
 Topics:     <name> · <name> · <name>
 Platforms:  LinkedIn, X, Instagram
+Languages:  <the brand's, from its record>
 Posting:    <n>/week — <n> posts total
-Images:     <n> to make (<n> credits)
-Dates:      <start> → <end>
+Images:     <n> to make — <n> credits, leaving <n>
+Dates:      <start> → <end>, <timezone>
 ```
+
+Four of those lines exist to be corrected. Languages and timezone come from the
+brand, not from the conversation, and both are invisible when wrong. The credit
+line says what is left afterwards, because that is the number people decide on.
 
 Where the topics are new, get them from `plgn-strategist` using the subject and
 the brand's saved knowledge. Where you are adding to a topic that already
@@ -86,10 +96,21 @@ bulk.
 
 Start one `plgn-copywriter` per topic, **at the same time**.
 
+Print one line before this starts and one before the images, per
+**reply-style** rule 5b — writing and illustrating are the two phases long
+enough that silence reads as a crash:
+
+```
+Writing 28 posts across 3 topics...
+```
+
 Per **_conventions** rule 6, each writer's prompt must carry what it needs:
 the topic and its argument, the brand's voice and banned words, the platforms,
-the character limits for those platforms, and how many posts to write. Agents
-cannot read skills or see this file.
+the character limits for those platforms, the **languages the brand publishes
+in**, and how many posts to write. Agents cannot read skills or see this file.
+
+A brand with two languages gets each post written in both, saved as captions
+keyed by language — not one caption with a translation underneath.
 
 If a writer returns fewer posts than asked because the topic was thin, take the
 shortfall. Do not ask again — a thin topic is information about the plan, and it
@@ -99,6 +120,11 @@ belongs in the final report.
 
 Call `topic_create` **only for topics that do not already exist**. Then call
 `post_create` per post, as drafts.
+
+**Stamp every post in this run with the same run marker**, per the
+**brand-knowledge-map** skill. It costs nothing, the reader never sees it, and
+it is the only thing that makes `/plgn undo` able to take this run back. A
+month saved without it can only be undone by hand, thirty posts at a time.
 
 **Record the ids the tools return.** Never assume the order matches your draft
 order, and never guess an id — read it from the response. If a later step needs
@@ -116,8 +142,16 @@ hand-off is a successful run. Track anything left as a draft for the report.
 
 ## 7. Images
 
+Say the phase is starting and how long it takes, per **reply-style** rule 5b:
+
+```
+Making 24 images — this takes a few minutes...
+```
+
 For each post that should have one, get the description from `plgn-visual`,
-then call `generate_image`.
+then call `generate_image`. Pass the brand's saved **visual direction** into
+every `plgn-visual` prompt, so a month's pictures look like one brand rather
+than twenty-four separate guesses.
 
 **Making an image takes time.** `generate_image` returns a job number, not an
 image. Check with `check_generation` on the schedule in the **image-prompting**

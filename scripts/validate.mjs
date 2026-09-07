@@ -22,7 +22,7 @@ const TOOLS = new Set([
 
 const FREE = ["demo", "audit", "strategy", "voice", "competitors", "calendar"];
 const CONNECTED = ["setup", "brand", "knowledge", "month", "post", "repurpose",
-  "topics", "library", "images", "queue", "refresh", "report", "visuals", "brandkit"];
+  "topics", "library", "images", "queue", "refresh", "report", "visuals", "brandkit", "undo"];
 // `help` is neither free nor connected: it calls nothing and carries no seam.
 const NEITHER = ["help"];
 
@@ -295,6 +295,36 @@ for (const p of CONTENT) {
     }
     if (!body.includes("generate_image_from_image")) {
       fail(`${VIS} must say how the canonical reference feeds \`generate_image_from_image\``);
+    }
+  }
+
+  // Three things that were each written somewhere and read nowhere. Every one
+  // of them failed silently: locales saved and never used, a timezone the
+  // cadence skill assumed but nothing captured, and posts written in bulk with
+  // no way to find them again.
+  if (exists(MAP)) {
+    const body = read(MAP);
+    if (!body.includes("timezone")) {
+      fail(`${MAP} must say where a brand's timezone is stored`);
+    }
+    if (!body.includes("external_post_id")) {
+      fail(`${MAP} must document the run marker that makes a bulk write undoable`);
+    }
+  }
+  {
+    const cadence = "skills/posting-cadence/SKILL.md";
+    if (exists(cadence) && !read(cadence).includes("brand-knowledge-map")) {
+      fail(`${cadence} names a timezone, so it must point at where one is stored`);
+    }
+    const rs = "skills/reply-style/SKILL.md";
+    if (exists(rs) && !read(rs).includes("Progress is not a log")) {
+      fail(`${rs} must define what a long job may print while it works`);
+    }
+    for (const c of ["month", "post"]) {
+      const p = `commands/${c}.md`;
+      if (exists(p) && !/languages/i.test(read(p))) {
+        fail(`${p}: writes copy, so it must read the brand's languages`);
+      }
     }
   }
 

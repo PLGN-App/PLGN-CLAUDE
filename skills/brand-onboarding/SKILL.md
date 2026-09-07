@@ -66,7 +66,9 @@ Choose the five by **how much breaks if you get it wrong**:
 1. **Banned words** — every post is checked against them
 2. **Offer names** — wrong names make every call to action wrong
 3. **Audience level** — decides the jargon in every post
-4. **Languages** — decides what language everything is written in
+4. **Languages and timezone** — one question, because they are the same
+   decision: where this brand publishes, and therefore in what language and at
+   what hour. Both are invisible when wrong and expensive when wrong.
 5. **Any place two sources disagree** — never average them, always ask
 
 Anything past the fifth is **printed as a stated assumption**, per the
@@ -79,7 +81,7 @@ The order is load-bearing. Each pass depends on the one above it.
 | # | Pass | Why here |
 |---|---|---|
 | 1 | Brand record — languages, banned words | plgn's checks read these, and every later write is checked against them |
-| 2 | Identity — voice, audience, offers, SEO rules, example posts | Everything downstream reads these |
+| 2 | Identity — voice, audience, offers, publishing, SEO rules, example posts | Everything downstream reads these |
 | 3 | Visual direction | Needs the voice, so the look and the words agree |
 | 4 | Competitors | Independent — safe to fail on its own |
 | 5 | Topics | Needs identity and competitors |

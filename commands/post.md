@@ -15,6 +15,10 @@ rule 2 and stop.
 Call `knowledge_get` for the brand's voice. If it is empty, send them to
 `/plgn setup` and stop — a single post still goes out in the brand's name.
 
+Call `brand_list` too, for the banned words and the languages this brand
+publishes in. Write the post in the brand's languages, which are not
+necessarily the language of the conversation.
+
 Print nothing for either call. A check that passes is silent.
 
 ## 2. The idea

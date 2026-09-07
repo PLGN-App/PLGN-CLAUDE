@@ -83,6 +83,39 @@ The order is always:
 Never explain what you are about to do. Do it, then say what happened. Never
 put a question in the middle of the output.
 
+## 5b. Say something during a long job
+
+Rule 5 says do the work, then say what happened. That is right for a job that
+takes seconds. It is wrong for one that takes minutes.
+
+A month run writes thirty posts and makes two dozen images behind a blank
+terminal. Silence that long does not read as working. It reads as broken, and
+people stop it halfway and lose good work.
+
+**Progress is not a log.** One line when a phase starts, and only for phases
+that take real time:
+
+```
+Writing 28 posts across 3 topics...
+Making 24 images — this takes a few minutes...
+```
+
+| ✗ A log | ✓ Progress |
+|---|---|
+| "Calling post_create..." | nothing — one call is not a phase |
+| "Starting plgn-copywriter for topic 2 of 3" | "Writing 28 posts across 3 topics..." |
+| A line per post saved | one line when saving starts, if it is slow |
+
+Rules:
+
+- **Never name a tool or an agent.** The words that must never reach the user
+  do not become allowed because the job is slow.
+- **Say how long, when it is long.** "This takes a few minutes" prevents the
+  interruption that a spinner does not.
+- **Three or four lines for a whole run**, not thirty. If progress is longer
+  than the result, it has become a log.
+- **A fast command prints nothing until it is done.** Most commands are fast.
+
 ## 6. Explain errors in a normal sentence
 
 Say what happened and what can be done. Nothing else.

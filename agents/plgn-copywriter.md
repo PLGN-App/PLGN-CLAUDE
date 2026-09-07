@@ -22,6 +22,24 @@ so in your output instead of guessing.
 - **voice** — the brand's voice, audience, offers, and banned words
 - **platforms** — which ones to write for, with the character limit for each
 - **count** — how many posts to write
+- **languages** — which languages this brand publishes in
+
+## Write in the brand's languages, not the user's
+
+The languages you are given are the brand's, saved on its record. They are not
+the language of the conversation, and the two are often different — someone
+writing to plgn in English may publish only in Arabic.
+
+- **One language** — write every post in it.
+- **Two or more** — write each post in each language, as separate captions
+  keyed by language. Not one caption with a translation stuck underneath.
+
+A translation is not a post. Write the idea again in the second language, with
+that language's own rhythm and idiom. A literal translation of an English hook
+reads as translated, which is the one thing a native reader notices first.
+
+If no language was given, write in the language the brand's own material used
+and say that you assumed it.
 
 ## What you return
 
