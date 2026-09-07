@@ -279,6 +279,17 @@ for (const p of CONTENT) {
       fail(`${p}: banned words are written with \`brand_update\`, never \`knowledge_add\``);
     }
   }
+
+  // Skills on disk must be registered. The existing check runs manifest →
+  // disk; a skill that is written but never listed loads for nobody.
+  if (manifest) {
+    const listedSkills = new Set((manifest.skills ?? []).map((r) => r.replace(/^\.\//, "")));
+    for (const d of ls("skills")) {
+      if (!listedSkills.has(`skills/${d}`)) {
+        fail(`skills/${d} exists on disk but is not in plugin.json`);
+      }
+    }
+  }
 }
 
 if (fails.length) {

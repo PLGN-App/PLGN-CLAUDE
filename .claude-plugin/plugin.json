@@ -25,6 +25,7 @@
     "./skills/platform-specs",
     "./skills/brand-voice",
     "./skills/brand-knowledge-map",
+    "./skills/brand-onboarding",
     "./skills/content-topics",
     "./skills/image-prompting",
     "./skills/posting-cadence"
