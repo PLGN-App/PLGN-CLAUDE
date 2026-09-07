@@ -280,6 +280,24 @@ for (const p of CONTENT) {
     }
   }
 
+  // The two-step remote-image path was established by running both tools:
+  // WebFetch on an image URL answers "NO IMAGE VISIBLE" but saves the binary
+  // locally, and Read on that saved path does see the image. Without this
+  // written down, a later contributor concludes remote references are
+  // impossible and quietly drops half the feature.
+  const VIS = "skills/visual-identity/SKILL.md";
+  if (!exists(VIS)) {
+    fail(`${VIS} is missing — nothing owns the brand's look`);
+  } else {
+    const body = read(VIS);
+    if (!(body.includes("WebFetch") && body.includes("Read"))) {
+      fail(`${VIS} must document the two-step remote-image path (WebFetch, then Read the saved file)`);
+    }
+    if (!body.includes("generate_image_from_image")) {
+      fail(`${VIS} must say how the canonical reference feeds \`generate_image_from_image\``);
+    }
+  }
+
   // Skills on disk must be registered. The existing check runs manifest →
   // disk; a skill that is written but never listed loads for nobody.
   if (manifest) {
