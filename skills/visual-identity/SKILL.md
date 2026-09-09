@@ -81,28 +81,118 @@ yes / pick / no
 
 Then build the direction from the chosen cluster, and note what was set aside.
 
-## Storing it
+## Where a direction is stored
 
-One entry, per the **brand-knowledge-map** skill: type `brand_voice`, title
-`Visual direction`, metadata `{ "kind": "visual" }`.
+One entry, of type `brand_identity`. A brand holds exactly one — it is a
+Foundation singleton — so there is no question of which one is current.
 
-The canonical reference is saved as a real image with
-`upload_image_from_url` or `upload_image_base64`, so it can be reached later.
+```
+knowledge_add(
+  type: "brand_identity",
+  title: "Visual direction",
+  content: <the direction, written out for a person to read>,
+  metadata: {
+    palette: [{ name: "ink", hex: "#1A1033" }, ...],
+    composition: "...",
+    light: "...",
+    medium: "...",
+    subject: "...",
+    finish: "...",
+    textInImage: "...",
+    never: ["stock smiles", "pure white backgrounds"],
+    promptPreamble: "..."
+  },
+  assets: [{ secure_url: ..., public_id: ... }],
+  confirm: true
+)
+```
 
-## Using it
+Three things about that call are not obvious and all three matter.
 
-Before any image is made, read the direction and apply it:
+**`content` is for a person.** It is what someone reads on the Knowledge page
+to understand the look. Write it as prose.
 
-- Put the **promptPreamble** into every image description, ahead of the
-  subject.
-- Apply **never** as the exclusion list.
-- When an exact match matters — a series, a campaign, a carousel — use
-  `generate_image_from_image` with the **canonicalReference** rather than
-  describing the style again in words. A reference image holds detail no
-  sentence carries.
+**`metadata` is for the machine.** Nine of the ten fields live here as keys.
+An art director reads them back through `context_get`; a field written into
+`content` instead is a field no image generation will ever use.
+
+**`assets[0]` is the canonical reference** — the one image that best represents
+the set. Upload it first with `upload_image_from_url`, then attach what that
+returns. It is `assets[0]` specifically, not "one of the assets": the command
+that generates a matching image reaches for the first one.
+
+**`confirm: true`, and only after the user has said yes.** `brand_identity` is
+Foundation. Show the direction, get a real yes, then save.
+
+**A second one is refused.** The refusal carries the existing entry's id — that
+is the instruction to use `knowledge_update` on it, not a failure to report.
+Re-running `/plgn visuals` on a brand that already has a look updates it.
+
+## Rules that are refusals, not descriptions
+
+The `never` list is a refusal, and a refusal is not the same shape as a
+description. Keep it in `metadata.never` on the `brand_identity` entry.
+
+Rules that are about **pictures in general** rather than about this brand's
+look — "no faces of real customers", "no competitor logos" — belong in a
+separate `visual_rules` entry, also Foundation, also with a `never` list. The
+split matters because a direction can be replaced when the brand is
+redesigned; those refusals usually survive it.
+
+## Reading it back before making an image
+
+```
+context_get(role: "art_director")
+```
+
+That returns the palette, the `never` list, the picture rules, and an **anchor
+hint** — the one product picture a new image should sit next to. It is one
+read, and it is the read to make before every generation.
+
+Never rebuild the direction by reading entries one at a time. `context_get`
+puts Foundation first, which is the order that matters: the `never` list has to
+be in hand before the description is written, not applied to it afterwards.
+
+## Making a picture that matches
+
+`generate_image_from_image` takes the canonical reference — `assets[0]` on the
+`brand_identity` entry — and a description. That pairing is what makes a new
+picture look like the same brand rather than like the same words.
+
+Use it when there is a canonical reference. Fall back to `generate_image` with
+the `promptPreamble` prepended when there is not, and say in the reply that the
+match will be looser.
 
 The **image-prompting** skill owns the mechanics of generating. This skill owns
 what the picture should look like before that starts.
+
+## A look for one campaign only
+
+"Make everything gold for Ramadan" is not the brand's look. Saved as
+`brand_identity` it **replaces** the permanent one — a singleton has no second
+slot — and the brand comes out of Ramadan looking like Ramadan.
+
+It is two things instead:
+
+1. A **Campaign** — `campaign_create(name: "Ramadan 2027", startsAt, endsAt)`
+   — which carries the dates and ends on its own.
+2. A **`reference`** entry linked to it, with the picture attached and an
+   `intent` in its metadata saying what to take from it.
+
+```
+knowledge_add(
+  type: "reference",
+  title: "Ramadan look",
+  content: "...",
+  campaignId: <the campaign>,
+  assets: [...],
+  metadata: { intent: "the warm gold and the low light, not the lanterns" }
+)
+```
+
+`intent` is required — the server refuses a `reference` without one. That is
+deliberate: a reference with no stated intent is a template, and a template is
+how every brand's Ramadan post ends up identical.
 
 ## Honest limits
 

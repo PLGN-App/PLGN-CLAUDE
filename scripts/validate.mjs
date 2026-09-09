@@ -337,21 +337,39 @@ for (const p of CONTENT) {
     }
   }
 
-  // The two-step remote-image path was established by running both tools:
-  // WebFetch on an image URL answers "NO IMAGE VISIBLE" but saves the binary
-  // locally, and Read on that saved path does see the image. Without this
-  // written down, a later contributor concludes remote references are
-  // impossible and quietly drops half the feature.
   const VIS = "skills/visual-identity/SKILL.md";
   if (!exists(VIS)) {
     fail(`${VIS} is missing — nothing owns the brand's look`);
   } else {
     const body = read(VIS);
+    // Kept: the two-step remote-image path was established by running both
+    // tools. WebFetch on an image URL answers "NO IMAGE VISIBLE" but saves
+    // the binary locally, and Read on that saved path does see the image.
+    // Without this written down, a later contributor concludes remote
+    // references are impossible and quietly drops half the feature.
     if (!(body.includes("WebFetch") && body.includes("Read"))) {
       fail(`${VIS} must document the two-step remote-image path (WebFetch, then Read the saved file)`);
     }
     if (!body.includes("generate_image_from_image")) {
       fail(`${VIS} must say how the canonical reference feeds \`generate_image_from_image\``);
+    }
+    // New: the direction has a type of its own now. Stored anywhere else it
+    // is a note the art director never reads, because context_get assembles
+    // the Foundation layer by type and not by title.
+    if (!body.includes("brand_identity")) {
+      fail(`${VIS} must say the direction is stored as \`brand_identity\``);
+    }
+    if (!body.includes("assets[0]")) {
+      fail(`${VIS} must say the canonical reference is \`assets[0]\``);
+    }
+    if (!body.includes("context_get")) {
+      fail(`${VIS} must say the direction is read back with \`context_get\``);
+    }
+    // A look "for Ramadan only" is not the brand's look. Saved as
+    // brand_identity it silently replaces the permanent one -- a singleton
+    // has no second slot to fall back to.
+    if (!/campaign[\s\S]{0,300}reference|reference[\s\S]{0,300}campaign/i.test(body)) {
+      fail(`${VIS} must say a campaign look is a Campaign plus a \`reference\` entry`);
     }
   }
 
