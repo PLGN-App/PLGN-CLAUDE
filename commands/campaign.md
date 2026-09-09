@@ -15,8 +15,8 @@ This command writes real data to a real account.
 Call `workspace_info`. If it fails, print the message from **_conventions**
 rule 2 and stop.
 
-The reply also carries the campaign cap: **1 in progress on the free plan**.
-Note it now — it decides what step 4 is allowed to do.
+The reply also carries the campaign cap, per the **brand-knowledge-map**
+skill. Note what it says — it decides what step 4 is allowed to do.
 
 ## 2. With no argument: show what is running
 
@@ -51,10 +51,10 @@ already avoids for topics, for the same reason.
 
 ## 4. Create: draft it, then ask once
 
-**Dates first, and ask if they are missing.** A campaign with no window is
-never current, so `context_get` never reads it and no post ever inherits
-anything from it. "When does it run?" is one question and it is the difference
-between a record that works and one that sits there.
+**Dates first, and ask if they are missing.** A campaign with no window
+never becomes current, per the **brand-knowledge-map** skill. "When does it
+run?" is one question and it is the difference between a record that works
+and one that sits there.
 
 Read the brand with `context_get(role: "marketing_manager")`, then start
 `plgn-strategist` to draft the campaign block: the key message, the
@@ -102,9 +102,8 @@ constraints, the vocabulary, and the offering and topic ids.
 Start it as `draft` unless the user says it is running now. `draft` and
 `active` both count against the cap; `done` and `archived` do not.
 
-**If the cap refuses it**, say which campaign is holding the slot and what
-finishing or archiving it would free. Never retry, and never quietly save it
-without the parts that did not fit.
+**If the cap refuses it**, follow the **gate-recovery** skill. Say which
+campaign is holding the slot and what finishing or archiving it would free.
 
 Then say what to do next:
 
@@ -126,7 +125,7 @@ Confirm **by name**, per **_conventions** rule 3:
 
 ```
 Mark "Ramadan 2027" as done?
-yes / no
+yes / edit / no
 ```
 
 **Never offer to delete a campaign.** Deleting unlinks it from every post and

@@ -119,12 +119,13 @@ if (manifest) {
   // Asserted here, on the tree, rather than read off the installed plugin:
   // an installed copy can lag the working tree by a release (it resolves
   // the published version), and this CLI's own inventory output does not
-  // print a command count at all. Section 3's checks above already prove
-  // manifest and disk agree in both directions; these three numbers pin
-  // what that agreement adds up to, so a file added or removed without
-  // updating plugin.json or the agent roster is caught even if it happens
-  // to keep both sides of the disk/manifest check consistent with each
-  // other but wrong in absolute terms.
+  // print a command count at all. Commands already have both directions of
+  // manifest/disk agreement checked just above; skills have theirs checked
+  // elsewhere in this file (section 7, "Skills on disk must be registered").
+  // Those checks prove the two sides match each other; they do not pin what
+  // they add up to, so a file added or removed without updating plugin.json
+  // or the agent roster could still keep both sides consistent with each
+  // other but wrong in absolute terms. These three numbers pin that.
   const EXPECTED_COMMAND_COUNT = 23;
   const EXPECTED_SKILL_COUNT = 11;
   const EXPECTED_AGENT_COUNT = 10;
@@ -280,7 +281,7 @@ for (const c of FREE) {
 
   // Only two question formats are allowed. These are the shapes the review
   // found in the wild; each one is a command inventing its own vocabulary.
-  const BAD_PROMPTS = ["(y / ", "(y/n)", "(y / n)", "Proceed?"];
+  const BAD_PROMPTS = ["(y / ", "(y/n)", "(y / n)", "Proceed?", "yes / no"];
   for (const f of ls("commands")) {
     if (!f.endsWith(".md")) continue;
     const body = read(`commands/${f}`);
