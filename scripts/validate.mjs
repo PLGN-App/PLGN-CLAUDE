@@ -26,7 +26,7 @@ const TOOLS = new Set([
 ]);
 
 const FREE = ["demo", "audit", "strategy", "voice", "competitors", "calendar"];
-const CONNECTED = ["setup", "brand", "knowledge", "month", "post", "repurpose",
+const CONNECTED = ["setup", "brand", "campaign", "knowledge", "month", "post", "repurpose",
   "topics", "library", "images", "queue", "refresh", "report", "visuals", "brandkit", "undo"];
 // `help` is neither free nor connected: it calls nothing and carries no seam.
 const NEITHER = ["help"];
@@ -113,6 +113,30 @@ if (manifest) {
   }
   if (!manifest.commands) {
     fail(`plugin.json must declare "commands" — without it, command files are loaded as skills`);
+  }
+
+  // The counts `claude plugin details plgn` reports for an installed copy.
+  // Asserted here, on the tree, rather than read off the installed plugin:
+  // an installed copy can lag the working tree by a release (it resolves
+  // the published version), and this CLI's own inventory output does not
+  // print a command count at all. Section 3's checks above already prove
+  // manifest and disk agree in both directions; these three numbers pin
+  // what that agreement adds up to, so a file added or removed without
+  // updating plugin.json or the agent roster is caught even if it happens
+  // to keep both sides of the disk/manifest check consistent with each
+  // other but wrong in absolute terms.
+  const EXPECTED_COMMAND_COUNT = 23;
+  const EXPECTED_SKILL_COUNT = 11;
+  const EXPECTED_AGENT_COUNT = 10;
+  if ((manifest.commands ?? []).length !== EXPECTED_COMMAND_COUNT) {
+    fail(`plugin.json commands array has ${(manifest.commands ?? []).length} entries, expected ${EXPECTED_COMMAND_COUNT}`);
+  }
+  if ((manifest.skills ?? []).length !== EXPECTED_SKILL_COUNT) {
+    fail(`plugin.json skills array has ${(manifest.skills ?? []).length} entries, expected ${EXPECTED_SKILL_COUNT}`);
+  }
+  const agentFileCount = ls("agents").filter((f) => f.endsWith(".md")).length;
+  if (agentFileCount !== EXPECTED_AGENT_COUNT) {
+    fail(`agents/*.md has ${agentFileCount} files on disk, expected ${EXPECTED_AGENT_COUNT}`);
   }
 }
 
@@ -264,6 +288,25 @@ for (const c of FREE) {
       if (body.includes(bad)) {
         fail(`commands/${f}: uses "${bad}" — the only question formats are "yes / pick / no" and "yes / edit / no"`);
       }
+    }
+  }
+}
+
+// --- 5c. Commands that must never take --yes -------------------------
+// _conventions rule 4 names these; nothing checked it. A `--yes` on a
+// command that spends credits or writes in bulk turns one typo into a
+// month of posts.
+const NO_YES = ["month", "images", "visuals", "brandkit", "undo", "repurpose",
+  "refresh", "library", "brand", "knowledge", "campaign"];
+{
+  const conv = exists("commands/_conventions.md") ? read("commands/_conventions.md") : "";
+  for (const c of NO_YES) {
+    if (!conv.includes(`\`${c}\``)) {
+      fail(`commands/_conventions.md rule 4 does not list \`${c}\` among the commands that refuse --yes`);
+    }
+    const p = `commands/${c}.md`;
+    if (exists(p) && /--yes/.test(read(p)) && !/not accepted|never accepted|refuses/i.test(read(p))) {
+      fail(`${p}: mentions --yes without saying it is refused`);
     }
   }
 }

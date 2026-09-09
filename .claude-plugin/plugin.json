@@ -42,6 +42,7 @@
     "./commands/setup.md",
     "./commands/brandkit.md",
     "./commands/brand.md",
+    "./commands/campaign.md",
     "./commands/knowledge.md",
     "./commands/month.md",
     "./commands/post.md",
