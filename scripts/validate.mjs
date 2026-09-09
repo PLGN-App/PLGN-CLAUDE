@@ -570,8 +570,17 @@ for (const p of ["skills/brand-onboarding/SKILL.md", "commands/setup.md"]) {
 // by the command that started it, and a shape that drifts fails at the
 // point the command tries to save -- after the model has already done the
 // work.
+// The brand-architect needle was originally the bare word "kind" -- ordinary
+// English prose, and nothing stops a future edit from dropping the real
+// `kind: product | service` field while leaving some unrelated "kind" behind
+// (or vice versa: dropping the field while an unrelated "kind" survives, and
+// the check stays green). Keyed instead on `"kind":` -- the quoted-key-plus-
+// colon exactly as it appears in the Offerings JSON -- which ordinary prose
+// does not produce by accident. Tested by deleting the `"kind"` line from
+// that JSON block and confirming this fails naming the file (see
+// task-6-report.md, fix round).
 const AGENT_CONTRACTS = [
-  ["plgn-brand-architect", ["offerings", "kind", "benefits", "avoidCliches"]],
+  ["plgn-brand-architect", ["offerings", "\"kind\":", "benefits", "avoidCliches"]],
   ["plgn-copywriter", ["offeringNames", "campaign"]],
   ["plgn-visual", ["referenceUrl", "anchor"]],
   ["plgn-strategist", ["campaign", "keyMessage", "vocabulary"]],
@@ -593,23 +602,42 @@ for (const [agent, needles] of AGENT_CONTRACTS) {
 // that failed agents/plgn-scheduler.md:34, "Do not call `post_schedule` or
 // any other tool." -- which is the rule being *stated*, not broken. What
 // matters is whether an agent is told to call a write tool, not whether it
-// names one. So a backticked write-tool mention only fails when it is NOT
-// inside a prohibition: a window of ~120 chars immediately before the
-// mention must contain one of a short list of explicit refusal phrasings.
+// names one.
 //
-// The phrasings are kept explicit (not a loose "not"/"never" check) so a
-// real instruction sitting near unrelated negative language still fails.
-// That alone was not enough: tested by editing plgn-scheduler.md's own
-// sentence to "When you are confident, call `post_schedule` directly" while
-// leaving its "## Never save anything" heading above in place -- the bare
-// 120-char window still cleared it, because the heading's "Never save" sat
-// inside the window even though it describes a different sentence entirely.
-// So the prohibition must also be part of the *same* sentence as the
-// mention: nothing between the phrase and the mention may cross a paragraph
-// break or a heading. That closes the gap without loosening the phrase list.
+// First fix attempt was a ~120-char window before the mention, cleared by
+// any prohibition phrase inside it that did not cross a paragraph break or
+// heading. Review found that still binds the wrong thing: it clears on *any*
+// prohibition in the window, not one bound to *this* tool. Planted
+// counterexample: "Never call `campaign_update` while archived. Once
+// confirmed, call `post_schedule` to save it." -- the second sentence is a
+// genuine instruction to call a write tool, and it cleared, because the
+// first sentence's unrelated "Never call" sat inside the window.
+//
+// Fixed by binding to the sentence, not a character count: find the sentence
+// that contains the backticked mention (bounded by '.', '!', '?', a blank
+// line, or a heading -- whichever comes first on each side) and clear only
+// if a prohibition phrase sits inside *that* sentence. A prohibition in a
+// neighbouring sentence no longer reaches across.
+//
+// The phrase list also gained contractions ("don't call", "doesn't call"
+// and their "save" equivalents) -- missing them only produces false
+// positives (a real prohibition failing to clear, which fails loudly), but
+// the matcher was being rewritten anyway.
 const WRITE_TOOLS = [...TOOLS].filter((t) => /_(create|update|delete|add|schedule|archive|restore|set)$/.test(t));
-const WRITE_TOOL_PROHIBITION = /(do not call|never call|must not call|do not save|never save)/gi;
-const CROSSES_PARAGRAPH = /\n[ \t]*\n|\n[ \t]*#/;
+const WRITE_TOOL_PROHIBITION = /(do not|does not|don't|doesn't|never|must not)\s+(call|save)\b/i;
+const SENTENCE_BOUNDARY = /[.!?](?=\s|$)|\n[ \t]*\n|\n[ \t]*#/g;
+const sentenceContaining = (body, idx) => {
+  let start = 0;
+  let end = body.length;
+  SENTENCE_BOUNDARY.lastIndex = 0;
+  let m;
+  while ((m = SENTENCE_BOUNDARY.exec(body))) {
+    const boundaryEnd = m.index + m[0].length;
+    if (boundaryEnd <= idx) start = boundaryEnd;
+    else { end = boundaryEnd; break; }
+  }
+  return body.slice(start, end);
+};
 for (const f of ls("agents")) {
   if (!f.endsWith(".md")) continue;
   const body = read(`agents/${f}`);
@@ -617,16 +645,10 @@ for (const f of ls("agents")) {
     const marker = `\`${t}\``;
     let idx = body.indexOf(marker);
     while (idx !== -1) {
-      const windowStart = Math.max(0, idx - 120);
-      const windowText = body.slice(windowStart, idx);
-      WRITE_TOOL_PROHIBITION.lastIndex = 0;
-      let cleared = false;
-      let m;
-      while ((m = WRITE_TOOL_PROHIBITION.exec(windowText))) {
-        const between = windowText.slice(m.index + m[0].length);
-        if (!CROSSES_PARAGRAPH.test(between)) { cleared = true; break; }
+      const sentence = sentenceContaining(body, idx);
+      if (!WRITE_TOOL_PROHIBITION.test(sentence)) {
+        fail(`agents/${f}: agents never call write tools (\`${t}\`)`);
       }
-      if (!cleared) fail(`agents/${f}: agents never call write tools (\`${t}\`)`);
       idx = body.indexOf(marker, idx + 1);
     }
   }
