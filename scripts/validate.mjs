@@ -541,13 +541,39 @@ for (const p of CONTENT) {
   }
 }
 
-// --- 7b. Every command that drafts copy reads the brand in one call ----
+// --- 7b. Every command that drafts copy reads the brand in one call, and
+// hands what it read to the writer ---------------------------------------
 // Four commands write words in a brand's voice. Each used to assemble the
 // brand itself from brand_list plus a couple of knowledge_get calls, and
 // each assembled a slightly different brand -- one read the audience, one
 // did not, none read what the brand sells. context_get is one read in a
 // fixed order, and it is the order that matters: Foundation first, because
 // nothing overrides it.
+//
+// Three separate assertions here, not one. Originally this was two: a
+// presence check for `context_get`, and a proximity check
+// (`context_get[\s\S]{0,120}copywriter`) whose fail message claimed the
+// file "must pass the copywriter's own block to its writers" -- but the
+// regex is satisfied by the read call alone: `context_get(role:
+// "copywriter")` puts both words a few characters apart with no writer
+// prompt anywhere nearby. Reverting a file's pass-through sentence back to
+// the pre-Task-7 wording ("put the voice, the banned words... into the
+// prompt") left that check green, because the read line was never touched.
+// Confirmed by doing exactly that to post.md and refresh.md in turn and
+// watching this check fail to notice; see task-7-report.md for both traces.
+//
+// Split into what each actually tests:
+//   1. the file reads the brand at all (`context_get`)
+//   2. that read uses the copywriter's own role, not a proximate word
+//      (`context_get(role: "copywriter"` as a literal call, not two tokens
+//      loose in the same paragraph)
+//   3. the file then instructs passing that block into the writer's prompt
+//      -- keyed on "verbatim" next to "prompt", the word a file that lists
+//      the voice, the banned words and the rest as separate items would not
+//      contain. Passing the whole block unmodified and re-typing its
+//      fields are different instructions, and only the first one is what
+//      the copywriter's contract (Task 6) and commands/_conventions.md
+//      rule 6 require, since the agent cannot read anything else.
 const DRAFTS_COPY = ["month", "post", "repurpose", "refresh"];
 for (const c of DRAFTS_COPY) {
   const p = `commands/${c}.md`;
@@ -556,8 +582,11 @@ for (const c of DRAFTS_COPY) {
   if (!body.includes("context_get")) {
     fail(`commands/${c}.md drafts copy, so it must read the brand with \`context_get\``);
   }
-  if (!/context_get[\s\S]{0,120}copywriter/.test(body)) {
-    fail(`commands/${c}.md must pass the copywriter's own block to its writers`);
+  if (!/context_get\(role:\s*["']copywriter["']/.test(body)) {
+    fail(`commands/${c}.md must read the brand for its writer with \`context_get(role: "copywriter")\``);
+  }
+  if (!/prompt\s+verbatim/i.test(body)) {
+    fail(`commands/${c}.md must instruct passing the \`context_get\` block into the writer's prompt verbatim, not reassembled from named parts`);
   }
 }
 

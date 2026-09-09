@@ -30,7 +30,7 @@ based on the content, not on how it did — say that plainly rather than implyin
 you know what worked:
 
 - **Still true.** Nothing in it contradicts the brand's current offers, prices
-  or position. Check against `context_get`.
+  or position — check against the brand you read in step 1.
 - **Still makes a point.** It argues something, rather than announcing an event.
   Launch posts and event notices do not refresh; arguments do.
 - **Belongs to a live topic.** A post from a retired topic brings back something
