@@ -13,26 +13,32 @@ write about.
 different thing entirely, and the **reply-style** skill owns it. Never apply a
 brand's voice to a reply, and never apply reply rules to a post.
 
-## Reading a saved voice
+## Reading the voice
 
-Call `knowledge_get`. A brand set up by `/plgn setup` has four entries:
+```
+context_get(role: "copywriter")
+```
 
-| Entry | Holds |
-|---|---|
-| **voice** | Tone, words to use and avoid, sentence rhythm |
-| **audience** | Who is addressed, what they know, what they care about |
-| **offers** | What the brand sells, and what it calls those things |
-| **banned words** | Words the brand refuses to use |
+That is the read. It returns the brand record, then the voice and audience,
+then what the brand sells and the proof behind it, then the campaign running
+now — in that order, because the order is the priority. Foundation is read
+first because nothing overrides it.
 
-Read all four before writing. The audience shapes the voice as much as the voice
-entry does — the same brand writes differently to people who do the work than to
-people who buy it.
+It also ends with the exact entry versions it gave you, so a reply can say
+which version of the voice a post was written against.
 
-**The languages are not in knowledge.** They sit on the brand record and come
-back from `brand_list`, alongside the banned words. Read them, because a voice
-is language-specific: a brand that sounds plain and direct in English does not
-automatically sound that way when the same rules are applied to Arabic. Match
-the intent in each language rather than translating the rules literally.
+Do not assemble this from several `knowledge_get` calls. Reading them one at
+a time gets the same words in an order nobody decided, and it drops the
+offerings and the campaign entirely.
+
+**The brand record it returns carries the languages, too.** Read them,
+because a voice is language-specific: a brand that sounds plain and direct in
+English does not automatically sound that way when the same rules are applied
+to Arabic. Match the intent in each language rather than translating the
+rules literally.
+
+The audience shapes the voice as much as the voice entry does — the same
+brand writes differently to people who do the work than to people who buy it.
 
 ## Applying it
 

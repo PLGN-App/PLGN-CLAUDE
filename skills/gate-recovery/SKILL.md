@@ -60,6 +60,38 @@ attempts and an honest hand-off beats five attempts and a flat post.
 - **Trying to schedule it anyway.** The server will refuse, and you get a second
   error the user then has to interpret.
 
+## Refusals that are instructions
+
+Below, under "Errors that are not about the checks", are three refusals you
+mostly *stop and say so* about. These five are different: each one is an
+instruction to act on, not a reason to stop.
+
+Five `ERROR:` results are not about the content checks at all. Each one is the
+server telling you what to do instead. Do it — do not report it as a failure,
+and do not retry the same call.
+
+**"needs confirm"** — you tried to write a Foundation entry without the user's
+approval. Show the text, ask, and send `confirm: true` only after a real yes.
+Never send it because the call failed once.
+
+**"already has a …"** — the brand already holds this singleton, and the message
+carries its id. Call `knowledge_update` on that id. Do not try a different
+title: a brand with two voices has no voice.
+
+**"offers belong in an offering"** — you tried to save what the brand sells as
+a knowledge entry. Use `offering_create` with its benefits. An offer stored as
+knowledge is an offer the writer cannot name and the art director cannot
+picture.
+
+**"a publishing time needs a timezone"** — the brand record has no timezone.
+Ask which one, save it with `brand_update`, then schedule. Do not assume the
+server's zone.
+
+**"cap reached"** — the plan allows 12 knowledge entries, 2 offerings, or 1
+campaign in progress, and this would be one too many. Say what is full, say
+what it costs to raise it, and **say what did not get saved, by name**. Never
+drop the item quietly and never retry.
+
 ## Errors that are not about the checks
 
 Not every `ERROR:` comes from the content checks. These need different handling —

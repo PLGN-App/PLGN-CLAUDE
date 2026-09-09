@@ -390,12 +390,58 @@ for (const p of CONTENT) {
   // no way to find them again.
   {
     const cadence = "skills/posting-cadence/SKILL.md";
-    if (exists(cadence) && !read(cadence).includes("brand-knowledge-map")) {
-      fail(`${cadence} names a timezone, so it must point at where one is stored`);
+    if (exists(cadence)) {
+      const body = read(cadence);
+      if (!body.includes("brand-knowledge-map")) {
+        fail(`${cadence} names a timezone, so it must point at where one is stored`);
+      }
+      // It moved. A cadence skill still describing a `Publishing` entry sends
+      // every scheduling command to read a place that no longer holds it.
+      if (!body.includes("brand_list")) {
+        fail(`${cadence} must say the timezone comes from the brand record, printed by \`brand_list\``);
+      }
+      if (/Publishing/.test(body)) {
+        fail(`${cadence} still describes the old \`Publishing\` knowledge entry`);
+      }
     }
+
+    // The five refusals that are not gate failures. Each one is an
+    // instruction the command must act on, and each one used to be reported
+    // to the user as a failure because nothing said otherwise.
+    const gr = "skills/gate-recovery/SKILL.md";
+    if (exists(gr)) {
+      const body = read(gr);
+      for (const [what, needle] of [
+        ["Foundation needing confirm", "confirm"],
+        ["a singleton that already exists", "already"],
+        ["an offer belonging in offering_create", "offering_create"],
+        ["a publishing time needing a timezone", "brand_update"],
+        ["a cap being reached", "cap"],
+      ]) {
+        if (!body.includes(needle)) {
+          fail(`${gr} must cover ${what} (looked for "${needle}")`);
+        }
+      }
+    }
+
     const rs = "skills/reply-style/SKILL.md";
     if (exists(rs) && !read(rs).includes("Progress is not a log")) {
       fail(`${rs} must define what a long job may print while it works`);
+    }
+    // Four more internal words. Every one of them is a thing the server
+    // calls something and a person calls nothing.
+    if (exists(rs)) {
+      const body = read(rs);
+      for (const word of ["context_get", "singleton", "revision", "metadata"]) {
+        if (!body.includes(word)) {
+          fail(`${rs} must list "${word}" among the words that never reach the user`);
+        }
+      }
+      // But the three layer names ARE allowed: the dashboard prints them, so
+      // a reply that avoids them describes a screen the user cannot find.
+      if (!/Foundation[\s\S]{0,200}(allowed|fine|are words)/i.test(body)) {
+        fail(`${rs} must say the three layer names are allowed`);
+      }
     }
     for (const c of ["month", "post"]) {
       const p = `commands/${c}.md`;

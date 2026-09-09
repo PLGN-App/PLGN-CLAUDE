@@ -34,18 +34,19 @@ hold.
 - **Selling to people** — evenings and weekends tend to do better.
 - **Avoid** Friday afternoons and public holidays where the audience is.
 
-**Which timezone?** The brand's, saved in its `Publishing` entry — the
-**brand-knowledge-map** skill says where that lives. Read it before choosing
-any time.
+## Where the timezone comes from
 
-If nothing is saved, do not quietly pick one. Say which you used, in one line,
-before the schedule:
+The **brand record**. `brand_list` prints it beside the brand's name and
+languages; `brand_update(timezone: "Africa/Cairo")` sets it.
 
-> I scheduled these in <zone>. Tell me if that's wrong.
+It used to live in a knowledge entry, because the record had nowhere to put
+it. See **brand-knowledge-map** for the four places a brand is stored.
 
-A time without a timezone is a time in whatever zone the server thinks in, and
-the mistake stays invisible until a post lands in the middle of someone's
-night.
+**A brand with no timezone set is a brand you must not schedule silently.**
+Say which zone you used and offer to save the right one. A time with no
+timezone is a time in whatever zone the server thinks in, and nobody finds
+out until a client notices their nine o'clock post arrived at two in the
+morning.
 
 Never claim a time gets more attention. Say "a sensible default" and move on.
 

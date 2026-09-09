@@ -10,9 +10,18 @@ handling the wait that follows.
 
 ## Read the brand's look first
 
-Before writing any image description, check whether the brand has a saved
-visual direction — a `brand_voice` entry titled `Visual direction`. The
-**visual-identity** skill owns what it contains and how it is stored.
+Before writing any image description, read the brand's visual direction:
+
+```
+context_get(role: "art_director")
+```
+
+The **visual-identity** skill owns what a direction contains and how it is
+stored — it is a `brand_identity` entry, not a separate lookup.
+
+The art director's block carries the palette, the `never` list, the picture
+rules and an **anchor hint** — the one product picture a new image should sit
+beside. Read it before writing the description, not after.
 
 When one exists:
 

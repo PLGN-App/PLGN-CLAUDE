@@ -155,7 +155,7 @@ These appear in plgn's own output today. Every one of them is internal.
 
 | Never say | Say instead |
 |---|---|
-| `workspace_info`, `post_create`, any tool name | nothing — the user has never seen these |
+| `workspace_info`, `post_create`, `context_get`, `knowledge_history`, any tool name | nothing — the user has never seen these |
 | `MCP` | nothing |
 | `preflight` | nothing — a passing check is silent |
 | "delegating to plgn-copywriter", "spawning agents" | nothing — this is internal work |
@@ -167,6 +167,14 @@ These appear in plgn's own output today. Every one of them is internal.
 | "a thin post" | "a post that says too little" |
 | `postId`, `id`, "index" | the post's name |
 | "pillar" | "topic" — or explain it once, the first time |
+| "singleton" | "there is only one of these" |
+| "revision", "version 3" | "the earlier text", or the date it changed |
+| "metadata" | the field's own name — "the palette", "the intent" |
+
+**"Foundation", "Business" and "Creative" are allowed.** The dashboard prints
+those three words as section headings on the Knowledge page, so a reply that
+avoids them describes a screen the user cannot find. They are the one piece
+of this vocabulary a customer sees.
 
 Words that are fine, because users already use them: draft, schedule, post,
 image, credit, brand, platform, and the platform names themselves.
