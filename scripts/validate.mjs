@@ -368,8 +368,19 @@ for (const p of CONTENT) {
     // A look "for Ramadan only" is not the brand's look. Saved as
     // brand_identity it silently replaces the permanent one -- a singleton
     // has no second slot to fall back to.
-    if (!/campaign[\s\S]{0,300}reference|reference[\s\S]{0,300}campaign/i.test(body)) {
-      fail(`${VIS} must say a campaign look is a Campaign plus a \`reference\` entry`);
+    //
+    // Replaced 2026-09-09: this used to be a proximity regex (`campaign`
+    // within 300 chars of `reference`, either order). It passed on the
+    // pre-rewrite file for the wrong reason -- "reference" matched as a bare
+    // substring inside "canonicalReference", which happened to sit near an
+    // unrelated sentence ("a series, a campaign, a carousel"). That file said
+    // nothing about campaign-scoped looks at all, so the check would have
+    // sat quietly through the exact regression it exists to catch. Keying on
+    // the backticked type name and the `intent` key the server requires ties
+    // the check to the actual contract instead of two English words that can
+    // occur together by accident.
+    if (!(/`reference`/.test(body) && body.includes("intent"))) {
+      fail(`${VIS} must say a campaign look is a Campaign plus a \`reference\` entry carrying an \`intent\``);
     }
   }
 

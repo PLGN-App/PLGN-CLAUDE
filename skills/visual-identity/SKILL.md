@@ -83,8 +83,8 @@ Then build the direction from the chosen cluster, and note what was set aside.
 
 ## Where a direction is stored
 
-One entry, of type `brand_identity`. A brand holds exactly one — it is a
-Foundation singleton — so there is no question of which one is current.
+One entry, of type `brand_identity` — a Foundation singleton, per the
+**brand-knowledge-map** skill.
 
 ```
 knowledge_add(
@@ -121,12 +121,13 @@ the set. Upload it first with `upload_image_from_url`, then attach what that
 returns. It is `assets[0]` specifically, not "one of the assets": the command
 that generates a matching image reaches for the first one.
 
-**`confirm: true`, and only after the user has said yes.** `brand_identity` is
-Foundation. Show the direction, get a real yes, then save.
+**`confirm: true`, and only after the user has said yes.** Show the direction,
+get a real yes, then save. (Why Foundation needs this at all is the map's rule,
+not restated here.)
 
-**A second one is refused.** The refusal carries the existing entry's id — that
-is the instruction to use `knowledge_update` on it, not a failure to report.
-Re-running `/plgn visuals` on a brand that already has a look updates it.
+**A second one is refused — the map's singleton rule, applied here.**
+Re-running `/plgn visuals` on a brand that already has a look updates the
+existing entry rather than adding a second one.
 
 ## Rules that are refusals, not descriptions
 
