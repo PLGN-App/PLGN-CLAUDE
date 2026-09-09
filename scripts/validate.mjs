@@ -709,21 +709,34 @@ for (const f of ls("agents")) {
 // Foundation layer of four loose entries. This pins the one thing each
 // command would otherwise silently stop covering.
 //
-// The needle `"campaign"` is a plain word, not a tool or type name, and it
-// is used bare for three files (queue, report, topics). Checked before
-// adding it: none of the three mentioned campaigns at all before this task,
-// so it cannot pass by accident the way "cap" matched "capacity" or
-// "confirm" matched "confirmation" — there is nothing already in these
-// files for it to collide with. Every other needle below is a literal tool
-// or knowledge-type name, which prose does not produce by accident.
+// queue/report/topics were first keyed on the bare word "campaign". Review
+// caught that this proves nothing: it only shows the word appears somewhere
+// in the file, and a sentence like "This command does not yet handle
+// campaigns" would satisfy it while adding none of the required behaviour.
+// The point of a needle is not "did this collide with existing prose" (a
+// false-positive question) but "will this still fail if the real behaviour
+// is later deleted" (a false-negative question) -- the fifth time in this
+// plan that distinction has been the deciding one. Rekeyed on a phrase
+// distinctive to the actual content of each paragraph, confirmed by
+// deleting each paragraph in turn and watching this fail naming the file
+// (see task-8-report.md, fix round):
+//   - queue: the `campaign_id` filter post_list actually takes
+//   - report: the per-campaign publish-status line ("whether it is still
+//     running")
+//   - topics: the campaign-scoped counting rule ("count its posts inside
+//     the campaign's window")
+// None of these three strings occurred anywhere in these files before this
+// task, so -- as with the bare word before it -- there is nothing already
+// in them for a needle to collide with; the difference is that these can no
+// longer pass without the actual sentence that carries the behaviour.
 const REPORTS = [
   ["brandkit", ["offering_create", "offering_list", "brand_identity", "brand_positioning"]],
   ["knowledge", ["offering_list", "campaign_list", "knowledge_history"]],
   ["images", ["context_get"]],
   ["visuals", ["brand_identity", "campaign_create"]],
-  ["queue", ["campaign"]],
-  ["report", ["campaign"]],
-  ["topics", ["campaign"]],
+  ["queue", ["campaign_id"]],
+  ["report", ["whether it is still running"]],
+  ["topics", ["count its posts inside the campaign's window"]],
 ];
 for (const [c, needles] of REPORTS) {
   const p = `commands/${c}.md`;

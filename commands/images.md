@@ -76,7 +76,8 @@ sometimes a `referenceUrl`. If it returned one, call
 
 Then follow the **image-prompting** skill exactly:
 
-- `generate_image` returns a **job number**, not an image.
+- `generate_image` and `generate_image_from_image` both return a **job
+  number**, not an image.
 - Start **all** of them first, then check — one at a time turns a 90-second
   wait into half an hour.
 - Check with `check_generation` every 5 seconds; give up at 90 seconds each.

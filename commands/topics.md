@@ -25,9 +25,9 @@ moved the argument on.
 
 A topic can belong to a campaign, and that changes what "needs more posts"
 means. A topic inside a running campaign is not the same as a loose one. Say
-which campaign a topic belongs to, and count its posts inside the campaign's
-window rather than over all time — a topic with forty posts from last year and
-none this month is a gap, not a surplus.
+which campaign a topic belongs to, and count its posts inside the campaign's window
+rather than over all time — a topic with forty posts from last year and none
+this month is a gap, not a surplus.
 
 Use `topic_get` on any topic you are going to comment on in detail. The list
 gives names and counts; `topic_get` gives the description and the posts.

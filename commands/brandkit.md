@@ -124,9 +124,10 @@ yes / pick / no
 
 `pick` drops a whole group or one item. Ask once, not six times.
 
-**If this brand sells more than 2 offerings, or already holds 12 knowledge
-entries**, say which ones did not fit, by name, and what raising the cap
-costs. Never drop one silently.
+**If a cap blocks part of this** — the free-plan limits are the
+**brand-knowledge-map** skill's numbers — follow **gate-recovery**: say which
+entries or offerings did not fit, by name, and what raising the cap costs.
+Never drop one silently.
 
 ## 7. Save
 
