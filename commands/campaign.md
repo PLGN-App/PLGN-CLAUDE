@@ -147,6 +147,4 @@ Same for `topicIds`.
 - **No seam.** This user is already signed up.
 - The plan is written by `/plgn month`, not here. This command creates the
   container; that one fills it.
-- Replies follow the **reply-style** skill, including the user's language. The
-  words "campaign", "draft" and "topic" are fine; "status", "id" and
-  "constraints" as a field name are not.
+- Replies follow the **reply-style** skill, including the user's language.

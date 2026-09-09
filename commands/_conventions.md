@@ -55,8 +55,8 @@ user who ran a connected command wants the real thing.
 
 **If it succeeds**, carry on. Print nothing. A check that passes is silent.
 
-Commands that write copy in a brand's voice also call `knowledge_get`. If the
-brand has no stored voice, send the user to `/plgn setup` and stop. Never guess
+Commands that write copy in a brand's voice also call `context_get`. If the
+brand has no Foundation, send the user to `/plgn setup` and stop. Never guess
 a voice that is one call away.
 
 **Never stop halfway in silence.** If the check passes but a later step fails,

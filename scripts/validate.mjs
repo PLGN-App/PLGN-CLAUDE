@@ -153,24 +153,25 @@ const walk = (dir) => {
   return out;
 };
 const CONTENT = [...walk("commands"), ...walk("agents"), ...walk("skills")];
+// The one file allowed to name a type the taxonomy replaced. It is the file
+// that explains the old names exist and that nothing else writes them --
+// see the exemption in section 4 below and the enforcement in section 10 at
+// the end of this file. Both key off this same path and the same list so
+// there is one place to update if either the file or the list ever moves.
+const MAP_SKILL_PATH = "skills/brand-knowledge-map/SKILL.md";
+const REPLACED_TYPES = ["brand_voice", "competitor_data", "seo_guidelines", "example_article"];
+const MAP_ONLY_LEGACY_TYPES = new Set(REPLACED_TYPES);
 // Knowledge type values are API literals that happen to match the tool-name
 // shape, and two of them (`brand_identity`, `brand_positioning`) would
-// otherwise be read as unknown `brand_*` tools. The four legacy names are
-// NOT here: after 1.4.0 no file may write one, and section 8 fails any file
-// that names one.
+// otherwise be read as unknown `brand_*` tools. The four replaced legacy
+// names are NOT here: after 1.4.0 no file but the map may write one, and
+// section 10 fails any other file that names one.
 const KNOWLEDGE_TYPES = new Set([
   "brand_identity", "brand_positioning", "voice_tone", "audience",
   "visual_rules", "creative_rules",
   "promotion", "proof", "objection", "competitor", "market_context",
   "seo_rules", "platform_rules",
   "reference", "approved_execution", "example_post",
-]);
-// The four names the taxonomy replaced. Still exempted from the tool-name
-// check while the rest of this plugin is converted, task by task. Task 9
-// deletes this set and adds the check that no file names one at all — a
-// check that can only pass once every file is clean.
-const LEGACY_TYPES_BEING_REMOVED = new Set([
-  "brand_voice", "competitor_data", "seo_guidelines", "example_article",
 ]);
 // Names that share a tool's prefix but are arguments passed *to* a tool,
 // never tools themselves. Real parameters on knowledge_get, context_get,
@@ -184,11 +185,18 @@ for (const p of CONTENT) {
   const body = read(p);
   for (const m of body.matchAll(/`([a-z]+_[a-z0-9_]+)`/g)) {
     const name = m[1];
-    if (KNOWLEDGE_TYPES.has(name) || LEGACY_TYPES_BEING_REMOVED.has(name) || NON_TOOL_NAMES.has(name)) continue;
+    if (KNOWLEDGE_TYPES.has(name) || NON_TOOL_NAMES.has(name)) continue;
     // `offering_get` does not exist, and a file naming it is almost always
     // inventing a tool — except the map itself, which has to name it in
     // order to say so ("there is no `offering_get`"). Exempt only there.
-    if (name === "offering_get" && p === "skills/brand-knowledge-map/SKILL.md") continue;
+    if (name === "offering_get" && p === MAP_SKILL_PATH) continue;
+    // `brand_voice` collides with the judged `brand_` prefix below (the
+    // other three replaced names do not share a prefix section 4 judges, so
+    // they never reach this far). The map alone may name it, for the same
+    // reason as `offering_get` above: it is the file that explains the name
+    // exists and that nothing else writes it. Section 10 enforces that no
+    // other file does.
+    if (MAP_ONLY_LEGACY_TYPES.has(name) && p === MAP_SKILL_PATH) continue;
     // only judge names that look like plgn tools: a known prefix
     if (/^(brand|campaign|check|cloudinary|context|delete|generate|hashtagset|kie|knowledge|list|offering|post|snippet|topic|upload|workspace)_/.test(name)
       && !TOOLS.has(name)) {
@@ -744,6 +752,41 @@ for (const [c, needles] of REPORTS) {
   const body = read(p);
   for (const n of needles) {
     if (!body.includes(n)) fail(`commands/${c}.md must name "${n}"`);
+  }
+}
+
+// --- 10. No file writes a type name the taxonomy replaced --------------
+// `brand_voice`, `competitor_data`, `seo_guidelines` and `example_article`
+// were the whole taxonomy until 1.4.0. The server still ACCEPTS them, so an
+// installed 1.3.0 keeps working -- that is what the aliases are for. But a
+// file in THIS plugin naming one is a file that writes into the old shape,
+// and a brand set up that way holds a voice `context_get` reads as
+// something else.
+//
+// The map skill is the one exemption: it explains that the names exist and
+// that nothing here writes them, so it necessarily names all four. Section
+// 4's MAP_ONLY_LEGACY_TYPES exemption is what lets the map do that without
+// tripping the unknown-tool-name check; this section is the one that
+// actually enforces "nowhere else" -- the two together are what replace
+// Task 1's scaffolding exemption, which excused every file rather than just
+// the one that needs it.
+{
+  for (const p of CONTENT) {
+    if (p === MAP_SKILL_PATH) continue;
+    const body = read(p);
+    for (const t of REPLACED_TYPES) {
+      if (body.includes(t)) {
+        fail(`${p}: names the replaced knowledge type "${t}" — see skills/brand-knowledge-map`);
+      }
+    }
+  }
+  // Guards the guard: if the map stopped naming them, this whole section
+  // would pass over a plugin that had quietly lost the explanation.
+  const map = exists(MAP_SKILL_PATH) ? read(MAP_SKILL_PATH) : "";
+  for (const t of REPLACED_TYPES) {
+    if (!map.includes(t)) {
+      fail(`${MAP_SKILL_PATH} must still explain that "${t}" is a replaced name`);
+    }
   }
 }
 
