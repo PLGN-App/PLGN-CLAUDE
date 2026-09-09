@@ -73,10 +73,10 @@ yes / pick / no
 
 **Then save each one, following the write order the brand-onboarding skill
 sets out.** That skill owns the order and which tool each thing is saved
-with — read it before writing anything. Two of these are easy to get wrong:
+with — read it before writing anything. Four of these are easy to get wrong:
 
-- Voice and audience (`voice_tone`, `audience`) are Foundation entries. Save
-  each with `confirm: true`, sent only after the user's yes.
+- Voice and audience become `voice_tone` and `audience`, saved with
+  `confirm: true` — see **brand-onboarding** for when that goes in.
 
 Offers become one `offering_create` per offer:
 

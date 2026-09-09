@@ -508,18 +508,16 @@ for (const p of ["skills/brand-onboarding/SKILL.md", "commands/setup.md"]) {
   for (const t of ["voice_tone", "audience", "offering_create", "brand_update"]) {
     if (!body.includes(t)) fail(`${p} must name \`${t}\``);
   }
-  // "confirm" is a narrower word than the "already"/"cap" pair task 3 had to
-  // replace: those matched ordinary prose ("recap", "already holds") for
-  // reasons unrelated to the rule being checked. "confirm" does not occur in
-  // either file for any other reason, and pinning it to the literal
-  // `confirm: true` would force commands/setup.md to quote that syntax
-  // instead of pointing at the brand-onboarding skill's write order by name —
-  // trading one weak check for a rule restated in two files.
-  if (!body.includes("confirm")) {
-    fail(`${p} writes Foundation entries, so it must say when to pass \`confirm\``);
-  }
-  if (/timezone/i.test(body) && !body.includes("brand_update")) {
-    fail(`${p} names a timezone but not \`brand_update\``);
+  // Keyed on the literal parameter, not the bare word "confirm" -- that was
+  // the original check here, and it was the "cap"/"already" mistake task 3
+  // already had to fix: both files contain "confirm" for reasons that have
+  // nothing to do with Foundation writes ("confirmations", "confirm rather
+  // than assuming", "then confirmed"), so the bare word passed even with
+  // every real `confirm: true` deleted. `confirm: true` does not occur in
+  // either file by accident. Tested by deleting it from each file in turn;
+  // see task-4-report.md for the traces.
+  if (!body.includes("confirm: true")) {
+    fail(`${p} writes Foundation entries, so it must say when to pass \`confirm: true\``);
   }
 }
 
