@@ -31,10 +31,15 @@ Say what you found and how many are worth filling:
 Not every post should have a picture. Send each candidate to `plgn-visual`,
 which returns nothing when a post reads better plain.
 
-Per **_conventions** rule 6, put the post text, the brand's audience and its
-**visual direction** into the agent's prompt — the whole direction, not just
-the colours. It is the saved answer to how this brand's pictures are built, and
-an agent that cannot see it invents a look per post.
+For each post that needs a picture, read
+`context_get(role: "art_director", campaign_id: <the post's campaign, if it
+has one>)` and put the post text, the brand's audience and that block into
+`plgn-visual`'s prompt — per **_conventions** rule 6, the agent cannot see
+this file.
+
+Per post, not once for the run: two posts in different campaigns want
+different references, and a run that reads the direction once gives them the
+same one.
 
 If none is saved, say so once and offer `/plgn visuals`, which works it out
 from pictures the brand already published.
@@ -64,7 +69,12 @@ most valuable posts rather than stopping halfway with no explanation.
 
 ## 5. Make them
 
-Follow the **image-prompting** skill exactly:
+`plgn-visual` returns an `imagePrompt` and an `altText` for every post, and
+sometimes a `referenceUrl`. If it returned one, call
+`generate_image_from_image` with it. Otherwise call `generate_image` with the
+`imagePrompt`. See **visual-identity** for why the two are different.
+
+Then follow the **image-prompting** skill exactly:
 
 - `generate_image` returns a **job number**, not an image.
 - Start **all** of them first, then check — one at a time turns a 90-second

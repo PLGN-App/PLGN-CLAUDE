@@ -703,6 +703,37 @@ for (const f of ls("agents")) {
   }
 }
 
+// --- 9. The reporting commands cover the whole graph -------------------
+// Seven commands read the workspace and tell the user what is in it. Each
+// used to describe a world with no offerings and no campaigns, and a
+// Foundation layer of four loose entries. This pins the one thing each
+// command would otherwise silently stop covering.
+//
+// The needle `"campaign"` is a plain word, not a tool or type name, and it
+// is used bare for three files (queue, report, topics). Checked before
+// adding it: none of the three mentioned campaigns at all before this task,
+// so it cannot pass by accident the way "cap" matched "capacity" or
+// "confirm" matched "confirmation" — there is nothing already in these
+// files for it to collide with. Every other needle below is a literal tool
+// or knowledge-type name, which prose does not produce by accident.
+const REPORTS = [
+  ["brandkit", ["offering_create", "offering_list", "brand_identity", "brand_positioning"]],
+  ["knowledge", ["offering_list", "campaign_list", "knowledge_history"]],
+  ["images", ["context_get"]],
+  ["visuals", ["brand_identity", "campaign_create"]],
+  ["queue", ["campaign"]],
+  ["report", ["campaign"]],
+  ["topics", ["campaign"]],
+];
+for (const [c, needles] of REPORTS) {
+  const p = `commands/${c}.md`;
+  if (!exists(p)) continue;
+  const body = read(p);
+  for (const n of needles) {
+    if (!body.includes(n)) fail(`commands/${c}.md must name "${n}"`);
+  }
+}
+
 if (fails.length) {
   for (const f of fails) console.error(`FAIL: ${f}`);
   console.error(`\n${fails.length} problem(s).`);

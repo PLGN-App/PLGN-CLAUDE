@@ -80,18 +80,25 @@ yes / edit / no
 
 ## 6. Save
 
-Two writes, per the **brand-knowledge-map** skill:
+Upload the chosen reference picture first, with `upload_image_from_url` or
+`upload_image_base64`. Save it as **`brand_identity`** — one entry, ten fields
+in its metadata, the canonical reference attached as `assets[0]`, and
+`confirm: true` **after** the user has said yes. See **visual-identity** for
+the fields.
 
-- The look itself as a knowledge entry — type `brand_voice`, titled
-  `Visual direction`, with metadata marking it as the visual one, so later
-  commands can find it among the others.
-- The chosen reference picture into the workspace with
-  `upload_image_from_url` or `upload_image_base64`, so
-  `generate_image_from_image` can reach it later.
+**If a look is already saved**, re-running is refused, and the refusal carries
+the existing entry's id. Update that entry with `knowledge_update` — never add
+a second one, since two looks is the same as none.
 
-**If a look is already saved**, show what changes and what stays, and update in
-place with `knowledge_update`. Never add a second one — two looks is the same
-as none.
+**A look for one campaign only.** "Make everything gold for Ramadan" is not
+the brand's look. Saved as `brand_identity` it replaces the permanent one, and
+the brand comes out of Ramadan looking like Ramadan.
+
+It is two writes instead: `campaign_create` for the window, then a
+`reference` entry linked to it with the picture attached and an `intent`
+saying what to take from it. Ask which one they mean before saving — "just
+for Ramadan, or from now on?" is one line and it is not recoverable
+afterwards.
 
 ## 7. Finish
 
