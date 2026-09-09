@@ -497,6 +497,32 @@ for (const p of CONTENT) {
   }
 }
 
+// --- 7c. Onboarding writes the current types ---------------------------
+// Onboarding writes the four Foundation singletons and the offerings. If
+// its skill or its command still names a legacy type, a fresh brand is set
+// up in the old shape and every later command reads a brand that is not
+// there.
+for (const p of ["skills/brand-onboarding/SKILL.md", "commands/setup.md"]) {
+  if (!exists(p)) { fail(`missing file: ${p}`); continue; }
+  const body = read(p);
+  for (const t of ["voice_tone", "audience", "offering_create", "brand_update"]) {
+    if (!body.includes(t)) fail(`${p} must name \`${t}\``);
+  }
+  // "confirm" is a narrower word than the "already"/"cap" pair task 3 had to
+  // replace: those matched ordinary prose ("recap", "already holds") for
+  // reasons unrelated to the rule being checked. "confirm" does not occur in
+  // either file for any other reason, and pinning it to the literal
+  // `confirm: true` would force commands/setup.md to quote that syntax
+  // instead of pointing at the brand-onboarding skill's write order by name —
+  // trading one weak check for a rule restated in two files.
+  if (!body.includes("confirm")) {
+    fail(`${p} writes Foundation entries, so it must say when to pass \`confirm\``);
+  }
+  if (/timezone/i.test(body) && !body.includes("brand_update")) {
+    fail(`${p} names a timezone but not \`brand_update\``);
+  }
+}
+
 if (fails.length) {
   for (const f of fails) console.error(`FAIL: ${f}`);
   console.error(`\n${fails.length} problem(s).`);
