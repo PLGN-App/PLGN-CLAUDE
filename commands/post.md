@@ -12,14 +12,17 @@ it stays fast and quiet.
 Call `workspace_info`. If it fails, print the message from **_conventions**
 rule 2 and stop.
 
-Call `knowledge_get` for the brand's voice. If it is empty, send them to
-`/plgn setup` and stop — a single post still goes out in the brand's name.
+Call `context_get(role: "copywriter")`. One read: the voice, the banned
+words, what the brand sells, and the campaign running now. If the brand has
+no Foundation, send them to `/plgn setup` and stop — a single post still goes
+out in the brand's name.
 
-Call `brand_list` too, for the banned words and the languages this brand
-publishes in. Write the post in the brand's languages, which are not
-necessarily the language of the conversation.
+The brand record it returns carries the **languages** it publishes in, too.
+Write the post in those languages — they are not necessarily the language of
+the conversation. Someone writing to plgn in English may publish only in
+Arabic.
 
-Print nothing for either call. A check that passes is silent.
+Print nothing for this call. A check that passes is silent.
 
 ## 2. The idea
 
@@ -29,13 +32,23 @@ In the user's own words. If none was given, ask for one line.
 brand's usual platforms as the choices. Do not pick one quietly; the same idea
 is a different post on each platform.
 
+**If the request names a campaign** — "a post for Ramadan" — call
+`campaign_list`, match it by name, and pass `campaign_id` to both
+`context_get` and `post_create`. The post then inherits that campaign's
+offerings, and its writer is given the key message it has to say
+differently.
+
+A name that matches no campaign is a question, not a new campaign: say what
+you found and ask. `/plgn campaign` is where one gets created.
+
 ## 3. Write it
 
-Start `plgn-copywriter` with the idea, the brand's voice, and the platform.
-Ask for **one** post.
+Start `plgn-copywriter` with the idea and the platform. Ask for **one** post.
 
-Per **_conventions** rule 6, put the voice, the banned words and that platform's
-character limit into the prompt. The writer cannot read skills.
+Per **_conventions** rule 6, pass the `context_get` block from step 1 into
+the prompt verbatim — the one read with `campaign_id` when a campaign was
+matched — alongside the idea, the platform and its character limit. The
+writer cannot read skills or this file.
 
 Where the idea plainly suits more than one platform, write one and offer the
 others afterwards. Do not quietly produce three.

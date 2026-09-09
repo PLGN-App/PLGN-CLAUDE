@@ -541,6 +541,26 @@ for (const p of CONTENT) {
   }
 }
 
+// --- 7b. Every command that drafts copy reads the brand in one call ----
+// Four commands write words in a brand's voice. Each used to assemble the
+// brand itself from brand_list plus a couple of knowledge_get calls, and
+// each assembled a slightly different brand -- one read the audience, one
+// did not, none read what the brand sells. context_get is one read in a
+// fixed order, and it is the order that matters: Foundation first, because
+// nothing overrides it.
+const DRAFTS_COPY = ["month", "post", "repurpose", "refresh"];
+for (const c of DRAFTS_COPY) {
+  const p = `commands/${c}.md`;
+  if (!exists(p)) continue;
+  const body = read(p);
+  if (!body.includes("context_get")) {
+    fail(`commands/${c}.md drafts copy, so it must read the brand with \`context_get\``);
+  }
+  if (!/context_get[\s\S]{0,120}copywriter/.test(body)) {
+    fail(`commands/${c}.md must pass the copywriter's own block to its writers`);
+  }
+}
+
 // --- 7c. Onboarding writes the current types ---------------------------
 // Onboarding writes the four Foundation singletons and the offerings. If
 // its skill or its command still names a legacy type, a fresh brand is set
