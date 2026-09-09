@@ -565,6 +565,73 @@ for (const p of ["skills/brand-onboarding/SKILL.md", "commands/setup.md"]) {
   }
 }
 
+// --- 8. Agent contracts (Task 6) ----------------------------------------
+// The four agents whose contract changed. An agent's output shape is read
+// by the command that started it, and a shape that drifts fails at the
+// point the command tries to save -- after the model has already done the
+// work.
+const AGENT_CONTRACTS = [
+  ["plgn-brand-architect", ["offerings", "kind", "benefits", "avoidCliches"]],
+  ["plgn-copywriter", ["offeringNames", "campaign"]],
+  ["plgn-visual", ["referenceUrl", "anchor"]],
+  ["plgn-strategist", ["campaign", "keyMessage", "vocabulary"]],
+];
+for (const [agent, needles] of AGENT_CONTRACTS) {
+  const p = `agents/${agent}.md`;
+  if (!exists(p)) continue; // the AGENTS check above already fails for this
+  const body = read(p);
+  for (const n of needles) {
+    if (!body.includes(n)) fail(`${p}: contract must name "${n}"`);
+  }
+}
+
+// An agent must never be told to call a write tool. The command owns every
+// write -- _conventions rule 6 -- and an agent that writes is a write
+// nobody confirmed.
+//
+// Changed from a bare "does the file mention this tool in backticks" check:
+// that failed agents/plgn-scheduler.md:34, "Do not call `post_schedule` or
+// any other tool." -- which is the rule being *stated*, not broken. What
+// matters is whether an agent is told to call a write tool, not whether it
+// names one. So a backticked write-tool mention only fails when it is NOT
+// inside a prohibition: a window of ~120 chars immediately before the
+// mention must contain one of a short list of explicit refusal phrasings.
+//
+// The phrasings are kept explicit (not a loose "not"/"never" check) so a
+// real instruction sitting near unrelated negative language still fails.
+// That alone was not enough: tested by editing plgn-scheduler.md's own
+// sentence to "When you are confident, call `post_schedule` directly" while
+// leaving its "## Never save anything" heading above in place -- the bare
+// 120-char window still cleared it, because the heading's "Never save" sat
+// inside the window even though it describes a different sentence entirely.
+// So the prohibition must also be part of the *same* sentence as the
+// mention: nothing between the phrase and the mention may cross a paragraph
+// break or a heading. That closes the gap without loosening the phrase list.
+const WRITE_TOOLS = [...TOOLS].filter((t) => /_(create|update|delete|add|schedule|archive|restore|set)$/.test(t));
+const WRITE_TOOL_PROHIBITION = /(do not call|never call|must not call|do not save|never save)/gi;
+const CROSSES_PARAGRAPH = /\n[ \t]*\n|\n[ \t]*#/;
+for (const f of ls("agents")) {
+  if (!f.endsWith(".md")) continue;
+  const body = read(`agents/${f}`);
+  for (const t of WRITE_TOOLS) {
+    const marker = `\`${t}\``;
+    let idx = body.indexOf(marker);
+    while (idx !== -1) {
+      const windowStart = Math.max(0, idx - 120);
+      const windowText = body.slice(windowStart, idx);
+      WRITE_TOOL_PROHIBITION.lastIndex = 0;
+      let cleared = false;
+      let m;
+      while ((m = WRITE_TOOL_PROHIBITION.exec(windowText))) {
+        const between = windowText.slice(m.index + m[0].length);
+        if (!CROSSES_PARAGRAPH.test(between)) { cleared = true; break; }
+      }
+      if (!cleared) fail(`agents/${f}: agents never call write tools (\`${t}\`)`);
+      idx = body.indexOf(marker, idx + 1);
+    }
+  }
+}
+
 if (fails.length) {
   for (const f of fails) console.error(`FAIL: ${f}`);
   console.error(`\n${fails.length} problem(s).`);

@@ -22,7 +22,8 @@ Six blocks. Nothing before them, nothing after.
   whether it says "you", and what it never does.
 - **`audience`** — who is being addressed, what they already know, what they
   care about, and what can be assumed without explaining.
-- **`offers`** — what is sold, packaged how, called what. Their names, exactly.
+- **`offerings`** — what is sold, structured. See **Offerings** below for the
+  shape.
 - **`bannedWordCandidates`** — words this brand should refuse. Drawn from what
   its own copy avoids, plus claims it could not back up. Suggestions only; a
   person confirms them.
@@ -31,6 +32,43 @@ Six blocks. Nothing before them, nothing after.
   finding.
 - **`examplePosts`** — up to three of the brand's own posts worth imitating,
   quoted in full, each with one line on why that one.
+
+## Offerings
+
+Not a list of sentences. One object per thing the brand sells:
+
+```json
+{
+  "offerings": [
+    {
+      "name": "Signature blend",
+      "kind": "product",
+      "role": "hero",
+      "benefits": [
+        {
+          "label": { "en": "Roasted weekly" },
+          "meanings": ["never sits in a warehouse", "you taste the roast date"],
+          "avoidCliches": ["farm to cup", "artisanal"]
+        }
+      ],
+      "evidence": "the roasting schedule on /about, and the date stamp on the bag"
+    }
+  ]
+}
+```
+
+`kind` is `product` or `service`. **If the source does not say which, say so in
+`evidence` and leave `kind` out** — the command asks the user rather than
+guessing, and a service filed as a product is a record with the wrong fields.
+
+`role` is `hero` for the one thing the brand leads with, `supporting` for the
+rest. At most one hero. If nothing leads, mark them all supporting and say so.
+
+`meanings` is what the benefit actually means in plain words. `avoidCliches` is
+what a writer would reach for and must not. Both are read by whoever writes the
+copy; a benefit with only a label is a phrase to repeat.
+
+**Never invent a benefit.** Every one carries the evidence it came from.
 
 ## Every claim carries three things
 
