@@ -70,13 +70,13 @@ Five `ERROR:` results are not about the content checks at all. Each one is the
 server telling you what to do instead. Do it — do not report it as a failure,
 and do not retry the same call.
 
-**"needs confirm"** — you tried to write a Foundation entry without the user's
-approval. Show the text, ask, and send `confirm: true` only after a real yes.
-Never send it because the call failed once.
+**"needs confirm"** — show the text, ask, and send `confirm: true` only after
+a real yes. Never send it because the call failed once. See
+**brand-knowledge-map** for why Foundation writes need this.
 
-**"already has a …"** — the brand already holds this singleton, and the message
-carries its id. Call `knowledge_update` on that id. Do not try a different
-title: a brand with two voices has no voice.
+**"already has a …"** — the message carries the existing entry's id. Call
+`knowledge_update` on that id. See **brand-knowledge-map** for what a
+singleton refusal means.
 
 **"offers belong in an offering"** — you tried to save what the brand sells as
 a knowledge entry. Use `offering_create` with its benefits. An offer stored as
@@ -87,10 +87,9 @@ picture.
 Ask which one, save it with `brand_update`, then schedule. Do not assume the
 server's zone.
 
-**"cap reached"** — the plan allows 12 knowledge entries, 2 offerings, or 1
-campaign in progress, and this would be one too many. Say what is full, say
-what it costs to raise it, and **say what did not get saved, by name**. Never
-drop the item quietly and never retry.
+**"cap reached"** — see **brand-knowledge-map** for the caps and what a
+refusal means. The one thing to add here: **say what did not get saved, by
+name.**
 
 ## Errors that are not about the checks
 

@@ -408,18 +408,25 @@ for (const p of CONTENT) {
     // The five refusals that are not gate failures. Each one is an
     // instruction the command must act on, and each one used to be reported
     // to the user as a failure because nothing said otherwise.
+    //
+    // Keyed on the server's own error wording, quoted in each refusal's
+    // bolded header — not on a single common word. An earlier version of this
+    // check looked for "confirm", "already" and "cap": those match ordinary
+    // prose ("capacity", "recap", "already holds") and would still pass with
+    // the refusal itself deleted. Tested by deleting each refusal in turn and
+    // confirming this fails naming it (see task-3-report.md).
     const gr = "skills/gate-recovery/SKILL.md";
     if (exists(gr)) {
       const body = read(gr);
-      for (const [what, needle] of [
-        ["Foundation needing confirm", "confirm"],
-        ["a singleton that already exists", "already"],
-        ["an offer belonging in offering_create", "offering_create"],
-        ["a publishing time needing a timezone", "brand_update"],
-        ["a cap being reached", "cap"],
+      for (const needle of [
+        "needs confirm",
+        "already has a",
+        "offers belong in an offering",
+        "a publishing time needs a timezone",
+        "cap reached",
       ]) {
         if (!body.includes(needle)) {
-          fail(`${gr} must cover ${what} (looked for "${needle}")`);
+          fail(`${gr} must cover the refusal "${needle}"`);
         }
       }
     }
@@ -439,8 +446,10 @@ for (const p of CONTENT) {
       }
       // But the three layer names ARE allowed: the dashboard prints them, so
       // a reply that avoids them describes a screen the user cannot find.
-      if (!/Foundation[\s\S]{0,200}(allowed|fine|are words)/i.test(body)) {
-        fail(`${rs} must say the three layer names are allowed`);
+      // All three names, not just "Foundation", must sit near the allow-word
+      // — otherwise a file that dropped "Business" and "Creative" still passes.
+      if (!/Foundation[\s\S]{0,100}Business[\s\S]{0,100}Creative[\s\S]{0,200}(allowed|fine|are words)/i.test(body)) {
+        fail(`${rs} must say all three layer names (Foundation, Business, Creative) are allowed`);
       }
     }
     for (const c of ["month", "post"]) {
