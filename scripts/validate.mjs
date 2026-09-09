@@ -10,14 +10,19 @@ const fails = [];
 const fail = (m) => fails.push(m);
 
 const TOOLS = new Set([
-  "brand_archive", "brand_list", "brand_restore", "brand_update", "check_generation",
-  "cloudinary_connect", "delete_image", "generate_image", "generate_image_from_image",
+  "brand_archive", "brand_list", "brand_restore", "brand_update",
+  "campaign_create", "campaign_delete", "campaign_get", "campaign_list", "campaign_update",
+  "check_generation", "cloudinary_connect", "context_get", "delete_image",
+  "generate_image", "generate_image_from_image",
   "hashtagset_create", "hashtagset_delete", "hashtagset_list", "hashtagset_update",
-  "kie_key_set", "knowledge_add", "knowledge_delete", "knowledge_get", "knowledge_update",
-  "list_images", "post_create", "post_delete", "post_get", "post_list", "post_schedule",
-  "post_update", "snippet_create", "snippet_delete", "snippet_get", "snippet_list",
-  "snippet_update", "topic_create", "topic_delete", "topic_get", "topic_list",
-  "topic_update", "upload_image_base64", "upload_image_from_url", "workspace_info",
+  "kie_key_set", "knowledge_add", "knowledge_delete", "knowledge_get",
+  "knowledge_history", "knowledge_update",
+  "list_images",
+  "offering_create", "offering_delete", "offering_list", "offering_update",
+  "post_create", "post_delete", "post_get", "post_list", "post_schedule", "post_update",
+  "snippet_create", "snippet_delete", "snippet_get", "snippet_list", "snippet_update",
+  "topic_create", "topic_delete", "topic_get", "topic_list", "topic_update",
+  "upload_image_base64", "upload_image_from_url", "workspace_info",
 ]);
 
 const FREE = ["demo", "audit", "strategy", "voice", "competitors", "calendar"];
@@ -124,17 +129,43 @@ const walk = (dir) => {
 };
 const CONTENT = [...walk("commands"), ...walk("agents"), ...walk("skills")];
 // Knowledge type values are API literals that happen to match the tool-name
-// shape. They are not tools, and every file that documents storage names them.
+// shape, and two of them (`brand_identity`, `brand_positioning`) would
+// otherwise be read as unknown `brand_*` tools. The four legacy names are
+// NOT here: after 1.4.0 no file may write one, and section 8 fails any file
+// that names one.
 const KNOWLEDGE_TYPES = new Set([
+  "brand_identity", "brand_positioning", "voice_tone", "audience",
+  "visual_rules", "creative_rules",
+  "promotion", "proof", "objection", "competitor", "market_context",
+  "seo_rules", "platform_rules",
+  "reference", "approved_execution", "example_post",
+]);
+// The four names the taxonomy replaced. Still exempted from the tool-name
+// check while the rest of this plugin is converted, task by task. Task 9
+// deletes this set and adds the check that no file names one at all — a
+// check that can only pass once every file is clean.
+const LEGACY_TYPES_BEING_REMOVED = new Set([
   "brand_voice", "competitor_data", "seo_guidelines", "example_article",
+]);
+// Names that share a tool's prefix but are arguments passed *to* a tool,
+// never tools themselves. Real parameters on knowledge_get, context_get,
+// post_create, post_list, campaign_create and knowledge_history — not
+// speculation. Kept explicit rather than a pattern like "anything ending in
+// `_id`/`_ids`", which would let a genuinely invented tool through.
+const NON_TOOL_NAMES = new Set([
+  "campaign_id", "offering_id", "offering_ids", "topic_id", "topic_ids", "knowledge_id",
 ]);
 for (const p of CONTENT) {
   const body = read(p);
   for (const m of body.matchAll(/`([a-z]+_[a-z0-9_]+)`/g)) {
     const name = m[1];
-    if (KNOWLEDGE_TYPES.has(name)) continue;
+    if (KNOWLEDGE_TYPES.has(name) || LEGACY_TYPES_BEING_REMOVED.has(name) || NON_TOOL_NAMES.has(name)) continue;
+    // `offering_get` does not exist, and a file naming it is almost always
+    // inventing a tool — except the map itself, which has to name it in
+    // order to say so ("there is no `offering_get`"). Exempt only there.
+    if (name === "offering_get" && p === "skills/brand-knowledge-map/SKILL.md") continue;
     // only judge names that look like plgn tools: a known prefix
-    if (/^(brand|post|topic|snippet|hashtagset|knowledge|workspace|list|delete|upload|generate|check|cloudinary|kie)_/.test(name)
+    if (/^(brand|campaign|check|cloudinary|context|delete|generate|hashtagset|kie|knowledge|list|offering|post|snippet|topic|upload|workspace)_/.test(name)
       && !TOOLS.has(name)) {
       fail(`${p}: unknown MCP tool name \`${name}\``);
     }
@@ -258,8 +289,34 @@ for (const p of CONTENT) {
     if (!body.includes("brand_update")) {
       fail(`${MAP} must name \`brand_update\` as where banned words are written`);
     }
-    for (const t of ["brand_voice", "competitor_data", "seo_guidelines", "example_article"]) {
+    // All sixteen. The map is the only file that has to list the whole
+    // taxonomy; every other file names the two or three types it writes.
+    for (const t of KNOWLEDGE_TYPES) {
       if (!body.includes(t)) fail(`${MAP} must list the knowledge type "${t}"`);
+    }
+    // The four that a brand holds exactly one of. A command that does not
+    // know which types are singletons treats a refusal as a failure.
+    for (const s of ["brand_identity", "brand_positioning", "voice_tone", "audience"]) {
+      if (!new RegExp(`${s}[\\s\\S]{0,400}(singleton|only one|exactly one)`, "i").test(body)
+        && !new RegExp(`(singleton|only one|exactly one)[\\s\\S]{0,400}${s}`, "i").test(body)) {
+        fail(`${MAP} must say that a brand holds only one "${s}"`);
+      }
+    }
+    // The timezone moved. It used to live in a `Publishing` knowledge entry
+    // because the brand record had nowhere for it; the record has a column
+    // now, and a command still writing it as knowledge writes a time nobody
+    // schedules against.
+    if (!/timezone[\s\S]{0,200}brand record|brand record[\s\S]{0,200}timezone/i.test(body)) {
+      fail(`${MAP} must say the timezone lives on the brand record`);
+    }
+    if (!body.includes("external_post_id")) {
+      fail(`${MAP} must document the run marker that makes a bulk write undoable`);
+    }
+    // Offerings and Campaigns are records now, not knowledge entries. A file
+    // that saves an offer as a knowledge entry produces a brand whose AI
+    // cannot name what it sells.
+    for (const tool of ["offering_create", "campaign_create", "context_get"]) {
+      if (!body.includes(tool)) fail(`${MAP} must name \`${tool}\``);
     }
   }
 
@@ -302,15 +359,6 @@ for (const p of CONTENT) {
   // of them failed silently: locales saved and never used, a timezone the
   // cadence skill assumed but nothing captured, and posts written in bulk with
   // no way to find them again.
-  if (exists(MAP)) {
-    const body = read(MAP);
-    if (!body.includes("timezone")) {
-      fail(`${MAP} must say where a brand's timezone is stored`);
-    }
-    if (!body.includes("external_post_id")) {
-      fail(`${MAP} must document the run marker that makes a bulk write undoable`);
-    }
-  }
   {
     const cadence = "skills/posting-cadence/SKILL.md";
     if (exists(cadence) && !read(cadence).includes("brand-knowledge-map")) {
