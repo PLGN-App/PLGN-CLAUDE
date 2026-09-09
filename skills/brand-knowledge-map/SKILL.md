@@ -31,14 +31,20 @@ own tools and are listed at the bottom.
 context_get(role: "copywriter")
 ```
 
+The output arrives in that order every time: the brand record, then
+Foundation, then Business, then Creative.
+
+Optional arguments beside `role`: `campaign_id` (default: every current
+campaign), `offering_ids`, and `topic_id`, which adds the entries linked to
+that topic.
+
 Roles: `marketing_manager`, `creative_director`, `copywriter`, `art_director`,
 `designer`, `all`. Each gets what it needs and not the rest — a copywriter
 gets the voice and the benefits, an art director gets the picture rules and
 the palette.
 
-**Use it instead of several `knowledge_get` calls.** It is one read, it ends
-with the exact entry versions it gave you, and it puts Foundation first so the
-things that are never overridden are read first.
+**Use it instead of several `knowledge_get` calls.** It is one read, and it
+ends with the exact entry versions it gave you.
 
 Use `knowledge_get` when you are checking or editing **one** thing:
 
@@ -230,9 +236,15 @@ longer exist at all, confirmed by name.
 ## The old names
 
 `brand_voice`, `competitor_data`, `seo_guidelines` and `example_article` were
-the whole taxonomy until 1.4.0. The server still **accepts** them, so a plugin
-that has not been updated keeps working — a `brand_voice` write is mapped to
-the type its title suggests, and the reply says which type it became.
+the whole taxonomy until 1.4.0. The server still **accepts** them on both
+sides, so a plugin that has not been updated keeps working.
 
-**Nothing in this plugin writes one.** They exist so that someone else's
-installed copy does not break.
+As a write, a `brand_voice` entry is mapped to the type its title suggests,
+and the reply says which type it became. As a filter on `knowledge_get`, a
+legacy name does not return one type — `knowledge_get(type: "brand_voice")`
+returns the whole Foundation layer. A command written against the old shape,
+expecting a single entry back, gets six and reads only the first one,
+silently dropping the rest.
+
+**Nothing in this plugin writes one, and nothing in this plugin filters by
+one.** They exist so that someone else's installed copy does not break.
