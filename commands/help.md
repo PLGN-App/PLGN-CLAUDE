@@ -45,6 +45,7 @@ NEEDS AN ACCOUNT
   /plgn knowledge           Check and fix what plgn knows about a brand
 
   Making content
+  /plgn campaign <subject>  Start a campaign, see what's running, mark one done
   /plgn month <subject>     A month of posts: written, illustrated, scheduled
   /plgn post <idea>         One idea, one post
   /plgn repurpose <url>     Turn one article into a set of posts

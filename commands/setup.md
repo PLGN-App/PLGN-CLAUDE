@@ -71,19 +71,30 @@ Save these four?
 yes / pick / no
 ```
 
-**Then save each one where it belongs.** The **brand-knowledge-map** skill owns
-which place that is — read it before writing anything. Two of these are easy to
-get wrong:
+**Then save each one, following the write order the brand-onboarding skill
+sets out.** That skill owns the order and which tool each thing is saved
+with — read it before writing anything. Four of these are easy to get wrong:
 
-- Voice, audience and offers are knowledge entries. Save them one at a time, so
-  a later edit with `knowledge_update` can change one thing without touching
-  the others.
+- Voice and audience become `voice_tone` and `audience`, saved with
+  `confirm: true` — see **brand-onboarding** for when that goes in.
+
+Offers become one `offering_create` per offer:
+
+> An offer is not a knowledge entry. Each one becomes an **offering** — a
+> record with its own benefits — so the writer can name it and the art
+> director can picture it.
+>
+> If the site does not make clear whether something is a product or a
+> service, ask. One line, and it decides which fields the record carries.
+
 - The words this brand refuses to use go on the **brand record**, with
   `brand_update`. Saved as a knowledge entry they are only a note — plgn's
   checks never see them, and the post goes out with the word in it.
-- The languages this brand publishes in go on the brand record too, with
-  `brand_update`. Ask when it might be more than one; it decides what language
-  every post is written in.
+
+> Save the languages, the banned words and the **timezone** together in one
+> `brand_update`. Ask for the timezone if the site does not say it — a brand
+> with none cannot be scheduled without a guess, and the guess is invisible
+> when it is wrong.
 
 The refused words deserve a direct question — most people have not thought
 about it:

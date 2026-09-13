@@ -15,14 +15,16 @@ around that: plan first, ask once, write carefully, report honestly.
 Call `workspace_info`. If it fails, print the message from **_conventions**
 rule 2 and stop.
 
-Then call `brand_list` and `knowledge_get`.
+Then call `context_get(role: "marketing_manager")`.
 
-`brand_list` carries two things this command must not guess: the brand's
-**banned words** and the **languages it publishes in**. Read both before
-writing anything. The languages are the brand's, not the user's — someone
-writing to plgn in English may publish only in Arabic.
+That is one read and it returns the brand in a fixed order: the record — with
+the **languages** and the **timezone** this command must not guess — then the
+voice and audience, then what the brand sells, then any campaign running now.
 
-**If the brand has no saved voice, stop and send them to `/plgn setup`.** Do
+The languages are the brand's, not the user's. Someone writing to plgn in
+English may publish only in Arabic.
+
+**If the brand has no Foundation, stop and send them to `/plgn setup`.** Do
 not work a voice out from a website here. Guessing is the free layer's
 compromise; a connected user has a real profile one call away, and thirty posts
 in a guessed voice is thirty posts to redo.
@@ -56,12 +58,30 @@ command twice must not leave two topics with the same name.
 Note: `topic_list` returns names and counts, not descriptions. Use `topic_get`
 on the one you are going to use.
 
+**Call `campaign_list` too.** A subject that matches a campaign is planned
+*inside* it, which changes three things:
+
+- every post carries `campaign_id`
+- every post inherits the campaign's offerings
+- every writer is given the campaign's key message, the words it must not
+  use, and the words to reach for
+
+Say which campaign you are planning inside, in the plan, before anything is
+written. A month planned inside the wrong campaign inherits the wrong
+constraints thirty times.
+
+If the subject matches no campaign, that is ordinary. Plan without one and
+say so — do not offer to create one here. `/plgn campaign` does that, and
+creating a container as a side effect of filling it is how a workspace ends
+up with four half-empty campaigns.
+
 ## 3. Show the plan, and stop
 
 Work out the shape of the month, then show it as a short table:
 
 ```
 Topics:     <name> · <name> · <name>
+Campaign:   <name, or "none">
 Platforms:  LinkedIn, X, Instagram
 Languages:  <the brand's, from its record>
 Posting:    <n>/week — <n> posts total
@@ -104,10 +124,21 @@ enough that silence reads as a crash:
 Writing 28 posts across 3 topics...
 ```
 
-Per **_conventions** rule 6, each writer's prompt must carry what it needs:
-the topic and its argument, the brand's voice and banned words, the platforms,
-the character limits for those platforms, the **languages the brand publishes
-in**, and how many posts to write. Agents cannot read skills or see this file.
+Per **_conventions** rule 6, each writer's prompt carries what it needs, and
+the way to build it is one call:
+
+```
+context_get(role: "copywriter", campaign_id: <the campaign, when there is one>)
+```
+
+That block holds the voice, the banned words, what the brand sells with each
+benefit's meanings and clichés, and — when there is a campaign — its key
+message, constraints and vocabulary. Pass it into the prompt verbatim,
+alongside the topic, the platforms, their character limits, the brand's
+languages, and how many posts to write.
+
+Agents cannot read skills or see this file. Whatever is in the prompt is the
+whole world the writer works in.
 
 A brand with two languages gets each post written in both, saved as captions
 keyed by language — not one caption with a translation underneath.
@@ -120,6 +151,11 @@ belongs in the final report.
 
 Call `topic_create` **only for topics that do not already exist**. Then call
 `post_create` per post, as drafts.
+
+`post_create` also takes `campaign_id` and `offering_ids`. Set the campaign
+when the month is planned inside one, and set the offerings from each post's
+own `offeringNames`, matched against the offerings you were given, never
+invented.
 
 **Stamp every post in this run with the same run marker**, per the
 **brand-knowledge-map** skill. It costs nothing, the reader never sees it, and
@@ -148,14 +184,23 @@ Say the phase is starting and how long it takes, per **reply-style** rule 5b:
 Making 24 images — this takes a few minutes...
 ```
 
-For each post that should have one, get the description from `plgn-visual`,
-then call `generate_image`. Pass the brand's saved **visual direction** into
-every `plgn-visual` prompt, so a month's pictures look like one brand rather
-than twenty-four separate guesses.
+For each post that should have one, read `context_get(role: "art_director",
+campaign_id: <the post's campaign, if it has one>)` and put the post text, the
+brand's audience and that block into `plgn-visual`'s prompt — per
+**_conventions** rule 6, the agent cannot see this file.
 
-**Making an image takes time.** `generate_image` returns a job number, not an
-image. Check with `check_generation` on the schedule in the **image-prompting**
-skill.
+Per post, not once for the run: two posts in different campaigns want
+different references, and a run that reads the direction once gives them the
+same one.
+
+`plgn-visual` returns an `imagePrompt` and an `altText`, and sometimes a
+`referenceUrl`. If it returned one, call `generate_image_from_image` with it.
+Otherwise call `generate_image` with the `imagePrompt`. See **visual-identity**
+for why the two are different.
+
+**Making an image takes time.** `generate_image` and `generate_image_from_image`
+both return a job number, not an image. Check with `check_generation` on the
+schedule in the **image-prompting** skill.
 
 If it takes too long, leave the image out, note the post for the report, and
 **carry on** — a missing image never blocks scheduling. A post that goes out

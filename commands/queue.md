@@ -18,6 +18,10 @@ rule 2 and stop.
 
 Call `post_list`. Read **every** post in the period, not a sample.
 
+`post_list` filters by `campaign_id`. When the user names a campaign, narrow
+to it and say so. When they do not, group what is blocked by campaign, so
+"the Ramadan posts are the ones stuck" is visible without counting.
+
 If nothing is waiting, say so plainly and suggest `/plgn month`. Do not invent
 findings.
 

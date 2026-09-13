@@ -21,10 +21,16 @@ when it is pasted somewhere else a week later.
 
 ## 3. Read and work it out
 
-Call `post_list` and `topic_list` for the period, then start `plgn-analyst`.
+Call `post_list`, `topic_list` and `campaign_list` for the period, then start
+`plgn-analyst`.
 
 Per **_conventions** rule 6, put the posts, the topics and the brand's plan into
 the agent's prompt. It cannot read the workspace itself.
+
+If a campaign ran in the period, report it on its own line: how many of its
+posts went out, how many are still drafts, and whether it is still running. A
+campaign that ended with half its posts unpublished is the single most useful
+thing this command can say.
 
 ## 4. What this report cannot say
 

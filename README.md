@@ -118,6 +118,11 @@ lines it already reuses? Run `/plgn brandkit <url>` after setup. It reads your
 own posts as well as your site, and asks at most five questions, each one with
 an answer already drafted.
 
+Running something with a start and an end — Ramadan, a launch, a season? Make
+it a campaign with `/plgn campaign`, then plan inside it with
+`/plgn month "Ramadan"`. Every post in the campaign then says the same one
+thing, differently, and stops saying it when the campaign ends.
+
 ### 6. Write your first month
 
 ```
@@ -173,6 +178,7 @@ not inside Claude Code.
 |---|---|
 | `/plgn setup` | Connect, pick a brand, learn its voice from your site |
 | `/plgn brandkit <url>` | Learn a brand in one run — voice, look, competitors, topics, reusable lines |
+| `/plgn campaign` | Start a campaign — one thing you're saying for a while, with dates |
 | `/plgn month <subject>` | A month of posts: written, illustrated, scheduled |
 | `/plgn post <idea>` | One post — the ten-times-a-day command |
 | `/plgn repurpose <url>` | One article into many posts, plus saved snippets |

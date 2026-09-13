@@ -10,17 +10,24 @@ handling the wait that follows.
 
 ## Read the brand's look first
 
-Before writing any image description, check whether the brand has a saved
-visual direction — a `brand_voice` entry titled `Visual direction`. The
-**visual-identity** skill owns what it contains and how it is stored.
+Before writing any image description, read the brand's visual direction:
+
+```
+context_get(role: "art_director")
+```
+
+The **visual-identity** skill owns what a direction contains and how it is
+stored — it is a `brand_identity` entry, not a separate lookup.
+
+Read it before writing the description, not after.
 
 When one exists:
 
 - Put its **promptPreamble** in front of the description, before the subject.
 - Apply its **never** list as exclusions.
-- When the picture must match exactly — a series, a campaign, a carousel — use
+- Once **visual-identity** says a canonical reference exists, use
   `generate_image_from_image` with the saved **canonicalReference** instead of
-  describing the style in words again. A reference image carries detail no
+  describing the style in words again — a reference image carries detail no
   sentence does.
 
 When none exists, say so once in the reply and carry on. Then suggest

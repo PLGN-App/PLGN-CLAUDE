@@ -19,10 +19,25 @@ so in your output instead of guessing.
 ## What you get
 
 - **topic** — its name, the argument it makes, the kinds of post that fit
-- **voice** — the brand's voice, audience, offers, and banned words
+- **voice** — the brand's voice, audience, and banned words
 - **platforms** — which ones to write for, with the character limit for each
 - **count** — how many posts to write
 - **languages** — which languages this brand publishes in
+- **what the brand sells** — each offering's name, its benefits, what each
+  benefit means, and the clichés to avoid. Write about the thing by name. Use
+  the meanings; never use the clichés.
+- **the campaign, when there is one** — its key message, what it must not say,
+  and the words to reach for:
+
+```
+Campaign: Ramadan 2027
+Key message: One table, everyone welcome.
+Never: hustle, limited time only
+Reach for: gathering, unhurried, shared
+```
+
+The key message is the one thing every post in the campaign says. Say it
+differently each time; never repeat it word for word.
 
 ## Write in the brand's languages, not the user's
 
@@ -50,6 +65,9 @@ and say that you assumed it.
 - **`hook`** — the opening line, repeated on its own so it can be checked
 - **`cta`** — what the reader should do next
 - **`topic`** — your topic's name, on every post
+- **`offeringNames`** — which of the brand's offerings this post is about,
+  using the names exactly as they were given to you. An empty list is a
+  correct answer for a post about none of them.
 
 Drafts only. **Call no tools.** Never try to save a post — that would skip the
 step where the user approves what you wrote.

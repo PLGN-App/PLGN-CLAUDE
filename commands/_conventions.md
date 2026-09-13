@@ -8,7 +8,7 @@ Commands come in two kinds. Every command is exactly one of them:
 
 - **Free** — `demo`, `audit`, `strategy`, `voice`, `competitors`, `calendar`.
   Call **zero** MCP tools. Output is text. Always close with the seam.
-- **Connected** — `setup`, `brandkit`, `brand`, `knowledge`, `month`, `post`, `undo`,
+- **Connected** — `setup`, `brandkit`, `brand`, `campaign`, `knowledge`, `month`, `post`, `undo`,
   `repurpose`, `topics`, `library`, `images`, `visuals`, `queue`, `refresh`,
   `report`.
   Call MCP tools. Never carry the seam.
@@ -55,8 +55,8 @@ user who ran a connected command wants the real thing.
 
 **If it succeeds**, carry on. Print nothing. A check that passes is silent.
 
-Commands that write copy in a brand's voice also call `knowledge_get`. If the
-brand has no stored voice, send the user to `/plgn setup` and stop. Never guess
+Commands that write copy in a brand's voice also call `context_get`. If the
+brand has no Foundation, send the user to `/plgn setup` and stop. Never guess
 a voice that is one call away.
 
 **Never stop halfway in silence.** If the check passes but a later step fails,
@@ -98,8 +98,8 @@ These commands also accept `--yes`, which skips the confirmation:
 `post`, `topics`.
 
 `--yes` is **never** accepted by `month`, `images`, `visuals`, `brandkit`, `undo`,
-`repurpose`, `refresh`, `library`, `brand` or `knowledge`. Those either spend
-credits, write in bulk, or remove things.
+`repurpose`, `refresh`, `library`, `brand`, `knowledge` or `campaign`. Those either
+spend credits, write in bulk, or remove things.
 
 Unknown flags are reported, never ignored, so a typo cannot quietly change what
 happens.

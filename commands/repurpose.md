@@ -12,8 +12,9 @@ anyone who follows the brand in two places sees exactly that.
 
 ## 1. Check the connection
 
-Call `workspace_info`, then `knowledge_get`. If either fails or the voice is
-empty, follow **_conventions** rule 2 and stop.
+Call `workspace_info`, then `context_get(role: "copywriter")`. If either
+fails or the brand has no Foundation, follow **_conventions** rule 2 and
+stop.
 
 ## 2. What to read
 
@@ -52,8 +53,9 @@ Start one `plgn-copywriter` per idea, at the same time, with the platforms
 asked for. Each returns a version that fits each platform — a different shape of
 argument, not a trimmed copy.
 
-Per **_conventions** rule 6, put the voice, the banned words and each platform's
-character limit into every writer's prompt.
+Per **_conventions** rule 6, pass the `context_get` block from step 1 into
+every writer's prompt verbatim, alongside each platform's character limit.
+The writer cannot read skills or this file.
 
 ## 5. Save the reusable parts
 

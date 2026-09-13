@@ -22,9 +22,20 @@ rule 2 and stop.
 
 ## 2. Pick the brand and see what is already known
 
-Call `brand_list`, then `knowledge_get`.
+Call `brand_list`. One brand per run.
 
-One brand per run.
+Before writing anything, read what already exists:
+
+```
+knowledge_get()        every entry, so nothing is added twice
+offering_list()        what it already sells
+campaign_list()        what it is already saying
+```
+
+A second run **updates** rather than adds. The four Foundation singletons
+refuse a second entry anyway — that refusal is an instruction to update, see
+**gate-recovery** — but offerings and Business entries have no such rule, and
+a second run that does not read first leaves a brand with two of everything.
 
 **If a lot is already saved**, say so in one line and carry on. This command is
 safe to run again — it compares and updates rather than adding a second copy of
@@ -59,10 +70,13 @@ cannot see this file or the conversation.
 
 Then, from those findings:
 
-- `plgn-brand-architect` drafts the voice, the audience, the offers, the words
-  to refuse, the search terms and the posts worth imitating.
+- `plgn-brand-architect` drafts the voice, the audience, **structured
+  offerings**, the words to refuse, the search terms and the posts worth
+  imitating. Each offering becomes its own `offering_create` in step 7, never
+  a knowledge entry. Ask product-or-service when the source does not say.
 - `plgn-art-director` reads the pictures, exactly as `/plgn visuals` does.
-- `plgn-strategist` proposes three to five things this brand should talk about.
+- `plgn-strategist` proposes the brand's positioning and three to five things
+  this brand should talk about.
 - `plgn-librarian` pulls out the lines and hashtag groups it already reuses.
 
 Give the librarian what is already saved, so it does not hand back things the
@@ -94,7 +108,8 @@ Brand: <name>
 
   Sounds like   <voice, in full>
   Talks to      <audience>
-  Sells         <offers, named their way>
+  Positioned as <positioning, in full>
+  Sells         <offerings, named their way>
   Refuses       <words>
   Looks like    <the direction, in full>
   Competitors   <n> · Topics <n> · Lines to reuse <n>
@@ -109,24 +124,30 @@ yes / pick / no
 
 `pick` drops a whole group or one item. Ask once, not six times.
 
-## 7. Save, in order
+**If a cap blocks part of this** — the free-plan limits are the
+**brand-knowledge-map** skill's numbers — follow **gate-recovery**: say which
+entries or offerings did not fit, by name, and what raising the cap costs.
+Never drop one silently.
 
-The order matters and the **brand-onboarding** skill owns it:
+## 7. Save
 
-| # | Pass | Where it goes |
-|---|---|---|
-| 1 | The brand record — languages, and the words to refuse | `brand_update` |
-| 2 | Voice, audience, offers, publishing, search terms, example posts | knowledge entries |
-| 3 | The look, and its reference picture | knowledge entry, plus the picture |
-| 4 | Competitors, one each | knowledge entries |
-| 5 | Topics | `topic_create` |
-| 6 | Lines and hashtag groups | `snippet_create`, `hashtagset_create` |
+Follow the **brand-onboarding** skill's write order — it owns the sequence and
+why each pass comes before the next.
+
+What this run's own agents change about it:
+
+- `plgn-brand-architect`'s **structured offerings** — each becomes its own
+  `offering_create`, not a knowledge entry.
+- `plgn-strategist`'s positioning becomes one **`brand_positioning`** entry,
+  with `confirm: true` sent only after the user's yes.
+- `plgn-art-director`'s look is saved as **`brand_identity`** — see
+  **visual-identity** for the ten fields and why the canonical reference goes
+  in `assets[0]`.
+- Competitors become **one `competitor` entry each**, never one entry listing
+  several.
 
 Which knowledge entry is which is the **brand-knowledge-map** skill's job. Read
 it before writing — some of this does not belong in knowledge at all.
-
-Pass 1 goes first because plgn's checks read it, and everything written after
-is checked against it.
 
 **If a pass fails**, keep the ones before it and say exactly what is saved.
 Never stop halfway in silence.
@@ -136,7 +157,7 @@ Never stop halfway in silence.
 ```
 <name> is set up.
 
-  Voice, audience and offers saved
+  Voice, positioning, audience and offerings saved
   Look saved — 9 pictures read
   3 competitors · 4 topics · 6 lines to reuse
 

@@ -11,8 +11,9 @@ never republishes anything without showing it to you first.
 
 ## 1. Check the connection
 
-Call `workspace_info`, then `knowledge_get`. If either fails or the voice is
-empty, follow **_conventions** rule 2 and stop.
+Call `workspace_info`, then `context_get(role: "copywriter")`. If either
+fails or the brand has no Foundation, follow **_conventions** rule 2 and
+stop.
 
 ## 2. Find candidates
 
@@ -29,7 +30,7 @@ based on the content, not on how it did — say that plainly rather than implyin
 you know what worked:
 
 - **Still true.** Nothing in it contradicts the brand's current offers, prices
-  or position. Check against `knowledge_get`.
+  or position — check against the brand you read in step 1.
 - **Still makes a point.** It argues something, rather than announcing an event.
   Launch posts and event notices do not refresh; arguments do.
 - **Belongs to a live topic.** A post from a retired topic brings back something
@@ -42,17 +43,23 @@ republishing the archive, which is what makes a feed feel automated.
 
 ## 4. Rewrite
 
-Start `plgn-copywriter` with the original post and the brand's **current**
-voice.
+A post being refreshed may already belong to a campaign. Keep its
+`campaign_id`, and read the brand with that id so the rewrite is given the
+same key message the original was written against. A refresh that drops the
+campaign turns a campaign post into a loose one, and nothing says so.
 
-Per **_conventions** rule 6, put the original text, the current voice, the
-banned words and the platform limit into the prompt.
+Start `plgn-copywriter` with the original post and the brand read with
+`context_get(role: "copywriter", campaign_id: <its campaign, if any>)`.
+
+Per **_conventions** rule 6, pass that block into the prompt verbatim, along
+with the original text and the platform limit. The writer cannot read skills
+or this file.
 
 A refresh is a **rewrite**, not a repost:
 
 - A new opening. The old one word for word is what makes readers spot a repeat.
 - The current voice — the brand's writing may have moved on.
-- Updated details: numbers, product names, anything `knowledge_get` shows has
+- Updated details: numbers, product names, anything `context_get` shows has
   changed.
 - Possibly a different platform than it first ran on.
 
@@ -79,6 +86,8 @@ yes / pick / no
 Once approved, save the rewrites as **new posts** with `post_create` — never
 overwrite the original with `post_update`. The original is the brand's history,
 and a refresh that erases it loses the record of what was said when.
+
+Carry the original's `campaign_id` onto the new post, per step 4.
 
 Then `post_schedule` following the **posting-cadence** skill, spread into gaps
 rather than stacked. Follow **gate-recovery** on any `ERROR:`.

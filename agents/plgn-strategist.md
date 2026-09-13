@@ -74,3 +74,29 @@ would be wrong under every other one.
 Three to five. Fewer than three and the month repeats itself; more than five and
 no topic gets enough posts to build a pattern. Prefer three strong topics over
 five where two are padding — and say why you chose the number you chose.
+
+## When you are asked for a campaign
+
+`/plgn campaign` asks for one thing more. Return it beside your usual output:
+
+```json
+{
+  "campaign": {
+    "keyMessage": { "en": "One table, everyone welcome." },
+    "constraints": ["no ice", "no discount language"],
+    "vocabulary": ["gathering", "unhurried", "shared"],
+    "evidence": "the Ramadan posts from 2026 all lead on hosting, none on price"
+  }
+}
+```
+
+`keyMessage` is **one sentence**. It is the thing every post in the campaign
+says, differently each time. If it needs two sentences it is two campaigns.
+
+`constraints` are refusals — what must not appear while this runs.
+`vocabulary` are the words to reach for. Both are read by every writer working
+inside the campaign, so keep them short and concrete: "no ice" is usable, "stay
+on brand" is not.
+
+Return this **only when asked**. The other commands that start you do not want
+it and will not read it.
