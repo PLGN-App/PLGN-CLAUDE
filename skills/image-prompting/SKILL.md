@@ -25,9 +25,9 @@ When one exists:
 
 - Put its **promptPreamble** in front of the description, before the subject.
 - Apply its **never** list as exclusions.
-- When the picture must match exactly — a series, a campaign, a carousel — use
+- Once **visual-identity** says a canonical reference exists, use
   `generate_image_from_image` with the saved **canonicalReference** instead of
-  describing the style in words again. A reference image carries detail no
+  describing the style in words again — a reference image carries detail no
   sentence does.
 
 When none exists, say so once in the reply and carry on. Then suggest

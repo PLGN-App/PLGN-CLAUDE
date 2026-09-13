@@ -305,6 +305,25 @@ for (const c of FREE) {
 // _conventions rule 4 names these; nothing checked it. A `--yes` on a
 // command that spends credits or writes in bulk turns one typo into a
 // month of posts.
+//
+// The original check was file-wide: --yes mentioned, and no refusal word
+// ("not accepted", "never accepted", "refuses") anywhere in the whole file.
+// "refuses" turns up in two commands for reasons that have nothing to do
+// with flags -- campaign.md's "If the cap refuses it, follow the
+// gate-recovery skill" and brandkit.md's "the words this brand refuses to
+// use" -- so both files were clearing this check on an unrelated sentence,
+// not on their actual --yes refusal. Proven by mutation: rewriting
+// campaign.md's "`--yes` is not accepted." to "`--yes` is accepted here and
+// skips the question." left the old check green (see final-fix-report.md for
+// the trace). Nine of the eleven NO_YES commands were protected only by the
+// accident of not containing the word "refuses" at all.
+//
+// Fixed by checking what all eleven files actually say rather than binding
+// more tightly to the same words: every one contains the literal phrase
+// "`--yes` is not accepted" (two extend it -- "...by this command." -- but
+// the phrase itself is verbatim in all eleven). Requiring that exact string
+// means the mutation above now fails, naming the file, because the mutated
+// sentence no longer contains it.
 const NO_YES = ["month", "images", "visuals", "brandkit", "undo", "repurpose",
   "refresh", "library", "brand", "knowledge", "campaign"];
 {
@@ -314,8 +333,8 @@ const NO_YES = ["month", "images", "visuals", "brandkit", "undo", "repurpose",
       fail(`commands/_conventions.md rule 4 does not list \`${c}\` among the commands that refuse --yes`);
     }
     const p = `commands/${c}.md`;
-    if (exists(p) && /--yes/.test(read(p)) && !/not accepted|never accepted|refuses/i.test(read(p))) {
-      fail(`${p}: mentions --yes without saying it is refused`);
+    if (exists(p) && !read(p).includes("`--yes` is not accepted")) {
+      fail(`${p}: must say "\`--yes\` is not accepted" — a refusal worded any other way is not provably a --yes refusal`);
     }
   }
 }
@@ -636,9 +655,17 @@ for (const p of ["skills/brand-onboarding/SKILL.md", "commands/setup.md"]) {
 // does not produce by accident. Tested by deleting the `"kind"` line from
 // that JSON block and confirming this fails naming the file (see
 // task-6-report.md, fix round).
+//
+// The copywriter needle had the same shape: the bare word "campaign". Not a
+// false negative yet -- "campaign" appears in plgn-copywriter.md only inside
+// the campaign block -- but the final whole-branch review flagged it as the
+// same trap, since any future sentence mentioning campaigns elsewhere in the
+// file would clear it without the block itself surviving. Keyed instead on
+// "Key message:" -- a label from the block's own example that ordinary prose
+// about campaigns would not produce by accident.
 const AGENT_CONTRACTS = [
   ["plgn-brand-architect", ["offerings", "\"kind\":", "benefits", "avoidCliches"]],
-  ["plgn-copywriter", ["offeringNames", "campaign"]],
+  ["plgn-copywriter", ["offeringNames", "Key message:"]],
   ["plgn-visual", ["referenceUrl", "anchor"]],
   ["plgn-strategist", ["campaign", "keyMessage", "vocabulary"]],
 ];
@@ -680,9 +707,15 @@ for (const [agent, needles] of AGENT_CONTRACTS) {
 // and their "save" equivalents) -- missing them only produces false
 // positives (a real prohibition failing to clear, which fails loudly), but
 // the matcher was being rewritten anyway.
+//
+// The boundary set was also missing ';'. "Never call `x_update` while
+// archived; once confirmed, call `y_schedule` to save it." is one sentence to
+// '.', '!' and '?' alone, so the first clause's prohibition wrongly cleared
+// the second clause's genuine instruction to call a write tool. Added ';' to
+// the boundary set so a semicolon splits the two clauses like a period would.
 const WRITE_TOOLS = [...TOOLS].filter((t) => /_(create|update|delete|add|schedule|archive|restore|set)$/.test(t));
 const WRITE_TOOL_PROHIBITION = /(do not|does not|don't|doesn't|never|must not)\s+(call|save)\b/i;
-const SENTENCE_BOUNDARY = /[.!?](?=\s|$)|\n[ \t]*\n|\n[ \t]*#/g;
+const SENTENCE_BOUNDARY = /[.!?;](?=\s|$)|\n[ \t]*\n|\n[ \t]*#/g;
 const sentenceContaining = (body, idx) => {
   let start = 0;
   let end = body.length;
@@ -712,10 +745,19 @@ for (const f of ls("agents")) {
 }
 
 // --- 9. The reporting commands cover the whole graph -------------------
-// Seven commands read the workspace and tell the user what is in it. Each
+// Eight commands read the workspace and tell the user what is in it. Each
 // used to describe a world with no offerings and no campaigns, and a
 // Foundation layer of four loose entries. This pins the one thing each
 // command would otherwise silently stop covering.
+//
+// `month` was added by the final whole-branch review: its image step read
+// `context_get(role: "marketing_manager")` and `context_get(role:
+// "copywriter")` only, neither of which returns `brand_identity` or
+// `visual_rules` -- those are `art_director` fields. The command still told
+// the runner to pass "the brand's saved visual direction" into every image
+// prompt, a block it never read, so a month of images generated with no
+// look. Fixed in commands/month.md's image step; pinned here on the same
+// needle so a later edit that drops the read is caught before it ships.
 //
 // queue/report/topics were first keyed on the bare word "campaign". Review
 // caught that this proves nothing: it only shows the word appears somewhere
@@ -741,6 +783,7 @@ const REPORTS = [
   ["brandkit", ["offering_create", "offering_list", "brand_identity", "brand_positioning"]],
   ["knowledge", ["offering_list", "campaign_list", "knowledge_history"]],
   ["images", ["context_get"]],
+  ["month", ["art_director"]],
   ["visuals", ["brand_identity", "campaign_create"]],
   ["queue", ["campaign_id"]],
   ["report", ["whether it is still running"]],

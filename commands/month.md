@@ -184,14 +184,23 @@ Say the phase is starting and how long it takes, per **reply-style** rule 5b:
 Making 24 images — this takes a few minutes...
 ```
 
-For each post that should have one, get the description from `plgn-visual`,
-then call `generate_image`. Pass the brand's saved **visual direction** into
-every `plgn-visual` prompt, so a month's pictures look like one brand rather
-than twenty-four separate guesses.
+For each post that should have one, read `context_get(role: "art_director",
+campaign_id: <the post's campaign, if it has one>)` and put the post text, the
+brand's audience and that block into `plgn-visual`'s prompt — per
+**_conventions** rule 6, the agent cannot see this file.
 
-**Making an image takes time.** `generate_image` returns a job number, not an
-image. Check with `check_generation` on the schedule in the **image-prompting**
-skill.
+Per post, not once for the run: two posts in different campaigns want
+different references, and a run that reads the direction once gives them the
+same one.
+
+`plgn-visual` returns an `imagePrompt` and an `altText`, and sometimes a
+`referenceUrl`. If it returned one, call `generate_image_from_image` with it.
+Otherwise call `generate_image` with the `imagePrompt`. See **visual-identity**
+for why the two are different.
+
+**Making an image takes time.** `generate_image` and `generate_image_from_image`
+both return a job number, not an image. Check with `check_generation` on the
+schedule in the **image-prompting** skill.
 
 If it takes too long, leave the image out, note the post for the report, and
 **carry on** — a missing image never blocks scheduling. A post that goes out

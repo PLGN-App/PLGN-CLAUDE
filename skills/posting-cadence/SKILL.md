@@ -43,10 +43,8 @@ It used to live in a knowledge entry, because the record had nowhere to put
 it. See **brand-knowledge-map** for the four places a brand is stored.
 
 **A brand with no timezone set is a brand you must not schedule silently.**
-Say which zone you used and offer to save the right one. A time with no
-timezone is a time in whatever zone the server thinks in, and nobody finds
-out until a client notices their nine o'clock post arrived at two in the
-morning.
+Say which zone you used and offer to save the right one. See
+**brand-knowledge-map** for what happens when that is skipped.
 
 Never claim a time gets more attention. Say "a sensible default" and move on.
 
