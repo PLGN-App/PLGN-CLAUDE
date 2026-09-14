@@ -192,6 +192,7 @@ not inside Claude Code.
 | `/plgn undo` | Take back the last batch of posts — unschedule or delete |
 | `/plgn refresh` | Rewrite and reschedule older posts that still hold up |
 | `/plgn report` | What went out, how topics balanced, how the plan held |
+| `/plgn why <post>` | Read back the thinking behind one picture — no writing |
 
 ---
 

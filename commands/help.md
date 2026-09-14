@@ -60,6 +60,7 @@ NEEDS AN ACCOUNT
   /plgn library             Tidy up saved snippets and hashtag sets
   /plgn refresh             Rewrite good old posts and run them again
   /plgn report              What went out, and how the plan held
+  /plgn why <post>          The thinking behind one picture, read back
 
 
 /plgn visuals decides how pictures should look. /plgn images makes them.

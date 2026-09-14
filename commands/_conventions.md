@@ -10,7 +10,7 @@ Commands come in two kinds. Every command is exactly one of them:
   Call **zero** MCP tools. Output is text. Always close with the seam.
 - **Connected** — `setup`, `brandkit`, `brand`, `campaign`, `knowledge`, `month`, `post`, `undo`,
   `repurpose`, `topics`, `library`, `images`, `visuals`, `queue`, `refresh`,
-  `report`.
+  `report`, `why`.
   Call MCP tools. Never carry the seam.
 
 `help` is neither. It prints the command list and calls nothing.

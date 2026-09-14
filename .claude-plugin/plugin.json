@@ -55,6 +55,7 @@
     "./commands/queue.md",
     "./commands/refresh.md",
     "./commands/undo.md",
-    "./commands/report.md"
+    "./commands/report.md",
+    "./commands/why.md"
   ]
 }
