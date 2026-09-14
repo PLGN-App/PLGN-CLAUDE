@@ -514,11 +514,19 @@ for (const p of CONTENT) {
     if (exists(rs) && !read(rs).includes("Progress is not a log")) {
       fail(`${rs} must define what a long job may print while it works`);
     }
-    // Four more internal words. Every one of them is a thing the server
-    // calls something and a person calls nothing.
+    // Nine more internal words. Every one of them is a thing the server
+    // calls something and a person calls nothing. The last five are the
+    // creative brief's own vocabulary — brief_create, brief_finalize,
+    // anchor, candidate and knowledgeUsed name machine calls and machine
+    // fields; the user has "idea", "frame" and "brief" for the same things
+    // already, which is exactly why those three plain words are NOT on
+    // this list.
     if (exists(rs)) {
       const body = read(rs);
-      for (const word of ["context_get", "singleton", "revision", "metadata"]) {
+      for (const word of [
+        "context_get", "singleton", "revision", "metadata",
+        "brief_create", "brief_finalize", "anchor", "candidate", "knowledgeUsed",
+      ]) {
         if (!body.includes(word)) {
           fail(`${rs} must list "${word}" among the words that never reach the user`);
         }

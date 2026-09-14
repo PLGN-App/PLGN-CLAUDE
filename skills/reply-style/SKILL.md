@@ -170,6 +170,7 @@ These appear in plgn's own output today. Every one of them is internal.
 | "singleton" | "there is only one of these" |
 | "revision", "version 3" | "the earlier text", or the date it changed |
 | "metadata" | the field's own name — "the palette", "the intent" |
+| `brief_create`, `brief_finalize`, `anchor`, `candidate`, `knowledgeUsed` | nothing — they are the machine's names for things the user already has words for |
 
 **"Foundation", "Business" and "Creative" are allowed.** The dashboard prints
 those three words as section headings on the Knowledge page, so a reply that

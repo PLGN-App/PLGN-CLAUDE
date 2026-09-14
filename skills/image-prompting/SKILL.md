@@ -34,22 +34,16 @@ When none exists, say so once in the reply and carry on. Then suggest
 `/plgn visuals`, which works the look out from pictures the brand has already
 published, so the next batch does not have to guess.
 
-## Writing the description
+## Where the description comes from
 
-Describe four things, in this order:
+The text handed to `generate_image` or `generate_image_from_image` is no
+longer written here. It is the final image text from a **finalized brief** —
+the four steps of benefit, meanings, idea and direction, checked and settled
+before any credit is spent. **creative-brief** owns all four steps and the
+two calls that save them.
 
-1. **Subject** — what is in the picture, concretely. "A desk with one open
-   notebook and a closed laptop", not "productivity".
-2. **Framing** — the viewpoint, where the subject sits, how much empty space.
-   Leave room where platforms crop; roughly square survives more places than
-   wide.
-3. **Light** — direction, hard or soft, time of day. This sets the mood more
-   than any adjective.
-4. **Mood** — tied to what the post *argues*, not what it is about.
-
-Then set two limits: a colour direction that matches the brand, and what kind of
-image it is — photograph, flat illustration, 3D render. Leave that out and you
-get something unpredictable.
+This skill starts once that text exists: it owns the wait for the image
+those words produce, and what it costs.
 
 ## Never ask for words in the image
 

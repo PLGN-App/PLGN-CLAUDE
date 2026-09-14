@@ -164,6 +164,12 @@ Use it when there is a canonical reference. Fall back to `generate_image` with
 the `promptPreamble` prepended when there is not, and say in the reply that the
 match will be looser.
 
+What carries the frame — a real photo, a built object, a scene or type
+alone — is not chosen here. The server resolves it from what the brand
+sells, per **creative-brief**. This skill's part of that starts once the
+frame's subject is settled: the reference path above is unchanged either
+way.
+
 The **image-prompting** skill owns the mechanics of generating. This skill owns
 what the picture should look like before that starts.
 

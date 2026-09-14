@@ -25,6 +25,26 @@ Agents cannot read this file.
 has room. A post at 2,995 of LinkedIn's 3,000 fails the moment anyone edits a
 word.
 
+## Carousels
+
+Not every platform takes one, and the ones that do cap it differently.
+
+| Platform | Carousel | Max frames |
+|---|---|---|
+| **Instagram** | yes | up to 10 |
+| **LinkedIn** | yes | up to 10 |
+| **Facebook** | yes | up to 10 |
+| **X** | yes | up to 4 |
+| **TikTok** | no — video only | — |
+
+A carousel caption is written differently from a single picture's, because
+the first frame already does the work a caption normally opens with. The
+frame itself carries the hook the reader sees before they swipe, so the
+caption doesn't have to earn attention a second time — it can move straight
+to what the caption is actually for on that platform: the hashtags, the
+context, the call to swipe on, or, on LinkedIn, the argument the frames only
+sketched.
+
 ## Rewrite per platform, never copy
 
 The same idea must be **written again** for each platform, never pasted. A
