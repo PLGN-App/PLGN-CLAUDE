@@ -671,11 +671,26 @@ for (const p of ["skills/brand-onboarding/SKILL.md", "commands/setup.md"]) {
 // file would clear it without the block itself surviving. Keyed instead on
 // "Key message:" -- a label from the block's own example that ordinary prose
 // about campaigns would not produce by accident.
+//
+// The creative-director needle list was handed down as ["candidates",
+// "rejectedBecause", "artDirection", "concept"]. The first three survive the
+// same test as "Key message:" above -- camelCase field names (or, for
+// "candidates", a word this file uses nowhere except the JSON array) that
+// ordinary prose about ideas would not produce by accident, and deleting any
+// one of them from the JSON block leaves no other occurrence behind.
+// "concept" does not survive it: the same JSON block also carries
+// "conceptWhy" (required by the brief alongside it), and "concept" is a
+// substring of "conceptWhy" -- deleting the `"concept"` field on its own
+// while leaving `"conceptWhy"` in place would still satisfy a bare
+// `body.includes("concept")`, which is exactly the "kind" trap described
+// above. Keyed instead on `"concept":` -- the quoted-key-plus-colon as it
+// appears in the JSON block -- which is not a substring of `"conceptWhy":`.
 const AGENT_CONTRACTS = [
   ["plgn-brand-architect", ["offerings", "\"kind\":", "benefits", "avoidCliches"]],
   ["plgn-copywriter", ["offeringNames", "Key message:"]],
   ["plgn-visual", ["referenceUrl", "anchor"]],
   ["plgn-strategist", ["campaign", "keyMessage", "vocabulary"]],
+  ["plgn-creative-director", ["candidates", "rejectedBecause", "artDirection", "\"concept\":"]],
 ];
 for (const [agent, needles] of AGENT_CONTRACTS) {
   const p = `agents/${agent}.md`;
