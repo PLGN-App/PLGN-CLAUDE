@@ -29,7 +29,8 @@
     "./skills/visual-identity",
     "./skills/content-topics",
     "./skills/image-prompting",
-    "./skills/posting-cadence"
+    "./skills/posting-cadence",
+    "./skills/creative-brief"
   ],
   "commands": [
     "./commands/help.md",

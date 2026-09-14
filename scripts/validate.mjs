@@ -841,6 +841,21 @@ for (const [c, needles] of REPORTS) {
   }
 }
 
+// --- 11. The brief skill owns the three-check limit and both calls -----
+// A skill that describes the steps but not where they stop is a skill that
+// reads fine and loops forever in practice.
+{
+  const BRIEF_SKILL = "skills/creative-brief/SKILL.md";
+  if (exists(BRIEF_SKILL)) {
+    const b = read(BRIEF_SKILL);
+    for (const needle of ["brief_create", "brief_finalize", "three"]) {
+      if (!b.includes(needle)) fail(`${BRIEF_SKILL}: must state \`${needle}\``);
+    }
+  } else {
+    fail(`${BRIEF_SKILL} is missing — nothing owns the four steps`);
+  }
+}
+
 if (fails.length) {
   for (const f of fails) console.error(`FAIL: ${f}`);
   console.error(`\n${fails.length} problem(s).`);
