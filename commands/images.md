@@ -47,12 +47,19 @@ image would cost more than it adds.
 
 ## 4. Say what it costs, then ask
 
-**Before any thinking starts.** Every post left after step 3 carries a frame
-count — its saved `planned_slides`, or 1 for a single picture — so the total
-for the whole run is already known:
+**Before any thinking starts.** The frame count this bill uses is the frame
+count step 5 will actually make — this command decides it, not reads it
+back from somewhere else. Unless the user asked for a carousel when running
+this command, every post left after step 3 is one frame. When they did ask,
+use the count they gave for those posts (default 3, never more than 10) and
+say which posts are carousels.
+
+A carousel planned earlier by `/plgn month` cannot be seen from here, so
+unless the user asks for one in this run, a post is costed and made as one
+picture:
 
 ```
-9 pictures for 5 posts (one is a 4-frame carousel).
+9 pictures for 5 posts (one is a 4-frame carousel, asked for in this run).
 9 credits, leaving 15.
 yes / pick / no
 ```
@@ -74,21 +81,23 @@ for each one. This is the **creative-brief** skill's four steps in two calls
    campaign, if it has one>)`.
 2. Send `plgn-creative-director` that block, the caption, the offering's
    benefits, the campaign's constraints and vocabulary if this post runs
-   inside one, the `Already done` lines from the read, and the post's frame
-   count. Per **_conventions** rule 6, all of it goes in the prompt — the
-   agent cannot see this file.
+   inside one, the `Already done` lines from the read, and the frame count
+   decided in step 4. Per **_conventions** rule 6, all of it goes in the
+   prompt — the agent cannot see this file.
 3. Call `brief_create` with what it returned, plus `knowledge_used` copied
    from the end of the `context_get` read.
 4. Read `context_get(role: "designer", campaign_id: <the post's campaign, if
    it has one>)` for the brand's identity and picture rules. Send
-   `plgn-designer` the concept, the frames, that block, and what carries each
-   frame, as step 3 above resolved it.
-5. A frame that fails a check comes back as objections, not a picture. Call
-   `brief_update` with them and a **different idea** — one `plgn-creative-
-   director` already scored and did not pick — then send the result back to
-   `plgn-designer`. **Three times at most.** On the third failed check, stop
-   working on this post, say which post and why, and carry on with the rest
-   of the run. Never a fourth `brief_update`.
+   `plgn-designer` the concept, the frames, that block, the campaign's
+   constraints from the step 1 read, and what carries each frame, as step 3
+   above resolved it.
+5. A frame that fails a check comes back as objections, not a picture. Send
+   `plgn-creative-director` the objections and the ideas it already scored,
+   so it can pick a **different idea** and write fresh directions for it.
+   Call `brief_update` with what it returns, then send the result back to
+   `plgn-designer`. Up to three checks per post — on the third failed check,
+   stop working on this post, say which post and why, and carry on with the
+   rest of the run. Never attempt a fourth.
 6. No objections → call `brief_finalize` with the final image text per
    frame.
 
@@ -110,10 +119,12 @@ it, do not restate it here.
 
 ## 7. Attach
 
-Once a post's frames are made, send `plgn-visual` that post's final image
-text and frame descriptions, so it can write the alt text per frame. Then
-call `post_update` with the media in frame order. `media[0]` is the cover, so
-the order matters and is the frame order.
+Once a post's frames are made, send `plgn-visual` the post and its frames,
+the brand's voice from the step 3 read, and each frame's final image text
+and `altTextHint` from `plgn-designer` — per **_conventions** rule 6, the
+agent cannot see this file, so all of it goes in the prompt. It writes the
+alt text per frame. Then call `post_update` with the media in frame order.
+`media[0]` is the cover, so the order matters and is the frame order.
 
 ## 8. Say what happened
 
