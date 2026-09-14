@@ -650,7 +650,7 @@ for (const p of ["skills/brand-onboarding/SKILL.md", "commands/setup.md"]) {
 }
 
 // --- 8. Agent contracts (Task 6) ----------------------------------------
-// The five agents whose contract changed. An agent's output shape is read
+// The six agents whose contract changed. An agent's output shape is read
 // by the command that started it, and a shape that drifts fails at the
 // point the command tries to save -- after the model has already done the
 // work.
