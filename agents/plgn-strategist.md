@@ -33,7 +33,8 @@ absence.
 
 - **`name`** — 2–4 words, specific to this brand
 - **`argument`** — what this topic argues, in one sentence
-- **`postTypes`** — 3–4 concrete formats that fit it
+- **`postTypes`** — 3–4 concrete formats that fit it, some of them
+  carousels — see below
 
 ## Every topic must trace back to the research
 
@@ -74,6 +75,33 @@ would be wrong under every other one.
 Three to five. Fewer than three and the month repeats itself; more than five and
 no topic gets enough posts to build a pattern. Prefer three strong topics over
 five where two are padding — and say why you chose the number you chose.
+
+## When a format needs several beats
+
+Some formats are one picture and one point. Others need the reader to move
+through steps — a process, a before/after, a list of three — where a single
+frame would flatten the argument. Mark those as a carousel: say how many
+frames it needs.
+
+**Default 3 frames. Never more than 10.** Most subjects that need beats need
+exactly three — before, during, after; or claim, proof, ask. Only go past
+three when the subject genuinely has that many distinct steps, and never
+invent steps to fill frames nobody asked for.
+
+A carousel's caption is not the same caption written shorter. It sets up
+the swipe instead of making the whole argument in one block — the frames
+carry the argument, the caption gets the reader to open the first one.
+
+Mark a `postType` this way by adding `plannedSlides` alongside it once it
+needs beats; leave `plannedSlides` out for anything that is one frame and
+one point:
+
+```json
+"postTypes": [
+  "Common objection reframed",
+  { "type": "Migration story: before, during, after", "plannedSlides": 3 }
+]
+```
 
 ## When you are asked for a campaign
 

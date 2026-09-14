@@ -650,7 +650,7 @@ for (const p of ["skills/brand-onboarding/SKILL.md", "commands/setup.md"]) {
 }
 
 // --- 8. Agent contracts (Task 6) ----------------------------------------
-// The four agents whose contract changed. An agent's output shape is read
+// The five agents whose contract changed. An agent's output shape is read
 // by the command that started it, and a shape that drifts fails at the
 // point the command tries to save -- after the model has already done the
 // work.
@@ -702,11 +702,32 @@ for (const p of ["skills/brand-onboarding/SKILL.md", "commands/setup.md"]) {
 // Mutation-tested by deleting each needle's line from
 // agents/plgn-designer.md in turn and confirming validate.mjs fails naming
 // that file before restoring it (see task-4-report.md).
+//
+// Task 5 narrowed plgn-visual down to two jobs -- deciding whether a post
+// needs a picture at all, and writing alt text once one exists -- and the
+// old needles ("referenceUrl", "anchor") pinned exactly the art-direction
+// shape that got deleted, so they would have passed on a file that no
+// longer does what they claim to check. Replaced with the quoted-key form
+// of the new shape's two JSON fields, `"needsImage":` and `"altText":`.
+// Bare "needsImage" and "altText" both fail the same test "concept" failed
+// in Task 4 -- Job 1 and Job 2's prose talk about needsImage and alt text
+// in plain sentences and in single-backtick form (`needsImage: false`),
+// so a bare-word needle would still pass with the JSON block itself
+// deleted. The quoted-key-plus-colon form only occurs where the JSON
+// actually declares the field. Mutation-tested by deleting each needle's
+// line from agents/plgn-visual.md in turn and confirming validate.mjs
+// fails naming that file before restoring it (see task-5-report.md).
+//
+// Task 5 also added `plannedSlides` to plgn-strategist's output, for a
+// postType that needs several beats. The prose that introduces it uses
+// single backticks (`plannedSlides`), so the needle is the quoted-key form
+// `"plannedSlides":` that only appears in the JSON example. Mutation-tested
+// the same way (see task-5-report.md).
 const AGENT_CONTRACTS = [
   ["plgn-brand-architect", ["offerings", "\"kind\":", "benefits", "avoidCliches"]],
   ["plgn-copywriter", ["offeringNames", "Key message:"]],
-  ["plgn-visual", ["referenceUrl", "anchor"]],
-  ["plgn-strategist", ["campaign", "keyMessage", "vocabulary"]],
+  ["plgn-visual", ["\"needsImage\":", "\"altText\":"]],
+  ["plgn-strategist", ["campaign", "keyMessage", "vocabulary", "\"plannedSlides\":"]],
   ["plgn-creative-director", ["candidates", "rejectedBecause", "artDirection", "\"concept\":"]],
   ["plgn-designer", ["\"generationPrompt\":", "\"qaFindings\":"]],
 ];
