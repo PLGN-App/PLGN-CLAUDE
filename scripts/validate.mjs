@@ -11,6 +11,7 @@ const fail = (m) => fails.push(m);
 
 const TOOLS = new Set([
   "brand_archive", "brand_list", "brand_restore", "brand_update",
+  "brief_create", "brief_update", "brief_finalize", "brief_get", "brief_list",
   "campaign_create", "campaign_delete", "campaign_get", "campaign_list", "campaign_update",
   "check_generation", "cloudinary_connect", "context_get", "delete_image",
   "generate_image", "generate_image_from_image",
@@ -27,7 +28,7 @@ const TOOLS = new Set([
 
 const FREE = ["demo", "audit", "strategy", "voice", "competitors", "calendar"];
 const CONNECTED = ["setup", "brand", "campaign", "knowledge", "month", "post", "repurpose",
-  "topics", "library", "images", "queue", "refresh", "report", "visuals", "brandkit", "undo"];
+  "topics", "library", "images", "queue", "refresh", "report", "visuals", "brandkit", "undo", "why"];
 // `help` is neither free nor connected: it calls nothing and carries no seam.
 const NEITHER = ["help"];
 
@@ -126,9 +127,9 @@ if (manifest) {
   // they add up to, so a file added or removed without updating plugin.json
   // or the agent roster could still keep both sides consistent with each
   // other but wrong in absolute terms. These three numbers pin that.
-  const EXPECTED_COMMAND_COUNT = 23;
-  const EXPECTED_SKILL_COUNT = 11;
-  const EXPECTED_AGENT_COUNT = 10;
+  const EXPECTED_COMMAND_COUNT = 24;
+  const EXPECTED_SKILL_COUNT = 12;
+  const EXPECTED_AGENT_COUNT = 12;
   if ((manifest.commands ?? []).length !== EXPECTED_COMMAND_COUNT) {
     fail(`plugin.json commands array has ${(manifest.commands ?? []).length} entries, expected ${EXPECTED_COMMAND_COUNT}`);
   }
@@ -177,9 +178,11 @@ const KNOWLEDGE_TYPES = new Set([
 // never tools themselves. Real parameters on knowledge_get, context_get,
 // post_create, post_list, campaign_create and knowledge_history — not
 // speculation. Kept explicit rather than a pattern like "anything ending in
-// `_id`/`_ids`", which would let a genuinely invented tool through.
+// `_id`/`_ids`", which would let a genuinely invented tool through. Brief-pipeline
+// arguments are added here too: brief_id and other names that appear in the brief workflow.
 const NON_TOOL_NAMES = new Set([
   "campaign_id", "offering_id", "offering_ids", "topic_id", "topic_ids", "knowledge_id",
+  "post_id", "brief_id", "knowledge_used", "slide_order", "planned_slides",
 ]);
 for (const p of CONTENT) {
   const body = read(p);
@@ -198,7 +201,7 @@ for (const p of CONTENT) {
     // other file does.
     if (MAP_ONLY_LEGACY_TYPES.has(name) && p === MAP_SKILL_PATH) continue;
     // only judge names that look like plgn tools: a known prefix
-    if (/^(brand|campaign|check|cloudinary|context|delete|generate|hashtagset|kie|knowledge|list|offering|post|snippet|topic|upload|workspace)_/.test(name)
+    if (/^(brand|brief|campaign|check|cloudinary|context|delete|generate|hashtagset|kie|knowledge|list|offering|post|snippet|topic|upload|workspace)_/.test(name)
       && !TOOLS.has(name)) {
       fail(`${p}: unknown MCP tool name \`${name}\``);
     }
@@ -545,8 +548,8 @@ for (const p of CONTENT) {
   // only place that notices.
   const AGENTS = [
     "plgn-analyst", "plgn-art-director", "plgn-brand-architect", "plgn-brand-guard",
-    "plgn-copywriter", "plgn-librarian", "plgn-researcher", "plgn-scheduler",
-    "plgn-strategist", "plgn-visual",
+    "plgn-copywriter", "plgn-creative-director", "plgn-designer", "plgn-librarian",
+    "plgn-researcher", "plgn-scheduler", "plgn-strategist", "plgn-visual",
   ];
   const onDisk = ls("agents").filter((f) => f.endsWith(".md")).map((f) => f.replace(/\.md$/, ""));
   for (const a of AGENTS) {
