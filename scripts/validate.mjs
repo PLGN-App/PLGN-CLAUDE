@@ -930,6 +930,19 @@ for (const [c, needles] of REPORTS) {
   }
 }
 
+// --- 12. The pipeline check: images must go through a brief -------------
+// A command that calls generate_image with no brief_create is the old
+// behaviour wearing the new version number.
+{
+  const IMAGES = "commands/images.md";
+  if (exists(IMAGES)) {
+    const body = read(IMAGES);
+    for (const needle of ["brief_create", "brief_finalize", "creative-brief"]) {
+      if (!body.includes(needle)) fail(`${IMAGES}: must go through \`${needle}\``);
+    }
+  }
+}
+
 if (fails.length) {
   for (const f of fails) console.error(`FAIL: ${f}`);
   console.error(`\n${fails.length} problem(s).`);

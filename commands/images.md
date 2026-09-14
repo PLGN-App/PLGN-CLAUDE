@@ -26,23 +26,17 @@ Say what you found and how many are worth filling:
 7 posts have no image · 24 credits available
 ```
 
-## 3. Decide which deserve one
+## 3. Decide which deserve a picture
 
 Not every post should have a picture. Send each candidate to `plgn-visual`,
-which returns nothing when a post reads better plain.
+which returns nothing to make when a post reads better plain.
 
-For each post that needs a picture, read
-`context_get(role: "art_director", campaign_id: <the post's campaign, if it
-has one>)` and put the post text, the brand's audience and that block into
+For each post, read `context_get(role: "copywriter", campaign_id: <the
+post's campaign, if it has one>)` and put the post text and that block into
 `plgn-visual`'s prompt — per **_conventions** rule 6, the agent cannot see
 this file.
 
-Per post, not once for the run: two posts in different campaigns want
-different references, and a run that reads the direction once gives them the
-same one.
-
-If none is saved, say so once and offer `/plgn visuals`, which works it out
-from pictures the brand already published.
+Per post, not once for the run.
 
 Say which ones you are skipping, rather than quietly leaving them out:
 
@@ -53,46 +47,88 @@ image would cost more than it adds.
 
 ## 4. Say what it costs, then ask
 
-**Before making anything:**
+**Before any thinking starts.** Every post left after step 3 carries a frame
+count — its saved `planned_slides`, or 1 for a single picture — so the total
+for the whole run is already known:
 
 ```
-Make 5 images? That's 5 credits, leaving 19.
+9 pictures for 5 posts (one is a 4-frame carousel).
+9 credits, leaving 15.
 yes / pick / no
 ```
 
-Images spend from a real balance. The cost goes in the question, not
-afterwards. If the number is more than they have, say so and offer to do the
-most valuable posts rather than stopping halfway with no explanation.
+Images spend from a real balance, and this states the whole run's bill, not
+one post's. If the number is more than the workspace has, say so and offer to
+do the most valuable posts rather than stopping halfway with no explanation.
 
 `--dry-run` stops here and spends nothing.
 **`--yes` is not accepted by this command.** It spends credits.
 
-## 5. Make them
+## 5. Per post: read, think, check, save
 
-`plgn-visual` returns an `imagePrompt` and an `altText` for every post, and
-sometimes a `referenceUrl`. If it returned one, call
-`generate_image_from_image` with it. Otherwise call `generate_image` with the
-`imagePrompt`. See **visual-identity** for why the two are different.
+Once the user says yes, work through the posts one at a time, in this order,
+for each one. This is the **creative-brief** skill's four steps in two calls
+— read it before changing anything here.
 
-Then follow the **image-prompting** skill exactly:
+1. Read `context_get(role: "creative_director", campaign_id: <the post's
+   campaign, if it has one>)`.
+2. Send `plgn-creative-director` that block, the caption, the offering's
+   benefits, the campaign's constraints and vocabulary if this post runs
+   inside one, the `Already done` lines from the read, and the post's frame
+   count. Per **_conventions** rule 6, all of it goes in the prompt — the
+   agent cannot see this file.
+3. Call `brief_create` with what it returned, plus `knowledge_used` copied
+   from the end of the `context_get` read.
+4. Read `context_get(role: "designer", campaign_id: <the post's campaign, if
+   it has one>)` for the brand's identity and picture rules. Send
+   `plgn-designer` the concept, the frames, that block, and what carries each
+   frame, as step 3 above resolved it.
+5. A frame that fails a check comes back as objections, not a picture. Call
+   `brief_update` with them and a **different idea** — one `plgn-creative-
+   director` already scored and did not pick — then send the result back to
+   `plgn-designer`. **Three times at most.** On the third failed check, stop
+   working on this post, say which post and why, and carry on with the rest
+   of the run. Never a fourth `brief_update`.
+6. No objections → call `brief_finalize` with the final image text per
+   frame.
 
-- `generate_image` and `generate_image_from_image` both return a **job
-  number**, not an image.
-- Start **all** of them first, then check — one at a time turns a 90-second
-  wait into half an hour.
-- Check with `check_generation` every 5 seconds; give up at 90 seconds each.
+## 6. Make the pictures
 
-If one takes too long: leave the slot empty, note it, and carry on. A missing
-image never blocks anything.
+Read the brand's saved look once for the whole run with
+`context_get(role: "art_director")`. If nothing is saved, say so once and
+offer `/plgn visuals`, which works the look out from pictures the brand
+already published, then carry on without it.
 
-## 6. Attach and report
+When the brand holds a canonical reference, call
+`generate_image_from_image` with it, for every frame. Otherwise call
+`generate_image`. See **visual-identity** for why the two are different.
+Either way, carry `post_id`, `brief_id` and `slide_order` on the call, and
+use each frame's finalized image text from step 5.
 
-Attach each finished image to its post, with the alt text `plgn-visual` wrote.
+Then follow the **image-prompting** skill's waiting cycle exactly — point at
+it, do not restate it here.
+
+## 7. Attach
+
+Once a post's frames are made, send `plgn-visual` that post's final image
+text and frame descriptions, so it can write the alt text per frame. Then
+call `post_update` with the media in frame order. `media[0]` is the cover, so
+the order matters and is the frame order.
+
+## 8. Say what happened
+
+Counts first: pictures made, credits spent, posts skipped and why, posts
+that needed a person. Then, for each post that got a picture, print its idea
+in one sentence — that is the part a user can actually agree or disagree
+with.
 
 ```
-5 images made and attached · 19 credits left
+7 pictures made across 4 posts · 7 credits spent, 17 left
 
-  1 took too long — "The 90-minute review" still has no image
+  "The 90-minute review" — a rope under tension, for the strain of a
+  packed calendar
+
+  1 needed a person — "Why we cut prices" failed its check three times
   2 skipped — they read better plain
 ```
 
