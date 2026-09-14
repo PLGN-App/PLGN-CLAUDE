@@ -849,12 +849,15 @@ for (const [c, needles] of REPORTS) {
 // else — a needle's job is proving the behaviour is still there, not that a
 // digit-word collides with ordinary prose. Each needle below is a phrase a
 // deletion of its rule would remove and generic prose about the same topic
-// would not reproduce by accident: "does not attempt a fourth" is the
-// command-stops-first half of the three-check limit (the server-backstop
-// half is judged by `brief_update` already appearing, via the next needle),
-// "more than 10" is the carousel cap, and "before the first call" is the
-// cost-stated-up-front rule. The other five sections stay unbound on
-// purpose — five needles is proportionate, not one per section.
+// would not reproduce by accident: "does not attempt a fourth" binds the
+// command-stops-first half of the three-check limit — the half that costs
+// money if it goes missing, since a missing stop means a real fourth
+// `brief_update` call. The sentence beside it, that the server enforces the
+// same cap as a backstop, is deliberately unbound, same as the sections
+// below. "more than 10" is the carousel cap, and "before the first call" is
+// the cost-stated-up-front rule. The other four sections (what a brief is
+// for, the four steps, what makes a real idea, what carries the frame) stay
+// unbound on purpose — five needles is proportionate, not one per section.
 {
   const BRIEF_SKILL = "skills/creative-brief/SKILL.md";
   if (exists(BRIEF_SKILL)) {
