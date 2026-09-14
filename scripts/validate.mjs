@@ -178,8 +178,10 @@ const KNOWLEDGE_TYPES = new Set([
 // never tools themselves. Real parameters on knowledge_get, context_get,
 // post_create, post_list, campaign_create and knowledge_history — not
 // speculation. Kept explicit rather than a pattern like "anything ending in
-// `_id`/`_ids`", which would let a genuinely invented tool through. Brief-pipeline
-// arguments are added here too: brief_id and other names that appear in the brief workflow.
+// `_id`/`_ids`", which would let a genuinely invented tool through. Brief
+// pipeline parameters—post_id, brief_id, knowledge_used, slide_order,
+// planned_slides—on brief, post, and generate operations are similarly verified,
+// not speculation.
 const NON_TOOL_NAMES = new Set([
   "campaign_id", "offering_id", "offering_ids", "topic_id", "topic_ids", "knowledge_id",
   "post_id", "brief_id", "knowledge_used", "slide_order", "planned_slides",
