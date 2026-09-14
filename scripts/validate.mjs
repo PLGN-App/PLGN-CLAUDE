@@ -685,12 +685,30 @@ for (const p of ["skills/brand-onboarding/SKILL.md", "commands/setup.md"]) {
 // `body.includes("concept")`, which is exactly the "kind" trap described
 // above. Keyed instead on `"concept":` -- the quoted-key-plus-colon as it
 // appears in the JSON block -- which is not a substring of `"conceptWhy":`.
+//
+// The designer's output is two-way and the two halves are mutually
+// exclusive by contract (Task 4: slides go to brief_finalize, qaFindings go
+// to brief_update, never both) -- so both halves need their own needle, or
+// a future edit could drop one path's JSON block entirely and this check
+// would not notice. Learning the "concept" trap above, both needles are the
+// quoted-key-plus-colon form: `"generationPrompt":` and `"qaFindings":`, not
+// the bare words. Bare "qaFindings" would already be safe on its own (it
+// appears nowhere else in the file), but bare "generationPrompt" would not
+// -- the same word also names the field in prose ("the final image text"
+// paraphrase aside, a future edit could easily reintroduce the bare word
+// outside the JSON block, e.g. in a sentence explaining what
+// generationPrompt is for). Keying both on the quoted form pins them to the
+// actual JSON block and not to prose that happens to mention the field.
+// Mutation-tested by deleting each needle's line from
+// agents/plgn-designer.md in turn and confirming validate.mjs fails naming
+// that file before restoring it (see task-4-report.md).
 const AGENT_CONTRACTS = [
   ["plgn-brand-architect", ["offerings", "\"kind\":", "benefits", "avoidCliches"]],
   ["plgn-copywriter", ["offeringNames", "Key message:"]],
   ["plgn-visual", ["referenceUrl", "anchor"]],
   ["plgn-strategist", ["campaign", "keyMessage", "vocabulary"]],
   ["plgn-creative-director", ["candidates", "rejectedBecause", "artDirection", "\"concept\":"]],
+  ["plgn-designer", ["\"generationPrompt\":", "\"qaFindings\":"]],
 ];
 for (const [agent, needles] of AGENT_CONTRACTS) {
   const p = `agents/${agent}.md`;
