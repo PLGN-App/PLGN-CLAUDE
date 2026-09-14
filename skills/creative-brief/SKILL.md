@@ -44,9 +44,13 @@ exactly the pattern this record exists to stop.
 
 ## Three checks, then stop
 
-A failed check can be retried at most three times. The fourth is refused —
-the server will not accept it. The brief is marked failed, and the command
-names the post and moves on rather than looping on it.
+The command stops at three. On a third failed check it does not attempt a fourth
+`brief_update` — it names the post that needs a person and carries on with
+the rest of the run.
+
+The server enforces the same cap as a backstop: a fourth `brief_update` is
+refused, and the brief is marked failed. The two only have to agree; the
+server is what actually enforces it.
 
 Write the reason down, because it is not obvious: with no record of the
 ideas that already lost, the only way left to answer an objection is to add
@@ -89,10 +93,10 @@ frame, so there is never a second way of building this — a carousel is not a
 different procedure, it is the same one with more frames.
 
 Default to 3 frames when someone asks for a carousel without saying how
-many. Never more than 10.
+many, and never more than 10.
 
 ## Cost
 
-Every frame is a picture, and every picture is a charge. Before the first
-call, state the total: frame count × the cost of one image, said plainly, so
-nobody finds out how many frames they paid for after the fact.
+Every frame is a picture, and every picture is a charge. State the total
+before the first call — frame count times the cost of one image, said
+plainly, so nobody finds out how many frames they paid for after the fact.

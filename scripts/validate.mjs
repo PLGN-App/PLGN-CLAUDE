@@ -843,12 +843,29 @@ for (const [c, needles] of REPORTS) {
 
 // --- 11. The brief skill owns the three-check limit and both calls -----
 // A skill that describes the steps but not where they stop is a skill that
-// reads fine and loops forever in practice.
+// reads fine and loops forever in practice. `"three"` alone was tried first
+// and rejected: it would still pass a file that deleted the whole
+// three-checks section but happened to say "the top three ideas" somewhere
+// else — a needle's job is proving the behaviour is still there, not that a
+// digit-word collides with ordinary prose. Each needle below is a phrase a
+// deletion of its rule would remove and generic prose about the same topic
+// would not reproduce by accident: "does not attempt a fourth" is the
+// command-stops-first half of the three-check limit (the server-backstop
+// half is judged by `brief_update` already appearing, via the next needle),
+// "more than 10" is the carousel cap, and "before the first call" is the
+// cost-stated-up-front rule. The other five sections stay unbound on
+// purpose — five needles is proportionate, not one per section.
 {
   const BRIEF_SKILL = "skills/creative-brief/SKILL.md";
   if (exists(BRIEF_SKILL)) {
     const b = read(BRIEF_SKILL);
-    for (const needle of ["brief_create", "brief_finalize", "three"]) {
+    for (const needle of [
+      "brief_create",
+      "brief_finalize",
+      "does not attempt a fourth",
+      "more than 10",
+      "before the first call",
+    ]) {
       if (!b.includes(needle)) fail(`${BRIEF_SKILL}: must state \`${needle}\``);
     }
   } else {
