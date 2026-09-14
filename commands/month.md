@@ -156,13 +156,17 @@ Call `topic_create` **only for topics that do not already exist**. Then call
 when the month is planned inside one, and set the offerings from each post's
 own `offeringNames`, matched against the offerings you were given, never
 invented. Carry `knowledge_used` on every `post_create` too, copied from the
-end of the `context_get(role: "copywriter", …)` read that produced this
-post's topic — it is the only record of exactly what the writer was told,
-and dropping it here is not a shortcut, it is the record going missing.
+end of the `context_get(role: "copywriter", …)` read that briefed the writer
+who wrote this post — it is the only record of exactly what the writer was
+told, and dropping it here is not a shortcut, it is the record going missing.
 
 When the plan marked a topic's format as a carousel — a `postType` carrying
 `plannedSlides` — pass that number as `planned_slides` on posts written to
-that format.
+that format. When you cannot tell which draft was written to that format, do
+not guess: save the post with no `planned_slides` and name it among the
+report's exceptions — a missing frame count is a visible gap someone can add
+later; a carousel bound to the wrong post is invisible, and nothing
+downstream ever catches it.
 
 **Stamp every post in this run with the same run marker**, per the
 **brand-knowledge-map** skill. It costs nothing, the reader never sees it, and
@@ -203,9 +207,9 @@ same one.
 `plgn-visual` only says whether this post needs a picture at all, and why —
 it does not art-direct one. When it says yes, write the image description
 yourself from the post text and the `art_director` block you just read. The
-reference path is brand-level, not per-agent: when the brand or campaign
-holds a canonical reference, call `generate_image_from_image` with it.
-Otherwise call `generate_image`. See **visual-identity** for why the two are
+reference path is brand-level, not per-agent: when the brand holds a
+canonical reference, call `generate_image_from_image` with it. Otherwise
+call `generate_image`. See **visual-identity** for why the two are
 different.
 
 **Making an image takes time.** `generate_image` and `generate_image_from_image`
