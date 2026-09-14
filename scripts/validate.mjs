@@ -625,6 +625,13 @@ for (const c of DRAFTS_COPY) {
   }
 }
 
+// Reading the brand and then not saying what you read is half a feature: the
+// pins are what make "why does this say that" answerable later.
+for (const f of ["month.md", "post.md"]) {
+  const body = read(`commands/${f}`);
+  if (!body.includes("knowledge_used")) fail(`commands/${f}: must pass \`knowledge_used\` from its context_get read`);
+}
+
 // --- 7c. Onboarding writes the current types ---------------------------
 // Onboarding writes the four Foundation singletons and the offerings. If
 // its skill or its command still names a legacy type, a fresh brand is set

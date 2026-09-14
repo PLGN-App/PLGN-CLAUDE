@@ -155,7 +155,14 @@ Call `topic_create` **only for topics that do not already exist**. Then call
 `post_create` also takes `campaign_id` and `offering_ids`. Set the campaign
 when the month is planned inside one, and set the offerings from each post's
 own `offeringNames`, matched against the offerings you were given, never
-invented.
+invented. Carry `knowledge_used` on every `post_create` too, copied from the
+end of the `context_get(role: "copywriter", …)` read that produced this
+post's topic — it is the only record of exactly what the writer was told,
+and dropping it here is not a shortcut, it is the record going missing.
+
+When the plan marked a topic's format as a carousel — a `postType` carrying
+`plannedSlides` — pass that number as `planned_slides` on posts written to
+that format.
 
 **Stamp every post in this run with the same run marker**, per the
 **brand-knowledge-map** skill. It costs nothing, the reader never sees it, and
@@ -193,10 +200,13 @@ Per post, not once for the run: two posts in different campaigns want
 different references, and a run that reads the direction once gives them the
 same one.
 
-`plgn-visual` returns an `imagePrompt` and an `altText`, and sometimes a
-`referenceUrl`. If it returned one, call `generate_image_from_image` with it.
-Otherwise call `generate_image` with the `imagePrompt`. See **visual-identity**
-for why the two are different.
+`plgn-visual` only says whether this post needs a picture at all, and why —
+it does not art-direct one. When it says yes, write the image description
+yourself from the post text and the `art_director` block you just read. The
+reference path is brand-level, not per-agent: when the brand or campaign
+holds a canonical reference, call `generate_image_from_image` with it.
+Otherwise call `generate_image`. See **visual-identity** for why the two are
+different.
 
 **Making an image takes time.** `generate_image` and `generate_image_from_image`
 both return a job number, not an image. Check with `check_generation` on the
@@ -220,10 +230,13 @@ user how many to expect.
 
 ## 9. Report
 
-Counts first, then the exceptions by name, then the link.
+Counts first, then the exceptions by name, then the link. Count carousels on
+their own line — each one is several pictures, not one, and costs
+accordingly.
 
 ```
 28 posts scheduled across 4 weeks · 3 topics · 24 images
+4 of them carousels (9 extra pictures)
 
   2 were shortened to fit LinkedIn
   1 is still a draft — it uses "growth hack", a word you banned, and the

@@ -41,6 +41,11 @@ differently.
 A name that matches no campaign is a question, not a new campaign: say what
 you found and ask. `/plgn campaign` is where one gets created.
 
+**If they asked for a carousel** — "a carousel about X" — ask how many
+frames if they did not say, defaulting to 3, never more than 10. Say the
+number back; it is what `/plgn images` will cost later, when the pictures
+get made.
+
 ## 3. Write it
 
 Start `plgn-copywriter` with the idea and the platform. Ask for **one** post.
@@ -76,7 +81,11 @@ delete, and this command runs many times a day.
 
 ## 5. Save it
 
-Call `post_create` as a draft.
+Call `post_create` as a draft. Carry `knowledge_used`, copied from the end of
+the `context_get` read in step 1 — it is the only record of exactly what the
+writer was told, and dropping it here is not a shortcut, it is the record
+going missing. If the idea was a carousel, carry `planned_slides` too, from
+the frame count agreed in step 2.
 
 On `ERROR:`, follow the **gate-recovery** skill. Show the change and what moved
 before trying again — for a single post the user is right there, and a silent

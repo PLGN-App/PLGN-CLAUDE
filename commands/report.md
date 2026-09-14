@@ -21,8 +21,8 @@ when it is pasted somewhere else a week later.
 
 ## 3. Read and work it out
 
-Call `post_list`, `topic_list` and `campaign_list` for the period, then start
-`plgn-analyst`.
+Call `post_list`, `topic_list`, `campaign_list` and `brief_list` for the
+period, then start `plgn-analyst`.
 
 Per **_conventions** rule 6, put the posts, the topics and the brand's plan into
 the agent's prompt. It cannot read the workspace itself.
@@ -31,6 +31,12 @@ If a campaign ran in the period, report it on its own line: how many of its
 posts went out, how many are still drafts, and whether it is still running. A
 campaign that ended with half its posts unpublished is the single most useful
 thing this command can say.
+
+From `brief_list`, count how many pictures went through a brief in the
+period, and how many of those needed more than one check before they passed.
+Say in one line what a high failure count means: the direction is fighting
+the brand's rules, and the rules are probably right — it is a reason to look
+at the brand's visual rules, not to loosen the check.
 
 ## 4. What this report cannot say
 
@@ -64,6 +70,10 @@ What the checks caught
   3 posts shortened to fit
   1 banned word ("growth hack") — this keeps happening; worth checking
     whether that list still matches how the brand writes
+  9 pictures went through a brief · 2 needed more than one check
+    A high failure count usually means the direction is fighting the
+    brand's rules, not the other way round — and the rules are probably
+    right.
 
 Mix   50% helpful · 20% proof · 30% asks
 

@@ -22,10 +22,13 @@ Call `post_list`. Read **every** post in the period, not a sample.
 to it and say so. When they do not, group what is blocked by campaign, so
 "the Ramadan posts are the ones stuck" is visible without counting.
 
+Call `brief_list` too, to find posts whose brief stopped after three failed
+checks — see **creative-brief**.
+
 If nothing is waiting, say so plainly and suggest `/plgn month`. Do not invent
 findings.
 
-## 3. Sort into four groups
+## 3. Sort into five groups
 
 Every post lands in exactly one:
 
@@ -39,6 +42,11 @@ before it goes out.
 publishing. A post that says nothing passes every automatic check and still
 costs the brand attention. Judge this honestly: does it make a point, or just
 fill a slot?
+
+**Needs a person** — its brief failed the check three times and stopped. This
+is not something running the queue again fixes: the direction kept landing on
+things the brand's rules rule out, and it needs someone to pick a different
+idea by hand. Name every post in this group.
 
 **Ready** — nothing to do. Count them; do not list them.
 
@@ -59,6 +67,9 @@ No image (3)
 Says too little (1)
   "Big news coming"        — 40 characters, no point, nothing to click
 
+Needs a person (1)
+  "Why we cut prices"      — failed its check three times
+
 Fix the blocked ones?
 yes / pick / no
 ```
@@ -76,6 +87,10 @@ slot rather than padding it — an honest gap beats filler.
 For missing images, hand off: *"Run `/plgn images` to fill these three."* Do not
 make images here; that spends credits and belongs to a command the user chose
 for it.
+
+For posts that need a person, do not offer a fix — there is nothing this
+command can rewrite its way out of. Point at `/plgn why` for the thinking
+behind the attempt, and leave the idea for someone to rework by hand.
 
 `--dry-run` prints the report and changes nothing.
 
