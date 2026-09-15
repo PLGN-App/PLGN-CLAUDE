@@ -196,18 +196,36 @@ Making 24 images — this takes a few minutes...
 ```
 
 For each post that should have one, read `context_get(role: "art_director",
-campaign_id: <the post's campaign, if it has one>)` and put the post text, the
-brand's audience and that block into `plgn-visual`'s prompt — per
-**_conventions** rule 6, the agent cannot see this file.
+campaign_id: <the post's campaign, if it has one>)` for the brand's look.
 
 Per post, not once for the run: two posts in different campaigns want
 different references, and a run that reads the direction once gives them the
-same one.
+same one. A campaign's references are held against that campaign, so a read
+made without its `campaign_id` cannot see them at all. `/plgn images` reads
+the look the same way, for this reason.
 
-`plgn-visual` only says whether this post needs a picture at all, and why —
-it does not art-direct one. When it says yes, write the image description
-yourself from the post text and the `art_director` block you just read. The
-reference path is brand-level, not per-agent: when the brand holds a
+Then ask `plgn-visual` whether this post needs a picture at all, and why.
+That is all it answers — it does not art-direct one. Its prompt carries the
+post and the brand's voice, from the `context_get(role: "copywriter", …)`
+read that briefed this post's writer in step 4, and nothing else: per
+**_conventions** rule 6 the agent cannot see this file, and those two are
+what it takes. The `art_director` block is not its to read.
+
+When it says yes, **write the image description yourself** — it is not
+written anywhere else on this path. One paragraph: the subject, the
+composition, the light, the medium, the palette, and what must not appear.
+Take it one step sideways from the post's point rather than restating its
+words, put the `art_director` block's preamble in front of it, and carry
+that block's `never` list as exclusions. Never ask for words, letters or
+logos inside the picture.
+
+This is the quick path, on purpose. A picture worth working the idea out
+for first — every idea considered, the ones that lost kept with their
+reasons, and a check against the brand's rules before a credit is spent —
+is what `/plgn images` is for. Point at it in the report; do not rebuild it
+here.
+
+The reference path is brand-level, not per-agent: when the brand holds a
 canonical reference, call `generate_image_from_image` with it. Otherwise
 call `generate_image`. See **visual-identity** for why the two are
 different.
@@ -219,6 +237,13 @@ schedule in the **image-prompting** skill.
 If it takes too long, leave the image out, note the post for the report, and
 **carry on** — a missing image never blocks scheduling. A post that goes out
 text-only is fine; a month that stalls waiting on a picture is not.
+
+**Every picture gets alt text.** Once one exists, send `plgn-visual` the
+post, the same voice block, and a description of the picture that was just
+made; that is its second job, and it returns the alt text for it. Save the
+picture and its alt text onto the post with `post_update`. This is the
+plugin's busiest image path, so an image saved here without alt text is most
+of a month unreadable to anyone using a screen reader.
 
 If `plgn-visual` says the post is stronger without an image, accept that and
 spend no credit.
@@ -234,14 +259,19 @@ user how many to expect.
 
 ## 9. Report
 
-Counts first, then the exceptions by name, then the link. Count carousels on
-their own line — each one is several pictures, not one, and costs
-accordingly.
+Counts first, then the exceptions by name, then the link. Step 7 makes **one
+picture per post**, carousel or not — so count pictures, never frames this
+run did not make, and name every post whose carousel is unfinished: the ones
+that got a cover and still need their other frames, and the ones saved with
+no frame count at all because step 5 could not tell which draft they were.
 
 ```
-28 posts scheduled across 4 weeks · 3 topics · 24 images
-4 of them carousels (9 extra pictures)
+28 posts scheduled across 4 weeks · 3 topics · 24 images — one per post
 
+  1 was planned as a carousel and has its first picture only — run
+    /plgn images and ask for a carousel to make the rest
+  1 was planned as a carousel but I couldn't tell which draft it was, so it
+    was saved with no frame count — worth setting by hand
   2 were shortened to fit LinkedIn
   1 is still a draft — it uses "growth hack", a word you banned, and the
     post's point depends on it
