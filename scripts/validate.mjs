@@ -890,7 +890,8 @@ for (const f of ls("agents")) {
 // in them for a needle to collide with; the difference is that these can no
 // longer pass without the actual sentence that carries the behaviour.
 const REPORTS = [
-  ["brandkit", ["offering_create", "offering_list", "brand_identity", "brand_positioning"]],
+  ["brandkit", ["offering_create", "offering_list", "brand_identity",
+    "brand_positioning", "one layer at a time"]],
   ["knowledge", ["offering_list", "campaign_list", "knowledge_history"]],
   ["images", ["context_get"]],
   ["month", ["art_director"]],

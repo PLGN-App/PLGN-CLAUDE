@@ -27,10 +27,17 @@ Call `brand_list`. One brand per run.
 Before writing anything, read what already exists:
 
 ```
-knowledge_get()        every entry, so nothing is added twice
-offering_list()        what it already sells
-campaign_list()        what it is already saying
+knowledge_get(layer: "foundation")     what it already stands for
+knowledge_get(layer: "business")       what it already claims
+knowledge_get(layer: "creative")       what it has already made
+offering_list()                        what it already sells
+campaign_list()                        what it is already saying
 ```
+
+Knowledge is read **one layer at a time** on purpose. A bare `knowledge_get()`
+returns twenty entries however large a `limit` you send, so on a brand with
+more than twenty it silently hides the very entries this read exists to find.
+See **brand-knowledge-map** for the numbers.
 
 A second run **updates** rather than adds. The four Foundation singletons
 refuse a second entry anyway — that refusal is an instruction to update, see
