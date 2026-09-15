@@ -42,9 +42,13 @@ A name that matches no campaign is a question, not a new campaign: say what
 you found and ask. `/plgn campaign` is where one gets created.
 
 **If they asked for a carousel** — "a carousel about X" — ask how many
-frames if they did not say, defaulting to 3, never more than 10. Say the
-number back; it is what `/plgn images` will cost later, when the pictures
-get made.
+frames if they did not say, defaulting to 3, never more than 10. The
+platform decides the real ceiling, and it is not 10 everywhere: look it up
+in **platform-specs** and clamp to it. One platform takes no carousel at
+all, and there the answer is one picture, said plainly rather than a request
+quietly ignored. Say the number back, and say it again when you run
+`/plgn images` — that command costs and makes the frames asked for in its
+own run, and cannot see a carousel decided here.
 
 ## 3. Write it
 
