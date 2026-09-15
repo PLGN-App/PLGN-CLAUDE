@@ -191,6 +191,34 @@ exact counts. `campaign_list` is the overview.
 Hitting one is a refusal, not an error. Say what is full and what it costs to
 raise it — never retry, and never quietly drop the thing that did not fit.
 
+## How much a read returns
+
+A read is not the whole board. Every list tool stops somewhere, and most stop
+earlier than the thing being counted.
+
+| Read | Returns by default | Never returns more than |
+|---|---|---|
+| `post_list`, `snippet_list` | 50 | 500 |
+| `knowledge_get` | 20 | 20 |
+| `list_images` | 25 | 50 |
+| `brief_list` | 20 | 100 |
+| `knowledge_history` | — | 50 |
+| `campaign_list`, `topic_list`, `offering_list`, `hashtagset_list` | everything | — |
+
+`knowledge_get` is the one that bites. Its twenty is fixed in the server, and
+a larger `limit` cannot raise it — a brand with sixty entries cannot be listed
+by one call at all. Read it **one layer at a time**, foundation then business
+then creative, when you need to know what is already there.
+
+Two things follow, and neither is optional.
+
+1. **Ask for what you need.** A command reading a whole board passes an
+   explicit `limit`. Leaving the default in place is a cut nobody sees.
+2. **Say what the number covers.** When a count came off a read that may have
+   been cut, the line printing it says so. `/plgn report` does this for
+   briefs and is the pattern to copy. A truncated count presented as a total
+   is worse than no count.
+
 ## Not knowledge at all
 
 | What | Tool |

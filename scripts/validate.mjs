@@ -391,6 +391,25 @@ for (const p of CONTENT) {
     if (!body.includes("external_post_id")) {
       fail(`${MAP} must document the run marker that makes a bulk write undoable`);
     }
+    // Read caps. Added after finding commands/brandkit.md:30 annotated a bare
+    // `knowledge_get()` as "every entry" when the server returns twenty and
+    // `limit` cannot raise it (knowledge/service.ts:114 is
+    // `Math.min(f.limit, MAX_RESULTS)`). A second /plgn brandkit run on a
+    // brand past twenty entries duplicates exactly what it could not see.
+    if (!body.includes("How much a read returns")) {
+      fail(`${MAP} must document how much each read returns`);
+    }
+    if (!/limit[\s\S]{0,160}cannot raise it/i.test(body)) {
+      fail(`${MAP} must say knowledge_get's cap cannot be raised with limit`);
+    }
+    // The two obligations. A cap nobody declares is a truncated count
+    // presented as a total.
+    if (!body.includes("Ask for what you need")) {
+      fail(`${MAP} must require an explicit limit on a whole-board read`);
+    }
+    if (!body.includes("Say what the number covers")) {
+      fail(`${MAP} must require a capped count to say what it covers`);
+    }
     // Offerings and Campaigns are records now, not knowledge entries. A file
     // that saves an offer as a knowledge entry produces a brand whose AI
     // cannot name what it sells.
