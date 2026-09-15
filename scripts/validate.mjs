@@ -898,7 +898,7 @@ const REPORTS = [
     "--no-images", "--max-images", "make no pictures",
     "best candidates first"]],
   ["visuals", ["brand_identity", "campaign_create", "fifty at most"]],
-  ["library", ["snippet_list", "--kind", "has no limit argument"]],
+  ["library", ["snippet_list", "--kind", "--kind caption", "has no limit argument"]],
   ["queue", ["campaign_id"]],
   ["report", ["whether it is still running"]],
   ["topics", ["count its posts inside the campaign's window", "scheduled_from"]],
