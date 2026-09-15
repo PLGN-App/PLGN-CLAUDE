@@ -21,11 +21,19 @@ Every command that writes in bulk stamps its posts with a run marker. The
 **brand-knowledge-map** skill has the mechanics: the marker is not something
 `post_list` can filter on, so find candidates the way the tools allow.
 
-1. Call `post_list` twice, once per status, bounded to the recent window:
-   `post_list(status: "draft", scheduled_from: <30 days ago>, limit: 500)` and
-   the same with `status: "scheduled"`. A bulk run that needs undoing is
-   almost always the last one. Widen the window only if nothing carries a
-   marker.
+1. Call `post_list` twice, once per status. Only the scheduled call carries
+   the recent window:
+
+   ```
+   post_list(status: "scheduled", scheduled_from: <30 days ago>, limit: 500)
+   post_list(status: "draft", limit: 500)
+   ```
+
+   The two calls differ because a draft has no scheduled date, so a window
+   would hide every one of them. A bulk run that needs undoing is almost
+   always the last one. If nothing carries a marker, widen the window on the
+   scheduled call once — double thirty days to sixty — and if that still finds
+   nothing, drop `scheduled_from` from it and read the whole board.
 2. Read the run marker on each candidate.
 3. Group by marker. The newest group is the last run.
 

@@ -39,10 +39,10 @@ the complete read surface — twelve tools. There is no thirteenth.
 | `snippet_list` | `kind`, `platform`, `search`, `limit` | 50 | 500 |
 | `brief_list` | `post_id`, `campaign_id`, `limit` | 20 | 100 |
 | `list_images` | `folder`, `max` | 25 | 50 |
-| `campaign_list` | `status` | all | — |
+| `campaign_list` | `status` | 200 | 200 |
 | `hashtagset_list` | `platform`, `search` | all | — |
-| `offering_list` | `include_archived` | all | — |
-| `knowledge_history` | `limit` | — | 50 |
+| `offering_list` | `include_archived` | 200 | 200 |
+| `knowledge_history` | `limit` | 20 | 50 |
 | `topic_list` | **none** | all | — |
 | `post_get`, `topic_get`, `snippet_get`, `campaign_get`, `brief_get` | id only | — | — |
 

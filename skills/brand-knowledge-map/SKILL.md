@@ -202,8 +202,13 @@ earlier than the thing being counted.
 | `knowledge_get` | 20 | 20 |
 | `list_images` | 25 | 50 |
 | `brief_list` | 20 | 100 |
-| `knowledge_history` | — | 50 |
-| `campaign_list`, `topic_list`, `offering_list`, `hashtagset_list` | everything | — |
+| `knowledge_history` | 20 | 50 |
+| `topic_list`, `hashtagset_list` | everything | — |
+| `campaign_list`, `offering_list` | 200 | 200 |
+
+`campaign_list` and `offering_list` drop archived rows *after* the cut, so a
+brand with many archived campaigns sees far fewer than two hundred live ones
+and is told nothing was left out.
 
 `knowledge_get` is the one that bites. Its twenty is fixed in the server, and
 a larger `limit` cannot raise it — a brand with sixty entries cannot be listed
