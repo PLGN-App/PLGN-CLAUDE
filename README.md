@@ -184,7 +184,7 @@ not inside Claude Code.
 | `/plgn repurpose <url>` | One article into many posts, plus saved snippets |
 | `/plgn queue` | What's blocked, missing an image, too short, or ready — and fix it |
 | `/plgn visuals <refs>` | Work out how the brand's pictures look, and save it so new images match |
-| `/plgn images` | Fill in missing pictures, with the credit cost stated first |
+| `/plgn images [filters]` | Fill in missing pictures, with the credit cost stated first. Narrow with `--campaign`, `--platform`, `--status`, `--from`/`--to` |
 | `/plgn topics` | Which topics repeat themselves, and which need more posts |
 | `/plgn library` | Tidy duplicate snippets and overlapping hashtag sets |
 | `/plgn knowledge` | Check the brand profile for gaps, stale entries and conflicts |

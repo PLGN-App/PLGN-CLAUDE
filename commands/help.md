@@ -50,7 +50,7 @@ NEEDS AN ACCOUNT
   /plgn post <idea>         One idea, one post
   /plgn repurpose <url>     Turn one article into a set of posts
   /plgn visuals <refs>      Work out how a brand's pictures look, and save it
-  /plgn images              Add images to posts that have none
+  /plgn images [filters]    Add images to posts that have none
 
   /plgn undo                Take back the last batch — unschedule or delete
 

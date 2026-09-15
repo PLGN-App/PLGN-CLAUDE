@@ -1,5 +1,5 @@
 ---
-description: Find posts with no image, plan and make one for each, and attach the results — with the credit cost stated before anything is spent. Supports --dry-run. Use for "generate images", "my posts need images", or filling in artwork before a month goes out.
+description: Find posts with no image, plan and make one for each, and attach the results — with the credit cost stated before anything is spent. Supports --dry-run and filters (campaign, platform, status, dates, title word). Use for "generate images", "my posts need images", or filling in artwork before a month goes out.
 ---
 
 # /plgn images
@@ -20,11 +20,37 @@ images have nowhere to live.
 
 Call `post_list` and `list_images` to find posts with no picture.
 
-Say what you found and how many are worth filling:
+With no filter this fills the **whole board**. Pass `limit: 500` so a long
+board is not silently cut at the tool's default of fifty.
+
+### Narrowing the run
+
+Filters combine — each one narrows what the last left. Read them off what the
+user typed and pass them straight to `post_list`:
+
+| Typed | Passed to `post_list` |
+|---|---|
+| `--campaign "Ramadan 2027"` | `campaign_id` |
+| `--platform instagram` | `platform` |
+| `--status draft` | `status` |
+| `--from 2026-10-01 --to 2026-10-31` | `scheduled_from`, `scheduled_to` |
+| a plain word | `search` — matches post titles only, case ignored |
+
+`post_list` takes a campaign **id**, never a name. Resolve the name with
+`campaign_list` first. If it matches none, or more than one, print what you
+found and stop — do not pick one for them.
+
+Stop on a filter you do not recognise, and say which one. A misread flag
+spends credits on the wrong posts.
+
+Say what you found, and name the filter on the same line, so a narrowed run is
+never read as an empty board:
 
 ```
-7 posts have no image · 24 credits available
+7 posts have no image in "Ramadan 2027" · 24 credits available
 ```
+
+With no filter, the same line without the campaign clause.
 
 ## 3. Decide which deserve a picture
 
