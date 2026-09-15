@@ -61,20 +61,32 @@ Print what `brief_get` returns, in this order, in plain words:
    than implying the picture is settled.
 6. What it read at the time: the brand knowledge, by name, with its version.
 
-The brief stores what it read as references, not as names, so point 6 needs
-a lookup before anything is printed. There is no way to ask for one entry by
-its reference, so resolve them in bulk: call `knowledge_get(layer:
-"foundation")` and `knowledge_get(layer: "creative")` — between them they
-cover every kind of entry a brief can read — and match what the brief stored
-against what comes back. Each entry comes back with its title.
+The brief stores what it read as references, not as names, so point 6 needs a
+lookup before anything is printed. Resolve them **one at a time**: call
+`knowledge_history` with the reference the brief stored and the version it
+recorded, and it prints that exact version, title included.
 
-Print the **title**, with the version the brief recorded — not the version
-the entry is on now. An entry edited since is on a later version, and this
-command's whole job is to say what was read that day.
+A brief reads a handful of entries, so that is a handful of small reads. Do
+not go looking for them in a list instead. A list read is capped at twenty
+rows, and the entries a brief pins most often — the brand's references and the
+work it has already approved — are the ones that pile up fastest, so months
+later the entry is simply past the end of the list. Matching against a list
+would then report an entry as gone when it is alive, on exactly the
+months-later path this command exists for.
 
-An entry you cannot match has been deleted since. Say so in those words —
-"one entry has been deleted since" — and move on. Never fall back to
-printing what was stored.
+Print the **title**, with the version the brief recorded — never the version
+the entry is on now. Because the read is pinned to that version, the title it
+returns is the title the entry had **that day**: an entry renamed since is
+printed under the name it actually carried when the picture was made. That is
+the whole job of this command, and a list read cannot do it — a list pairs
+today's title with a version from months ago.
+
+When that read comes back with nothing for a reference, nothing of that entry
+survives, and one plain line covers it: *"one of the entries it read is no
+longer on record."* Move on. Never print the raw refusal — it repeats the
+stored reference — and never fall back to printing what was stored instead of
+a name. A refusal here is not a failed command: the rest of the brief still
+prints.
 
 ```
 Why "The 90-minute review" looks the way it does
