@@ -1,5 +1,5 @@
 ---
-description: Find older posts worth running again, rewrite the strongest ones, and reschedule them after your approval. Use for "refresh old content", "repost the good ones", "reuse what worked", or filling a thin month from what you already have.
+description: Find older posts worth running again, rewrite the strongest ones, and reschedule them after your approval. Use for "refresh old content", "repost the good ones", "reuse what worked", or filling a thin month from what you already have. Supports --platform, --campaign and --topic.
 ---
 
 # /plgn refresh
@@ -17,8 +17,22 @@ stop.
 
 ## 2. Find candidates
 
-Call `post_list` for published posts older than **90 days**. Any newer and a
-real share of the audience still remembers them.
+Ask the server for them, rather than reading the board and sorting by eye:
+
+```
+post_list(status: "published", scheduled_to: <90 days before today>, limit: 500)
+```
+
+Any newer and a real share of the audience still remembers them. The `limit`
+matters: without it the read stops at fifty, and on a workspace two years old
+the fifty it returns are not the fifty you want — see **brand-knowledge-map**.
+
+Three optional narrowings, and they combine:
+
+- `--platform linkedin` — passed as `platform`
+- `--campaign "<name>"` — resolved with `campaign_list`, passed as
+  `campaign_id`. Stop if the name matches none or more than one
+- `--topic "<name>"` — resolved with `topic_list`, passed as `topic_id`
 
 If nothing is old enough, say so and stop. A two-month-old workspace has nothing
 to refresh, and inventing candidates wastes the run.

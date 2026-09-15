@@ -190,7 +190,7 @@ not inside Claude Code.
 | `/plgn knowledge` | Check the brand profile for gaps, stale entries and conflicts |
 | `/plgn brand` | List, create, rename, archive and restore brands |
 | `/plgn undo` | Take back the last batch of posts — unschedule or delete |
-| `/plgn refresh` | Rewrite and reschedule older posts that still hold up |
+| `/plgn refresh [filters]` | Rewrite and reschedule older posts that still hold up. Narrow with `--platform`, `--campaign`, `--topic` |
 | `/plgn report` | What went out, how topics balanced, how the plan held |
 | `/plgn why <post>` | Read back the thinking behind one picture — no writing |
 
