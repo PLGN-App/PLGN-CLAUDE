@@ -93,6 +93,12 @@ Four of those lines exist to be corrected. Languages and timezone come from the
 brand, not from the conversation, and both are invisible when wrong. The credit
 line says what is left afterwards, because that is the number people decide on.
 
+The `Images:` figure already reflects `--no-images` and `--max-images` — zero
+with the first, no more than the number given with the second — and it is an
+upper bound either way, because a picture reused from the workspace costs
+nothing. Both controls are described in section 7; the number here is the one
+being approved.
+
 Where the topics are new, get them from `plgn-strategist` using the subject and
 the brand's saved knowledge. Where you are adding to a topic that already
 exists, say so.
@@ -105,6 +111,10 @@ yes / pick / no
 ```
 
 `--dry-run` ends here: print the plan, write nothing, and say so.
+
+Stop on a flag you do not recognise, and say which one. A misread flag spends
+credits on the wrong posts — `--no-image` is not `--no-images`, and reading it
+as nothing at all is a full month of pictures the user asked you not to make.
 
 State the image cost in the plan, not afterwards. It spends real credits, and
 it is the part a user is most likely to want reduced.
@@ -210,13 +220,20 @@ Say the number you are about to spend before spending it, not after.
 
 ### Look for a picture that already exists
 
-Call `list_images` before generating anything. **Reuse costs nothing and a new
-picture costs a credit**, so a usable match already in the workspace is always
-the better answer. Pass the brand's folder when you know it.
+Call `list_images(max: 50)` before generating anything. **Reuse costs nothing
+and a new picture costs a credit**, so a usable match already in the workspace
+is always the better answer.
 
-This read returns twenty-five images by default and never more than fifty, so
-it is a genuine check and not a guarantee — see **brand-knowledge-map**. When
-nothing matches, say so in one line and carry on to generate.
+Make this call **once for the run, not once per post**: `list_images` takes no
+search word, so every post would get the same list anyway. Hold what comes
+back and match each post against it. Pass `folder` only when the brand keeps
+its pictures in a named subfolder — the read is already scoped to this brand,
+so a brand name or id passed here matches nothing at all.
+
+The default is twenty-five and fifty is the ceiling, so `max: 50` is as much
+as this check can ever see — a genuine check, not a guarantee — see
+**brand-knowledge-map**. When nothing matches, say so in one line and carry on
+to generate.
 
 Reuse a match only when it actually fits this post's subject. A picture that
 is merely on-brand is not a picture of the right thing, and a wrong reuse

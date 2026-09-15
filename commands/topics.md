@@ -19,11 +19,30 @@ it stands for.
 
 ## 2. Read
 
-Call `topic_list`, then `post_list` once per topic you are judging:
-`post_list(topic_id: <the topic>, limit: 500)`. For a topic inside a campaign,
-add that campaign's window — `campaign_id`, `scheduled_from` and
-`scheduled_to` — so the count matches the rule below rather than counting all
-time. The topic list alone does not show health —
+Call `topic_list` first. It already hands you an exact, uncapped count for
+every topic — `<n> ideas (<n> scheduled, <n> published)` — so the all-time
+figure is settled before you read anything else. Do not spend a `post_list`
+to recompute a number you already have.
+
+Then call `post_list` for the two things `topic_list` cannot give you: the
+posts themselves, and a count scoped to a campaign.
+
+- To read the content — the hooks, the subjects, whether they repeat — call
+  `post_list(topic_id: <the topic>, limit: 500)` for each topic you are
+  judging in detail.
+- For a topic inside a campaign, add that campaign's window — `campaign_id`,
+  `scheduled_from` and `scheduled_to` — so the count matches the rule below
+  rather than counting all time.
+
+**A window counts scheduled and published posts only.** A draft has no
+scheduled date, so a date range drops every draft the topic has. For a topic
+inside a campaign, make one more call with no window —
+`post_list(topic_id: <the topic>, campaign_id: <the campaign>, status:
+"draft", limit: 500)` — and report those drafts beside the windowed count.
+Otherwise a topic with twelve drafts in a running campaign reads as zero and
+gets flagged as starving.
+
+The topic list alone does not show health —
 what matters is how many posts each topic actually produced and whether they
 moved the argument on.
 

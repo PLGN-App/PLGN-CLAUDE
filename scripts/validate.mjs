@@ -399,6 +399,18 @@ for (const p of CONTENT) {
     if (!body.includes("How much a read returns")) {
       fail(`${MAP} must document how much each read returns`);
     }
+    // ...and the table under that heading, not just the heading. The final
+    // whole-branch review deleted every row of the cap table -- the numbers
+    // this branch exists to write down -- and this section still printed OK,
+    // because the heading survived and nothing was bound to a cell. Keyed on
+    // the row the same review corrected: the table used to call campaign_list
+    // and offering_list uncapped, and both take 200 (campaigns/service.ts:146,
+    // offerings/service.ts:105). One needle binds both facts -- that the table
+    // is still there, and that these two rows still say 200. Mutation-tested
+    // by deleting the row and confirming this fails naming the file.
+    if (!body.includes("| `campaign_list`, `offering_list` | 200 | 200 |")) {
+      fail(`${MAP} must state the 200-row cap on campaign_list and offering_list`);
+    }
     if (!/limit[\s\S]{0,160}cannot raise it/i.test(body)) {
       fail(`${MAP} must say knowledge_get's cap cannot be raised with limit`);
     }
@@ -889,6 +901,19 @@ for (const f of ls("agents")) {
 // task, so -- as with the bare word before it -- there is nothing already
 // in them for a needle to collide with; the difference is that these can no
 // longer pass without the actual sentence that carries the behaviour.
+// Two more came out of the final whole-branch review, both found the same way
+// -- delete the behaviour, watch this print OK:
+//   - refresh: the three-bullet narrowing list (spec section 5's "accept
+//     --platform, --topic, --campaign") could be deleted whole and the suite
+//     stayed green, because `scheduled_to` and `limit: 500` both live in the
+//     code block above it. Keyed on ``passed as `topic_id` ``, the last
+//     bullet's own words.
+//   - library: `snippet_list` was a bare word that existed at 43796b1, before
+//     this branch gave the call an explicit limit -- so reverting
+//     `snippet_list(limit: 500)` to bare `snippet_list` left the suite green
+//     and undid spec section 5's "pass an explicit limit". The bare word is
+//     kept (it still proves the command reads snippets at all) and the call
+//     with its limit added beside it.
 const REPORTS = [
   ["brandkit", ["offering_create", "offering_list", "brand_identity",
     "brand_positioning", "one layer at a time"]],
@@ -898,11 +923,12 @@ const REPORTS = [
     "--no-images", "--max-images", "make no pictures",
     "best candidates first"]],
   ["visuals", ["brand_identity", "campaign_create", "fifty at most"]],
-  ["library", ["snippet_list", "--kind", "--kind caption", "has no limit argument"]],
+  ["library", ["snippet_list", "snippet_list(limit: 500)", "--kind",
+    "--kind caption", "has no limit argument"]],
   ["queue", ["campaign_id"]],
   ["report", ["whether it is still running"]],
   ["topics", ["count its posts inside the campaign's window", "scheduled_from"]],
-  ["refresh", ["scheduled_to", "limit: 500"]],
+  ["refresh", ["scheduled_to", "limit: 500", "passed as `topic_id`"]],
   ["why", ["search:", "matches titles only"]],
   ["undo", ["scheduled_from"]],
 ];

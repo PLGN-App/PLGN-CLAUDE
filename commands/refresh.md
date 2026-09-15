@@ -27,12 +27,20 @@ Any newer and a real share of the audience still remembers them. The `limit`
 matters: without it the read stops at fifty, and on a workspace two years old
 the fifty it returns are not the fifty you want — see **brand-knowledge-map**.
 
+The ninety days are measured against the **scheduled** date, which is the only
+date `post_list` can filter on. A post published without one — created
+straight at `published`, or scheduled and then unscheduled — is not in this
+list at all. Say so when the result looks thinner than the board.
+
 Three optional narrowings, and they combine:
 
 - `--platform linkedin` — passed as `platform`
 - `--campaign "<name>"` — resolved with `campaign_list`, passed as
   `campaign_id`. Stop if the name matches none or more than one
 - `--topic "<name>"` — resolved with `topic_list`, passed as `topic_id`
+
+Stop on a filter you do not recognise, and say which one. A misread flag
+rewrites the wrong posts.
 
 If nothing is old enough, say so and stop. A two-month-old workspace has nothing
 to refresh, and inventing candidates wastes the run.

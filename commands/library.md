@@ -25,6 +25,9 @@ Narrow when the user asks, and the filters combine:
 - `--platform linkedin` — passed as `platform`, and both lists take it
 - a plain word — passed as `search`, matched against names
 
+Stop on a filter you do not recognise, and say which one. A misread flag tidies
+a different part of the library than the one asked for.
+
 `hashtagset_list` has no limit argument and returns everything, so it needs no
 narrowing to be complete. `snippet_list` stops at five hundred — see
 **brand-knowledge-map**.
