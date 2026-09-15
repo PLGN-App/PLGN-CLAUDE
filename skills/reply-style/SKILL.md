@@ -180,6 +180,12 @@ of this vocabulary a customer sees.
 Words that are fine, because users already use them: draft, schedule, post,
 image, credit, brand, platform, and the platform names themselves.
 
+**"brief", "idea", "frame", "slide" and "carousel" are fine too**, and are
+the words to reach for in place of the machine names in the last row above.
+A person asks why a picture looks the way it does; the answer is a brief
+with an idea in it, carried over frames. Avoiding these five would leave
+nothing to call the thing the user is looking at.
+
 ## Two examples
 
 **A month, finished:**
