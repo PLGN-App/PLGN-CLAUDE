@@ -1,5 +1,5 @@
 ---
-description: Fill a plgn workspace with a month of on-brand content — picks topics, writes posts in parallel, makes images, and schedules everything after your approval. Reuses topics you already have instead of creating duplicates. Supports --dry-run. Use for "a month of content", "fill my calendar", or "plan next month".
+description: Fill a plgn workspace with a month of on-brand content — picks topics, writes posts in parallel, makes images, and schedules everything after your approval. Reuses topics you already have instead of creating duplicates. Supports --dry-run, --no-images and --max-images. Use for "a month of content", "fill my calendar", or "plan next month".
 ---
 
 # /plgn month
@@ -194,6 +194,33 @@ Say the phase is starting and how long it takes, per **reply-style** rule 5b:
 ```
 Making 24 images — this takes a few minutes...
 ```
+
+### How many pictures to make
+
+`--dry-run` spends nothing at all. Between that and a full run there are two
+controls, and they combine:
+
+- `--no-images` — plan, write and schedule, and make no pictures. The posts
+  are saved without media and `/plgn images` can fill them later, with a brief
+  behind each one.
+- `--max-images 8` — make at most this many, best candidates first, and say in
+  the report which posts went out without one.
+
+Say the number you are about to spend before spending it, not after.
+
+### Look for a picture that already exists
+
+Call `list_images` before generating anything. **Reuse costs nothing and a new
+picture costs a credit**, so a usable match already in the workspace is always
+the better answer. Pass the brand's folder when you know it.
+
+This read returns twenty-five images by default and never more than fifty, so
+it is a genuine check and not a guarantee — see **brand-knowledge-map**. When
+nothing matches, say so in one line and carry on to generate.
+
+Reuse a match only when it actually fits this post's subject. A picture that
+is merely on-brand is not a picture of the right thing, and a wrong reuse
+costs more than a credit — it costs the post.
 
 For each post that should have one, read `context_get(role: "art_director",
 campaign_id: <the post's campaign, if it has one>)` for the brand's look.

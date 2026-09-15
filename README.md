@@ -179,7 +179,7 @@ not inside Claude Code.
 | `/plgn setup` | Connect, pick a brand, learn its voice from your site |
 | `/plgn brandkit <url>` | Learn a brand in one run — voice, look, competitors, topics, reusable lines |
 | `/plgn campaign` | Start a campaign — one thing you're saying for a while, with dates |
-| `/plgn month <subject>` | A month of posts: written, illustrated, scheduled |
+| `/plgn month <subject>` | A month of posts: written, illustrated, scheduled. Control the images with `--no-images` or `--max-images` |
 | `/plgn post <idea>` | One post — the ten-times-a-day command |
 | `/plgn repurpose <url>` | One article into many posts, plus saved snippets |
 | `/plgn queue` | What's blocked, missing an image, too short, or ready — and fix it |
