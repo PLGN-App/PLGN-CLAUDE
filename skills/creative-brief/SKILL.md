@@ -34,13 +34,15 @@ objections if the direction doesn't hold up.
 
 Four steps, two calls. `brief_create` saves steps 1 through 3 in one call:
 the benefit, the meanings, every idea and why each won or lost, and the
-direction per frame. `brief_finalize` saves step 4: the final image text per
-frame, or the objections if the check failed.
+direction per frame. `brief_finalize` saves step 4, and only when step 4
+passed: the final image text per frame, nothing else. It is refused while
+any frame has no text, so it is not somewhere objections can go.
 
-A failed check does not go back to `brief_create`. It calls `brief_update`
-with the objections and a **different idea**, taken from the ones already
-saved in step 2. Never the same idea with more elements bolted on — that is
-exactly the pattern this record exists to stop.
+A failed check does not go back to `brief_create`, and it does not go to
+`brief_finalize` either. It calls `brief_update` with the objections and a
+**different idea**, taken from the ones already saved in step 2. Never the
+same idea with more elements bolted on — that is exactly the pattern this
+record exists to stop.
 
 ## Three checks, then stop
 

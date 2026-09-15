@@ -168,7 +168,7 @@ These appear in plgn's own output today. Every one of them is internal.
 | `postId`, `id`, "index" | the post's name |
 | "pillar" | "topic" — or explain it once, the first time |
 | "singleton" | "there is only one of these" |
-| "revision", "version 3" | "the earlier text", or the date it changed |
+| "revision", "version 3" — on their own, standing in for what changed | "the earlier text", or the date it changed |
 | "metadata" | the field's own name — "the palette", "the intent" |
 | `brief_create`, `brief_finalize`, `anchor`, `candidate`, `knowledgeUsed` | nothing — they are the machine's names for things the user already has words for |
 
@@ -176,6 +176,15 @@ These appear in plgn's own output today. Every one of them is internal.
 those three words as section headings on the Knowledge page, so a reply that
 avoids them describes a screen the user cannot find. They are the one piece
 of this vocabulary a customer sees.
+
+**A version is allowed when a named entry carries it.** `"Never Say These"
+(version 1)` is not a way of describing a change — it is which rule a picture
+was made under, and `/plgn why` exists to say exactly that. The row above bans
+a bare "version 3" used instead of saying what actually changed; a date cannot
+replace it here, because two edits on one day are two different rules and the
+whole point of reading a picture back is knowing which one it was made under.
+The entry's name still has to be there: a version with nothing in front of it
+is the thing that is banned.
 
 Words that are fine, because users already use them: draft, schedule, post,
 image, credit, brand, platform, and the platform names themselves.

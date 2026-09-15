@@ -938,7 +938,20 @@ for (const [c, needles] of REPORTS) {
 // `brief_update` call. The sentence beside it, that the server enforces the
 // same cap as a backstop, is deliberately unbound, same as the sections
 // below. "more than 10" is the carousel cap, and "before the first call" is
-// the cost-stated-up-front rule. The other four sections (what a brief is
+// the cost-stated-up-front rule.
+//
+// `brief_finalize` was a bare word here until the final fix wave. That wave
+// fixed a contradiction two lines apart in the skill -- line 37 said
+// brief_finalize saves "the final image text per frame, or the objections if
+// the check failed", line 40 said a failed check calls brief_update -- and
+// the correction says outright that a failed check does NOT go to
+// brief_finalize. That put the tool's name in the file twice, so the bare
+// word stopped binding the sentence that matters: deleting "brief_finalize
+// saves step 4" would have left the second, later mention behind and this
+// check green, with the skill no longer saying what the finalize call is
+// for. Rekeyed to `` `brief_finalize` saves step 4 `` -- the claim, not the
+// word. Mutation-tested by deleting that sentence and confirming this fails
+// naming the file, then restoring it. The other four sections (what a brief is
 // for, the four steps, what makes a real idea, what carries the frame) stay
 // unbound on purpose — five needles is proportionate, not one per section.
 {
@@ -947,7 +960,7 @@ for (const [c, needles] of REPORTS) {
     const b = read(BRIEF_SKILL);
     for (const needle of [
       "brief_create",
-      "brief_finalize",
+      "`brief_finalize` saves step 4",
       "does not attempt a fourth",
       "more than 10",
       "before the first call",
