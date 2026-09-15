@@ -38,6 +38,14 @@ Say in one line what a high failure count means: the direction is fighting
 the brand's rules, and the rules are probably right — it is a reason to look
 at the brand's visual rules, not to loosen the check.
 
+`brief_list` has no date filter. It returns the newest briefs first, 20 of
+them unless you ask for more, and never more than 100 — so ask for 100, then
+keep only the ones belonging to posts inside the period. If 100 come back,
+the window may start after the period does: say the count covers the most
+recent 100 rather than presenting it as the whole month. A number that is
+short is fine when it says so; a number that is short and silent is the one
+thing this command must never print.
+
 ## 4. What this report cannot say
 
 plgn stores posts, topics and images. It does **not** store views, likes,

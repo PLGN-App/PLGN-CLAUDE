@@ -23,7 +23,11 @@ to it and say so. When they do not, group what is blocked by campaign, so
 "the Ramadan posts are the ones stuck" is visible without counting.
 
 Call `brief_list` too, to find posts whose brief stopped after three failed
-checks — see **creative-brief**.
+checks — see **creative-brief**. Ask it for 100, which is as many as it
+gives: it has no date filter and returns only the newest 20 otherwise, so
+the default read would quietly miss a month's worth on a busy workspace. If
+100 come back, say that the "needs a person" group covers the most recent
+100 briefs rather than everything ever attempted.
 
 If nothing is waiting, say so plainly and suggest `/plgn month`. Do not invent
 findings.

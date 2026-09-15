@@ -61,6 +61,21 @@ Print what `brief_get` returns, in this order, in plain words:
    than implying the picture is settled.
 6. What it read at the time: the brand knowledge, by name, with its version.
 
+The brief stores what it read as references, not as names, so point 6 needs
+a lookup before anything is printed. There is no way to ask for one entry by
+its reference, so resolve them in bulk: call `knowledge_get(layer:
+"foundation")` and `knowledge_get(layer: "creative")` — between them they
+cover every kind of entry a brief can read — and match what the brief stored
+against what comes back. Each entry comes back with its title.
+
+Print the **title**, with the version the brief recorded — not the version
+the entry is on now. An entry edited since is on a later version, and this
+command's whole job is to say what was read that day.
+
+An entry you cannot match has been deleted since. Say so in those words —
+"one entry has been deleted since" — and move on. Never fall back to
+printing what was stored.
+
 ```
 Why "The 90-minute review" looks the way it does
 
