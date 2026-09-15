@@ -57,7 +57,7 @@ NEEDS AN ACCOUNT
   Keeping it healthy
   /plgn queue               What's blocked, what's missing, what's ready
   /plgn topics              Which topics are tired, and which need more
-  /plgn library             Tidy up saved snippets and hashtag sets
+  /plgn library [filters]   Tidy up saved snippets and hashtag sets
   /plgn refresh [filters]   Rewrite good old posts and run them again
   /plgn report              What went out, and how the plan held
   /plgn why <post>          The thinking behind one picture, read back

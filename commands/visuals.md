@@ -30,8 +30,11 @@ Three sources, in this order:
 
 1. **Files or screenshots they point at** — the best case, and the easiest to
    read.
-2. **Images already in the workspace** — call `list_images` and offer the
-   recent ones.
+2. **Images already in the workspace** — call `list_images(max: 50)` and offer
+   what comes back. Pass `folder` when the user names one. This read returns
+   twenty-five by default and **fifty at most**, so on a busy workspace it
+   shows the newest, not all of them — say that rather than implying the list
+   is everything.
 3. **Links to posts** — usable, but say that a page link may not lead to a
    picture that can be read.
 

@@ -1,5 +1,5 @@
 ---
-description: Tidy up saved snippets and hashtag sets — find near-duplicates, overlapping sets, and sets too big to work, then merge or remove what you approve. Use for "clean up my library", "manage snippets", "my hashtag sets are a mess", or a periodic tidy.
+description: Tidy up saved snippets and hashtag sets — find near-duplicates, overlapping sets, and sets too big to work, then merge or remove what you approve. Supports --kind and --platform. Use for "clean up my library", "manage snippets", "my hashtag sets are a mess", or a periodic tidy.
 ---
 
 # /plgn library
@@ -16,8 +16,18 @@ rule 2 and stop.
 
 ## 2. Read
 
-Call `snippet_list` and `hashtagset_list`. Read the contents, not just the
-names — duplicates rarely share a title.
+Call `snippet_list(limit: 500)` and `hashtagset_list`. Read the contents, not
+just the names — duplicates rarely share a title.
+
+Narrow when the user asks, and the filters combine:
+
+- `--kind caption` — also `template` or `guideline`, passed as `kind`
+- `--platform linkedin` — passed as `platform`, and both lists take it
+- a plain word — passed as `search`, matched against names
+
+`hashtagset_list` has no limit argument and returns everything, so it needs no
+narrowing to be complete. `snippet_list` stops at five hundred — see
+**brand-knowledge-map**.
 
 If both are empty, say so and suggest `/plgn repurpose`, which fills the snippet
 library as a side effect. Do not invent findings.
