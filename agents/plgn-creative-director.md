@@ -43,8 +43,9 @@ Read `Already done` before you score. An idea that already appears there
 scores 0 and says so in its reason — that is a rejection like any other, not
 a special case.
 
-Pick one. The one you pick gets a reason too: why it beats the others, not
-just that it does.
+Pick one. The one you pick gets a reason too — why it beats the others, not
+just that it does — and that reason goes in `conceptWhy`, never in the
+candidate list.
 
 ## Step 3 — one direction per frame
 
@@ -82,8 +83,13 @@ The exact keys below, and nothing else — no prose before or after the JSON.
 
 Every idea you scored belongs in that list, including the one you picked.
 The picked idea is not removed from it — it is the entry whose score is
-highest and whose reason for staying in explains why it was kept, not why it
-lost.
+highest and the only one with **no** `rejectedBecause` at all. Leave that
+key out of it entirely.
+
+`rejectedBecause` is the losers' field and only the losers' field. Anything
+written there is read back later as "rejected", whatever the words say, so
+a keep-reason put there turns the winning idea into one that lost. The
+winner's reason lives in `conceptWhy`, which exists for exactly that.
 
 ## When the brief comes back for another round
 

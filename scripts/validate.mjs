@@ -665,10 +665,12 @@ for (const p of ["skills/brand-onboarding/SKILL.md", "commands/setup.md"]) {
 }
 
 // --- 8. Agent contracts (Task 6) ----------------------------------------
-// The six agents whose contract changed. An agent's output shape is read
-// by the command that started it, and a shape that drifts fails at the
-// point the command tries to save -- after the model has already done the
-// work.
+// Six agents have their output shape pinned here. Four of them changed on
+// this branch -- the two new ones (creative-director, designer) plus visual
+// and strategist; brand-architect and copywriter were pinned before it and
+// stay pinned. An agent's output shape is read by the command that started
+// it, and a shape that drifts fails at the point the command tries to save
+// -- after the model has already done the work.
 // The brand-architect needle was originally the bare word "kind" -- ordinary
 // English prose, and nothing stops a future edit from dropping the real
 // `kind: product | service` field while leaving some unrelated "kind" behind
@@ -688,12 +690,24 @@ for (const p of ["skills/brand-onboarding/SKILL.md", "commands/setup.md"]) {
 // about campaigns would not produce by accident.
 //
 // The creative-director needle list was handed down as ["candidates",
-// "rejectedBecause", "artDirection", "concept"]. The first three survive the
-// same test as "Key message:" above -- camelCase field names (or, for
-// "candidates", a word this file uses nowhere except the JSON array) that
-// ordinary prose about ideas would not produce by accident, and deleting any
-// one of them from the JSON block leaves no other occurrence behind.
-// "concept" does not survive it: the same JSON block also carries
+// "rejectedBecause", "artDirection", "concept"]. "candidates" and
+// "artDirection" survive the same test as "Key message:" above -- a
+// camelCase field name, and a word this file uses nowhere except the JSON
+// array -- and deleting either from the JSON block leaves no other
+// occurrence behind. ("candidates" is plural on purpose: the prose says
+// "the candidate list", singular, which does not contain it.)
+//
+// "rejectedBecause" stopped surviving it in the final fix wave. Fixing I10
+// meant writing a paragraph in that file about what `rejectedBecause` is
+// for -- it is the losers' field, and a keep-reason put there is read back
+// as a rejection -- so the bare word now occurs three times outside the
+// JSON, and deleting the field from the JSON block would leave the check
+// green. Rekeyed to `"rejectedBecause":`, the quoted-key-plus-colon form,
+// which the backticked prose does not produce. Mutation-tested by deleting
+// the `"rejectedBecause"` line from that JSON block and confirming this
+// fails naming the file, then restoring it.
+//
+// "concept" does not survive it either: the same JSON block also carries
 // "conceptWhy" (required by the brief alongside it), and "concept" is a
 // substring of "conceptWhy" -- deleting the `"concept"` field on its own
 // while leaving `"conceptWhy"` in place would still satisfy a bare
@@ -743,7 +757,7 @@ const AGENT_CONTRACTS = [
   ["plgn-copywriter", ["offeringNames", "Key message:"]],
   ["plgn-visual", ["\"needsImage\":", "\"altText\":"]],
   ["plgn-strategist", ["campaign", "keyMessage", "vocabulary", "\"plannedSlides\":"]],
-  ["plgn-creative-director", ["candidates", "rejectedBecause", "artDirection", "\"concept\":"]],
+  ["plgn-creative-director", ["candidates", "\"rejectedBecause\":", "artDirection", "\"concept\":"]],
   ["plgn-designer", ["\"generationPrompt\":", "\"qaFindings\":"]],
 ];
 for (const [agent, needles] of AGENT_CONTRACTS) {

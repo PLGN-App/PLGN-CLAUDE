@@ -60,12 +60,23 @@ When every frame passes:
 }
 ```
 
-When a frame fails a check:
+When a frame fails a check, group the objections by the frame they are
+about. An objection raised against frame 3 belongs to frame 3 and nowhere
+else — a customer reading frame 1 months later must not find a note that was
+never about frame 1.
 
 ```json
 {
   "qaFindings": [
-    "frame 1: shows a stack of coins, which is on the brand's never list"
+    {
+      "order": 1,
+      "findings": [
+        "shows a stack of coins, which is on the brand's never list"
+      ]
+    }
   ]
 }
 ```
+
+Name only the frames that failed. A frame with nothing wrong with it does
+not appear in the list at all, and no frame appears with an empty list.
