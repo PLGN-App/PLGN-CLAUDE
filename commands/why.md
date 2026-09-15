@@ -14,8 +14,13 @@ rule 2 and stop.
 
 ## 2. Find the post
 
-The argument can be a title, part of a caption, or an id. Call `post_list`
-and match against it.
+The argument can be a title, part of a caption, or an id.
+
+When it looks like an id, call `post_get` with it. Otherwise call
+`post_list(search: <the argument>, limit: 500)` and match against what comes
+back. `search` **matches titles only**, case ignored — so when a caption
+fragment finds nothing, say that plainly rather than reporting the post as
+missing, and offer to look by title instead.
 
 **Several matches** — show them, each with its title and date, and ask which
 one:

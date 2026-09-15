@@ -19,7 +19,11 @@ it stands for.
 
 ## 2. Read
 
-Call `topic_list` and `post_list`. The topic list alone does not show health —
+Call `topic_list`, then `post_list` once per topic you are judging:
+`post_list(topic_id: <the topic>, limit: 500)`. For a topic inside a campaign,
+add that campaign's window — `campaign_id`, `scheduled_from` and
+`scheduled_to` — so the count matches the rule below rather than counting all
+time. The topic list alone does not show health —
 what matters is how many posts each topic actually produced and whether they
 moved the argument on.
 

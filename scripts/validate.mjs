@@ -900,8 +900,10 @@ const REPORTS = [
   ["visuals", ["brand_identity", "campaign_create"]],
   ["queue", ["campaign_id"]],
   ["report", ["whether it is still running"]],
-  ["topics", ["count its posts inside the campaign's window"]],
+  ["topics", ["count its posts inside the campaign's window", "scheduled_from"]],
   ["refresh", ["scheduled_to", "limit: 500"]],
+  ["why", ["search:", "matches titles only"]],
+  ["undo", ["scheduled_from"]],
 ];
 for (const [c, needles] of REPORTS) {
   const p = `commands/${c}.md`;
