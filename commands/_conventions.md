@@ -1,3 +1,8 @@
+---
+description: Shared rules every plgn command points at — command kinds, confirmation style, error handling, and what goes into an agent prompt. Reference only; not a command to run.
+disable-model-invocation: true
+---
+
 # Command conventions
 
 Shared rules for every command in this plugin. Commands point at these rules

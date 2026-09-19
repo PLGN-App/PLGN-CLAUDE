@@ -1,9 +1,10 @@
 {
   "name": "plgn",
   "owner": {
-    "name": "Ahmed Hashim",
-    "url": "https://github.com/Ahmed-Hashim"
+    "name": "PLGN",
+    "url": "https://github.com/PLGN-App"
   },
+  "description": "The plgn plugin for Claude Code and Cowork — marketing content that ships, checked against your brand rules server-side before it can be published.",
   "plugins": [
     {
       "name": "plgn",

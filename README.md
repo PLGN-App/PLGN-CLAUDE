@@ -68,7 +68,7 @@ else happens inside it.
 In Claude Code, run:
 
 ```
-/plugin marketplace add Ahmed-Hashim/plgn-claude
+/plugin marketplace add PLGN-App/PLGN-CLAUDE
 /plugin install plgn
 ```
 
@@ -240,6 +240,40 @@ commands pass the rules an agent needs directly in its prompt — see
 
 Nothing runs locally except Markdown. The plugin ships no scripts, stores no
 state, and never handles a credential — OAuth belongs to plgn.
+
+---
+
+## Data, privacy and support
+
+**What leaves your machine.** The six free commands (`help`, `demo`, `audit`,
+`strategy`, `voice`, `competitors`, `calendar`) call no server: they read public
+web pages you point them at and write their output to your terminal. The
+connected commands send only what they are saving — brand voice entries,
+offerings, topics, post copy, image descriptions and schedule dates — to
+`https://useplgn.com/api/mcp`, the workspace they belong to. Nothing else is
+read or transmitted.
+
+**What the plugin does not do.** It ships no hooks, no scripts and no
+executables — only Markdown and JSON. It registers exactly one MCP server, the
+one listed in `.mcp.json`. It makes no analytics calls, sends no usage pings and
+contains no telemetry of any kind. It never reads files outside the directory
+you run it in, and it never handles a credential: authorization is OAuth in your
+browser, and no key is ever pasted into the terminal.
+
+**Account and cost.** The free commands need no account. The connected commands
+need a plgn workspace, which is a paid subscription with a 14-day trial and no
+card required. Image generation spends points from your workspace balance; every
+command that would spend them states the cost and waits for your confirmation
+first. Pricing is at [useplgn.com](https://useplgn.com).
+
+**Images.** plgn generates images as production assets for posts it is already
+writing for your brand, against a visual direction saved in your workspace. It
+is not a general-purpose image generator and has no interface for one.
+
+**Privacy policy** — [useplgn.com/privacy](https://useplgn.com/privacy)
+**Terms** — [useplgn.com/terms](https://useplgn.com/terms)
+**Support** — [support@useplgn.com](mailto:support@useplgn.com), or open an
+issue on [this repository](https://github.com/PLGN-App/PLGN-CLAUDE/issues).
 
 ---
 
