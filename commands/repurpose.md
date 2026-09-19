@@ -58,6 +58,22 @@ Per **_conventions** rule 6, pass the `context_get` block from step 1 into
 every writer's prompt verbatim, alongside each platform's character limit.
 The writer cannot read skills or this file.
 
+### Check the batch before showing it
+
+When every writer has returned, start one `plgn-brand-guard` on all the drafts
+together. Its prompt carries the drafts, the same `context_get` block, each
+platform's character limit, and the source text, so proof taken from the source
+is not flagged as invented. Send each failed draft back to its writer once,
+with the guard's issues quoted.
+
+Anything still flagged after that is shown in step 5 with its issue on the line
+under the post — for example `⚠ "cut costs by 40%" isn't in the source` — so the
+user decides with it in view. Invented proof matters most here: a number,
+name or quote that isn't in the source the user gave.
+
+The guard advises; it does not approve. Never tell the user a post "passed
+brand-guard".
+
 ## 5. Show everything, then ask
 
 Show the full set — every post, grouped by idea — with the counts:

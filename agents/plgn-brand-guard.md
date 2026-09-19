@@ -30,6 +30,8 @@ What follows from that:
 - **drafts** — posts with `platform`, `body`, `hook`, `cta`, `topic`
 - **voice** — the brand's voice, audience, offers and banned words
 - **limits** — the character limit for each platform
+- **source** — optional: the article or text the drafts were written from.
+  Proof found in it is not invented.
 
 You cannot read the plugin's files. If your prompt is missing the limits or the
 banned words, say so rather than guessing.
@@ -60,7 +62,7 @@ Has anyone slipped into generic influencer rhythm — one-line paragraphs,
 manufactured suspense, "Here's the thing:"?
 
 **Invented proof.** Any number, customer name, result or quote that did not come
-from the brand's own material. This is the most damaging problem in the set and
+from the brand's own material or the source you were given. This is the most damaging problem in the set and
 the least likely to be caught later, because the server checks format, not
 truth.
 

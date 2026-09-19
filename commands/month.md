@@ -157,6 +157,25 @@ If a writer returns fewer posts than asked because the topic was thin, take the
 shortfall. Do not ask again — a thin topic is information about the plan, and it
 belongs in the final report.
 
+### Check the batch before saving
+
+When every writer has returned, start one `plgn-brand-guard` on the whole
+batch — all topics together, because voice drift and repeated openings only
+show across topics. Its prompt carries the drafts, the same `context_get` block
+the writers got, and each platform's character limit.
+
+For each draft it fails, send that draft back to the writer of its topic once,
+with the guard's issues quoted. Take what comes back without checking it again.
+
+A draft that still has an issue after that one rewrite is **held back**: it is
+saved as a draft in step 5 but never scheduled in step 8, and the report names
+it with the issue in plain words. A draft flagged for invented proof — a
+number, name, result or quote the brand's material doesn't contain — is held
+back unless the rewrite removed the claim entirely.
+
+The guard advises; it does not approve. Never tell the user a post "passed
+brand-guard". plgn's server still runs its own checks on every save.
+
 ## 5. Save
 
 Call `topic_create` **only for topics that do not already exist**. Then call
@@ -295,7 +314,7 @@ spend no credit.
 ## 8. Schedule
 
 Call `post_schedule` across the agreed dates, following the **posting-cadence**
-skill for spacing and platform mix.
+skill for spacing and platform mix. Posts held back in step 4 stay drafts.
 
 Do not put one topic all in the same week. If there are fewer good posts than
 slots, schedule fewer — cutting beats padding, and the plan already told the
@@ -319,6 +338,8 @@ no frame count at all because step 5 could not tell which draft they were.
   2 were shortened to fit LinkedIn
   1 is still a draft — it uses "growth hack", a word you banned, and the
     post's point depends on it
+  1 is still a draft — it says "40% faster onboarding" and nothing in your
+    brand profile backs that number
   1 has no image — that one took too long; the post goes out without it
 
 Review at useplgn.com
