@@ -1,6 +1,6 @@
 ---
 name: brand-voice
-description: Use when writing or checking copy that must sound like a specific brand — reading a saved voice from plgn, applying it to new posts, working one out from a website when none is saved, or checking a batch of drafts for drift. This is about the brand's posts, not about how plgn talks to the user.
+description: Use inside a /plgn command that writes or checks posts which must match a brand's voice — reading the voice saved in plgn, applying it to new posts, inferring one from a website for a free /plgn command, or checking a batch of drafts for drift. Not for copywriting requests outside plgn.
 ---
 
 # Brand voice

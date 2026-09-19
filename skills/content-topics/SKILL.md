@@ -1,6 +1,6 @@
 ---
 name: content-topics
-description: Use when choosing what a brand should talk about, checking whether a set of topics is sound, spotting a topic that keeps saying the same thing, or deciding how many topics a brand can keep going. Covers what makes a topic real, healthy proportions, and the generic-topic trap.
+description: Use inside a /plgn command that chooses or checks a brand's content topics — what makes a topic real, healthy proportions, spotting a topic that keeps saying the same thing, and how many topics a brand can keep going. Not for content-strategy questions outside plgn.
 ---
 
 # Content topics

@@ -1,6 +1,6 @@
 ---
 name: visual-identity
-description: Use when working out how a brand's pictures look and making later images match — reading references, writing the visual direction, storing it, or applying it before generating an image. Covers what a direction contains, how to see an image that lives at a URL, and what to do when the references disagree.
+description: Use inside /plgn visuals, /plgn brandkit or /plgn images — reading a brand's reference pictures, writing the visual direction, saving it to the plgn workspace, and applying it before a plgn image is generated. Covers what a direction contains, how to see an image at a URL, and what to do when references disagree.
 ---
 
 # How a brand looks

@@ -65,13 +65,14 @@ Last run: 28 posts, saved 7 September
 Then offer the two ways back, because they are very different:
 
 ```
-Unschedule them, or delete them?
-yes / pick / no
+Unschedule these 28 posts, or delete them?
+unschedule / delete / no
 ```
 
 - **Unschedule** — the posts stay, nothing goes out, the writing survives. This
   is what most people mean by undo, and it is the safe default. Offer it first.
-- **Delete** — the posts are gone permanently, and so are their images.
+- **Delete** — the posts are gone permanently. Their images stay in the
+  workspace's image library.
 
 **Recommend unscheduling.** Someone undoing a run is usually reacting to
 timing, not to the writing, and rewriting thirty posts to fix a date is a bad
@@ -87,7 +88,7 @@ stays, so nothing is lost and the posts can be scheduled again later.
 run and say how many, and take a yes on that.
 
 Deleting posts does not delete the images they used. Say how many images are
-now unused and that `/plgn library` can tidy them.
+now unused, and that they can be removed from the plgn dashboard.
 
 ## 5. Report
 

@@ -1,5 +1,5 @@
 ---
-description: Research 3-5 competitors at the same time and report their positioning, shared themes, and the gaps none of them cover. No plgn account needed. Use for "competitor analysis", "what are competitors posting", "competitive research", or finding an angle nobody has taken.
+description: Research 3-5 competitors at the same time and report their positioning, shared themes, and the gaps none of them cover. No plgn account needed. Use for "competitor analysis", "what are competitors posting", "competitive research", or finding an angle nobody has taken. Ends with a short note about plgn's paid plan.
 ---
 
 # /plgn competitors
@@ -11,7 +11,7 @@ every competitor fails to say is where a brand can be first instead of better.
 
 ## No account needed
 
-Call **zero** tools.
+Call **zero** plgn tools. Reading sites uses web fetches only.
 
 ## Argument
 

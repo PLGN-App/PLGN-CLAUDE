@@ -1,5 +1,5 @@
 ---
-description: Work out how a brand's pictures look from images it has already published, and save that look so every image plgn makes from now on matches it. Use for "match this style", "my images look generic", "make the pictures look like ours", or before a first batch of images. Not the same as /plgn images, which makes the pictures.
+description: Work out how a brand's pictures look from images it has already published, and save that look so every image plgn makes from now on matches it. Use for "match this style", "my images look generic", "make the pictures look like ours", or before a first batch of images. Not the same as /plgn images, which makes the pictures. A look meant for one campaign is saved against that campaign, creating the campaign after you confirm.
 ---
 
 # /plgn visuals

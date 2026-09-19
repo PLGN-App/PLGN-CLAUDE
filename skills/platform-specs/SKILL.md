@@ -1,6 +1,6 @@
 ---
 name: platform-specs
-description: Use when writing or fixing a social post for a specific platform — LinkedIn, X, Instagram, Facebook or TikTok. Covers character limits, target lengths, opening styles, hashtag conventions and how links behave, plus how to rewrite one idea to fit each platform instead of copying it across.
+description: Use inside a /plgn command that writes or fixes a post for LinkedIn, X, Instagram, Facebook or TikTok — character limits, target lengths, opening styles, hashtag conventions, how links behave, and how to rewrite one idea per platform instead of copying it across. Not for social posts written outside plgn.
 ---
 
 # Platform limits and habits

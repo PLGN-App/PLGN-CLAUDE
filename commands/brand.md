@@ -31,7 +31,14 @@ yes / pick / no
 
 ## 3. Create
 
-Ask for the name, then call `brand_update` to create it.
+Ask for the name, then confirm before creating:
+
+```
+Create brand "<name>"?
+yes / edit / no
+```
+
+On yes, call `brand_update` to create it.
 
 Then **offer to set it up straight away** — a brand with nothing saved is a
 brand nothing else can use:

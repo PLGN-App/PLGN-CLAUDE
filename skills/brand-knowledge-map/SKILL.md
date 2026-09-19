@@ -1,6 +1,6 @@
 ---
 name: brand-knowledge-map
-description: Use when saving or reading anything about a brand — deciding where a piece of brand knowledge belongs, which knowledge types exist, why a saved banned-word list is not being enforced, or why a second voice entry was refused. Covers the brand record, the three layers and sixteen types, offerings and campaigns as records, and the things that are not knowledge at all.
+description: Use inside a /plgn command that saves or reads brand data in a plgn workspace — deciding where a piece of brand knowledge belongs, which knowledge types exist, why a saved banned-word list is not being enforced, or why a second voice entry was refused. Covers the brand record, the three layers and sixteen types, and offerings and campaigns as records. Not for general brand questions outside plgn.
 ---
 
 # Where a brand's knowledge lives

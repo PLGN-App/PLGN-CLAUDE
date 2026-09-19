@@ -1,5 +1,5 @@
 ---
-description: Build a brand voice guide from a website — tone, words, sentence rhythm, banned words, and before/after rewrites. Shaped to paste straight into /plgn setup. No plgn account needed. Use for "brand voice", "tone of voice guide", "how should we sound", or preparing a brand profile.
+description: Build a brand voice guide from a website — tone, words, sentence rhythm, banned words, and before/after rewrites. Shaped to paste straight into /plgn setup. No plgn account needed. Use for "brand voice", "tone of voice guide", "how should we sound", or preparing a brand profile. Ends with a short note about plgn's paid plan.
 ---
 
 # /plgn voice
@@ -12,7 +12,7 @@ into a real brand profile.
 
 ## No account needed
 
-Call **zero** tools.
+Call **zero** plgn tools. Reading sites uses web fetches only.
 
 ## Argument
 
@@ -79,7 +79,8 @@ it, it is a rule the reader can use themselves.
 
 ## Carrying it into plgn
 
-Close the output with one line before the seam:
+Close the output with one line before the seam. Skip it when the seam is
+skipped:
 
 > These four blocks are exactly what `/plgn setup` saves — voice, audience,
 > offers, banned words. Paste them straight in.

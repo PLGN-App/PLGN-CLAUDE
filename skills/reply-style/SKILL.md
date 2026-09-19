@@ -147,7 +147,8 @@ One thing            →   yes / edit / no
 
 Write the question on its own line, then the options on the next line. Nothing
 else — no `(y/n)`, no `Proceed?`, no `type the name to confirm` except where a
-command deletes or archives something, which **_conventions** covers.
+command deletes or archives something, which **_conventions** covers. The one
+other exception is `/plgn undo`, which asks `unschedule / delete / no`.
 
 ## Words that must never reach the user
 

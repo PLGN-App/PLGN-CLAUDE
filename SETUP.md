@@ -57,7 +57,7 @@ servers to connect. Image generation on the Enterprise plan can use the
 customer's own model key, which is set inside their plgn workspace on the web,
 never here.
 
-## What the six free commands do not need
+## What the seven free commands do not need
 
 `/plgn help`, `/plgn demo`, `/plgn audit`, `/plgn strategy`, `/plgn voice`,
 `/plgn competitors` and `/plgn calendar` call no MCP tools at all. They need no

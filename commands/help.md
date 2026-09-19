@@ -6,7 +6,7 @@ description: Show every plgn command in one list, split into the ones that need 
 
 Print the command list. Call no tools. Answer nothing else.
 
-This exists because twenty-two commands is more than anyone remembers, and the
+This exists because twenty-three commands is more than anyone remembers, and the
 README is not open while someone is working.
 
 ## Rules
@@ -74,7 +74,7 @@ won't be there yet.
 ## Notes
 
 - **Keep the grouping.** The three groups under "needs an account" tell someone
-  where they are in the process. A flat list of twelve does not.
+  where they are in the process. A flat list does not.
 - **One line each, and no more.** If a description needs two lines, the command
   needs a better description.
 - If the user asks about one command by name, print that command's line plus

@@ -1,6 +1,6 @@
 ---
 name: creative-brief
-description: Use when making a picture for a post — the four steps that decide what the picture shows, the two calls that save them, and the limit that stops a picture getting busier every round. Covers carousels as one idea over several frames.
+description: Use inside /plgn images or /plgn month when a post needs a picture — the four steps that decide what the picture shows, the brief calls that record them before any image credit is spent, and the limit that stops a picture getting busier every round. Covers carousels as one idea over several frames. Not for image requests outside plgn.
 ---
 
 # The creative brief

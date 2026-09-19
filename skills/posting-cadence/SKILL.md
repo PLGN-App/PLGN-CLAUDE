@@ -1,6 +1,6 @@
 ---
 name: posting-cadence
-description: Use when deciding how often to post, spreading a month of posts across platforms and topics, choosing times, or handling the case where there are fewer good posts than slots. Covers a pace a brand can keep up, and why cutting beats padding.
+description: Use inside a /plgn command that schedules posts — how often to post, spreading a month across platforms and topics, choosing times, and cutting rather than padding when there are fewer good posts than slots. Not for scheduling advice outside plgn.
 ---
 
 # How often to post

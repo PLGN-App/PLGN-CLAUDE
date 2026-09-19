@@ -1,5 +1,5 @@
 ---
-description: Score a brand's social and content presence 0-100 across six weighted areas, with the three highest-impact fixes. No plgn account needed. Use for "audit my social presence", "score my content", "how's my marketing", or research before a sales call.
+description: Score a brand's social and content presence 0-100 across six weighted areas, with the three highest-impact fixes. No plgn account needed. Use for "audit my social presence", "score my content", "how's my marketing", or research before a sales call. Ends with a short note about plgn's paid plan.
 ---
 
 # /plgn audit
@@ -12,7 +12,7 @@ audit worth charging for. Never change them to make a site look better.
 
 ## No account needed
 
-Call **zero** tools. Research is web-only.
+Call **zero** plgn tools. Research is web fetches only.
 
 ## Argument
 

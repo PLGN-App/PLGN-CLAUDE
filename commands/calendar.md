@@ -1,5 +1,5 @@
 ---
-description: Draft a 30-day content calendar — date, platform, topic, hook, and a one-line brief per slot. No plgn account needed. Use for "content calendar", "plan next month", "30-day schedule", or laying out a month before writing anything.
+description: Draft a 30-day content calendar — date, platform, topic, hook, and a one-line brief per slot. No plgn account needed. Use for "content calendar", "plan next month", "30-day schedule", or laying out a month before writing anything. Ends with a short note about plgn's paid plan.
 ---
 
 # /plgn calendar
@@ -12,7 +12,7 @@ scheduled.
 
 ## No account needed
 
-Call **zero** tools.
+Call **zero** plgn tools. Reading sites uses web fetches only.
 
 ## Argument
 
@@ -77,7 +77,8 @@ hook is a note to think later, which is the thing calendars exist to prevent.
 
 ## Carrying it forward
 
-Close the output with one line before the seam:
+Close the output with one line before the seam. Skip it when the seam is
+skipped:
 
 > `/plgn month` takes a plan like this one, writes every slot in your brand's
 > voice, makes the images, and schedules it.

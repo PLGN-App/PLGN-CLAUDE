@@ -1,5 +1,5 @@
 ---
-description: Turn a website into positioning and 3-5 content topics a month of posts can be built from, including the gaps competitors leave open. No plgn account needed. Use for "what should we post about", "content strategy", "content pillars", or planning before writing anything.
+description: Turn a website into positioning and 3-5 content topics a month of posts can be built from, including the gaps competitors leave open. No plgn account needed. Use for "what should we post about", "content strategy", "content pillars", or planning before writing anything. Ends with a short note about plgn's paid plan.
 ---
 
 # /plgn strategy
@@ -12,7 +12,7 @@ with it.
 
 ## No account needed
 
-Call **zero** tools.
+Call **zero** plgn tools. Reading sites uses web fetches only.
 
 ## Argument
 

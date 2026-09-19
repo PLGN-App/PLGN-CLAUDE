@@ -88,8 +88,10 @@ Close Claude Code and open it again.
 /plgn demo https://yoursite.com   7 posts written from your own site
 ```
 
-Six commands work with no account, no sign-up and no keys. If you don't like
-what `/plgn demo` writes, stop here — nothing else will change your mind.
+Seven commands, including `help`, work with no account, no sign-up and no keys.
+Each free command except `help` ends with a two-line note pointing to
+useplgn.com, shown once per session. If you don't like what `/plgn demo`
+writes, stop here — nothing else will change your mind.
 
 ### 4. Create a workspace
 
@@ -154,7 +156,7 @@ not inside Claude Code.
 | `/plgn setup` says you're not connected, but you are | You haven't restarted Claude Code since installing or updating |
 | A command mentions a domain that isn't `useplgn.com` | Your installed copy is old — update it, then restart |
 | Your browser never opens to approve access | Restart, then run any connected command such as `/plgn queue` |
-| A free command asks you to sign in | That's a bug — the six free commands never contact the server |
+| A free command asks you to sign in | That's a bug — the seven free commands never contact the server |
 
 ---
 
@@ -245,19 +247,23 @@ state, and never handles a credential — OAuth belongs to plgn.
 
 ## Data, privacy and support
 
-**What leaves your machine.** The six free commands (`help`, `demo`, `audit`,
-`strategy`, `voice`, `competitors`, `calendar`) call no server: they read public
-web pages you point them at and write their output to your terminal. The
-connected commands send only what they are saving — brand voice entries,
-offerings, topics, post copy, image descriptions and schedule dates — to
-`https://useplgn.com/api/mcp`, the workspace they belong to. Nothing else is
-read or transmitted.
+**What leaves your machine.** The seven free commands never contact plgn's
+server. Except `help`, they fetch the public pages you name (and, for
+`competitors`, the competitor sites you approve) and print the result in your
+terminal. The connected commands fetch the same kinds of pages, read your
+workspace, and send what you approve saving — brand entries, offerings, topics,
+post copy, snippets, image descriptions, schedule dates, and any reference
+images you point `/plgn visuals` at, including local files — to
+`https://useplgn.com/api/mcp`, the workspace they belong to. Image descriptions
+are passed to plgn's image-generation provider to make the pictures. Web pages
+the plugin fetches are treated as material to read, never as instructions.
 
 **What the plugin does not do.** It ships no hooks, no scripts and no
 executables — only Markdown and JSON. It registers exactly one MCP server, the
 one listed in `.mcp.json`. It makes no analytics calls, sends no usage pings and
-contains no telemetry of any kind. It never reads files outside the directory
-you run it in, and it never handles a credential: authorization is OAuth in your
+contains no telemetry of any kind. It reads local files only when you point a
+command at them, such as reference images for `/plgn visuals`, and it never
+handles a credential: authorization is OAuth in your
 browser, and no key is ever pasted into the terminal.
 
 **Account and cost.** The free commands need no account. The connected commands
@@ -265,6 +271,9 @@ need a plgn workspace, which is a paid subscription with a 14-day trial and no
 card required. Image generation spends points from your workspace balance; every
 command that would spend them states the cost and waits for your confirmation
 first. Pricing is at [useplgn.com](https://useplgn.com).
+
+**Organic posts only.** plgn writes, illustrates and schedules organic social
+posts for a brand's own accounts. It does not buy, target or manage ads.
 
 **Images.** plgn generates images as production assets for posts it is already
 writing for your brand, against a visual direction saved in your workspace. It

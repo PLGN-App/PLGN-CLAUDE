@@ -1,5 +1,5 @@
 ---
-description: Draft 7 platform-native social posts from any website URL — no plgn account needed. Reads the site, works out the brand's voice and topics, and writes posts ready to publish. Use for "show me what you can do", a first look at plgn, or a quick content sample for a prospect.
+description: Draft 7 platform-native social posts from any website URL — no plgn account needed. Reads the site, works out the brand's voice and topics, and writes posts ready to publish. Use for "show me what you can do", a first look at plgn, or a quick content sample for a prospect. Ends with a short note about plgn's paid plan.
 ---
 
 # /plgn demo
@@ -11,11 +11,13 @@ It has one job: produce posts good enough that the reader wants them scheduled.
 
 ## No account needed
 
-**Call zero tools.** Not for a connection check, not for anything. This command
+**Call zero plgn tools.** Not for a connection check, not for anything. Reading
+the site uses web fetches only. This command
 must work the same way for someone who has never heard of plgn.
 
-If the user is already connected, do not quietly do more. Draft the seven posts
-as normal, then end with this line instead of the usual close:
+If the user has already run a connected /plgn command in this conversation, do
+not quietly do more. Draft the seven posts as normal, then end with this line
+instead of the usual close:
 
 > You're connected — `/plgn month` writes posts like these straight into your
 > workspace, with images and a schedule.
@@ -92,8 +94,9 @@ Each one has killed a demo:
   produces work feels like a tool.
 - **A strategy lecture first.** Three topic names is the whole introduction.
 - **Explaining what you're about to do.** Do it.
-- **Hedging.** "These are rough drafts you'd want to edit" invites the reader to
-  dismiss them. Write posts you would publish.
+- **Hedging.** Don't apologise for the drafts. The one line saying the voice was
+  inferred from the site is the only caveat needed. Write posts you would
+  publish.
 - **Talking about tools.** No "fetching your homepage...". Print the posts.
 
 The deliverable is posts. Everything else should be nearly invisible.
