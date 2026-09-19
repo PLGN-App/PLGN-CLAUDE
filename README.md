@@ -238,7 +238,7 @@ drift apart as the plugin grows.
 
 Because agents run in their own context and cannot read those skill files,
 commands pass the rules an agent needs directly in its prompt — see
-`commands/_conventions.md` rule 6.
+`reference/_conventions.md` rule 6.
 
 Nothing runs locally except Markdown. The plugin ships no scripts, stores no
 state, and never handles a credential — OAuth belongs to plgn.
