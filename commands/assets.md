@@ -51,6 +51,31 @@ matter for this brand:
 
 Do not pad. A service brand with no places and no badges is complete.
 
+### Things saved in the wrong place
+
+Before assets existed, the only way to keep a character with its pictures
+was a `reference` entry, usually titled "Character: <name>". The
+`art_director` read lists every `reference`. When one is plainly a thing the
+brand **owns** rather than a look to copy — a character sheet, a logo, the
+shop — say so and offer to move it:
+
+```
+Saved as references, but they are assets:
+  Character: Sara (straight)   3 pictures
+  Character: Mona (wavy)       3 pictures
+Move them to the Characters shelf?
+yes / pick / no
+```
+
+To move one: `knowledge_get` it for its pictures, then `asset_create` with
+those same pictures, its name without the prefix, and its `intent` as the
+description. Then ask, separately and by name, whether to remove the old
+reference with `knowledge_delete` — left in place it is counted twice, as a
+look and as a thing. Never delete it without that second yes.
+
+A reference that says what to *take from* a picture — a pose, a light, a
+layout — is a reference and stays one.
+
 `--dry-run` stops here.
 
 ## 3. Add what they hand over

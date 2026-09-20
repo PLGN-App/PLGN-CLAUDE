@@ -33,6 +33,11 @@ are saved somewhere else, so nothing is stored twice.
 | Product shots | pictures on the **offering** (`offering_update`), per **brand-knowledge-map** |
 | Reference pictures | the `brand_identity` entry's first picture and every `reference` entry, per **visual-identity** |
 
+Never save a character, a logo or a place as a `reference` entry, however
+it is titled. A reference says "look like this"; an asset says "this is ours,
+show *it*". Older brands hold characters as references titled "Character:
+<name>" — `/plgn assets` moves them.
+
 Never save a product shot as an asset. The brief decides what carries a
 frame from the offering's own pictures; a second copy on an asset is a copy
 that can disagree.
