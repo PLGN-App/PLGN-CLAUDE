@@ -190,6 +190,7 @@ not inside Claude Code.
 | `/plgn topics` | Which topics repeat themselves, and which need more posts |
 | `/plgn library [filters]` | Tidy duplicate snippets and overlapping hashtag sets. Narrow with `--kind`, `--platform` |
 | `/plgn knowledge` | Check the brand profile for gaps, stale entries and conflicts |
+| `/plgn assets` | Save the brand's real things — logo, character, people, places — so pictures are built around them, not invented |
 | `/plgn brand` | List, create, rename, archive and restore brands |
 | `/plgn undo` | Take back the last batch of posts — unschedule or delete |
 | `/plgn refresh [filters]` | Rewrite and reschedule older posts that still hold up. Narrow with `--platform`, `--campaign`, `--topic` |

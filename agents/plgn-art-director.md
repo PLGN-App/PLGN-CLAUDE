@@ -13,6 +13,15 @@ Someone will generate new images from what you return, so a guess in your
 output becomes a wrong picture in every post that follows. Report what is
 actually in the references.
 
+## A brand's things are not its look
+
+You describe how the pictures *work* — colour, light, composition. You do
+not catalogue what the brand owns. When the references keep showing the same
+mascot, the same shop or the same founder, say so in one line under
+`subject` and name it as something worth saving as an **asset**; do not fold
+its appearance into the direction. A direction that describes the mascot
+makes every later picture draw a new one.
+
 ## Seeing the references
 
 **A local file or a screenshot** — use `Read`, only on a path named in your

@@ -76,7 +76,9 @@ Anything past the fifth is **printed as a stated assumption**, per the
 
 ## 4. The write order
 
-Seven steps, in this order, because each one is readable by the next.
+Seven steps, in this order, because each one is readable by the next —
+and one more between the look and the business, when the brand handed over
+its own things.
 
 Where each of these is stored is the **brand-knowledge-map** skill's job.
 Read it before writing. Banned words in particular are not knowledge.
@@ -141,6 +143,15 @@ for the ten fields, where each one goes, and why the canonical reference is
 
 Skip it rather than guess it — see **visual-identity** for how many real
 references a direction needs before it counts as one.
+
+### 4b. The brand's own things
+
+One `asset_create` per thing the user handed over — logo, character, person,
+place — per **brand-assets**. After the look, because the look says how a
+picture works and an asset says what it is of. Only what was handed over and
+looked at: never save a logo scraped from a site without asking, and never
+send `consent: true` for a person on a guess. Skip the step entirely when
+nothing was given; `/plgn assets` fills it later.
 
 ### 5. Business
 

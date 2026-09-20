@@ -43,6 +43,8 @@ NEEDS AN ACCOUNT
                             topics and the lines it already reuses
   /plgn brand               Add, rename, archive or restore a brand
   /plgn knowledge           Check and fix what plgn knows about a brand
+  /plgn assets              Save the brand's real things — logo, character,
+                            people, places — so pictures use them
 
   Making content
   /plgn campaign <subject>  Start a campaign, see what's running, mark one done

@@ -11,7 +11,7 @@ can find is not being applied.
 
 Read this before saving anything about a brand.
 
-## The four places
+## The five places
 
 | Place | What it holds | Written with |
 |---|---|---|
@@ -19,6 +19,7 @@ Read this before saving anything about a brand.
 | **Knowledge entries** | What the brand knows about itself — sixteen types, three layers | `knowledge_add`, `knowledge_update` |
 | **Offerings** | What it sells: a product or a service, with its benefits | `offering_create`, `offering_update` |
 | **Campaigns** | One thing it is saying for a while, with dates | `campaign_create`, `campaign_update` |
+| **Assets** | The real things it owns — logo, character, people, places, elements, templates, badges — each with pictures and rules | `asset_create`, `asset_update` |
 
 Topics, snippets, hashtag sets and images are none of these. They have their
 own tools and are listed at the bottom.
@@ -237,6 +238,12 @@ An image *file* is not knowledge. A **reference** — a picture worth learning
 from, with a line saying what to learn — is: a `reference` entry, with the
 picture attached and an `intent` in its metadata. Without the intent it is a
 template, and the server refuses it.
+
+A picture of something the brand **owns** is neither. The logo, a mascot, the
+founder, the shop: each is an **asset** (`asset_create`), per the
+**brand-assets** skill. The test is simple — a reference says "look like
+this"; an asset says "this is ours, show *it*". A product shot is the one
+exception: it stays on its offering.
 
 ## Marking which run made a post
 

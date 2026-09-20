@@ -282,6 +282,14 @@ words, put the `art_director` block's preamble in front of it, and carry
 that block's `never` list as exclusions. Never ask for words, letters or
 logos inside the picture.
 
+The same read lists the brand's **Assets**. When the post is plainly about
+one of them — the mascot's tip of the week, a day at the shop — and its line
+says the AI may use it, build the picture around it: refer to it by its role
+("the character from the reference image"), carry its own `never` list, and
+pass its id as `asset_ids` on `generate_image_from_image`. At most one or
+two on this quick path. Never invent one the read does not list. See
+**brand-assets**.
+
 This is the quick path, on purpose. A picture worth working the idea out
 for first — every idea considered, the ones that lost kept with their
 reasons, and a check against the brand's rules before a credit is spent —

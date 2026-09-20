@@ -173,6 +173,10 @@ way.
 The **image-prompting** skill owns the mechanics of generating. This skill owns
 what the picture should look like before that starts.
 
+What the picture is **of** — the brand's own logo, mascot, people or place —
+is a third thing, owned by **brand-assets**. A look and an asset travel on the
+same call: the canonical reference in `input_urls`, the asset in `asset_ids`.
+
 ## A look for one campaign only
 
 "Make everything gold for Ramadan" is not the brand's look. Saved as

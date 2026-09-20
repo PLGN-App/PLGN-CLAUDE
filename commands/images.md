@@ -115,8 +115,8 @@ for each one. This is the **creative-brief** skill's four steps in two calls
    campaign, if it has one>)`.
 2. Send `plgn-creative-director` that block, the caption, the offering's
    benefits, the campaign's constraints and vocabulary if this post runs
-   inside one, the `Already done` lines from the read, and the frame count
-   settled in section 4. Per **_conventions** rule 6, all of it goes in the
+   inside one, the `Already done` lines from the read, the **Assets**
+   section of that same read, and the frame count settled in section 4. Per **_conventions** rule 6, all of it goes in the
    prompt — the agent cannot see this file.
 3. Call `brief_create` with what it returned, plus `post_id` for the post
    being illustrated, its `campaign_id`, `offering_ids` and `topic_id`
@@ -131,8 +131,8 @@ for each one. This is the **creative-brief** skill's four steps in two calls
    it has one>)` for the brand's identity and picture rules. Send
    `plgn-designer` the concept, the frames, that block, the campaign's
    constraints from step 1 of this list — the designer's own read does not
-   carry them — and what carries each frame, as the `brief_create` call in
-   step 3 resolved it.
+   carry them — the **Assets** section of the designer read, and what
+   carries each frame, as the `brief_create` call in step 3 resolved it.
 5. A frame that fails a check comes back as objections, not a picture, and
    each objection belongs to the frame it was raised against. Send
    `plgn-creative-director` the objections and the ideas it already scored,
@@ -144,7 +144,8 @@ for each one. This is the **creative-brief** skill's four steps in two calls
    failed check, stop working on this post, say which post and why, and
    carry on with the rest of the run. Never attempt a fourth.
 6. No objections → call `brief_finalize` with the brief's id and the final
-   image text per frame.
+   image text per frame. Keep each frame's `assetIds` from the designer for
+   section 6 — they are not part of the brief.
 
 ## 6. Make the pictures
 
@@ -161,6 +162,18 @@ When the brand holds a canonical reference, call
 `generate_image`. See **visual-identity** for why the two are different.
 Either way, carry `post_id`, `brief_id` and `slide_order` on the call, and
 use each frame's finalized image text from section 5.
+
+**A frame built around the brand's own things names them.** When the
+designer gave a frame `assetIds`, call `generate_image_from_image` with
+those as `asset_ids` — alongside the canonical reference in `input_urls`
+when there is one, and on their own when there is not. The server adds each
+asset's main picture itself; never paste an asset's URL into `input_urls`.
+See **brand-assets**. If the call refuses an asset, it says which and why:
+say so in one line, make that frame without it, and carry on.
+
+If the read shows no assets at all and the brand plainly has some — a logo
+on its site, a mascot in its posts — say so once for the run and offer
+`/plgn assets`.
 
 Then follow the **image-prompting** skill's waiting cycle exactly — point at
 it, do not restate it here.

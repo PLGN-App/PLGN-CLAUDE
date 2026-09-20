@@ -126,6 +126,11 @@ If they want the brand known properly — its look, its competitors, its topics
 and the lines it already reuses — add one line offering `/plgn brandkit`. Say
 what it adds, not that it is "deeper".
 
+Add one more line offering `/plgn assets`: it saves the logo and the brand's
+other real things, so pictures are built around them rather than invented.
+Setup itself saves none — a logo deserves to be looked at, not collected in
+passing.
+
 ## Notes
 
 - **No seam.** This user is already signed up.

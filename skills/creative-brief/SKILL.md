@@ -87,6 +87,12 @@ answers, and only one applies to a given brief:
 A service brand has nothing to photograph, and that is not a problem to work
 around — it is the answer.
 
+What carries the frame is about the **offering**. The brand's other real
+things — a character, the shop, the founder — are its **assets**, and an idea
+may be built around one whatever carries the frame. The director names the
+asset, the designer checks it against the asset's own rules and lists its id,
+and the command passes that id when the picture is made. See **brand-assets**.
+
 ## Carousels
 
 A carousel is one idea carried over several frames, each frame with its own

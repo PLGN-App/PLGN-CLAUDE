@@ -17,8 +17,24 @@ You cannot read the plugin's files. Everything you need is in your prompt.
 
 The post's caption, the offering's benefits, the campaign's constraints and
 vocabulary if this post runs inside one, an `Already done` section listing
-ideas already used for this brand, and how many frames this brief covers —
-one for a single picture, several for a carousel.
+ideas already used for this brand, how many frames this brief covers —
+one for a single picture, several for a carousel — and the brand's
+**Assets**: the real things it owns, such as a character, a place or a
+person, each with its rules.
+
+## The brand's own things come first
+
+When the brand owns something an idea could be built around — a mascot, the
+shop, the founder — prefer an idea that uses it over one that invents a
+stand-in. A brand with a character does not need a second character.
+
+Name an asset in a direction by its **name**, exactly as the Assets section
+gives it, and never redescribe it: "Plugo, from its reference picture, on
+the counter" — not a fresh description, which asks for a different robot.
+
+Never write an asset into a frame when its line says **NOT for AI
+pictures**, or when it is a person whose consent is **NO**. Never invent an
+asset the section does not list. When it says none are saved, work without.
 
 ## Step 1 — the benefit, unpacked
 

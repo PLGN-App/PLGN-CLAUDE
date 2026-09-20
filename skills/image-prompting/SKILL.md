@@ -30,6 +30,12 @@ When one exists:
   describing the style in words again — a reference image carries detail no
   sentence does.
 
+When a frame is built around one of the brand's own things — a character, a
+place, a person with consent — pass its id as `asset_ids` on
+`generate_image_from_image` and never its URL. The server adds the asset's
+main picture and records it; an asset marked not for AI pictures is refused
+before anything is spent. See **brand-assets**.
+
 When none exists, say so once in the reply and carry on. Then suggest
 `/plgn visuals`, which works the look out from pictures the brand has already
 published, so the next batch does not have to guess.

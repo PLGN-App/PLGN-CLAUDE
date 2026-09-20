@@ -63,6 +63,8 @@ Then ask, once, for anything else they have. Keep it to one short block:
 - A brand or style guide, if one exists
 - Two or three competitors
 - A few pictures, for the look
+- The brand's own things, as files or links — the logo, a mascot, the
+  founder or team, the shop — so pictures are built around the real ones
 
 Every one of these is optional. Say what each adds so the answer is informed,
 and carry on with whatever they give.
@@ -152,6 +154,11 @@ What this run's own agents change about it:
   in `assets[0]`.
 - Competitors become **one `competitor` entry each**, never one entry listing
   several.
+- The brand's own things — logo, character, people, places — become **one
+  `asset_create` each**, after the look, per **brand-assets**. Look at every
+  picture before saving it, ask for each one's `never` rules, and send
+  `consent: true` for a person only after the user has said that person
+  agreed. A product shot goes on its offering, not here.
 
 Which knowledge entry is which is the **brand-knowledge-map** skill's job. Read
 it before writing — some of this does not belong in knowledge at all.

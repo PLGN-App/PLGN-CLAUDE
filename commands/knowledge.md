@@ -114,6 +114,9 @@ is lost if the write fails.
   Some of what a brand knows does not live in knowledge at all.
 - **A missing look is filled by `/plgn visuals`**, not here. This command can
   say it is missing; that command works it out from real pictures.
+- **Missing assets are filled by `/plgn assets`**, not here. The logo, a
+  character, people and places are not knowledge entries — see
+  **brand-assets**.
 - **Never invent a voice.** If the site is gone and the user cannot describe the
   brand, say the entry cannot be filled responsibly.
 - **Specific beats complete.** A sharp entry beats a vague one — vague guidance
