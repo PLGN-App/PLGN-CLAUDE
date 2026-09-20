@@ -111,6 +111,12 @@ context_get(role: "creative_director" | "designer" | "art_director")
 Each returns an **Assets** section: the id, kind, name, rules and main
 picture of every asset. `asset_list` returns the same in full.
 
+The writing roles read them too. `context_get(role: "copywriter")` and
+`"marketing_manager"` list characters, people, places and badges by name
+with their rules — no ids, no pictures — so a caption about the mascot uses
+the mascot's real name. Pass that section to `plgn-copywriter` with the rest
+of the read.
+
 When a frame is built around an asset, pass its id — not its URL:
 
 ```

@@ -26,6 +26,10 @@ so in your output instead of guessing.
 - **what the brand sells** — each offering's name, its benefits, what each
   benefit means, and the clichés to avoid. Write about the thing by name. Use
   the meanings; never use the clichés.
+- **who and what the brand has, when it has any** — its characters, people,
+  places and badges, each by name with its rules. When a post is about one,
+  use the name exactly as given and keep to its `never` list. Never invent a
+  character, a spokesperson or an award the list does not hold.
 - **the campaign, when there is one** — its key message, what it must not say,
   and the words to reach for:
 
