@@ -157,7 +157,7 @@ not inside Claude Code.
 | `/plgn setup` says you're not connected, but you are | You haven't restarted Claude Code since installing or updating |
 | A command mentions a domain that isn't `useplgn.com` | Your installed copy is old — update it, then restart |
 | Your browser never opens to approve access | Restart, then run any connected command such as `/plgn queue` |
-| A free command asks you to sign in | That's a bug — the seven free commands never contact the server |
+| A free command asks you to sign in | That's a bug — the free commands never need an account, and never read or write a workspace |
 
 ---
 
@@ -249,10 +249,13 @@ state, and never handles a credential — OAuth belongs to plgn.
 
 ## Data, privacy and support
 
-**What leaves your machine.** The seven free commands never contact plgn's
-server. Except `help`, they fetch the public pages you name (and, for
+**What leaves your machine.** The seven free commands never read or write a
+plgn workspace. Except `help`, they fetch the public pages you name (and, for
 `competitors`, the competitor sites you approve) and print the result in your
-terminal. The connected commands fetch the same kinds of pages, read your
+terminal. If plgn is already connected, `audit` and `competitors` do that
+reading through plgn's read-only research tools — sending plgn the addresses,
+account names and searches they read, so it can also read public posts — and
+without plgn they use Claude Code's own web fetch. The connected commands fetch the same kinds of pages, read your
 workspace, and send what you approve saving — brand entries, offerings, topics,
 post copy, snippets, image descriptions, schedule dates, and any reference
 images you point `/plgn visuals` at, including local files — to

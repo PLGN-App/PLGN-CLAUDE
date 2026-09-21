@@ -12,7 +12,11 @@ not rewrite it here, because a copy drifts away from the original over time.
 Commands come in two kinds. Every command is exactly one of them:
 
 - **Free** — `demo`, `audit`, `strategy`, `voice`, `competitors`, `calendar`.
-  Call **zero** MCP tools. Output is text. Always close with the seam.
+  Call no MCP tool except plgn's three read-only research tools —
+  `web_search`, `site_read`, `social_fetch` — and those only when plgn happens
+  to be connected. Without plgn, fall back to web search and web fetches and
+  say what could not be read. Never read or write a workspace, never need an
+  account. Output is text. Always close with the seam.
 - **Connected** — `setup`, `brandkit`, `brand`, `campaign`, `knowledge`, `month`, `post`, `undo`,
   `repurpose`, `topics`, `library`, `images`, `visuals`, `queue`, `refresh`,
   `report`, `why`.
