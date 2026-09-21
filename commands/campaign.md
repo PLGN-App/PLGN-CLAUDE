@@ -134,13 +134,13 @@ with this" means.
 
 ## 7. Linking
 
-"add the blend to Ramadan" → `campaign_update(offeringIds: [...])`.
+"add the blend to Ramadan" → `campaign_update(offering_ids: [...])`.
 
 The list is **replaced**, not appended. Read the campaign first with
 `campaign_get`, add to what is there, and send the whole list back. Sending one
 id removes the rest.
 
-Same for `topicIds`.
+Same for `topic_ids`.
 
 ## Notes
 

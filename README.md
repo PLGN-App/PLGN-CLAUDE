@@ -14,7 +14,7 @@ workspace.
 Pillars:    Migration horror stories · Pricing without traps · Founder notes
 Platforms:  LinkedIn, X, Instagram
 Cadence:    7/week — 28 posts total
-Images:     24 to generate (24 credits)
+Images:     24 to generate (24 points — the price depends on the image model)
 Window:     Sep 1 → Sep 28
 
 Proceed? yes
@@ -24,7 +24,8 @@ Proceed? yes
   2 revised to fit LinkedIn's cap
   1 left as a draft — "growth hack" is on your banned-word list and the
     post's point depends on it
-  1 has no image — generation timed out; the post is scheduled without one
+  1 has no image yet — still being made; the post is scheduled without one
+    for now, check again later
 
 Review at useplgn.com
 ```
@@ -186,7 +187,7 @@ not inside Claude Code.
 | `/plgn repurpose <url>` | One article into many posts, plus saved snippets |
 | `/plgn queue` | What's blocked, missing an image, too short, or ready — and fix it |
 | `/plgn visuals <refs>` | Work out how the brand's pictures look, and save it so new images match |
-| `/plgn images [filters]` | Fill in missing pictures, with the credit cost stated first. Narrow with `--campaign`, `--platform`, `--status`, `--from`/`--to` |
+| `/plgn images [filters]` | Fill in missing pictures, with the points cost stated first. Narrow with `--campaign`, `--platform`, `--status`, `--from`/`--to` |
 | `/plgn topics` | Which topics repeat themselves, and which need more posts |
 | `/plgn library [filters]` | Tidy duplicate snippets and overlapping hashtag sets. Narrow with `--kind`, `--platform` |
 | `/plgn knowledge` | Check the brand profile for gaps, stale entries and conflicts |

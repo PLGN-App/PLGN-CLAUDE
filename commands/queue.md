@@ -89,7 +89,7 @@ meant to carry. If there is no idea underneath, say so and suggest removing the
 slot rather than padding it — an honest gap beats filler.
 
 For missing images, hand off: *"Run `/plgn images` to fill these three."* Do not
-make images here; that spends credits and belongs to a command the user chose
+make images here; that spends points and belongs to a command the user chose
 for it.
 
 For posts that need a person, do not offer a fix — there is nothing this

@@ -1,5 +1,5 @@
 ---
-description: Check how healthy your content topics are — which are repeating themselves, which need more posts, and what to add — then create the ones you approve. Supports --yes. Use for "what should I write next", "check my topics", "am I repeating myself", or planning before a new month.
+description: Check how healthy your content topics are — which are repeating themselves, which need more posts, and what to add — then create the ones you approve, or narrow or retire the ones you have. Supports --yes. Use for "what should I write next", "check my topics", "am I repeating myself", or planning before a new month.
 ---
 
 # /plgn topics
@@ -98,8 +98,23 @@ yes / pick / no
 
 ## 5. Create
 
-Once approved, call `topic_create` for each agreed topic. Check `topic_list`
-first — never create one that already exists.
+Once approved, call `topic_create` for each agreed **new** topic. Check
+`topic_list` first — never create one that already exists.
+
+**Narrowing or retiring changes the topic you already have — never make a
+second one.** A new topic next to the old one splits its posts in two and
+leaves the old framing on the board. Use `topic_update` on the existing topic.
+It takes `topic_id` and any of `title`, `description` and `order`; only what
+you send changes.
+
+- **Narrowing** → `topic_update(topic_id: <the topic>, title: <the narrowed
+  title>, description: <what it now covers>)`. Its posts stay linked to it.
+- **Retiring** → topics have no archived state, so mark it in its
+  description: `topic_update(topic_id: <the topic>, description: "Retired
+  <date> — no new posts. <why>")`, and leave it out of what you plan next.
+  Only delete it if the user asks for that by name — `topic_delete` needs
+  `confirm: true`, and it unlinks every post from the topic (the posts are
+  kept, but lose their grouping).
 
 Where a topic is repeating itself, suggest the **narrowed** version rather than
 more of the old framing. The old framing is what produced the repetition.
@@ -108,8 +123,8 @@ Retiring a topic is a normal outcome, not a failure. Topics have a life, usually
 a few months of regular posting. Say so when you suggest it.
 
 `--dry-run` prints the report and creates nothing.
-`--yes` skips the confirmation. Allowed here — creating a topic is cheap and
-easy to undo.
+`--yes` skips the confirmation. Allowed here — creating or renaming a topic is
+cheap and easy to undo. It never covers a delete.
 
 ## Notes
 

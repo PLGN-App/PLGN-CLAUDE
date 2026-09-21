@@ -48,7 +48,7 @@ Not a list of sentences. One object per thing the brand sells:
         {
           "label": { "en": "Roasted weekly" },
           "meanings": ["never sits in a warehouse", "you taste the roast date"],
-          "avoidCliches": ["farm to cup", "artisanal"]
+          "avoid_cliches": ["farm to cup", "artisanal"]
         }
       ],
       "evidence": "the roasting schedule on /about, and the date stamp on the bag"
@@ -64,7 +64,7 @@ guessing, and a service filed as a product is a record with the wrong fields.
 `role` is `hero` for the one thing the brand leads with, `supporting` for the
 rest. At most one hero. If nothing leads, mark them all supporting and say so.
 
-`meanings` is what the benefit actually means in plain words. `avoidCliches` is
+`meanings` is what the benefit actually means in plain words. `avoid_cliches` is
 what a writer would reach for and must not. Both are read by whoever writes the
 copy; a benefit with only a label is a phrase to repeat.
 

@@ -110,7 +110,7 @@ one point:
 ```json
 {
   "campaign": {
-    "keyMessage": { "en": "One table, everyone welcome." },
+    "key_message": { "en": "One table, everyone welcome." },
     "constraints": ["no ice", "no discount language"],
     "vocabulary": ["gathering", "unhurried", "shared"],
     "evidence": "the Ramadan posts from 2026 all lead on hosting, none on price"
@@ -118,7 +118,7 @@ one point:
 }
 ```
 
-`keyMessage` is **one sentence**. It is the thing every post in the campaign
+`key_message` is **one sentence**. It is the thing every post in the campaign
 says, differently each time. If it needs two sentences it is two campaigns.
 
 `constraints` are refusals — what must not appear while this runs.

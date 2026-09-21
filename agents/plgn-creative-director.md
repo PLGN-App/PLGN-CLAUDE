@@ -60,7 +60,7 @@ scores 0 and says so in its reason — that is a rejection like any other, not
 a special case.
 
 Pick one. The one you pick gets a reason too — why it beats the others, not
-just that it does — and that reason goes in `conceptWhy`, never in the
+just that it does — and that reason goes in `concept_why`, never in the
 candidate list.
 
 ## Step 3 — one direction per frame
@@ -76,36 +76,39 @@ the frame is *of*.
 ## What you return
 
 The exact keys below, and nothing else — no prose before or after the JSON.
+The keys are the tool's own argument names, in snake_case: the command
+passes them to `brief_create` as they are, and a key spelled any other way is
+silently dropped.
 
 ```json
 {
-  "benefitLabel": "the benefit this brief is built on",
+  "benefit_label": "the benefit this brief is built on",
   "meanings": ["strength", "resilience", "load"],
   "candidates": [
     {
       "metaphor": "a rope under tension",
       "territory": "climbing gear",
       "score": 7,
-      "rejectedBecause": "reads as effort, not as the product's strength"
+      "rejected_because": "reads as effort, not as the product's strength"
     }
   ],
   "concept": "the one idea picked, in a sentence",
-  "conceptWhy": "why this one beats the other scored ideas",
+  "concept_why": "why this one beats the other scored ideas",
   "slides": [
-    { "order": 1, "role": "hook", "artDirection": "what this frame is of" }
+    { "order": 1, "role": "hook", "art_direction": "what this frame is of" }
   ]
 }
 ```
 
 Every idea you scored belongs in that list, including the one you picked.
 The picked idea is not removed from it — it is the entry whose score is
-highest and the only one with **no** `rejectedBecause` at all. Leave that
+highest and the only one with **no** `rejected_because` at all. Leave that
 key out of it entirely.
 
-`rejectedBecause` is the losers' field and only the losers' field. Anything
+`rejected_because` is the losers' field and only the losers' field. Anything
 written there is read back later as "rejected", whatever the words say, so
 a keep-reason put there turns the winning idea into one that lost. The
-winner's reason lives in `conceptWhy`, which exists for exactly that.
+winner's reason lives in `concept_why`, which exists for exactly that.
 
 ## When the brief comes back for another round
 

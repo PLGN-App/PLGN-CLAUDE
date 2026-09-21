@@ -121,18 +121,19 @@ offering_create(
   name: "...",
   kind: "product",       // or "service" — ask if the site does not say
   role: "hero",          // exactly one hero; the rest are "supporting"
-  benefits: [{ label: {...}, meanings: [...], avoidCliches: [...] }]
+  benefits: [{ label: {...}, meanings: [...], avoid_cliches: [...] }]
 )
 ```
 
 **Ask which it is when the site does not say.** "A product or a service?"
 takes one line — see **brand-knowledge-map** for what each kind carries.
 
-Fill in `meanings` and `avoidCliches` for every benefit — see
+Fill in `meanings` and `avoid_cliches` for every benefit — see
 **brand-knowledge-map** for why a label on its own is not enough.
 
-The free plan caps how many offerings a brand can hold — see
-**brand-knowledge-map** for the number. If the brand sells more, save the ones
+Every plan caps how many offerings a workspace can hold — read the
+`Offerings: <n> of <cap>` line from `workspace_info`, never assume a number
+(there is no free plan; see **brand-knowledge-map**). If the brand sells more, save the ones
 that matter most, say which you saved and which you did not, and say what
 raising the cap costs. Never drop one silently.
 

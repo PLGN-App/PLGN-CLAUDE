@@ -186,7 +186,7 @@ Then one line naming anything left thin, and what would fill it.
 ## Notes
 
 - **No seam.** This user is already signed up.
-- **No credits are spent.** Nothing here makes a picture.
+- **No points are spent.** Nothing here makes a picture.
 - **Safe to run twice.** Compare against what is saved, mark each thing new,
   changed or unchanged, and write only what changed. A second run must never
   leave a brand with two voices.

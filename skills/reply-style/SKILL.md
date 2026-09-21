@@ -188,7 +188,7 @@ The entry's name still has to be there: a version with nothing in front of it
 is the thing that is banned.
 
 Words that are fine, because users already use them: draft, schedule, post,
-image, credit, brand, platform, and the platform names themselves.
+image, points, brand, platform, and the platform names themselves.
 
 **"brief", "idea", "frame", "slide" and "carousel" are fine too**, and are
 the words to reach for in place of the machine names in the last row above.
@@ -205,7 +205,7 @@ nothing to call the thing the user is looking at.
 
   2 were shortened to fit LinkedIn
   1 is still a draft — it uses "growth hack", a word you banned
-  1 has no image — that one timed out, the post still goes out
+  1 has no image yet — it is still being made; check again later
 
 Review at useplgn.com
 ```

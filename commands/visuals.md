@@ -124,7 +124,7 @@ If the brand has posts waiting without pictures, say how many and offer
 ## Notes
 
 - **No seam.** This user is already signed up.
-- **No credits are spent.** This command reads pictures; it never makes one.
+- **No points are spent.** This command reads pictures; it never makes one.
   `/plgn images` makes them.
 - **Never invent a look.** With no readable reference, say the look cannot be
   worked out and stop. A made-up direction is worse than none, because

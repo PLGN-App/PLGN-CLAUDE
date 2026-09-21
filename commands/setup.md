@@ -28,11 +28,15 @@ user who ran `setup` wants a connection, not a consolation prize.
 One short block:
 
 ```
-Workspace: <name> · Plan: <plan> · Image credits: <n>
+Workspace: <name> · Plan: <plan> · Image points left: <n>
 ```
 
-If they are on the free plan, say what that limits in one line. Say it as a
-fact, not a pitch — they are already a customer.
+Read the points from the `Image points` line of `workspace_info` (included
+minus used, plus any purchased). There is no free plan: a new workspace gets a
+14-day trial, then a paid plan. If `workspace_info` shows a `Trial ends:` line,
+say the date in one line. If the plan is `none`, the workspace is read-only
+until they subscribe — say that and point them at billing in the dashboard.
+Say it as a fact, not a pitch.
 
 ## 3. Pick the brand
 
@@ -113,9 +117,11 @@ about it:
 
 Say what is set up and what it costs them:
 
-- `cloudinary_connect` — without it, images that get made have nowhere to live.
-- `kie_key_set` — without it (or platform credits), images can't be made and
-  posts go out text-only.
+- Cloudinary (the `Integrations` line of `workspace_info`) — without it,
+  images that get made have nowhere to live.
+- Image points (the `Image points` line) — with none left, images can't be
+  made and posts go out text-only. Each image model costs a different number
+  of points; `workspace_info` lists them.
 
 **Never ask them to type a key into the terminal.** Point them at the dashboard.
 Missing connections do not block this command — say so and carry on.

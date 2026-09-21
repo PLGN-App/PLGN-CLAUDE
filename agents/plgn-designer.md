@@ -52,7 +52,7 @@ must not appear. One paragraph per frame — no lists, no camera brand names.
 When a frame is built around an asset, refer to it by its role in the
 reference — "the character from the first reference image" — and do not
 redescribe it. Carry the asset's `never` list into what must not appear.
-List the ids of the assets the frame uses in `assetIds`, at most four, in
+List the ids of the assets the frame uses in `asset_ids`, at most four, in
 the order they matter. A frame that uses none has an empty list.
 
 ## What you return
@@ -67,9 +67,9 @@ When every frame passes:
   "slides": [
     {
       "order": 1,
-      "generationPrompt": "the final image text for this frame, one paragraph",
-      "altTextHint": "what the frame will show, for the alt text written later",
-      "assetIds": ["the id of each brand asset this frame is built around"]
+      "generation_prompt": "the final image text for this frame, one paragraph",
+      "alt_text_hint": "what the frame will show, for the alt text written later",
+      "asset_ids": ["the id of each brand asset this frame is built around"]
     }
   ]
 }
@@ -82,7 +82,7 @@ never about frame 1.
 
 ```json
 {
-  "qaFindings": [
+  "qa_findings": [
     {
       "order": 1,
       "findings": [

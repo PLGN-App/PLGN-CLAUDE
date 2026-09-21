@@ -85,13 +85,15 @@ Campaign:   <name, or "none">
 Platforms:  LinkedIn, X, Instagram
 Languages:  <the brand's, from its record>
 Posting:    <n>/week — <n> posts total
-Images:     <n> to make — <n> credits, leaving <n>
+Images:     <n> to make — <n> points, leaving <n>
 Dates:      <start> → <end>, <timezone>
 ```
 
 Four of those lines exist to be corrected. Languages and timezone come from the
-brand, not from the conversation, and both are invisible when wrong. The credit
+brand, not from the conversation, and both are invisible when wrong. The points
 line says what is left afterwards, because that is the number people decide on.
+Work it out from `workspace_info`: the `Image points` line is the balance, and
+each image model has its own points price — never assume one point a picture.
 
 The `Images:` figure already reflects `--no-images` and `--max-images` — zero
 with the first, no more than the number given with the second — and it is an
@@ -113,13 +115,13 @@ yes / pick / no
 `--dry-run` ends here: print the plan, write nothing, and say so.
 
 Stop on a flag you do not recognise, and say which one. A misread flag spends
-credits on the wrong posts — `--no-image` is not `--no-images`, and reading it
+points on the wrong posts — `--no-image` is not `--no-images`, and reading it
 as nothing at all is a full month of pictures the user asked you not to make.
 
-State the image cost in the plan, not afterwards. It spends real credits, and
+State the image cost in the plan, not afterwards. It spends real points, and
 it is the part a user is most likely to want reduced.
 
-**`--yes` is not accepted by this command.** It spends credits and writes in
+**`--yes` is not accepted by this command.** It spends points and writes in
 bulk.
 
 ## 4. Write, all at once
@@ -240,7 +242,7 @@ Say the number you are about to spend before spending it, not after.
 ### Look for a picture that already exists
 
 Call `list_images(max: 50)` before generating anything. **Reuse costs nothing
-and a new picture costs a credit**, so a usable match already in the workspace
+and a new picture costs points**, so a usable match already in the workspace
 is always the better answer.
 
 Make this call **once for the run, not once per post**: `list_images` takes no
@@ -256,7 +258,7 @@ to generate.
 
 Reuse a match only when it actually fits this post's subject. A picture that
 is merely on-brand is not a picture of the right thing, and a wrong reuse
-costs more than a credit — it costs the post.
+costs more than points — it costs the post.
 
 For each post that should have one, read `context_get(role: "art_director",
 campaign_id: <the post's campaign, if it has one>)` for the brand's look.
@@ -292,7 +294,7 @@ two on this quick path. Never invent one the read does not list. See
 
 This is the quick path, on purpose. A picture worth working the idea out
 for first — every idea considered, the ones that lost kept with their
-reasons, and a check against the brand's rules before a credit is spent —
+reasons, and a check against the brand's rules before any points are spent —
 is what `/plgn images` is for. Point at it in the report; do not rebuild it
 here.
 
@@ -305,19 +307,21 @@ different.
 both return a job number, not an image. Check with `check_generation` on the
 schedule in the **image-prompting** skill.
 
-If it takes too long, leave the image out, note the post for the report, and
-**carry on** — a missing image never blocks scheduling. A post that goes out
+If it takes too long, leave the image out for now, note the post for the
+report as **still running** (never as failed, while the check still says
+waiting, queuing or generating), and **carry on** — a missing image never blocks scheduling. A post that goes out
 text-only is fine; a month that stalls waiting on a picture is not.
 
 **Every picture gets alt text.** Once one exists, send `plgn-visual` the
 post, the same voice block, and a description of the picture that was just
 made; that is its second job, and it returns the alt text for it. Save the
-picture and its alt text onto the post with `post_update`. This is the
+picture and its alt text onto the post with `post_update` — the alt text goes
+in the media item's `alt` field. This is the
 plugin's busiest image path, so an image saved here without alt text is most
 of a month unreadable to anyone using a screen reader.
 
 If `plgn-visual` says the post is stronger without an image, accept that and
-spend no credit.
+spend no points.
 
 ## 8. Schedule
 

@@ -136,12 +136,12 @@ offering_create(
   benefits: [{
     label: { "en": "Roasted weekly" },
     meanings: ["never sits in a warehouse"],
-    avoidCliches: ["farm to cup"]
+    avoid_cliches: ["farm to cup"]
   }]
 )
 ```
 
-`meanings` and `avoidCliches` are the two fields a writer actually reads. A
+`meanings` and `avoid_cliches` are the two fields a writer actually reads. A
 benefit carrying only a label gives the writer a phrase to repeat, which is the
 opposite of what it is for.
 
@@ -160,13 +160,13 @@ from every post, entry and campaign that named it, and cannot be undone.
 campaign_create(
   name: "Ramadan 2027",
   status: "draft",          // draft | active | done | archived
-  startsAt: "2027-02-01",
-  endsAt: "2027-03-02",
-  keyMessage: { "en": "One table, everyone welcome." },
+  starts_at: "2027-02-01",
+  ends_at: "2027-03-02",
+  key_message: { "en": "One table, everyone welcome." },
   constraints: ["no ice"],
   vocabulary: ["gathering"],
-  offeringIds: [...],
-  topicIds: [...]
+  offering_ids: [...],
+  topic_ids: [...]
 )
 ```
 
@@ -183,11 +183,18 @@ exact counts. `campaign_list` is the overview.
 
 ## The caps
 
-| | Free |
-|---|---|
-| Knowledge entries | 12 |
-| Offerings | 2 |
-| Campaigns in progress | 1 (`draft` + `active` only) |
+There is no free plan — a workspace starts on a 14-day trial, then a paid
+plan, and each plan sets its own caps. Never assume a number: `workspace_info`
+prints every cap with what is used, for example:
+
+```
+Knowledge entries: 9 of 12
+Offerings: 2 of 2
+Campaigns in progress: 1 of 1
+```
+
+A campaign holds a slot only while it is `draft` or `active` and has not
+passed its end date.
 
 Hitting one is a refusal, not an error. Say what is full and what it costs to
 raise it — never retry, and never quietly drop the thing that did not fit.

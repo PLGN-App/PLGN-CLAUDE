@@ -1,5 +1,5 @@
 ---
-description: Find posts with no image, plan and make one for each, and attach the results — with the credit cost stated before anything is spent. Supports --dry-run and filters (campaign, platform, status, dates, title word). Use for "generate images", "my posts need images", or filling in artwork before a month goes out.
+description: Find posts with no image, plan and make one for each, and attach the results — with the points cost stated before anything is spent. Supports --dry-run and filters (campaign, platform, status, dates, title word). Use for "generate images", "my posts need images", or filling in artwork before a month goes out.
 ---
 
 # /plgn images
@@ -11,10 +11,13 @@ Fill the empty image slots, on purpose and at a stated cost.
 Call `workspace_info`. If it fails, print the message from **_conventions**
 rule 2 and stop.
 
-Check the image setup. If `kie_key_set` has no key and the workspace has no
-credits, say what is missing and stop — point them at the dashboard, never ask
-for a key in the terminal. Same for `cloudinary_connect`: without storage, new
-images have nowhere to live.
+Check the image setup from the same `workspace_info` result. Images are paid
+for in **points**, and the cost depends on the image model — `workspace_info`
+lists every model with its points, and the `Image points` line shows what is
+used and what is left. Read both; never assume one picture costs one point. If
+no points are left, say so and stop — point them at billing in the dashboard,
+never ask for a key in the terminal. Same for Cloudinary (the `Integrations`
+line): without storage, new images have nowhere to live.
 
 ## 2. Find the gaps
 
@@ -41,13 +44,13 @@ user typed and pass them straight to `post_list`:
 found and stop — do not pick one for them.
 
 Stop on a filter you do not recognise, and say which one. A misread flag
-spends credits on the wrong posts.
+spends points on the wrong posts.
 
 Say what you found, and name the filter on the same line, so a narrowed run is
 never read as an empty board:
 
 ```
-7 posts have no image in "Ramadan 2027" · 24 credits available
+7 posts have no image in "Ramadan 2027" · 24 points available
 ```
 
 With no filter, the same line without the campaign clause.
@@ -94,16 +97,17 @@ picture:
 ```
 8 pictures for 5 posts — one is a carousel on X, asked for in this run and
 cut from 6 frames to 4, which is all X allows.
-8 credits, leaving 16.
+8 points at 1 point each, leaving 16.
 yes / pick / no
 ```
 
 Images spend from a real balance, and this states the whole run's bill, not
-one post's. If the number is more than the workspace has, say so and offer to
+one post's. Work the bill out from the points `workspace_info` gives for the
+model you will use — frames × that model's points. If the number is more than the workspace has, say so and offer to
 do the most valuable posts rather than stopping halfway with no explanation.
 
 `--dry-run` stops here and spends nothing.
-**`--yes` is not accepted by this command.** It spends credits.
+**`--yes` is not accepted by this command.** It spends points.
 
 ## 5. Per post: read, think, check, save
 
@@ -143,8 +147,8 @@ for each one. This is the **creative-brief** skill's four steps in two calls
    back to `plgn-designer`. Up to three checks per post — on the third
    failed check, stop working on this post, say which post and why, and
    carry on with the rest of the run. Never attempt a fourth.
-6. No objections → call `brief_finalize` with the brief's id and the final
-   image text per frame. Keep each frame's `assetIds` from the designer for
+6. No objections → call `brief_finalize` with the brief's id and, per
+   frame, its `order` and the designer's `generation_prompt`. Keep each frame's `asset_ids` from the designer for
    section 6 — they are not part of the brief.
 
 ## 6. Make the pictures
@@ -164,7 +168,7 @@ Either way, carry `post_id`, `brief_id` and `slide_order` on the call, and
 use each frame's finalized image text from section 5.
 
 **A frame built around the brand's own things names them.** When the
-designer gave a frame `assetIds`, call `generate_image_from_image` with
+designer gave a frame `asset_ids`, call `generate_image_from_image` with
 those as `asset_ids` — alongside the canonical reference in `input_urls`
 when there is one, and on their own when there is not. The server adds each
 asset's main picture itself; never paste an asset's URL into `input_urls`.
@@ -182,11 +186,12 @@ it, do not restate it here.
 
 Once a post's frames are made, send `plgn-visual` the post and its frames,
 the brand's voice from the copywriter read in section 3, and each frame's
-final image text and `altTextHint` from `plgn-designer` — per
+final image text and `alt_text_hint` from `plgn-designer` — per
 **_conventions** rule 6, the agent cannot see this file, so all of it goes
 in the prompt. It writes the alt text per frame.
 
-Then call `post_update` with the media in frame order **and** `brief_id`
+Then call `post_update` with the media in frame order — each item's alt
+text in its `alt` field — **and** `brief_id`
 set to the brief these pictures came from. `media[0]` is the cover, so the
 order matters and is the frame order. The `brief_id` is the only thing that
 joins the post to its thinking: leave it off and `/plgn why` reads back
@@ -195,13 +200,13 @@ records nothing about what worked.
 
 ## 8. Say what happened
 
-Counts first: pictures made, credits spent, posts skipped and why, posts
+Counts first: pictures made, points spent, posts skipped and why, posts
 that needed a person. Then, for each post that got a picture, print its idea
 in one sentence — that is the part a user can actually agree or disagree
 with.
 
 ```
-7 pictures made across 4 posts · 7 credits spent, 17 left
+7 pictures made across 4 posts · 7 points spent, 17 left
 
   "The 90-minute review" — a rope under tension, for the strain of a
   packed calendar
@@ -213,9 +218,9 @@ with.
 ## Notes
 
 - **No seam.** This user is already signed up.
-- **Never remake an image because you don't like it.** A second credit for a
+- **Never remake an image because you don't like it.** A second payment for a
   small improvement is waste. Remake only when one actually failed.
-- **Never spend before asking.** Credits are money.
+- **Never spend before asking.** Points are money.
 - **Never ask for words inside an image** — no text, logos or labels. Generated
   text comes out wrong, and a misspelt word is worse than no image.
 - **Alt text always.** Every attached image carries it.

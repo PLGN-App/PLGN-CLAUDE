@@ -185,7 +185,7 @@ slot — and the brand comes out of Ramadan looking like Ramadan.
 
 It is two things instead:
 
-1. A **Campaign** — `campaign_create(name: "Ramadan 2027", startsAt, endsAt)`
+1. A **Campaign** — `campaign_create(name: "Ramadan 2027", starts_at, ends_at)`
    — which carries the dates and ends on its own.
 2. A **`reference`** entry linked to it, with the picture attached and an
    `intent` in its metadata saying what to take from it.
@@ -195,7 +195,7 @@ knowledge_add(
   type: "reference",
   title: "Ramadan look",
   content: "...",
-  campaignId: <the campaign>,
+  campaign_id: <the campaign>,
   assets: [...],
   metadata: { intent: "the warm gold and the low light, not the lanterns" }
 )
