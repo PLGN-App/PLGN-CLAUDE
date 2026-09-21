@@ -98,6 +98,10 @@ Then, from those findings:
   imitating. Each offering becomes its own `offering_create` in step 7, never
   a knowledge entry. Ask product-or-service when the source does not say.
 - `plgn-art-director` reads the pictures, exactly as `/plgn visuals` does.
+  It cannot call `social_fetch`, so give it the links: each researcher's
+  `pictures` (about 12 for the brand, about 6 per competitor), plus any
+  pictures the user gave in step 3. One art director per account, all at the
+  same time, each with only that account's links.
 - `plgn-strategist` proposes the brand's positioning and three to five things
   this brand should talk about.
 - `plgn-librarian` pulls out the lines and hashtag groups it already reuses.

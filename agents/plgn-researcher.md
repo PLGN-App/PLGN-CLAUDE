@@ -63,8 +63,11 @@ Return exactly these things (`posts` only when posts were read). Nothing before 
 - **`gaps`** — what a buyer would want to know that the site never says.
 - **`posts`** — only when posts were read: per account, how often it posts,
   which formats (photo, video, carousel), the 2–3 posts with the most likes or
-  views and what they have in common, and 2–3 short exact quotes that show the
-  voice.
+  views and what they have in common, 2–3 short exact quotes that show the
+  voice, and **`pictures`**: the picture links `social_fetch` listed under
+  `pictures:`, copied exactly, spread over the recent posts rather than all
+  from one carousel — up to 12 for the brand, up to 6 for a competitor. The
+  art director opens these; without them it has nothing to look at.
 
 ## Say what the site says, then what it leaves out
 

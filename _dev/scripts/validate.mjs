@@ -1117,6 +1117,25 @@ for (const [c, needles] of REPORTS) {
   }
 }
 
+// --- 14. Picture links reach the art director in /plgn brandkit ---------
+// In brandkit only plgn-researcher calls social_fetch, and the art director
+// has no social_fetch of its own. If the researcher does not hand back the
+// picture links, the art directors have nothing to open with image_view.
+{
+  const R = "agents/plgn-researcher.md";
+  const BK = "commands/brandkit.md";
+  if (exists(R)) {
+    const posts = read(R).match(/\*\*`posts`\*\*[\s\S]*?(?=\n\n|\n## )/)?.[0] ?? "";
+    if (!/`pictures`/.test(posts)) fail(`${R}: the \`posts\` return must include the \`pictures\` links for the art director`);
+  }
+  if (exists(BK)) {
+    const bk = read(BK);
+    const line = bk.split(/\r?\n/).find((l) => l.includes("`plgn-art-director`") && /reads the pictures/.test(l)) ?? "";
+    const para = line ? bk.slice(bk.indexOf(line), bk.indexOf(line) + 600) : "";
+    if (!/`pictures`/.test(para)) fail(`${BK}: step 4 must pass the researchers' \`pictures\` links to the art directors`);
+  }
+}
+
 if (fails.length) {
   for (const f of fails) console.error(`FAIL: ${f}`);
   console.error(`\n${fails.length} problem(s).`);
