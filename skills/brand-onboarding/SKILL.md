@@ -28,7 +28,8 @@ Use every rung available, best first.
 
 A brand's accounts live in one `channels` knowledge entry (website, instagram,
 tiktok, facebook, x). Find them once — `site_read`'s `socials:` line, then ask
-for what is missing — save them, and read them from there on every later run.
+for what is missing — save them with the Business pass after the plan's yes
+(never while gathering), and read them from there on every later run.
 LinkedIn is not read.
 
 **The rule that governs all five:**
@@ -161,6 +162,9 @@ send `consent: true` for a person on a guess. Skip the step entirely when
 nothing was given; `/plgn assets` fills it later.
 
 ### 5. Business
+
+`channels` first — one entry, the brand's website and its four accounts. It is
+a singleton: when one is saved already, update it, never add a second.
 
 `competitor` — **one entry each**, not one entry listing five. A competitor you
 can read on its own is a competitor a later run can update.

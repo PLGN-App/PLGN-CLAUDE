@@ -59,8 +59,9 @@ Take the website from the argument. If there is none, ask — never invent one.
 **Find the accounts.** Read `knowledge_get(type: "channels")`. If there is no
 entry, call `site_read` on the website: its `socials:` line lists the
 Instagram, TikTok, Facebook and X accounts the site links to. Ask once for
-any of the four that is missing ("no account" is an answer), then save one
-`channels` entry. LinkedIn is not read.
+any of the four that is missing ("no account" is an answer). Keep the
+accounts in hand — nothing is written until the plan in step 6 gets its yes.
+LinkedIn is not read.
 
 Then ask, once, for anything else they have. Keep it to one short block:
 
@@ -134,6 +135,7 @@ Brand: <name>
   Sells         <offerings, named their way>
   Refuses       <words>
   Looks like    <the direction, in full>
+  Channels      <website · instagram · tiktok · facebook · x, as found>
   Competitors   <n> · Topics <n> · Lines to reuse <n>
 
   Already saved and unchanged: <n items>
@@ -165,8 +167,11 @@ What this run's own agents change about it:
 - `plgn-art-director`'s look is saved as **`brand_identity`** — see
   **visual-identity** for the ten fields and why the canonical reference goes
   in `assets[0]`.
+- The accounts found in step 3 become one **`channels`** entry (website,
+  instagram, tiktok, facebook, x), saved with the Business pass. When one is
+  already saved and unchanged, write nothing; when it changed, update it.
 - Competitors become **one `competitor` entry each**, never one entry listing
-  several.
+  several, with their `url` and the handles their reader found.
 - The brand's own things — logo, character, people, places — become **one
   `asset_create` each**, after the look, per **brand-assets**. Look at every
   picture before saving it, ask for each one's `never` rules, and send
