@@ -17,7 +17,7 @@ const TOOLS = new Set([
   "check_generation", "cloudinary_connect", "context_get", "delete_image",
   "generate_image", "generate_image_from_image",
   "hashtagset_create", "hashtagset_delete", "hashtagset_list", "hashtagset_update",
-  "kie_key_set", "knowledge_add", "knowledge_delete", "knowledge_get",
+  "image_view", "kie_key_set", "knowledge_add", "knowledge_delete", "knowledge_get",
   "knowledge_history", "knowledge_update",
   "list_images",
   "offering_create", "offering_delete", "offering_list", "offering_update",
@@ -214,7 +214,7 @@ for (const p of CONTENT) {
     // other file does.
     if (MAP_ONLY_LEGACY_TYPES.has(name) && p === MAP_SKILL_PATH) continue;
     // only judge names that look like plgn tools: a known prefix
-    if (/^(brand|brief|campaign|check|cloudinary|context|delete|generate|hashtagset|kie|knowledge|list|offering|post|snippet|topic|upload|workspace)_/.test(name)
+    if (/^(brand|brief|campaign|check|cloudinary|context|delete|generate|hashtagset|image|kie|knowledge|list|offering|post|snippet|topic|upload|workspace)_/.test(name)
       && !TOOLS.has(name)) {
       fail(`${p}: unknown MCP tool name \`${name}\``);
     }
@@ -508,13 +508,16 @@ for (const p of CONTENT) {
     fail(`${VIS} is missing — nothing owns the brand's look`);
   } else {
     const body = read(VIS);
-    // Kept: the two-step remote-image path was established by running both
-    // tools. WebFetch on an image URL answers "NO IMAGE VISIBLE" but saves
-    // the binary locally, and Read on that saved path does see the image.
-    // Without this written down, a later contributor concludes remote
-    // references are impossible and quietly drops half the feature.
+    // Pictures at a link are opened with plgn's image_view (1.8.1), which
+    // works wherever plgn is connected, the desk included. The two-step
+    // WebFetch-then-Read path stays as the fallback when it is not: it was
+    // established by running both tools (WebFetch on an image URL answers
+    // "NO IMAGE VISIBLE" but saves the binary, and Read on that path sees it).
+    if (!body.includes("`image_view`")) {
+      fail(`${VIS} must open pictures at a link with \`image_view\``);
+    }
     if (!(body.includes("WebFetch") && body.includes("Read"))) {
-      fail(`${VIS} must document the two-step remote-image path (WebFetch, then Read the saved file)`);
+      fail(`${VIS} must keep the two-step fallback for when plgn is not connected (WebFetch, then Read the saved file)`);
     }
     if (!body.includes("generate_image_from_image")) {
       fail(`${VIS} must say how the canonical reference feeds \`generate_image_from_image\``);
@@ -1095,6 +1098,22 @@ for (const [c, needles] of REPORTS) {
     for (const needle of ["brief_create", "brief_finalize", "creative-brief"]) {
       if (!body.includes(needle)) fail(`${IMAGES}: must go through \`${needle}\``);
     }
+  }
+}
+
+// --- 13. The art director sees pictures through plgn --------------------
+// 1.8.1: image_view is how it looks at a link. Without the tool in its
+// frontmatter the agent cannot call it, and silently falls back to a path
+// that only works in Claude Code.
+{
+  const AD = "agents/plgn-art-director.md";
+  if (!exists(AD)) {
+    fail(`${AD} is missing`);
+  } else {
+    const ad = read(AD);
+    const fm = ad.match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? "";
+    if (!fm.includes("mcp__plugin_plgn_plgn__image_view")) fail(`${AD}: tools must include mcp__plugin_plgn_plgn__image_view`);
+    if (!ad.includes("`image_view`")) fail(`${AD}: must say how it looks at a link with \`image_view\``);
   }
 }
 

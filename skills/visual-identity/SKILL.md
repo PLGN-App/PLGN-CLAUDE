@@ -1,6 +1,6 @@
 ---
 name: visual-identity
-description: Use inside /plgn visuals, /plgn brandkit or /plgn images — reading a brand's reference pictures, writing the visual direction, saving it to the plgn workspace, and applying it before a plgn image is generated. Covers what a direction contains, how to see an image at a URL, and what to do when references disagree.
+description: Use inside /plgn visuals, /plgn brandkit or /plgn images — reading a brand's reference pictures, writing the visual direction, saving it to the plgn workspace, and applying it before a plgn image is generated. Covers what a direction contains, how to see an image at a URL with image_view, and what to do when references disagree.
 ---
 
 # How a brand looks
@@ -39,11 +39,29 @@ generated image feel like a different company.
 At least three. Fewer than three is a sample, not a pattern — say so rather
 than dressing a guess up as a direction.
 
+**Where the pictures come from.** The brand's own posts are the best source:
+`social_fetch` lists every picture of each post under `pictures:`, a
+carousel's included. Take about **12** of the brand's pictures, spread over
+its recent posts rather than twelve from one carousel. For a competitor,
+about **6** is enough: you want its look, not its archive. Files the user
+names, and images already in the workspace (`list_images` returns them as
+URLs), count too.
+
+**One art director per account.** When the brand and its competitors are
+read together, start one `plgn-art-director` per account, all at the same
+time, each with only that account's links. Two accounts' pictures in one
+reading come back as an average of two looks.
+
+**A picture at a link** is opened with `image_view`: up to 6 links per call,
+and it shows the pictures themselves. Twelve pictures is two calls. A link it
+could not open is named in its reply. `social_fetch` links expire after a
+few days, so when most fail, run `social_fetch` again for fresh ones.
+
 **A local file or a screenshot** is read directly with `Read`, which shows the
 image.
 
-**An image at a URL** — including the images already in a workspace, which
-`list_images` returns as URLs — takes two steps:
+**When plgn is not connected**, there is no `image_view`. An image at a URL
+then takes two steps:
 
 1. `WebFetch` the URL. It will answer **"NO IMAGE VISIBLE"**. That is not a
    failure. It saves the binary to a local file and names that path in its

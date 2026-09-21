@@ -86,9 +86,10 @@ link, name a file, or point at a picture already in the workspace
 
 For each one:
 
-1. **Look at it.** A local file with `Read`; a link with `WebFetch` then
-   `Read`, the two steps **visual-identity** sets out. Never save a picture
-   nobody looked at, and never name a kind from a filename.
+1. **Look at it.** A local file with `Read`; a link with `image_view`, which
+   shows the picture (if it is not answering, the `WebFetch`-then-`Read`
+   fallback in **visual-identity**). Never save a picture nobody looked at,
+   and never name a kind from a filename.
 2. **Draft the record** — kind, name, version, what it is, when to use it,
    and the `never` list. Ask for the `never` rules; suggest only what the
    picture itself shows ("it is always on a plain ground").
