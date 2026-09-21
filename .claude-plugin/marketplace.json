@@ -9,7 +9,7 @@
     {
       "name": "plgn",
       "source": "./",
-      "version": "1.8.0",
+      "version": "1.8.1",
       "description": "Marketing content that ships. Draft a month of on-brand social posts from your terminal, then save, check, illustrate and schedule them into a real plgn workspace. Seven commands work with no account at all. Character limits and your brand's banned words are enforced server-side, so a post that breaks them cannot be published.",
       "author": {
         "name": "Ahmed Hashim"
