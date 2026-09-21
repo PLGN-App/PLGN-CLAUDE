@@ -13,10 +13,11 @@ every competitor fails to say is where a brand can be first instead of better.
 
 This works with no plgn account. When plgn is connected, the finding and
 reading below use plgn's read-only research tools (`web_search`, `site_read`,
-`social_fetch`), which also read the competitors' posts, and each competitor
-is saved to the brand the user is on. When it is not, use a web search and web
-fetches instead, read sites only, say that posts were not read, and save
-nothing. Call no other plgn tool.
+`social_fetch`), which also read the competitors' posts. When it is not, use a
+web search and web fetches instead, read sites only, and say that posts were
+not read. Either way this command writes nothing to any workspace and calls no
+other plgn tool — saving competitors to a brand is `/plgn brandkit`'s job,
+which has a brand, a plan and a yes.
 
 ## Argument
 
@@ -37,8 +38,8 @@ the manual process where that is the real alternative. Never assume:
 
 **3. Read each one at the same time.** One `plgn-researcher` per competitor,
 together, each told to read the site and the accounts on its `socials:` line
-(20 posts each). Save each as a `competitor` entry with its `url` and the
-handles found (`instagram`, `tiktok`, `facebook`, `x`).
+(20 posts each). Keep each one's address and the accounts found, for the
+report.
 
 **4. Report.**
 
