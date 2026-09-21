@@ -87,8 +87,9 @@ Read it before writing. Banned words in particular are not knowledge.
 
 ```
 brand_update(
-  languages: ["en", "ar"],
-  bannedWords: [...],
+  brand_id: "<the brand being set up>",
+  locales: ["en", "ar"],
+  banned_words: [...],
   timezone: "Africa/Cairo"
 )
 ```

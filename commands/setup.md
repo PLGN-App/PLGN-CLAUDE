@@ -40,7 +40,14 @@ Call `brand_list`.
 
 - **Brands exist** → list them and ask which to set up. If there is exactly
   one, name it and confirm rather than assuming.
-- **None exist** → ask for a brand name, then create it with `brand_update`.
+- **They want a brand that is not in the list** → no tool creates one. Send
+  them to `https://useplgn.com/settings/brands` → **New brand**, wait for them
+  to say it is there, then call `brand_list` again and carry on with its id.
+  **Never "create" it with `brand_update`**: with a new name and no `brand_id`
+  that call renames the brand they are on. (A workspace always has at least
+  one brand, so an empty list does not happen. A fresh workspace's first brand
+  may carry a placeholder name — renaming THAT one, by its `brand_id` and
+  after they confirm, is fine.)
 
 One brand per run. If they want three set up, run the command three times —
 saving four things per brand is not something to do quietly in bulk.

@@ -31,19 +31,27 @@ yes / pick / no
 
 ## 3. Create
 
-Ask for the name, then confirm before creating:
+**No tool creates a brand.** A new brand is made in the dashboard, because it
+takes one of the plan's brand slots and that is a billing decision:
 
 ```
-Create brand "<name>"?
-yes / edit / no
+A new brand is made in your dashboard, not from here:
+https://useplgn.com/settings/brands → New brand
+
+Tell me when it's there and I'll set it up.
 ```
 
-On yes, call `brand_update` to create it.
+**Never call `brand_update` to "create" one.** It has no create mode: called
+with a new name and no `brand_id`, it **renames the brand the user is on**, and
+their real brand is gone from the list under a stranger's name.
+
+When they say it is there, call `brand_list` again, find it by name, and use
+its id from then on. If it is not in the list, say so — do not guess an id.
 
 Then **offer to set it up straight away** — a brand with nothing saved is a
 brand nothing else can use:
 
-> Created. Want to build its voice from a website now? That's `/plgn setup`.
+> It's there. Want to build its voice from a website now? That's `/plgn setup`.
 
 Do not do it here. `/plgn setup` owns that, and copying it means two places to
 fix when it changes.
