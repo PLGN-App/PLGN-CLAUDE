@@ -48,6 +48,7 @@
     "./commands/campaign.md",
     "./commands/knowledge.md",
     "./commands/assets.md",
+    "./commands/import-store.md",
     "./commands/month.md",
     "./commands/post.md",
     "./commands/repurpose.md",

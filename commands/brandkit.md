@@ -63,6 +63,9 @@ any of the four that is missing ("no account" is an answer). Keep the
 accounts in hand — nothing is written until the plan in step 6 gets its yes.
 LinkedIn is not read.
 
+**Notice a shop.** If the pages `site_read` returned are a shop's — product
+pages, prices, a cart or checkout — remember it for step 8.
+
 Then ask, once, for anything else they have. Keep it to one short block:
 
 - A brand or style guide, if one exists
@@ -201,6 +204,10 @@ Run /plgn month <subject>.
 ```
 
 Then one line naming anything left thin, and what would fill it.
+
+If step 3 noticed a shop, add one line, once: `Your site is a shop.
+/plgn import-store brings its products in, with prices and pictures.` Never
+run it without the user's yes.
 
 `--dry-run` prints the plan and saves nothing.
 **`--yes` is not accepted.** This writes a brand's whole identity at once.

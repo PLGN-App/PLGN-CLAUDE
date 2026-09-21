@@ -24,6 +24,7 @@ const TOOLS = new Set([
   "post_create", "post_delete", "post_get", "post_list", "post_schedule", "post_update",
   "site_read", "social_fetch", "web_search",
   "snippet_create", "snippet_delete", "snippet_get", "snippet_list", "snippet_update",
+  "store_import", "store_products",
   "topic_create", "topic_delete", "topic_get", "topic_list", "topic_update",
   "upload_image_base64", "upload_image_from_url", "workspace_info",
 ]);
@@ -31,7 +32,7 @@ const TOOLS = new Set([
 const FREE = ["demo", "audit", "strategy", "voice", "competitors", "calendar"];
 const CONNECTED = ["setup", "brand", "campaign", "knowledge", "month", "post", "repurpose",
   "topics", "library", "images", "queue", "refresh", "report", "visuals", "brandkit", "undo", "why",
-  "assets"];
+  "assets", "import-store"];
 // `help` is neither free nor connected: it calls nothing and carries no seam.
 const NEITHER = ["help"];
 
@@ -130,7 +131,7 @@ if (manifest) {
   // they add up to, so a file added or removed without updating plugin.json
   // or the agent roster could still keep both sides consistent with each
   // other but wrong in absolute terms. These three numbers pin that.
-  const EXPECTED_COMMAND_COUNT = 25;
+  const EXPECTED_COMMAND_COUNT = 26;
   const EXPECTED_SKILL_COUNT = 13;
   const EXPECTED_AGENT_COUNT = 11;
   if ((manifest.commands ?? []).length !== EXPECTED_COMMAND_COUNT) {
@@ -214,7 +215,7 @@ for (const p of CONTENT) {
     // other file does.
     if (MAP_ONLY_LEGACY_TYPES.has(name) && p === MAP_SKILL_PATH) continue;
     // only judge names that look like plgn tools: a known prefix
-    if (/^(brand|brief|campaign|check|cloudinary|context|delete|generate|hashtagset|image|kie|knowledge|list|offering|post|snippet|topic|upload|workspace)_/.test(name)
+    if (/^(brand|brief|campaign|check|cloudinary|context|delete|generate|hashtagset|image|kie|knowledge|list|offering|post|snippet|store|topic|upload|workspace)_/.test(name)
       && !TOOLS.has(name)) {
       fail(`${p}: unknown MCP tool name \`${name}\``);
     }
@@ -389,7 +390,7 @@ for (const c of FREE) {
 // means the mutation above now fails, naming the file, because the mutated
 // sentence no longer contains it.
 const NO_YES = ["month", "images", "visuals", "brandkit", "undo", "repurpose",
-  "refresh", "library", "brand", "knowledge", "campaign"];
+  "refresh", "library", "brand", "knowledge", "campaign", "import-store"];
 {
   const conv = exists("reference/_conventions.md") ? read("reference/_conventions.md") : "";
   for (const c of NO_YES) {
@@ -400,6 +401,29 @@ const NO_YES = ["month", "images", "visuals", "brandkit", "undo", "repurpose",
     if (exists(p) && !read(p).includes("`--yes` is not accepted")) {
       fail(`${p}: must say "\`--yes\` is not accepted" — a refusal worded any other way is not provably a --yes refusal`);
     }
+  }
+}
+
+// --- 5d. Store import (1.9.0) -----------------------------------------
+// The import reads the brand's OWN store and saves what it reads as that
+// brand's products. A command that let it loose on a competitor's shop would
+// fill a brand with somebody else's catalogue, so the rule is written in the
+// command and checked here. brandkit offers it once when the site is a shop.
+{
+  const p = "commands/import-store.md";
+  if (!exists(p)) {
+    fail(`${p} is missing`);
+  } else {
+    const body = read(p);
+    for (const t of ["store_products", "store_import", "offering_update", "cloudinary"]) {
+      if (!body.includes(t)) fail(`${p} must name \`${t}\``);
+    }
+    if (!/own store/i.test(body)) fail(`${p} must say it is for the brand's own store only`);
+    if (!/20 at a time/.test(body)) fail(`${p} must import in batches of 20`);
+    if (!/never deletes/i.test(body)) fail(`${p} must say an import never deletes`);
+  }
+  if (exists("commands/brandkit.md") && !read("commands/brandkit.md").includes("/plgn import-store")) {
+    fail("commands/brandkit.md must offer /plgn import-store when the site is a shop");
   }
 }
 

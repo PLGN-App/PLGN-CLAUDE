@@ -45,6 +45,8 @@ NEEDS AN ACCOUNT
   /plgn knowledge           Check and fix what plgn knows about a brand
   /plgn assets              Save the brand's real things — logo, character,
                             people, places — so pictures use them
+  /plgn import-store <url>  Bring products in from a Shopify, WooCommerce
+                            or EasyOrders store
 
   Making content
   /plgn campaign <subject>  Start a campaign, see what's running, mark one done
