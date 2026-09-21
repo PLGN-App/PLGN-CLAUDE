@@ -56,12 +56,15 @@ it.
 
 Take the website from the argument. If there is none, ask — never invent one.
 
+**Find the accounts.** Read `knowledge_get(type: "channels")`. If there is no
+entry, call `site_read` on the website: its `socials:` line lists the
+Instagram, TikTok, Facebook and X accounts the site links to. Ask once for
+any of the four that is missing ("no account" is an answer), then save one
+`channels` entry. LinkedIn is not read.
+
 Then ask, once, for anything else they have. Keep it to one short block:
 
-- Recent posts of theirs, pasted or pointed at — the most useful thing here,
-  because published posts show how a brand really sounds
 - A brand or style guide, if one exists
-- Two or three competitors
 - A few pictures, for the look
 - The brand's own things, as files or links — the logo, a mascot, the
   founder or team, the shop — so pictures are built around the real ones
@@ -69,10 +72,20 @@ Then ask, once, for anything else they have. Keep it to one short block:
 Every one of these is optional. Say what each adds so the answer is informed,
 and carry on with whatever they give.
 
+**Find the top five competitors.** Run two or three `web_search` queries built
+from what the brand sells and where, the way its customers would search
+("umrah packages Cairo", "travel agency Egypt"). Keep the five closest real
+businesses; drop directories, marketplaces, listings and news. Show them once:
+
+> Top five competitors: <a>, <b>, <c>, <d>, <e>. Right list?
+> yes / edit / no
+
 ## 4. Read everything at once
 
-Start `plgn-researcher` on the brand's site and one on each competitor, all at
-the same time.
+Start `plgn-researcher` on the brand — its site **and its posts** (each
+account in `channels`, 20 posts each) — and one on each of the five
+competitors, the same way, all at the same time. Competitor posts show themes,
+formats and gaps; they never set the brand's voice.
 
 Per **_conventions** rule 6, each agent gets what it needs in its prompt — it
 cannot see this file or the conversation.

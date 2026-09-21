@@ -11,7 +11,12 @@ every competitor fails to say is where a brand can be first instead of better.
 
 ## No account needed
 
-Call **zero** plgn tools. Reading sites uses web fetches only.
+This works with no plgn account. When plgn is connected, the finding and
+reading below use plgn's read-only research tools (`web_search`, `site_read`,
+`social_fetch`), which also read the competitors' posts, and each competitor
+is saved to the brand the user is on. When it is not, use a web search and web
+fetches instead, read sites only, say that posts were not read, and save
+nothing. Call no other plgn tool.
 
 ## Argument
 
@@ -22,20 +27,18 @@ The user's own URL. If none was given, ask.
 **1. Read the user's own site.** Start `plgn-researcher` so the comparison has
 a baseline.
 
-**2. Suggest a list, and check it.** Find 3–5 candidates from the site's own
-comparisons, the words it uses for its category, and the obvious alternatives.
+**2. Find the top five, and check them.** Run two or three `web_search`
+queries built from what the brand sells and where. Keep the five closest real
+businesses — not directories, marketplaces or news — plus "doing nothing" or
+the manual process where that is the real alternative. Never assume:
 
-**Always check before researching.** Never assume who a competitor is — the
-list you work out is often wrong in ways only the user knows:
-
-> I'd look at these: <a>, <b>, <c>. Right list?
+> I'd look at these: <a>, <b>, <c>, <d>, <e>. Right list?
 > yes / edit / no
 
-Include "doing nothing" or the manual process people use today where that is
-the real alternative. It usually is, and it is the competitor nobody researches.
-
-**3. Read each one at the same time.** Start one `plgn-researcher` per
-competitor, together rather than one after another.
+**3. Read each one at the same time.** One `plgn-researcher` per competitor,
+together, each told to read the site and the accounts on its `socials:` line
+(20 posts each). Save each as a `competitor` entry with its `url` and the
+handles found (`instagram`, `tiktok`, `facebook`, `x`).
 
 **4. Report.**
 

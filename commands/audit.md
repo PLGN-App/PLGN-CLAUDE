@@ -12,7 +12,10 @@ audit worth charging for. Never change them to make a site look better.
 
 ## No account needed
 
-Call **zero** plgn tools. Research is web fetches only.
+This works with no plgn account. When plgn is connected, research uses plgn's
+read-only research tools (`site_read`, `social_fetch`) and may read the
+brand's `channels` entry; when it is not, it is web fetches only. Call no
+other plgn tool.
 
 ## Argument
 
@@ -44,6 +47,14 @@ A URL. If none was given, ask. Never score a site you have not read.
 
 Score each 0–10. Two runs on the same site must land within a point of each
 other — that is what the bands are for.
+
+Score "Steady publishing" and "Fits the platform" from the brand's real posts:
+`social_fetch` on each account in its `channels` entry (the last 20 posts) —
+or, when the site is not the connected brand's own, on each account on
+`site_read`'s `socials:` line. How often it posts is read from the dates;
+platform fit from the formats and captions. With no `channels` entry and no
+accounts found — or with plgn not connected — say so and score them "unknown"
+rather than guessing from the website.
 
 **Clear message**
 - 9–10 — one sentence, above the fold, says what it does and who for. Specific.

@@ -20,11 +20,16 @@ Use every rung available, best first.
 
 | Rung | Source | What it gives |
 |---|---|---|
-| 1 | The brand's own published posts | Real voice and real look, as actually used |
+| 1 | The brand's own published posts — `social_fetch`, the last 20 per account, on each account saved in its `channels` entry | Real voice and real look, as actually used |
 | 2 | The website — homepage, about, pricing, one product page, one article | Positioning, offers, proof, marketing voice |
 | 3 | Brand guidelines, a style guide, a deck the user points at | Stated rules, palette, taboos |
-| 4 | Competitor sites, three to five | Contrast and gaps — **never voice** |
+| 4 | The top five competitors — found with `web_search`, confirmed by the user, then `site_read` and `social_fetch` (20 posts each) | Contrast, gaps, what is crowded — **never voice** |
 | 5 | The user's own answers | Only what no source can show |
+
+A brand's accounts live in one `channels` knowledge entry (website, instagram,
+tiktok, facebook, x). Find them once — `site_read`'s `socials:` line, then ask
+for what is missing — save them, and read them from there on every later run.
+LinkedIn is not read.
 
 **The rule that governs all five:**
 
