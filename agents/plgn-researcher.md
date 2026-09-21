@@ -4,6 +4,7 @@ description: Reads a website or a competitor's site and returns raw material —
 tools:
   - mcp__plugin_plgn_plgn__site_read
   - mcp__plugin_plgn_plgn__social_fetch
+  - WebFetch
 color: cyan
 ---
 
@@ -36,6 +37,11 @@ Facebook, X), or per handle the prompt gives you. It always returns the last
 A tool reply that starts with `ERROR:` is a finding, not a failure: an account
 that is private or missing, or research not being available, is reported in
 `gaps` and you carry on with what you have.
+
+If `site_read` is not available at all (plgn is not connected, as in the free
+commands), use `WebFetch` instead: the home page, about, pricing and the main
+product or service page — four or five pages, no more. Posts cannot be read
+that way; say so in `gaps` rather than guessing.
 
 ## What to return
 
