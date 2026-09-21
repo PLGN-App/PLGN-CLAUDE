@@ -6,7 +6,7 @@ description: Show every plgn command in one list, split into the ones that need 
 
 Print the command list. Call no tools. Answer nothing else.
 
-This exists because twenty-three commands is more than anyone remembers, and the
+This exists because twenty-six commands is more than anyone remembers, and the
 README is not open while someone is working.
 
 ## Rules

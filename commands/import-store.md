@@ -50,7 +50,7 @@ Show the list numbered, the way a person reads it:
 Bunduq Coffee's store (Shopify) — 42 products
 
    1  Ethiopia Guji 250g        450 (was 600)   4 pictures
-   2  House Blend 1kg           1200            2 pictures   already in plgn
+   2  House Blend 1kg           1200            2 pictures   maybe in plgn already (same name)
   ...
 ```
 
