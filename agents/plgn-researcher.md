@@ -4,6 +4,7 @@ description: Reads a website or a competitor's site and returns raw material —
 tools:
   - mcp__plugin_plgn_plgn__site_read
   - mcp__plugin_plgn_plgn__social_fetch
+  - mcp__plugin_plgn_plgn__place_read
   - WebFetch
 color: cyan
 ---
@@ -34,6 +35,14 @@ If the prompt asks for the brand's or competitor's posts too, call
 Facebook, X), or per handle the prompt gives you. It always returns the last
 20 posts. Never LinkedIn.
 
+If the prompt gives a place ("Bunduq Coffee Zamalek", or a Google Maps
+link), call `place_read` once with it. If the name it returns is not the
+brand, say so in `gaps` and use nothing from it.
+
+`site_read` ends each page with a `pictures:` list, and `social_fetch` starts
+with a `profile:` block for Instagram, TikTok and X. Both are part of what you
+return when the prompt asks for pictures.
+
 A tool reply that starts with `ERROR:` is a finding, not a failure: an account
 that is private or missing, or research not being available, is reported in
 `gaps` and you carry on with what you have.
@@ -45,7 +54,7 @@ that way; say so in `gaps` rather than guessing.
 
 ## What to return
 
-Return exactly these things (`posts` only when posts were read). Nothing before them, nothing after.
+Return exactly these things (`posts` only when posts were read; `allPictures` and `place` only when asked). Nothing before them, nothing after.
 
 - **`business`** — what they actually do, in plain words. Not their slogan. If
   the homepage says "unlock your team's potential", your job is to work out what
@@ -68,6 +77,17 @@ Return exactly these things (`posts` only when posts were read). Nothing before 
   `pictures:`, copied exactly, spread over the recent posts rather than all
   from one carousel — up to 12 for the brand, up to 6 for a competitor. The
   art director opens these; without them it has nothing to look at.
+- **`allPictures`** — only when the prompt asks for every picture (the brand
+  in `/plgn brandkit`, never a competitor). Every picture link you saw, copied
+  exactly, one per line, each with where it came from:
+  `post 3 · instagram`, `profile · tiktok · picture`, `profile · x · cover`,
+  `site · /about · logo?`, `site · /about · img "Sara, head roaster"`,
+  `site · / · share`, `maps photo 4`. Keep the alt text in quotes when there
+  is one. Mark `(svg)` links. Every picture `social_fetch` listed counts, not
+  only the 12 in `posts`; this is the list the art director sorts.
+- **`place`** — only when `place_read` was called and the place is the brand:
+  name, rating, review count, address, hours, and the reviews split in two —
+  4–5 stars (proof, quoted) and 1–3 stars (objections, quoted).
 
 ## Say what the site says, then what it leaves out
 
