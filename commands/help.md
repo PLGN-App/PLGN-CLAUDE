@@ -39,8 +39,9 @@ NEEDS AN ACCOUNT
 
   Setting up
   /plgn setup               Connect, then teach plgn how a brand sounds
-  /plgn brandkit <url>      Learn a brand properly — voice, look, rivals,
-                            topics and the lines it already reuses
+  /plgn brandkit <url>      Learn a brand fully — voice, look, references,
+                            its real things, and what is still missing
+                            before campaigns
   /plgn brand               Add, rename, archive or restore a brand
   /plgn knowledge           Check and fix what plgn knows about a brand
   /plgn assets              Save the brand's real things — logo, character,

@@ -118,8 +118,11 @@ on these, so it's worth reading them properly.
 
 Want the brand known properly — its look, its competitors, its topics and the
 lines it already reuses? Run `/plgn brandkit <url>` after setup. It reads your
-own posts as well as your site, and asks at most five questions, each one with
-an answer already drafted.
+own posts, your profiles, your site and, if you have one, your Google Maps
+listing. It sorts every picture it finds into references, your real things
+(logo, team, shop) and product photos, and saves them after one yes. It asks
+at most five questions, each one with an answer already drafted, then shows
+what is still missing before your first campaign.
 
 Running something with a start and an end — Ramadan, a launch, a season? Make
 it a campaign with `/plgn campaign`, then plan inside it with
@@ -180,7 +183,7 @@ not inside Claude Code.
 | Command | What it does |
 |---|---|
 | `/plgn setup` | Connect, pick a brand, learn its voice from your site |
-| `/plgn brandkit <url>` | Learn a brand in one run — voice, look, competitors, topics, reusable lines |
+| `/plgn brandkit <url>` | Learn a brand in one run — voice, look, references, its real things, competitors, topics — and what is still missing before campaigns |
 | `/plgn campaign` | Start a campaign — one thing you're saying for a while, with dates |
 | `/plgn month <subject>` | A month of posts: written, illustrated, scheduled. Control the images with `--no-images` or `--max-images` |
 | `/plgn post <idea>` | One post — the ten-times-a-day command |
