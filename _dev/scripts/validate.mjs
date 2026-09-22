@@ -1194,6 +1194,9 @@ for (const [c, needles] of REPORTS) {
   if (exists("commands/month.md") && /with `media` set to that one picture/.test(read("commands/month.md"))) {
     fail("commands/month.md: alt text goes on generate_image as `alt_text`, not in a post_update after it");
   }
+  need("commands/images.md", ["picture_need(post_ids:", "`alt_text`", "once per campaign", "permanent look",
+    "accept_warnings: true", "check: frame", "## 7. Attach", "## 8. Say what happened",
+    "never ask for a key in the terminal"]);
   // (later tasks add their needles above this line)
 }
 

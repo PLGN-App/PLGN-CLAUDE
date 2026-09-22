@@ -57,15 +57,21 @@ With no filter, the same line without the campaign clause.
 
 ## 3. Decide which deserve a picture
 
-Not every post should have a picture. Send each candidate to `plgn-visual`,
-which returns nothing to make when a post reads better plain.
+Not every post should have a picture. Ask plgn once for every candidate:
 
-For each post, read `context_get(role: "copywriter", campaign_id: <the
-post's campaign, if it has one>)` and put the post text and that block into
-`plgn-visual`'s prompt — per **_conventions** rule 6, the agent cannot see
-this file.
+```
+picture_need(post_ids: [<every candidate>])
+```
 
-Per post, not once for the run.
+Fifty ids at most per call; split a longer list. One line per post: `need`
+or `skip`, a reason, and sometimes ` · asset: <id>` — one of the brand's own
+things the post is about. plgn judges each post with its own campaign, so a
+campaign post is weighed against that campaign, not only the brand's
+permanent look. `skip` is the answer: that post gets no picture. Keep each
+`asset:` id for section 5.
+
+If the call answers `ERROR:`, say so in one line and treat every candidate as
+needing a picture — section 4 still asks before anything is spent.
 
 Say which ones you are skipping, rather than quietly leaving them out:
 
@@ -120,7 +126,8 @@ for each one. This is the **creative-brief** skill's four steps in two calls
 2. Send `plgn-creative-director` that block, the caption, the offering's
    benefits, the campaign's constraints and vocabulary if this post runs
    inside one, the `Already done` lines from the read, the **Assets**
-   section of that same read, and the frame count settled in section 4. Per **_conventions** rule 6, all of it goes in the
+   section of that same read, the `asset:` id `picture_need` gave this post
+   if it gave one, and the frame count settled in section 4. Per **_conventions** rule 6, all of it goes in the
    prompt — the agent cannot see this file.
 3. Call `brief_create` with what it returned, plus `post_id` for the post
    being illustrated, its `campaign_id`, `offering_ids` and `topic_id`
@@ -130,13 +137,19 @@ for each one. This is the **creative-brief** skill's four steps in two calls
    read back, `/plgn queue` cannot name the posts that need a person, and
    what carries each frame gets resolved from the brand's whole catalogue
    instead of what this post is actually about. Keep the id the call
-   returns — every step below needs it.
+   returns — every step below needs it. If the reply carries
+   `check: frame <n>: …` lines, plgn has already found a problem with those
+   frames: skip step 4 this round and go straight to step 5, with each
+   line's sentence as the objection for its frame. It counts as one of the
+   three checks — see **creative-brief**.
 4. Read `context_get(role: "designer", campaign_id: <the post's campaign, if
    it has one>)` for the brand's identity and picture rules. Send
    `plgn-designer` the concept, the frames, that block, the campaign's
    constraints from step 1 of this list — the designer's own read does not
    carry them — the **Assets** section of the designer read, and what
-   carries each frame, as the `brief_create` call in step 3 resolved it.
+   carries each frame, as the `brief_create` call in step 3 resolved it,
+   and the brand's languages from the record at the top of the designer
+   read — the designer writes each frame's alt text in every one of them.
 5. A frame that fails a check comes back as objections, not a picture, and
    each objection belongs to the frame it was raised against. Send
    `plgn-creative-director` the objections and the ideas it already scored,
@@ -144,19 +157,30 @@ for each one. This is the **creative-brief** skill's four steps in two calls
    Call `brief_update` with the brief's id, the objections as `qa_findings`
    — grouped by frame, so an objection about frame 3 lands on frame 3 — and
    the new idea and directions the director returned. Then send the result
-   back to `plgn-designer`. Up to three checks per post — on the third
+   back to `plgn-designer` — unless the `brief_update` reply carries
+   `check: frame <n>: …` lines, which are another failed check, handled the
+   same way without a designer round. Up to three checks per post — on the third
    failed check, stop working on this post, say which post and why, and
    carry on with the rest of the run. Never attempt a fourth.
 6. No objections → call `brief_finalize` with the brief's id and, per
-   frame, its `order` and the designer's `generation_prompt`. Keep each frame's `asset_ids` from the designer for
-   section 6 — they are not part of the brief.
+   frame, its `order`, the designer's `generation_prompt` and its
+   `alt_text`. plgn copies each frame's alt text onto the picture when it is
+   made. Keep each frame's `asset_ids` from the designer for
+   section 6 — they are not part of the brief. `brief_finalize` is sent
+   once: a `check:` line on its reply cannot be finalized away, so carry it
+   to section 6, where plgn may stop that picture before any points are
+   spent.
 
 ## 6. Make the pictures
 
-Read the brand's saved look per post, with `context_get(role:
-"art_director", campaign_id: <the post's campaign, if it has one>)` — not
-once for the whole run, for the reason `/plgn month`'s image step sets out:
-a read with no campaign cannot see that campaign's own references. If
+Read the brand's saved look **once per campaign**: group the posts by
+campaign and call `context_get(role: "art_director", campaign_id: <the
+group's campaign>)` once per group, and once with no `campaign_id` for the
+posts in no campaign. Not once for the whole run, for the reason
+`/plgn month`'s image step sets out: a campaign's own look is held against
+that campaign, and a read with no campaign cannot see it. Each group's block
+is for that group's posts only; a post in no campaign gets the brand's
+**permanent look**, never a running campaign's reference. If
 nothing is saved, say so once for the run and offer `/plgn visuals`, which
 works the look out from pictures the brand already published, then carry on
 without it.
@@ -179,24 +203,38 @@ If the read shows no assets at all and the brand plainly has some — a logo
 on its site, a mascot in its posts — say so once for the run and offer
 `/plgn assets`.
 
+**plgn may stop a picture before it is paid for.** A call carrying a
+`brief_id` is refused when the brief is not finished — finalize it first,
+and never make a picture from a brief that stopped after three checks. It
+answers with plgn's soft refusal when a frame still shows something on the
+brand's `never` list or an offering's cliché. Nothing is spent either way.
+Start the rest, then ask once for all the flagged ones, in plain words:
+
+```
+1 picture was stopped — frame 2 of "Why we cut prices" shows a stack of
+coins, which your brand never uses.
+Make it anyway?
+yes / pick / no
+```
+
+On yes, send those same calls again with `accept_warnings: true`. On no,
+skip them and name them in section 8. See **gate-recovery**.
+
 Then follow the **image-prompting** skill's waiting cycle exactly — point at
 it, do not restate it here.
 
 ## 7. Attach
 
-Once a post's frames are made, send `plgn-visual` the post and its frames,
-the brand's voice from the copywriter read in section 3, and each frame's
-final image text and `alt_text_hint` from `plgn-designer` — per
-**_conventions** rule 6, the agent cannot see this file, so all of it goes
-in the prompt. It writes the alt text per frame.
+plgn attaches each picture itself when `check_generation` reports it done:
+onto the post the call carried in `post_id`, in frame order — `media[0]` is
+the cover — and with the alt text `brief_finalize` saved for that frame.
+Do not send the pictures again with `post_update`.
 
-Then call `post_update` with the media in frame order — each item's alt
-text in its `alt` field — **and** `brief_id`
-set to the brief these pictures came from. `media[0]` is the cover, so the
-order matters and is the frame order. The `brief_id` is the only thing that
-joins the post to its thinking: leave it off and `/plgn why` reads back
-nothing for a picture this command just made, and approving the post
-records nothing about what worked.
+Once a post's frames are made, call `post_update` once for it with only
+`brief_id` set to the brief these pictures came from. The `brief_id` is the
+only thing that joins the post to its thinking: leave it off and `/plgn why`
+reads back nothing for a picture this command just made, and approving the
+post records nothing about what worked.
 
 ## 8. Say what happened
 
