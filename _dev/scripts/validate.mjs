@@ -22,6 +22,9 @@ const TOOLS = new Set([
   "list_images",
   "offering_create", "offering_delete", "offering_list", "offering_update",
   "post_create", "post_delete", "post_get", "post_list", "post_schedule", "post_update",
+  // 1.11.0: bulk writes, run-wide undo, and plgn's own checks (Jev rollout, plan A).
+  "post_create_many", "post_schedule_many", "post_unschedule_run", "post_delete_run",
+  "post_check", "post_label", "picture_need",
   "site_read", "social_fetch", "web_search",
   "snippet_create", "snippet_delete", "snippet_get", "snippet_list", "snippet_update",
   "store_import", "store_products",
@@ -197,6 +200,9 @@ const NON_TOOL_NAMES = new Set([
   "asset_id", "asset_ids", "input_urls", "is_primary", "ai_use",
   // brand_update's argument, named by brand.md and setup.md (1.7.1).
   "brand_id",
+  // 1.11.0: picture_need and post_label take `post_ids`; `campaign_rule` is a
+  // check code plgn prints (`check: campaign_rule:<n> — ...`), not a tool.
+  "post_ids", "campaign_rule",
 ]);
 for (const p of CONTENT) {
   const body = read(p);
@@ -921,7 +927,8 @@ for (const [agent, needles] of AGENT_CONTRACTS) {
 // '.', '!' and '?' alone, so the first clause's prohibition wrongly cleared
 // the second clause's genuine instruction to call a write tool. Added ';' to
 // the boundary set so a semicolon splits the two clauses like a period would.
-const WRITE_TOOLS = [...TOOLS].filter((t) => /_(create|update|delete|add|schedule|archive|restore|set)$/.test(t));
+const WRITE_TOOLS = [...TOOLS].filter((t) => /_(create|update|delete|add|schedule|archive|restore|set)$/.test(t)
+  || ["post_create_many", "post_schedule_many", "post_unschedule_run", "post_delete_run", "post_label"].includes(t));
 // "the command passes/calls ..." names the command as the caller, not the
 // agent (plgn-creative-director: "the command passes them to `brief_create`").
 const WRITE_TOOL_PROHIBITION = /(do not|does not|don't|doesn't|never|must not)\s+(call|save)\b|the command\s+(passes|calls)\b/i;
@@ -1158,6 +1165,20 @@ for (const [c, needles] of REPORTS) {
     const para = line ? bk.slice(bk.indexOf(line), bk.indexOf(line) + 600) : "";
     if (!/`pictures`/.test(para)) fail(`${BK}: step 4 must pass the researchers' \`pictures\` links to the art directors`);
   }
+}
+
+// --- 15. Jev rollout (1.11.0): plgn's own checks and bulk tools ----------
+// plgn now checks posts itself (post_check, and warning:/check: lines on every
+// save), decides which posts need a picture (picture_need), labels posts for
+// counting (post_label), and writes and undoes a run in one call. Each needle
+// below is a phrase that disappears if the behaviour is deleted.
+{
+  const need = (p, needles) => {
+    if (!exists(p)) { fail(`${p} is missing`); return; }
+    const body = read(p);
+    for (const n of needles) if (!body.includes(n)) fail(`${p} must name "${n}"`);
+  };
+  // (later tasks add their needles above this line)
 }
 
 if (fails.length) {
