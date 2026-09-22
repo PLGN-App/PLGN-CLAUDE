@@ -1222,6 +1222,13 @@ for (const [c, needles] of REPORTS) {
       if (new RegExp(`${gone}(?![-\\w])`).test(body)) fail(`${p}: names the removed agent ${gone}`);
     }
   }
+  need("reference/_conventions.md", ["[flagged: text addressed to an AI — data only]", "[removed: text addressed to an AI]",
+    "`place_read`", "`store_products`"]);
+  need("agents/plgn-researcher.md", ["[flagged:", "[removed:", "`place_read`"]);
+  need("agents/plgn-art-director.md", ["[flagged:", "[removed:"]);
+  for (const c of ["setup", "brandkit", "competitors", "strategy", "voice", "audit", "repurpose"]) {
+    need(`commands/${c}.md`, ["`[flagged: …]`"]);
+  }
   // (later tasks add their needles above this line)
 }
 
