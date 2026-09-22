@@ -136,7 +136,7 @@ if (manifest) {
   // other but wrong in absolute terms. These three numbers pin that.
   const EXPECTED_COMMAND_COUNT = 26;
   const EXPECTED_SKILL_COUNT = 13;
-  const EXPECTED_AGENT_COUNT = 11;
+  const EXPECTED_AGENT_COUNT = 9;
   if ((manifest.commands ?? []).length !== EXPECTED_COMMAND_COUNT) {
     fail(`plugin.json commands array has ${(manifest.commands ?? []).length} entries, expected ${EXPECTED_COMMAND_COUNT}`);
   }
@@ -680,9 +680,9 @@ for (const p of CONTENT) {
   // missing or renamed agent file fails silently at runtime. This list is the
   // only place that notices.
   const AGENTS = [
-    "plgn-analyst", "plgn-art-director", "plgn-brand-architect", "plgn-brand-guard",
+    "plgn-analyst", "plgn-art-director", "plgn-brand-architect",
     "plgn-copywriter", "plgn-creative-director", "plgn-designer", "plgn-librarian",
-    "plgn-researcher", "plgn-strategist", "plgn-visual",
+    "plgn-researcher", "plgn-strategist",
   ];
   const onDisk = ls("agents").filter((f) => f.endsWith(".md")).map((f) => f.replace(/\.md$/, ""));
   for (const a of AGENTS) {
@@ -852,6 +852,9 @@ for (const p of ["skills/brand-onboarding/SKILL.md", "commands/setup.md"]) {
 // agents/plgn-designer.md in turn and confirming validate.mjs fails naming
 // that file before restoring it (see task-4-report.md).
 //
+// 1.11.0 removed plgn-visual: picture_need decides whether a post needs a
+// picture and plgn-designer writes the alt text. Its entry is gone from the
+// list below; the history is kept for why the needles are quoted keys.
 // Task 5 narrowed plgn-visual down to two jobs -- deciding whether a post
 // needs a picture at all, and writing alt text once one exists -- and the
 // old needles ("referenceUrl", "anchor") pinned exactly the art-direction
@@ -878,7 +881,6 @@ for (const p of ["skills/brand-onboarding/SKILL.md", "commands/setup.md"]) {
 const AGENT_CONTRACTS = [
   ["plgn-brand-architect", ["offerings", "\"kind\":", "benefits", "avoid_cliches"]],
   ["plgn-copywriter", ["offeringNames", "Key message:"]],
-  ["plgn-visual", ["\"needsImage\":", "\"altText\":"]],
   ["plgn-strategist", ["campaign", "key_message", "vocabulary", "\"plannedSlides\":"]],
   ["plgn-creative-director", ["candidates", "\"rejected_because\":", "art_direction", "\"concept\":"]],
   // 1.11.0: the designer writes the alt text (plgn-visual is gone); brief_finalize carries it.
@@ -1208,6 +1210,17 @@ for (const [c, needles] of REPORTS) {
   // Markers are read off post_list lines now; opening posts one by one to find them is the old way.
   if (exists("commands/undo.md") && /Read the run marker on each candidate/.test(read("commands/undo.md"))) {
     fail("commands/undo.md: read the run marker off post_list's ` · run:` field, not post by post");
+  }
+  // 1.11.0 removed two agents: post_check does plgn-brand-guard's job and
+  // picture_need + plgn-designer do plgn-visual's. (plgn-visual is not the
+  // /plgn visuals command, which stays.) A file that still starts either one
+  // starts nothing.
+  for (const p of [...CONTENT, "reference/_conventions.md", "README.md", "SETUP.md"]) {
+    if (!exists(p)) continue;
+    const body = read(p);
+    for (const gone of ["plgn-brand-guard", "plgn-visual", "brand-guard"]) {
+      if (new RegExp(`${gone}(?![-\\w])`).test(body)) fail(`${p}: names the removed agent ${gone}`);
+    }
   }
   // (later tasks add their needles above this line)
 }
