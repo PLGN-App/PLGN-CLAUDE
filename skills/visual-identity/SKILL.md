@@ -223,6 +223,18 @@ knowledge_add(
 deliberate: a reference with no stated intent is a template, and a template is
 how every brand's Ramadan post ends up identical.
 
+## Many references at once
+
+`/plgn brandkit` can find a dozen pictures worth learning from. Saving each
+as its own entry spends a dozen knowledge entries. Group them instead: **one
+`reference` entry per thing to take** — light, colour, layout, people,
+product styling — with 2–4 pictures attached and one `intent` for the group
+("low warm side light, one subject, dark wood"). The strongest picture of
+the group goes first.
+
+When the knowledge cap cannot take every group, save the groups that carry
+the most of the look first, and name the rest as not saved.
+
 ## Honest limits
 
 - Colours read off a compressed screenshot are close, not exact. Say "about

@@ -76,6 +76,12 @@ was asked for.
 **Ask before saving**, per **_conventions** rule 3. Show the name, the kind,
 the rules and which picture is first.
 
+**Found, not handed over.** `/plgn brandkit` can find a logo on the site, a
+face on the about page, the shop on Google Maps. It may save one only when
+the plan named it, with where it came from, and the user said yes. A found
+face is saved with `consent` left out — the owner-only block asks by name
+afterwards. An SVG logo cannot be uploaded; ask for a PNG.
+
 ## A real face needs consent
 
 `kind: "person"` carries `consent`. It is `true` **only** when the user has

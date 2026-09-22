@@ -20,9 +20,10 @@ Use every rung available, best first.
 
 | Rung | Source | What it gives |
 |---|---|---|
-| 1 | The brand's own published posts — `social_fetch`, the last 20 per account, on each account saved in its `channels` entry | Real voice and real look, as actually used |
-| 2 | The website — homepage, about, pricing, one product page, one article | Positioning, offers, proof, marketing voice |
+| 1 | The brand's own published posts — `social_fetch`, the last 20 per account, on each account saved in its `channels` entry — and the `profile:` block each returns | Real voice and real look, as actually used; the profile picture, often the logo |
+| 2 | The website — homepage, about, pricing, one product page, one article — and the `pictures:` each page lists | Positioning, offers, proof, marketing voice; logo, team, place and badge candidates |
 | 3 | Brand guidelines, a style guide, a deck the user points at | Stated rules, palette, taboos |
+| 3b | The Google Maps place — `place_read`, only when there is a place customers visit | Place photos, reviews as proof and objections, hours |
 | 4 | The top five competitors — found with `web_search`, confirmed by the user, then `site_read` and `social_fetch` (20 posts each) | Contrast, gaps, what is crowded — **never voice** |
 | 5 | The user's own answers | Only what no source can show |
 
@@ -152,14 +153,23 @@ for the ten fields, where each one goes, and why the canonical reference is
 Skip it rather than guess it — see **visual-identity** for how many real
 references a direction needs before it counts as one.
 
-### 4b. The brand's own things
+### 4b. References, the brand's own things, product photos
 
-One `asset_create` per thing the user handed over — logo, character, person,
-place — per **brand-assets**. After the look, because the look says how a
-picture works and an asset says what it is of. Only what was handed over and
-looked at: never save a logo scraped from a site without asking, and never
-send `consent: true` for a person on a guess. Skip the step entirely when
-nothing was given; `/plgn assets` fills it later.
+After the look, because the look says how a picture works and these say
+what it is of or what to copy.
+
+- **References** — one `reference` entry per group the art director sorted,
+  2–4 pictures each, per **visual-identity**.
+- **Assets** — one `asset_create` per thing the user handed over, or the
+  plan listed and the user kept, per **brand-assets**. Only what was looked
+  at: a found logo or face is saved only because the plan named it, with
+  where it came from, and got a yes. Never send `consent: true` for a person
+  on a guess — and never on that yes.
+- **Product photos** — onto their offering, never an asset.
+
+Upload into `brandkit-references` or `brandkit-assets` first. Skip what is
+already there. Skip the step entirely when nothing was given or found;
+`/plgn assets` fills it later.
 
 ### 5. Business
 
@@ -218,6 +228,36 @@ none. **Four sharp entries beat nine soft ones.**
 
 Posts saved as examples get checked first — a bad example poisons every draft
 that later learns from it.
+
+## 8. Ready for campaigns
+
+The scorecard `/plgn brandkit` prints in its plan and at its finish. A line
+is met, counted, or `—`.
+
+| Area | Met when |
+|---|---|
+| Brand record | banned words, languages and timezone saved |
+| Foundation | voice, audience and positioning saved |
+| Look | `brand_identity` saved, read from at least 6 real pictures |
+| References | at least 2 `reference` entries |
+| Offerings | at least one, exactly one hero, every benefit has meanings |
+| Product photos | every product offering has at least one picture |
+| Logo | at least one `logo` asset |
+| Channels | the `channels` entry saved |
+| Competitors | at least 3 `competitor` entries |
+| Proof | at least one `proof` entry |
+| Objections | at least one `objection` entry |
+| Topics | 3 to 5 |
+| Library | at least one snippet and one hashtag set |
+
+Characters, people, places, elements, templates and badges are **counted,
+never required**: a service with no shop is not missing a place. A line that
+does not apply to this brand (no products, so no product photos) is left
+out of both numbers. "Ready for campaigns" means every required line that
+applies is met.
+
+Count from what was read in step 2 plus what this run saved. A count taken
+from a read that may have been cut says so, per **brand-knowledge-map**.
 
 ## Never
 
