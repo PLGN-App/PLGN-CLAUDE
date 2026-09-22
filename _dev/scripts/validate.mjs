@@ -1198,7 +1198,12 @@ for (const [c, needles] of REPORTS) {
   }
   need("commands/images.md", ["picture_need(post_ids:", "`alt_text`", "once per campaign", "permanent look",
     "accept_warnings: true", "check: frame", "## 7. Attach", "## 8. Say what happened",
-    "never ask for a key in the terminal"]);
+    "never ask for a key in the terminal", "` · images: N`", "`images: 0`"]);
+  // Posts with no picture come off post_list's images count; the old pairing
+  // against list_images (capped at 50) missed most of a busy board.
+  if (exists("commands/images.md") && /`post_list` and `list_images`/.test(read("commands/images.md"))) {
+    fail("commands/images.md: find posts with no picture from post_list's `images: 0`, not by pairing with list_images");
+  }
   need("commands/post.md", ["post_check", "accept_warnings: true", "is not approval"]);
   need("commands/repurpose.md", ["post_check(drafts:", "source:"]);
   need("commands/refresh.md", ["post_check", "post_label(post_ids:", "accept_warnings: true", "first 80"]);

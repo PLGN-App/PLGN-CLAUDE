@@ -21,7 +21,15 @@ line): without storage, new images have nowhere to live.
 
 ## 2. Find the gaps
 
-Call `post_list` and `list_images` to find posts with no picture.
+Call `post_list`. Every line ends with ` · images: N` — how many pictures that
+post already has — so the posts with no picture are the lines that say
+`images: 0`. Read it straight off the list.
+
+Never pair the list against `list_images` to work this out: it returns at most
+fifty pictures for the whole workspace, so on a busy board the pairing is
+wrong, not only wasteful. `list_images` answers a different question — is
+there a picture already in the workspace worth reusing — and that is
+`/plgn month`'s reuse pass, not this command's job.
 
 With no filter this fills the **whole board**. Pass `limit: 500` so a long
 board is not silently cut at the tool's default of fifty.
