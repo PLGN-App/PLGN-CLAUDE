@@ -16,7 +16,15 @@ rule 2 and stop.
 
 ## 2. Read everything
 
-Call `post_list`. Read **every** post in the period, not a sample.
+Call `post_list(limit: 500)`. Read **every** post in the period, not a sample.
+
+Each line already ends with what this command needs, so nothing is opened one
+post at a time: `gate:` with `ok` or the worst check that would stop it,
+`images:` with how many pictures it has, `first:` with its first 80
+characters, and — once plgn has labelled it — `opening:` and `mix:`, plus
+`teaser` for a post that only points somewhere else. When some lines have no
+`opening:`, call `post_label(post_ids: [<those posts>])` — a hundred ids at most per call — then read
+`post_list` again with the same arguments.
 
 `post_list` filters by `campaign_id`. When the user names a campaign, narrow
 to it and say so. When they do not, group what is blocked by campaign, so
@@ -36,16 +44,19 @@ findings.
 
 Every post lands in exactly one:
 
-**Blocked** — plgn's checks won't let it out. A banned word, too long, or a
-missing field. These cannot go out, so they come first.
+**Blocked** — plgn's checks won't let it out: its line says `gate:` with
+anything but `ok`. A banned word, too long, or a missing field. These cannot
+go out, so they come first.
 
-**No image** — ready or scheduled, but no picture. Not fatal; worth knowing
+**No image** — ready or scheduled, but `images: 0`. Not fatal; worth knowing
 before it goes out.
 
 **Says too little** — technically fine but too short or too vague to be worth
 publishing. A post that says nothing passes every automatic check and still
-costs the brand attention. Judge this honestly: does it make a point, or just
-fill a slot?
+costs the brand attention. Start from the line: a post marked `teaser`, or
+whose first line says nothing, is a candidate. Open only those with
+`post_get` before judging — a first line is not the whole post. Judge this
+honestly: does it make a point, or just fill a slot?
 
 **Needs a person** — its brief failed the check three times and stopped. This
 is not something running the queue again fixes: the direction kept landing on
@@ -80,9 +91,12 @@ yes / pick / no
 
 ## 5. Fix what can be fixed
 
-For each blocked post, suggest a **specific** fix — the actual replacement
-wording, not "make this shorter". Then apply what they approve with
-`post_update`, following **gate-recovery**.
+For each blocked post, open it with `post_get` — the list shows only its first
+line — and suggest a **specific** fix: the actual replacement wording, not
+"make this shorter". Then apply what they approve with `post_update`,
+following **gate-recovery**. A scheduled post may come back with plgn's soft
+refusal; the fix was already approved, so say what is still flagged and ask
+before sending `accept_warnings: true`.
 
 For posts that say too little, offer a rewrite that makes the point the slot was
 meant to carry. If there is no idea underneath, say so and suggest removing the

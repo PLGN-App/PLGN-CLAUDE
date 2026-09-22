@@ -1200,6 +1200,9 @@ for (const [c, needles] of REPORTS) {
   need("commands/post.md", ["post_check", "accept_warnings: true", "is not approval"]);
   need("commands/repurpose.md", ["post_check(drafts:", "source:"]);
   need("commands/refresh.md", ["post_check", "post_label(post_ids:", "accept_warnings: true", "first 80"]);
+  need("commands/queue.md", ["post_list(limit: 500)", "post_label(post_ids:", "`gate:`", "`images: 0`", "`teaser`"]);
+  need("commands/topics.md", ["post_label(post_ids:", "`opening:`", "`mix:`"]);
+  need("commands/report.md", ["post_label(post_ids:", "`mix:`", "of 22 labelled posts"]);
   // (later tasks add their needles above this line)
 }
 

@@ -29,7 +29,10 @@ posts themselves, and a count scoped to a campaign.
 
 - To read the content — the hooks, the subjects, whether they repeat — call
   `post_list(topic_id: <the topic>, limit: 500)` for each topic you are
-  judging in detail.
+  judging in detail. Each line carries the post's first 80 characters and,
+  once labelled, its `opening:` and `mix:` — enough to judge repetition
+  without opening posts one by one. When lines have no `opening:`, call
+  `post_label(post_ids: [<those posts>])` — a hundred ids at most per call — and read the list again.
 - For a topic inside a campaign, add that campaign's window — `campaign_id`,
   `scheduled_from` and `scheduled_to` — so the count matches the rule below
   rather than counting all time.
@@ -62,6 +65,11 @@ on. Signs: the same hook shape again and again, posts you could swap without
 losing anything, unrelated subjects pulled in to fill slots. More posts will not
 fix it; narrowing it or retiring it will.
 
+Count the hook shapes rather than guessing them: the `opening:` labels say
+how each post opens, and the `first:` text shows what it opens with. "9 of 14
+open with a number" is a count off those labels. Say how many posts had no
+label.
+
 **Too few posts** — the topic exists but has almost nothing in it. Say *why*.
 Often it needs proof the brand does not have yet — "this needs two customer
 results before it can carry posts" is useful; quietly under-serving it is not.
@@ -72,6 +80,10 @@ them; do not list them.
 **The mix.** Across recent posts, roughly: half that help whether or not the
 reader buys, a third proof, a fifth direct asks. Flag a feed where nearly every
 post asks for something, because that is what burns an audience.
+
+Count the mix off the `mix:` labels, never by reading each post and deciding —
+the same posts must give the same mix every run. Say how many posts it is out
+of.
 
 ## 4. Report
 

@@ -21,11 +21,19 @@ when it is pasted somewhere else a week later.
 
 ## 3. Read and work it out
 
-Call `post_list`, `topic_list`, `campaign_list` and `brief_list` for the
-period, then start `plgn-analyst`.
+Call `post_list` for the period with `limit: 500`, and `topic_list`,
+`campaign_list` and `brief_list`. If any post line has no `mix:`, call
+`post_label(post_ids: [<those posts>])` — a hundred ids at most per call — and read `post_list` again.
 
-Per **_conventions** rule 6, put the posts, the topics and the brand's plan into
-the agent's prompt. It cannot read the workspace itself.
+Then count from the lines, never by judging each post: the `mix:` labels give
+the Mix line, the `gate:` results give what the checks caught, and `images:`
+gives how many went out with a picture. A post with no label is left out of
+the Mix, and the line says so.
+
+Then start `plgn-analyst`. Per **_conventions** rule 6, put the posts, those
+counts, the topics and the brand's plan into the agent's prompt. It cannot
+read the workspace itself, and it reports the counts it was given rather than
+making its own.
 
 If a campaign ran in the period, report it on its own line: how many of its
 posts went out, how many are still drafts, and whether it is still running. A
@@ -83,7 +91,7 @@ What the checks caught
     brand's rules, not the other way round — and the rules are probably
     right.
 
-Mix   50% helpful · 20% proof · 30% asks
+Mix   50% helpful · 20% proof · 30% asks, of 22 labelled posts
 
 What this covers: posts published from this workspace. Likes and reach live
 on the platforms and plgn can't see them.
