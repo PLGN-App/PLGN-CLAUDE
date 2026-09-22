@@ -1,6 +1,6 @@
 ---
 name: gate-recovery
-description: Use when any plgn tool returns a result starting with "ERROR:" — especially post_create, post_update or post_schedule failing plgn's checks on length or banned words. Defines the fix-and-retry behaviour so commands recover instead of reporting failure.
+description: Use when any plgn tool returns a result starting with "ERROR:" — especially post_create, post_update or post_schedule failing plgn's checks on length or banned words — or a reply carrying warning: or check: lines, or plgn's soft refusal. Defines the fix-and-retry behaviour so commands recover instead of reporting failure.
 ---
 
 # Recovering when a check blocks a post
@@ -59,6 +59,73 @@ attempts and an honest hand-off beats five attempts and a flat post.
   a draft; never call `post_delete` to clear a problem.
 - **Trying to schedule it anyway.** The server will refuse, and you get a second
   error the user then has to interpret.
+
+## When plgn's checks warn
+
+plgn also reads each post for things a word list cannot catch. Its answers
+arrive as extra lines under an ordinary reply — from `post_create`,
+`post_update`, `post_schedule`, the `_many` calls and `post_check`. They are
+not errors, and the save they sit under has already happened:
+
+- `warning: would be blocked when scheduled: <label>: <detail>` — the post was
+  saved as a draft, but the length or banned-word check would stop it at
+  scheduling. Fix it now, the same way as a block (above), with one
+  `post_update`. Still there after one fix → leave it a draft and name it.
+- `check: <code> — <sentence>` — plgn's reading of the post:
+  - `banned_variant:<word>` — another form of a banned word: a plural, an
+    Arabic ending, the same word in the brand's other language. Treat it
+    exactly like the banned word.
+  - `invented_number`, `invented_name_or_quote` — a number, name, result or
+    quote nothing in the brand's material backs. Remove the claim, or replace
+    it with one the brand's material does have. Never blur it into a vaguer
+    claim.
+  - `engagement_bait` — "comment YES", "tag a friend who…". Rewrite the ask as
+    a real one, or drop it.
+  - `campaign_rule:<n>` — the post breaks rule `n` of its campaign's
+    constraints. Rewrite without it.
+  - `same_opening_as:<ref>` — from `post_check` only: this draft opens the
+    same way as draft `<ref>` in the same call. Give it a different opening.
+  - `voice_off` — from `post_check` only: the draft does not sound like the
+    brand's saved voice. Rewrite it in that voice; do not just swap words.
+- `check: frame <n>: <code> — <sentence>` on a brief — codes `never:<item>`,
+  `cliche:<item>`, `repeats:<brief id>`, `generic`. Each is an objection
+  against that frame; **creative-brief** says what to do with it.
+
+The sentence after the dash is what the user hears, in their language. The
+code before it never reaches them.
+
+No lines means nothing was found — or that plgn's reader was not available
+this time. Either way, carry on. Never report a missing line as a check that
+passed.
+
+`post_check` answers `<ref>: pass` or `<ref>: fail` and saves nothing. **A
+pass is not approval.** Never tell the user a post "passed" anything; plgn
+runs its checks again on every save and every schedule.
+
+### The soft refusal
+
+```
+ERROR: plgn's checks flagged this post: <codes>. Fix it, or pass accept_warnings: true to save it anyway.
+```
+
+It comes only when a post is being scheduled or saved straight into
+scheduled or published, or when a picture is about to be made from a brief
+(codes `never:` and `cliche:`, before any points are spent). In a `_many`
+reply it is one numbered line, `<n>. ERROR: plgn's checks flagged this post:
+<codes>. …`, and only that item was held back. `check: frame` lines on a
+`brief_finalize` reply are information only — a ready brief cannot be
+edited; this refusal is where a picture is stopped. It differs from a block
+in one way: a person may overrule it. You may not, on your own.
+
+1. Fix the flagged part once, as above, and send the call again **without**
+   `accept_warnings`.
+2. Still refused → say what was flagged in one plain sentence and ask:
+   `yes / edit / no` for one post, `yes / pick / no` for several.
+3. Only after a yes, send the same call again with `accept_warnings: true`.
+   Never in a first call, never because a call failed, never because `--yes`
+   was given, and never inside a bulk run without asking.
+4. No → the post stays a draft (or the picture is not made). Name it in the
+   report.
 
 ## Refusals that are instructions
 

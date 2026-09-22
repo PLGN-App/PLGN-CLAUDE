@@ -1178,6 +1178,12 @@ for (const [c, needles] of REPORTS) {
     const body = read(p);
     for (const n of needles) if (!body.includes(n)) fail(`${p} must name "${n}"`);
   };
+  need("skills/gate-recovery/SKILL.md", ["accept_warnings", "banned_variant", "invented_number",
+    "invented_name_or_quote", "engagement_bait", "campaign_rule", "same_opening_as", "voice_off",
+    "never:", "is not approval", "flagged this post"]);
+  need("skills/reply-style/SKILL.md", ["accept_warnings", "invented_number"]);
+  need("skills/brand-knowledge-map/SKILL.md", ["post_list(run:", "post_create_many",
+    "post_unschedule_run", "post_delete_run", "banned_variant"]);
   // (later tasks add their needles above this line)
 }
 

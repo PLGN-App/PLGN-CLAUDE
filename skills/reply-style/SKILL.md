@@ -172,6 +172,7 @@ These appear in plgn's own output today. Every one of them is internal.
 | "revision", "version 3" — on their own, standing in for what changed | "the earlier text", or the date it changed |
 | "metadata" | the field's own name — "the palette", "the intent" |
 | `brief_create`, `brief_finalize`, `anchor`, `candidate`, `knowledgeUsed` | nothing — they are the machine's names for things the user already has words for |
+| `invented_number`, `banned_variant:…`, `campaign_rule:3`, any check code; `accept_warnings`; "Jev" | the check's own sentence — "it says 40% and nothing in your profile backs that number" |
 
 **"Foundation", "Business" and "Creative" are allowed.** The dashboard prints
 those three words as section headings on the Knowledge page, so a reply that

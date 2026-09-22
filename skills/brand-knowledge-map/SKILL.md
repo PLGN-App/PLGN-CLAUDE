@@ -107,6 +107,11 @@ it, and the person who wrote the rule never finds out why.
 Write them with `brand_update`. Read them back with `brand_list`, which returns
 each brand's banned words directly.
 
+The exact word is blocked. Other forms of it — a plural, an Arabic ending, the
+same word in the brand's other language — come back as a
+`check: banned_variant:<word>` line: a warning on a draft, a refusal a person
+can overrule when scheduling. See **gate-recovery**.
+
 `brand_update` replaces the whole list. To add one word, read the current list
 first and send it back with the new word appended. Sending one word deletes the
 rest.
@@ -176,7 +181,8 @@ window. `context_get` reads the current ones unless you name one with
 
 A post inside a campaign carries `campaign_id` and inherits the campaign's
 offerings. Its writer is given the key message, the constraints and the
-vocabulary.
+vocabulary. plgn checks every save against those constraints too: a post that
+breaks one comes back with a `check: campaign_rule:<n>` line.
 
 `campaign_get` returns one campaign with its posts, its references and its
 exact counts. `campaign_list` is the overview.
@@ -255,7 +261,8 @@ exception: it stays on its offering.
 ## Marking which run made a post
 
 A command that writes many posts at once stamps each one with the same run
-marker, in `post_create`'s `external_post_id` field:
+marker, in `post_create`'s `external_post_id` field — the same field on every
+item of a `post_create_many` call:
 
 ```
 plgn-run-2026-09-07-1
@@ -265,10 +272,12 @@ That field exists for identifiers from other systems, it is not shown to the
 reader, and it is the only free string a post carries. Posts have **no tags and
 no metadata** — this is the whole mechanism.
 
-`post_list` cannot filter by it. So a later command narrows by what `post_list`
-*can* filter — status, the scheduled window, and now `campaign_id` — and then
-confirms membership by reading the marker on each candidate. For a run of
-thirty posts that is thirty cheap reads, and it is what makes a run undoable.
+`post_list(run: <the marker>)` returns exactly the posts of one run, and every
+`post_list` line prints ` · run: <marker>` when a post has one.
+`post_unschedule_run` moves a run's scheduled posts back to draft (without
+`confirm` it only lists what would move), and `post_delete_run` deletes a
+run's unpublished posts. Neither touches a published post. This is what makes
+a run undoable in one call instead of thirty.
 
 ## Updating without losing anything
 
