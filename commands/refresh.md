@@ -45,6 +45,13 @@ rewrites the wrong posts.
 If nothing is old enough, say so and stop. A two-month-old workspace has nothing
 to refresh, and inventing candidates wastes the run.
 
+Choose from the lines themselves. Each one carries the post's first 80
+characters (`first:`) and, once plgn has labelled it, its `opening:` and
+`mix:` and a `teaser` mark for a post that only points somewhere else. When
+lines have no `opening:`, call `post_label(post_ids: [<those posts>])` — a hundred ids at most per call —
+and read the list again. Open only the handful you pick in step 3 with
+`post_get` — the writer needs the whole post; the choosing does not.
+
 ## 3. Choose — don't refresh everything
 
 **Say how you chose**, then choose. plgn cannot see likes or reach, so this is
@@ -54,7 +61,8 @@ you know what worked:
 - **Still true.** Nothing in it contradicts the brand's current offers, prices
   or position — check against the brand you read in step 1.
 - **Still makes a point.** It argues something, rather than announcing an event.
-  Launch posts and event notices do not refresh; arguments do.
+  Launch posts and event notices do not refresh; arguments do. A line marked
+  `teaser` only points somewhere else, and does not refresh either.
 - **Belongs to a live topic.** A post from a retired topic brings back something
   the brand moved on from.
 - **Not said again recently.** If a recent post makes the same point, refreshing
@@ -85,6 +93,12 @@ A refresh is a **rewrite**, not a repost:
   changed.
 - Possibly a different platform than it first ran on.
 
+Then call `post_check` on every rewrite at once — its captions, platform and
+the original's `campaign_id`. A failing rewrite goes back to the writer once
+with the problem as a plain sentence, is checked again, and anything still
+flagged is shown in step 5 with the problem on a line under it. See
+**gate-recovery**.
+
 ## 5. Show every rewrite, then ask
 
 Never republish quietly. Show the old and the new side by side:
@@ -112,7 +126,10 @@ and a refresh that erases it loses the record of what was said when.
 Carry the original's `campaign_id` onto the new post, per step 4.
 
 Then `post_schedule` following the **posting-cadence** skill, spread into gaps
-rather than stacked. Follow **gate-recovery** on any `ERROR:`.
+rather than stacked. Follow **gate-recovery** on any `ERROR:`. If plgn's
+checks stop a refreshed post at scheduling, it stays a draft: say what was
+flagged and ask once, `yes / pick / no`, before sending it again with
+`accept_warnings: true`.
 
 ## 7. Report
 

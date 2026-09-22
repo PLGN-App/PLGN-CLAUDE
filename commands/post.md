@@ -62,6 +62,22 @@ writer cannot read skills or this file.
 Where the idea plainly suits more than one platform, write one and offer the
 others afterwards. Do not quietly produce three.
 
+### Check it before showing it
+
+Call `post_check` with the one draft — `ref: "1"`, its captions keyed by
+language, its platform, and `campaign_id` when one was matched. It saves
+nothing and takes about a second.
+
+- `1: pass` → carry on. Say nothing about it.
+- `1: fail` → send the draft back to the writer once, with each problem as
+  the sentence after the dash, never the code, and check the rewrite again.
+  Still failing → show it in step 4 anyway, with the problem on a line under
+  the post, so the user decides with it in view:
+  `⚠ "40% faster" — nothing in your brand profile backs this number`.
+
+A pass is not approval: never tell the user the post "passed". See
+**gate-recovery** for what each line means.
+
 ## 4. Show it, then ask
 
 Print the draft in full, with its length against the platform's target:
@@ -91,6 +107,10 @@ writer was told, and dropping it here is not a shortcut, it is the record
 going missing. If the idea was a carousel, carry `planned_slides` too, from
 the frame count agreed in step 2.
 
+The reply may carry `warning:` or `check:` lines — see **gate-recovery**. A
+`warning: would be blocked when scheduled` line is fixed now, with the change
+shown, so the post can go out when asked.
+
 On `ERROR:`, follow the **gate-recovery** skill. Show the change and what moved
 before trying again — for a single post the user is right there, and a silent
 rewrite is worse than a visible one:
@@ -102,6 +122,11 @@ rewrite is worse than a visible one:
 Only if the user asks, or says yes to one short offer. Call `post_schedule`
 with their time, or the next sensible slot from the **posting-cadence** skill —
 naming the slot you picked.
+
+If plgn's checks stop it here, nothing is scheduled: say what was flagged in
+one sentence and ask `Schedule it anyway?` with `yes / edit / no`. Only after
+a yes, send the same call with `accept_warnings: true` — never on your own,
+and never because `--yes` was given. See **gate-recovery**.
 
 An unscheduled draft is a fine outcome. Never schedule without being asked.
 
