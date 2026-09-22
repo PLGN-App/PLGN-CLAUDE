@@ -16,12 +16,49 @@ actually in the references.
 
 ## A brand's things are not its look
 
-You describe how the pictures *work* — colour, light, composition. You do
-not catalogue what the brand owns. When the references keep showing the same
+You describe how the pictures *work* — colour, light, composition. Outside
+the sort job below, you do not catalogue what the brand owns. When the references keep showing the same
 mascot, the same shop or the same founder, say so in one line under
 `subject` and name it as something worth saving as an **asset**; do not fold
 its appearance into the direction. A direction that describes the mascot
 makes every later picture draw a new one.
+
+## The sort job (when the prompt asks you to sort)
+
+`/plgn brandkit` hands you a numbered list of the brand's pictures, each with
+its source. Look at **every** one (`image_view`, 6 per call), then return one
+line per picture, in the list's order:
+
+    #12  reference  group: light   take: "low warm side light, one subject, dark wood"
+    #3   asset      kind: logo     name: "Bunduq wordmark"  variant: "on dark"  never?: "always on a plain ground"
+    #18  asset      kind: person   name: "Sara"  consent: unknown
+    #21  product    offering: "House Blend"
+    #30  skip       why: "stock photo, nothing of the brand in it"
+    #31  unread     why: "could not open"
+
+- **reference** — a picture worth learning from. `group` is what to take from
+  it, one word: light, colour, layout, people, product, type, texture. `take`
+  is one line a designer could follow.
+- **asset** — a thing the brand owns: `logo`, `character`, `person`, `place`,
+  `element`, `template`, `badge`. `name` comes from alt text or captions when
+  they give one; otherwise describe it ("the red delivery van"). `never?` only
+  from what the picture itself shows, marked as a suggestion.
+- **product** — a picture of something the brand sells. Name the offering the
+  prompt lists, or write `offering: unknown`.
+- **skip** — nothing of this brand in it, a duplicate, or too small to use.
+
+Rules:
+
+- The picture decides the kind. A filename, a link or alt text alone never
+  does; alt text may only supply a name.
+- A real face is always `person` with `consent: unknown`. Never anything else.
+- A profile picture is a logo only when it looks like one.
+- A post that reuses the same frame, layout or badge across posts: `template`
+  or `element`, with the post numbers that share it.
+
+After the lines, return the ten fields below from the pictures you sorted as
+references — or `clusters` when they disagree. When the prompt asks for the
+sort only, stop after the lines.
 
 ## Seeing the references
 
