@@ -1187,6 +1187,13 @@ for (const [c, needles] of REPORTS) {
     "post_unschedule_run", "post_delete_run", "banned_variant"]);
   need("skills/creative-brief/SKILL.md", ["check: frame", "alt text per frame"]);
   need("skills/image-prompting/SKILL.md", ["picture_need", "plgn-designer", "campaign_id: <the post's campaign"]);
+  need("commands/month.md", ["post_check(drafts:", "post_create_many(posts:", "picture_need(post_ids:",
+    "post_schedule_many(items:", "once per group", "permanent look", "accept_warnings: true",
+    "Carry `post_id` and `alt_text` on every call", "same_opening_as"]);
+  // Month's alt text rides on the generate call now; the alt-only save is gone.
+  if (exists("commands/month.md") && /with `media` set to that one picture/.test(read("commands/month.md"))) {
+    fail("commands/month.md: alt text goes on generate_image as `alt_text`, not in a post_update after it");
+  }
   // (later tasks add their needles above this line)
 }
 

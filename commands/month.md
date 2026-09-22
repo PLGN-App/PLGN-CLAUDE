@@ -161,27 +161,48 @@ belongs in the final report.
 
 ### Check the batch before saving
 
-When every writer has returned, start one `plgn-brand-guard` on the whole
-batch — all topics together, because voice drift and repeated openings only
-show across topics. Its prompt carries the drafts, the same `context_get` block
-the writers got, and each platform's character limit.
+When every writer has returned, check the whole batch in one call — all
+topics together:
 
-For each draft it fails, send that draft back to the writer of its topic once,
-with the guard's issues quoted. Take what comes back without checking it again.
+```
+post_check(drafts: [{ ref, captions, platforms, campaign_id }, ...])
+```
 
-A draft that still has an issue after that one rewrite is **held back**: it is
-saved as a draft in step 5 but never scheduled in step 8, and the report names
-it with the issue in plain words. A draft flagged for invented proof — a
-number, name, result or quote the brand's material doesn't contain — is held
-back unless the rewrite removed the claim entirely.
+`ref` is any label you can match back to a draft — `t1-3` for topic 1's third
+post. `captions` is keyed by language, the way the post will be saved. Carry
+`campaign_id` on every draft planned inside the campaign, so plgn checks it
+against that campaign's rules. Fifty drafts at most per call; split a longer
+month. It saves nothing. The reply is one block per draft: `<ref>: pass`, or
+`<ref>: fail` with its `warning:` and `check:` lines — see **gate-recovery**
+for what each one means. Because the whole batch goes in one call, plgn also
+compares the drafts with each other: `same_opening_as:<ref>` marks a draft
+that opens like an earlier one, and `voice_off` one that does not sound like
+the brand. Both go back to their writer like any other problem.
 
-The guard advises; it does not approve. Never tell the user a post "passed
-brand-guard". plgn's server still runs its own checks on every save.
+For each draft that fails, send it back to the writer of its topic once, with
+each problem quoted as the sentence after the dash — never the code. Then
+call `post_check` again on the rewritten drafts only.
+
+A draft still failing after that one rewrite is **held back**: it is saved as
+a draft in step 5 but never scheduled in step 8, and the report names it with
+the issue in plain words. A draft flagged `invented_number` or
+`invented_name_or_quote` is held back unless the rewrite removed the claim
+entirely.
+
+A pass is not approval. Never tell the user a post "passed" a check. plgn runs
+its checks again on every save and every schedule.
 
 ## 5. Save
 
-Call `topic_create` **only for topics that do not already exist**. Then call
-`post_create` per post, as drafts.
+Call `topic_create` **only for topics that do not already exist**. Then save
+every post in one call, as drafts:
+
+```
+post_create_many(posts: [{ ...one post_create's arguments... }, ...])
+```
+
+Each item takes exactly what `post_create` takes. Fifty at most per call;
+split a longer month. One failed item never stops the others.
 
 `post_create` also takes `campaign_id` and `offering_ids`. Set the campaign
 when the month is planned inside one, and set the offerings from each post's
@@ -204,16 +225,23 @@ downstream ever catches it.
 it is the only thing that makes `/plgn undo` able to take this run back. A
 month saved without it can only be undone by hand, thirty posts at a time.
 
-**Record the ids the tools return.** Never assume the order matches your draft
-order, and never guess an id — read it from the response. If a later step needs
-a post you cannot identify, read it back with `post_get` or `post_list`.
+**Record the ids the reply returns.** It has one line per item, numbered in
+the order you sent them — `<n>. ok <id>` or `<n>. ERROR: <reason>` — with that
+item's `warning:` and `check:` lines indented under it. Match each id to the
+n-th post you sent, and never guess one. If a later step needs a post you
+cannot identify, read the run back with `post_list(run: <this run's marker>)`.
 
 Nothing is scheduled until step 8.
 
 ## 6. Handle anything that fails
 
-On any `ERROR:`, follow the **gate-recovery** skill. Describe the outcome using
-**reply-style** rule 6 — a normal sentence, never the raw error.
+On any `ERROR:` — for the whole call or for one numbered item — follow the
+**gate-recovery** skill. A failed item is fixed and saved on its own with
+`post_create`; the others are already saved. A
+`warning: would be blocked when scheduled` line under a saved item is fixed
+now with one `post_update`, per the same skill, or the post is held back.
+Describe the outcome using **reply-style** rule 6 — a normal sentence, never
+the raw error.
 
 **Never stop the whole run for one post.** Twenty-nine good posts and one honest
 hand-off is a successful run. Track anything left as a draft for the report.
@@ -260,31 +288,61 @@ Reuse a match only when it actually fits this post's subject. A picture that
 is merely on-brand is not a picture of the right thing, and a wrong reuse
 costs more than points — it costs the post.
 
-For each post that should have one, read `context_get(role: "art_director",
-campaign_id: <the post's campaign, if it has one>)` for the brand's look.
+### Which posts get a picture
 
-Per post, not once for the run: two posts in different campaigns want
-different references, and a run that reads the direction once gives them the
-same one. A campaign's references are held against that campaign, so a read
-made without its `campaign_id` cannot see them at all. `/plgn images` reads
-the look the same way, for this reason.
+Ask plgn once for the whole run, with the ids saved in step 5:
 
-Then ask `plgn-visual` whether this post needs a picture at all, and why.
-That is all it answers — it does not art-direct one. Its prompt carries the
-post and the brand's voice, from the `context_get(role: "copywriter", …)`
-read that briefed this post's writer in step 4, and nothing else: per
-**_conventions** rule 6 the agent cannot see this file, and those two are
-what it takes. The `art_director` block is not its to read.
+```
+picture_need(post_ids: [<every post saved in step 5>])
+```
 
-When it says yes, **write the image description yourself** — it is not
+Fifty ids at most per call; split a longer run. One line per post: `need` or
+`skip`, a reason, and sometimes ` · asset: <id>`. plgn reads each post with
+its own campaign, which is why step 5 saved `campaign_id` first. Take `skip`
+as the answer and spend no points on that post — name it in the report with
+its reason in plain words (see **image-prompting**). With `--max-images`, the
+best candidates first are `need` posts whose reason is `shows_offer`,
+`shows_place_or_person` or `steps_or_before_after`.
+
+If the call answers `ERROR:`, say so in one line and treat every post as
+needing one; the plan's image number is still the ceiling.
+
+### The brand's look, once per campaign
+
+Group the posts that need a picture by campaign, and read the look
+**once per group**:
+
+```
+context_get(role: "art_director", campaign_id: <the group's campaign>)
+```
+
+and once with no `campaign_id` for the posts that belong to no campaign.
+
+Not once for the whole run: two posts in different campaigns want different
+references, and a campaign's own look — a `reference` saved against that
+campaign by `/plgn visuals` — is held against that campaign, so a read made
+without its `campaign_id` cannot see it at all. Use each group's block for
+that group's posts only. A post in no campaign gets the brand's
+**permanent look**: in the no-campaign read, a reference listed under a
+running campaign belongs to that campaign's posts, never to this one. `/plgn images` reads the
+look the same way, for this reason.
+
+For each post that needs one, **write the image description yourself** — it is not
 written anywhere else on this path. One paragraph: the subject, the
 composition, the light, the medium, the palette, and what must not appear.
 Take it one step sideways from the post's point rather than restating its
-words, put the `art_director` block's preamble in front of it, and carry
-that block's `never` list as exclusions.
+words, put the preamble of the `art_director` block read for this post's
+campaign group in front of it, and carry that block's `never` list as
+exclusions.
+
+Write the post's **alt text** at the same time, one per language the brand
+publishes in: what the picture will show, in one sentence, starting with the
+subject, leaving out "image of", never repeating the post. This quick path
+has no brief, so nothing else writes it; it travels on the generate call.
 
 The same read lists the brand's **Assets**. When the post is plainly about
-one of them — the mascot's tip of the week, a day at the shop — and its line
+one of them — the mascot's tip of the week, a day at the shop, or the one
+`picture_need` named on the post's line — and the asset's line in the read
 says the AI may use it, build the picture around it: refer to it by its role
 ("the character from the reference image"), carry its own `never` list, and
 pass its id as `asset_ids` on `generate_image_from_image`. At most one or
@@ -302,6 +360,11 @@ canonical reference, call `generate_image_from_image` with it. Otherwise
 call `generate_image`. See **visual-identity** for why the two are
 different.
 
+Carry `post_id` and `alt_text` on every call — `alt_text` keyed by language,
+as written with the description. plgn then puts the finished picture on the
+post by itself, with its alt text, whether `check_generation` or plgn's own
+finish gets there first.
+
 **Making an image takes time.** `generate_image` and `generate_image_from_image`
 both return a job number, not an image. Check with `check_generation` on the
 schedule in the **image-prompting** skill.
@@ -311,21 +374,43 @@ report as **still running** (never as failed, while the check still says
 waiting, queuing or generating), and **carry on** — a missing image never blocks scheduling. A post that goes out
 text-only is fine; a month that stalls waiting on a picture is not.
 
-**Every picture gets alt text.** Once one exists, send `plgn-visual` the
-post, the same voice block, and a description of the picture that was just
-made; that is its second job, and it returns the alt text for it. Save the
-picture and its alt text onto the post with `post_update` — the alt text goes
-in the media item's `alt` field. This is the
-plugin's busiest image path, so an image saved here without alt text is most
-of a month unreadable to anyone using a screen reader.
-
-If `plgn-visual` says the post is stronger without an image, accept that and
-spend no points.
+**Every picture gets alt text.** A new picture carries it from the generate
+call — plgn puts it on the post with the picture, so there is nothing to save
+afterwards. A picture reused from the library is not generated, so it is the
+one case that needs a save: `post_update` with `media` holding that picture —
+its `secure_url` and `public_id` from `list_images` — and the alt text in its
+`alt` field. `media` replaces the post's list, which is safe here because a
+post saved in step 5 held no picture before. This is the plugin's busiest
+image path, so an image saved here without alt text is most of a month
+unreadable to anyone using a screen reader.
 
 ## 8. Schedule
 
-Call `post_schedule` across the agreed dates, following the **posting-cadence**
-skill for spacing and platform mix. Posts held back in step 4 stay drafts.
+Work out a date and time for every post across the agreed dates, following
+the **posting-cadence** skill for spacing and platform mix, then schedule
+them in one call:
+
+```
+post_schedule_many(items: [{ post_id, at }, ...])
+```
+
+Fifty at most per call. Posts held back in step 4 stay drafts and are not in
+the list. The reply has one numbered line per item, like step 5's. An item
+plgn's checks flag comes back as its soft refusal — see **gate-recovery**: it
+stays a draft, and nothing else stops. Never add `accept_warnings` on your
+own.
+
+When some were flagged, ask once, after the rest are scheduled:
+
+```
+2 posts were held back by plgn's checks — "Ramadan hours" says "40% off"
+and nothing in your brand profile backs that number.
+Schedule them anyway?
+yes / pick / no
+```
+
+On yes, send those items again with `accept_warnings: true`. On no, they stay
+drafts and the report names them.
 
 Do not put one topic all in the same week. If there are fewer good posts than
 slots, schedule fewer — cutting beats padding, and the plan already told the
