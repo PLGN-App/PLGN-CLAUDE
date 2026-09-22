@@ -94,8 +94,7 @@ Every asset says `AI may use it` or `NOT for AI pictures`.
 
 Logos, templates and badges start as **not for AI**. Image models redraw
 them: wrong letters, wrong proportions. A wrong logo is worse than none, so
-the default is that a generated picture has no logo in it — the rule
-**image-prompting** already states. The owner can turn it on for one asset
+the default is that an image model is not given the logo file. The owner can turn it on for one asset
 after checking the results; nothing turns it on for them.
 
 Characters, places, elements and people with consent start as usable.

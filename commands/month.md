@@ -281,8 +281,7 @@ written anywhere else on this path. One paragraph: the subject, the
 composition, the light, the medium, the palette, and what must not appear.
 Take it one step sideways from the post's point rather than restating its
 words, put the `art_director` block's preamble in front of it, and carry
-that block's `never` list as exclusions. Never ask for words, letters or
-logos inside the picture.
+that block's `never` list as exclusions.
 
 The same read lists the brand's **Assets**. When the post is plainly about
 one of them — the mascot's tip of the week, a day at the shop — and its line

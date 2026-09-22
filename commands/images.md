@@ -221,7 +221,5 @@ with.
 - **Never remake an image because you don't like it.** A second payment for a
   small improvement is waste. Remake only when one actually failed.
 - **Never spend before asking.** Points are money.
-- **Never ask for words inside an image** — no text, logos or labels. Generated
-  text comes out wrong, and a misspelt word is worse than no image.
 - **Alt text always.** Every attached image carries it.
 - Replies follow the **reply-style** skill, including the user's language.

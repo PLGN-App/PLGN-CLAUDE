@@ -51,14 +51,6 @@ two calls that save them.
 This skill starts once that text exists: it owns the wait for the image
 those words produce, and what it costs.
 
-## Never ask for words in the image
-
-No text, letters, numbers, logos or interface labels. Generated text comes out
-wrong — misspelt, malformed, subtly off — and a post carrying a broken word is
-worse than a post with no picture at all.
-
-The caption carries the words. The image carries the mood.
-
 ## Don't just draw the caption
 
 A post about wasted planning time does not need a picture of a calendar. The
