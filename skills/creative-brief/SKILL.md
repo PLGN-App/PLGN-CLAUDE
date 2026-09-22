@@ -27,16 +27,23 @@ one direction per frame. What carries the frame is not this agent's call —
 the server decides it from what the brand sells. See below.
 
 **4 · check → final text.** `plgn-designer` checks the direction against the
-brand and the brief, then writes the final image text per frame — or raises
-objections if the direction doesn't hold up.
+brand and the brief, then writes the final image text and the alt text per
+frame — or raises objections if the direction doesn't hold up.
 
 ## Two calls, not four
 
 Four steps, two calls. `brief_create` saves steps 1 through 3 in one call:
 the benefit, the meanings, every idea and why each won or lost, and the
 direction per frame. `brief_finalize` saves step 4, and only when step 4
-passed: the final image text per frame, nothing else. It is refused while
-any frame has no text, so it is not somewhere objections can go.
+passed: the final image text and the alt text per frame, nothing else. It is
+refused while any frame has no text, so it is not somewhere objections can
+go. It is sent once — a brief that is ready cannot be finalized again.
+
+plgn reads the brief too. A `brief_create` or `brief_update` reply may carry
+`check: frame <n>: <code> — <sentence>` lines — something on the brand's
+`never` list, an offering's cliché, an idea already used, or an idea that
+could belong to any brand. Each line is an objection against that frame,
+exactly like one from `plgn-designer`.
 
 A failed check does not go back to `brief_create`, and it does not go to
 `brief_finalize` either. It calls `brief_update` with the objections and a
@@ -48,7 +55,8 @@ record exists to stop.
 
 The command stops at three. On a third failed check it does not attempt a fourth
 `brief_update` — it names the post that needs a person and carries on with
-the rest of the run.
+the rest of the run. A round failed by plgn's own `check: frame` lines counts
+as one of the three, the same as a round failed by the designer.
 
 The server enforces the same cap as a backstop: a fourth `brief_update` is
 refused, and the brief is marked failed. The two only have to agree; the

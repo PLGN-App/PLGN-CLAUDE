@@ -881,7 +881,8 @@ const AGENT_CONTRACTS = [
   ["plgn-visual", ["\"needsImage\":", "\"altText\":"]],
   ["plgn-strategist", ["campaign", "key_message", "vocabulary", "\"plannedSlides\":"]],
   ["plgn-creative-director", ["candidates", "\"rejected_because\":", "art_direction", "\"concept\":"]],
-  ["plgn-designer", ["\"generation_prompt\":", "\"qa_findings\":"]],
+  // 1.11.0: the designer writes the alt text (plgn-visual is gone); brief_finalize carries it.
+  ["plgn-designer", ["\"generation_prompt\":", "\"qa_findings\":", "\"alt_text\":"]],
 ];
 for (const [agent, needles] of AGENT_CONTRACTS) {
   const p = `agents/${agent}.md`;
@@ -1184,6 +1185,8 @@ for (const [c, needles] of REPORTS) {
   need("skills/reply-style/SKILL.md", ["accept_warnings", "invented_number"]);
   need("skills/brand-knowledge-map/SKILL.md", ["post_list(run:", "post_create_many",
     "post_unschedule_run", "post_delete_run", "banned_variant"]);
+  need("skills/creative-brief/SKILL.md", ["check: frame", "alt text per frame"]);
+  need("skills/image-prompting/SKILL.md", ["picture_need", "plgn-designer", "campaign_id: <the post's campaign"]);
   // (later tasks add their needles above this line)
 }
 

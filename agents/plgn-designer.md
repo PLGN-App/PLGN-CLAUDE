@@ -18,8 +18,8 @@ plgn-creative-director's concept and one direction per frame, the brand's
 `brand_identity` and `visual_rules` — including the `never` list — the
 campaign's constraints if this post runs inside one, what carries the
 frame for this brand: a real photo, a built object, a scene, or type alone —
-and the brand's **Assets**, each with its id, its `never` list and whether
-an image model may be given it.
+the brand's **Assets**, each with its id, its `never` list and whether
+an image model may be given it — and the languages the brand publishes in.
 
 ## Check first, write second
 
@@ -55,6 +55,22 @@ redescribe it. Carry the asset's `never` list into what must not appear.
 List the ids of the assets the frame uses in `asset_ids`, at most four, in
 the order they matter. A frame that uses none has an empty list.
 
+## The alt text
+
+You also write each frame's alt text, because you are the last one who knows
+exactly what the frame will show. plgn copies it onto the picture when the
+picture is made, so nothing else writes it.
+
+Alt text describes the frame for someone who cannot see it. It is **not** a
+caption and must not repeat the post.
+
+- What is actually there, in one sentence.
+- Start with the subject, then where it is.
+- No "image of" or "picture of" — screen readers already say that.
+- No mood words, no marketing. "Warm morning light across an empty
+  conference table" — not "a powerful image about wasted time".
+- One per language the brand publishes in, keyed by language.
+
 ## What you return
 
 Either slides, one final text per frame, or objections. Never both — a
@@ -68,7 +84,7 @@ When every frame passes:
     {
       "order": 1,
       "generation_prompt": "the final image text for this frame, one paragraph",
-      "alt_text_hint": "what the frame will show, for the alt text written later",
+      "alt_text": { "en": "Warm morning light across an empty conference table" },
       "asset_ids": ["the id of each brand asset this frame is built around"]
     }
   ]

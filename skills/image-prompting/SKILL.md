@@ -13,11 +13,16 @@ handling the wait that follows.
 Before writing any image description, read the brand's visual direction:
 
 ```
-context_get(role: "art_director")
+context_get(role: "art_director", campaign_id: <the post's campaign, if it has one>)
 ```
 
 The **visual-identity** skill owns what a direction contains and how it is
-stored — it is a `brand_identity` entry, not a separate lookup.
+stored — it is a `brand_identity` entry, not a separate lookup. A campaign can
+carry a look of its own, saved against the campaign; only a read with that
+`campaign_id` sees it. Read once per campaign, not once per post and not once
+for the run, and give each post the block of its own campaign. A post in no
+campaign gets the brand's permanent look — a running campaign's reference is
+never borrowed for it.
 
 Read it before writing the description, not after.
 
@@ -63,10 +68,23 @@ than a clock does.
 
 ## When to make nothing
 
+Ask plgn first, for every candidate in one call:
+
+```
+picture_need(post_ids: [<the posts>])
+```
+
+Fifty ids at most per call. One line per post: `<id> · need|skip · <reason>`,
+sometimes ` · asset: <asset id>` — one of the brand's own things the post is
+about. plgn judges each post with its own campaign. Take `skip` as the answer.
+The reasons, in plain words: `shows_offer` shows what the brand sells,
+`shows_place_or_person` shows a place or a person, `steps_or_before_after`
+shows steps or a before and after, `text_argument` is a written argument that
+reads stronger plain, `stock_only` would only ever look like stock.
+
 Skip the image, and say why, when:
 
-- The post is a written argument that reads stronger plain — common for long
-  LinkedIn posts.
+- plgn said `skip` — say its reason in plain words.
 - The only description you can write is generic, and the result would look like
   stock. A stock-looking image costs points *and* some credibility.
 - The brand has no image setup. Say so; do not retry.
@@ -129,6 +147,10 @@ list (each model's points) — never assume a cost or a balance.
 
 ## Alt text
 
-Every image gets alt text — written by `plgn-visual`, not here. It describes what
-is visibly in the picture in one sentence, starts with the subject, leaves out
-"image of", and never repeats the post.
+Every image gets alt text. It describes what is visibly in the picture in one
+sentence, starts with the subject, leaves out "image of", and never repeats the
+post. On the brief path `plgn-designer` writes it per frame, `brief_finalize`
+saves it, and plgn copies it onto the picture when `check_generation` reports
+it done — no `post_update` is needed for it. `/plgn month`'s quick path has no
+brief, so there the command writes it and passes it as `alt_text` on the
+generate call; plgn copies it onto the picture the same way.
