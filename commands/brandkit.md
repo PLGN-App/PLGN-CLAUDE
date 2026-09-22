@@ -120,7 +120,9 @@ Then, from those findings:
   a knowledge entry. Ask product-or-service when the source does not say.
   Give it the `place` reviews too: 4–5 stars are proof, 1–3 stars are
   objections.
-- `plgn-art-director` does two jobs here. **The sort job**: number every
+- `plgn-art-director` reads the pictures, in two jobs. It cannot call
+  `social_fetch`, so give it the links: the brand's `allPictures` and each
+  competitor researcher's `pictures`. **The sort job**: number every
   picture in the brand's `allPictures`, plus the pictures the user gave in
   step 3 (`your file`). Start one art director per source group — each
   account, the site, Maps, the user's files — all at the same time, each
@@ -253,7 +255,7 @@ One block, every line skippable, only for what no source can answer:
 Only you know these — answer any, skip the rest:
 
   1. Bunduq wordmark — anything it must never be? (suggested: "always on a plain ground")
-  2. Sara — has she agreed to appear in AI pictures? yes / no
+  2. Sara — has she agreed to appear in AI pictures?
   3. Logo — only an SVG was found. Send a PNG?
   4. Decaf — no photo yet. Send one?
   5. Your posts reuse one frame — send the clean template file?
