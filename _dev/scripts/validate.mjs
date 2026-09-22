@@ -1203,6 +1203,12 @@ for (const [c, needles] of REPORTS) {
   need("commands/queue.md", ["post_list(limit: 500)", "post_label(post_ids:", "`gate:`", "`images: 0`", "`teaser`"]);
   need("commands/topics.md", ["post_label(post_ids:", "`opening:`", "`mix:`"]);
   need("commands/report.md", ["post_label(post_ids:", "`mix:`", "of 22 labelled posts"]);
+  need("commands/undo.md", ["post_list(run:", "post_unschedule_run(run:", "post_delete_run(run:", "confirm: true",
+    "scheduled_from", "` · run: <marker>`", "`topic:` field"]);
+  // Markers are read off post_list lines now; opening posts one by one to find them is the old way.
+  if (exists("commands/undo.md") && /Read the run marker on each candidate/.test(read("commands/undo.md"))) {
+    fail("commands/undo.md: read the run marker off post_list's ` · run:` field, not post by post");
+  }
   // (later tasks add their needles above this line)
 }
 

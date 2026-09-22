@@ -17,12 +17,13 @@ rule 2 and stop.
 
 ## 2. Find the last run
 
-Every command that writes in bulk stamps its posts with a run marker. The
-**brand-knowledge-map** skill has the mechanics: the marker is not something
-`post_list` can filter on, so find candidates the way the tools allow.
+Every command that writes in bulk stamps its posts with a run marker — see
+**brand-knowledge-map**. `post_list` filters on it with `run`, and plgn has
+two calls that act on a whole run at once.
 
-1. Call `post_list` twice, once per status. Only the scheduled call carries
-   the recent window:
+1. **Find the marker.** If the user named a run, use that one. Otherwise
+   find recent candidates the way `post_list` allows, twice, once per
+   status. Only the scheduled call carries the recent window:
 
    ```
    post_list(status: "scheduled", scheduled_from: <30 days ago>, limit: 500)
@@ -31,19 +32,22 @@ Every command that writes in bulk stamps its posts with a run marker. The
 
    The two calls differ because a draft has no scheduled date, so a window
    would hide every one of them. A bulk run that needs undoing is almost
-   always the last one. If nothing carries a marker, widen the window on the
-   scheduled call once — double thirty days to sixty — and if that still finds
-   nothing, drop `scheduled_from` from it and read the whole board.
-2. Read the run marker on each candidate.
-3. Group by marker. The newest group is the last run.
+   always the last one. Each line prints ` · run: <marker>` when the post
+   has one — read it off the lines, never open posts one by one. Markers are
+   dated (`plgn-run-2026-09-07-1`): the latest date is the last run. If no
+   line carries one, widen the scheduled call once — thirty days to sixty —
+   and if that still finds nothing, drop `scheduled_from` and read the whole
+   board.
+2. **Read the whole run.** `post_list(run: <the marker>, limit: 500)` returns
+   every post in it, each line with its status, its `images:` count and, when
+   it has one, its ` · topic: <title>`.
 
 **Published posts are never candidates.** They are out in the world; taking
 them out of plgn changes nothing and loses the record. Say plainly that
 published posts are excluded and how many there were.
 
-If the user named a run, use that one. If nothing carries a marker, say so —
-older posts were written before runs were stamped, and those have to go one at
-a time by name.
+If nothing carries a marker, say so — older posts were written before runs
+were stamped, and those have to go one at a time by name.
 
 ## 3. Show exactly what would go
 
@@ -61,6 +65,10 @@ Last run: 28 posts, saved 7 September
   Pricing without traps         8 posts
   Founder notes                11 posts
 ```
+
+Every number comes off the `post_list(run: …)` lines: the status on each,
+`images:` above zero for "have images", and the `topic:` field for the
+per-topic lines. A post with no topic is counted under "no topic".
 
 Then offer the two ways back, because they are very different:
 
@@ -80,12 +88,18 @@ trade.
 
 ## 4. Do it
 
-**Unschedule** — `post_schedule` with the clear flag on each post. Status
-stays, so nothing is lost and the posts can be scheduled again later.
+**Unschedule** — `post_unschedule_run(run: <the marker>)` first, without
+`confirm`: it lists what would move. If that differs from what step 3 showed,
+show the difference and ask again. Then the same call with `confirm: true`.
+Every scheduled post in the run goes back to draft; nothing is lost and the
+posts can be scheduled again later.
 
-**Delete** — `post_delete` on each post, which needs a clear confirmation. Per
-**_conventions**, deleting is confirmed by **name**, not by number: name the
-run and say how many, and take a yes on that.
+**Delete** — `post_delete_run(run: <the marker>, confirm: true)`, one call for
+the whole run. Per **_conventions**, deleting is confirmed by **name**, not by
+number: name the run and say how many, and take a yes on that — before the
+call, because this one has no preview.
+
+Neither call touches a published post; plgn refuses to.
 
 Deleting posts does not delete the images they used. Say how many images are
 now unused, and that they can be removed from the plgn dashboard.
