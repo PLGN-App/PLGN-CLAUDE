@@ -69,10 +69,14 @@ small addition per round until nothing in it is doing any work.
 
 ## What makes a real idea
 
-An idea is a metaphor with a territory — a concrete thing the picture could
-actually show, that stands for the benefit without stating it. It carries a
-score, and every idea that was rejected carries the reason it lost, not just
-its name.
+An idea is a lens, a metaphor and a territory — a concrete thing the picture
+could actually show, that stands for the benefit without stating it. It
+carries a score, and every idea that was rejected carries the reason it lost,
+not just its name.
+
+The literal picture of the caption is written first and always loses. The
+other ideas come one from each of five lenses, and the lens is written at the
+front of the territory.
 
 "A nice photo of the product" is not an idea. It names no metaphor and no
 territory — it is the absence of one, dressed up as a starting point.
@@ -83,7 +87,10 @@ The server resolves what carries the frame from what the brand actually
 sells — not from what reads best or what's easiest to generate. Four
 answers, and only one applies to a given brief:
 
-- **A real photo** — the brand has a product with a photo of it.
+- **A real photo** — the brand has a product with a photo of it. The real
+  pack, from its photo, is in the picture as hero, detail, result or in use,
+  the director's choice for each frame. It
+  does not mean a hand holding the pack.
 - **A built object** — the brand has a product but no photo. The picture is
   made rather than shot, and the missing photo is a real gap worth naming
   back to the brand.
@@ -107,6 +114,8 @@ A carousel is one idea carried over several frames, each frame with its own
 job: hook, proof, how, ask. A single picture is a brief with exactly one
 frame, so there is never a second way of building this — a carousel is not a
 different procedure, it is the same one with more frames.
+`plgn-creative-director` picks the order of the frames from six story shapes
+and names the shape in `concept_why`; the jobs keep their four names.
 
 Default to 3 frames when someone asks for a carousel without saying how
 many, and never more than 10.
