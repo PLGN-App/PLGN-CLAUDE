@@ -62,9 +62,12 @@ A post about wasted planning time does not need a picture of a calendar. The
 literal illustration is the first idea and almost always the weakest — it adds
 nothing the reader just read.
 
-Aim one step sideways: the mood of the argument, or what it leads to rather than
-what it is about. Empty chairs after a meeting says more about wasted meetings
-than a clock does.
+On the brief path, `plgn-creative-director` writes the literal picture first and
+rejects it, then scores one idea from each of five lenses, and `plgn-designer`
+writes the final text in seven parts with the brand colour as an accent.
+**creative-brief** owns those steps. The aim is the mood of the argument, or
+what it leads to rather than what it is about. Empty chairs after a meeting says
+more about wasted meetings than a clock does.
 
 ## When to make nothing
 
@@ -143,7 +146,9 @@ list (each model's points) — never assume a cost or a balance.
 - Where the number is more than they have, say so and make images for the most
   valuable posts rather than stopping partway with no explanation.
 - Never remake an image just because the first one was dull; that is a second
-  payment for a small gain. Remake only when one genuinely failed.
+  payment for a small gain. Remake only when one genuinely failed. A picture
+  that is physically wrong (a leak, a floating object, six fingers) is a failed
+  picture and may be remade; a dull one is not.
 
 ## Alt text
 
