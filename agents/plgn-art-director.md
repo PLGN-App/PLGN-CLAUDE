@@ -106,7 +106,8 @@ Ten fields, each with the references it came from. Nothing before them, nothing
 after.
 
 - **`palette`** — hex values, roughly how much of each, and how backgrounds are
-  handled. Say "about #0B1F3A" when reading off a compressed image; do not
+  handled. The proportions are of the brand's own things, not of the whole
+  scene. Say "about #0B1F3A" when reading off a compressed image; do not
   publish a guess as though it came from a brand book.
 - **`composition`** — where the subject sits, crop tightness, how much empty
   space, and where text can safely go.

@@ -329,8 +329,9 @@ look the same way, for this reason.
 
 For each post that needs one, **write the image description yourself** — it is not
 written anywhere else on this path. One paragraph: the subject, the
-composition, the light, the medium, the palette, and what must not appear.
-Take it one step sideways from the post's point rather than restating its
+composition, the light, the medium, the brand colour on one or two things,
+and what must not appear. Never the caption drawn: take one of
+`plgn-creative-director`'s five lenses rather than restating the post's
 words, put the preamble of the `art_director` block read for this post's
 campaign group in front of it, and carry that block's `never` list as
 exclusions.

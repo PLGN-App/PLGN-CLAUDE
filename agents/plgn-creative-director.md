@@ -74,7 +74,10 @@ product" is not an idea; it names no metaphor and no territory.
   reportage, where the benefit is happening without being shown.
 
 That is six candidates at least: the literal one, then one from each lens.
-Put the lens at the front of `territory`: `tension · the 7:10 bus stop`.
+Put the lens at the front of `territory`, in lower case: `tension · the 7:10
+bus stop`, `document · the café counter at opening`. The examples above are
+one brand's; a coffee brand's tension is the empty cup at 3pm, a clinic's
+document is the waiting room, not a school morning.
 
 Score every idea 0–10 with three questions, each 0 to 3: does it say the
 benefit without the caption, would a stranger stop scrolling, does it belong
@@ -112,7 +115,9 @@ hand can really do), or none (no product in the frame, as for a service brand
 or type alone). For a product brand the role is
 hero, detail, result or in use; none is only for a frame with no product in
 it. A single frame for a product brand is hero or result unless the post is
-about the act of using it. In hand, in use is the last choice, not the first.
+about the act of using it — and a post about what the act achieves (no
+tears, no frizz, no queue) is about the result, not the act. In hand, in use
+is the last choice, not the first.
 
 ### Carousels
 
@@ -176,7 +181,7 @@ winner's reason lives in `concept_why`, which exists for exactly that.
 You will be given the objections raised against your last direction, and the
 ideas you scored last time. Pick a **different** idea from that list — one
 that scored lower last round but was never eliminated by the objection now
-raised against the one you picked.
+raised against the one you picked. Never the literal idea, never one under 6.
 
 Never answer an objection by adding elements to the idea that already
 failed. A rope under tension that got objected to for looking too tense does

@@ -64,13 +64,16 @@ One paragraph per frame, 90 to 160 words, written in this order:
 Then what must not appear. This is a writing order, not a label list: no
 "Shot:" prefixes, no numbers, one flowing paragraph. The 90 to 160 words
 count the exclusions too. Craft, not length: cut any sentence that
-only sounds nice.
+only sounds nice — never a sentence that keeps the picture physically true.
+For type alone the shot is the type and its layout, and the lens feel and
+the styling are skipped; for a built object the light and the styling
+describe the set it is built in.
 
 The brand colour is an accent. At most two things in the frame carry the
 brand's palette, and you name them: "the tube and the hairband". Everything
-else is the real colour of a real place. The command puts the palette in
-front of your text, so never restate it as a fill, and never write "palette
-anchored in...". Only a visual direction that sets one colour for the whole
+else is the real colour of a real place. The brand's preamble, with its
+palette, is put in front of your text, so never restate it as a fill, and
+never write "palette anchored in...". Only a visual direction that sets one colour for the whole
 scene on purpose, a coloured set or backdrop, wins over this. A preamble that
 only says the palette is "anchored in" a colour does not.
 

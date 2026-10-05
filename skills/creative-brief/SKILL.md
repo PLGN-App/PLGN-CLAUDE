@@ -88,9 +88,9 @@ sells — not from what reads best or what's easiest to generate. Four
 answers, and only one applies to a given brief:
 
 - **A real photo** — the brand has a product with a photo of it. The real
-  pack, from its photo, is in the picture as hero, detail, result or in use,
-  the director's choice for each frame. It
-  does not mean a hand holding the pack.
+  pack, from its photo, is in the picture or behind it, as hero, detail,
+  result or in use, the director's choice for each frame. It does not mean a
+  hand holding the pack.
 - **A built object** — the brand has a product but no photo. The picture is
   made rather than shot, and the missing photo is a real gap worth naming
   back to the brand.

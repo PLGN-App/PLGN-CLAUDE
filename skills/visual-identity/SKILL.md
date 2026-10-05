@@ -18,7 +18,7 @@ Ten fields. Each carries the evidence it came from.
 
 | Field | What it records |
 |---|---|
-| **palette** | The colours, as hex values, with rough proportions and how backgrounds are treated. The proportions are of the brand's own things (the pack, the type, the set), not of the whole scene |
+| **palette** | The colours, as hex values, with rough proportions and how backgrounds are treated. The proportions are of the brand's own things (the pack, the type, a set the brand built), not of the whole scene |
 | **composition** | Where the subject sits, how tight the crop is, how much empty space, where text can safely go |
 | **light** | Direction, hardness, warm or cool, how shadows behave |
 | **medium** | Photograph, illustration, 3D render or collage — and the camera feel: wide or long lens, shallow or deep focus, grain |
