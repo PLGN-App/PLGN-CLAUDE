@@ -46,12 +46,39 @@ something a picture can actually show.
 
 ## Step 2 — ideas, scored, losers explained
 
-Turn the meanings into three to five ideas. Each idea is a metaphor plus the
-territory it lives in — a concrete thing the picture could show that stands
-for the benefit without stating it. "A nice photo of the product" is not an
-idea; it names no metaphor and no territory.
+The bar is global campaign craft, local truth: an idea a creative director
+would put in a pitch, set in a real place of the brand's market with people
+who look like its audience.
 
-Score every idea 0–10. **Every idea you do not pick carries the reason you
+Write the literal idea first. It is the caption, drawn: the obvious picture
+of what the post says. Its territory is exactly `literal · the caption,
+drawn`, it scores 0 to 3, and it loses by rule, in every round. It stays in
+the list so the record shows it was seen.
+
+Then write at least one idea from each of five lenses. Each idea is a
+metaphor plus the territory it lives in — a concrete thing the picture could
+show that stands for the benefit without stating it. "A nice photo of the
+product" is not an idea; it names no metaphor and no territory.
+
+- **Tension** — the problem at its worst, or the moment just before the fix:
+  the knotted hair at 7:10, before the bus.
+- **Scale** — the macro detail or the far view that makes the benefit
+  visible: one strand, one drop, one seam.
+- **Displacement** — the product or its result in an unexpected but true
+  place: the pharmacy shelf at 7am, the wedding car.
+- **Metaphor** — one concrete object from the audience's world that stands
+  for the benefit: a hairband that finally holds, a school bell.
+- **Document** — a real, unposed moment of the audience's day, shot like
+  reportage, where the benefit is happening without being shown.
+
+That is six candidates at least: the literal one, then one from each lens.
+Put the lens at the front of `territory`: `tension · the 7:10 bus stop`.
+
+Score every idea 0–10 with three questions, each 0 to 3: does it say the
+benefit without the caption, would a stranger stop scrolling, does it belong
+to this brand and no other. Add 1 when it uses the brand's own asset well. An
+idea that scores under 6 is not picked; if none reaches 6, the rule in "When
+you cannot" applies. **Every idea you do not pick carries the reason you
 did not.** That reason is the point of writing any of this down — it is what
 stops the same idea being offered to this brand again next month.
 
@@ -68,6 +95,31 @@ candidate list.
 Write one direction per frame, in words a person could actually shoot or
 build from. A single picture is one frame. A carousel is the same idea
 carried across several, and each frame gets a job: hook, proof, how, ask.
+
+### The product's role
+
+Every direction starts with the product's role in that frame, then what the
+frame is of: `hero · the tube on the sink edge`. The role is one of hero (the
+pack is the subject, on its own terms), detail (a part of it, the texture it
+leaves), result (what it did; the pack absent or small), in use (one action a
+hand can really do), or none (no product in the frame, as for a service brand
+or type alone). Choose from hero, detail, result or in use before anything
+else. A single frame for a product brand is hero or result unless the post is
+about the act of using it. In hand, in use is the last choice, not the first.
+
+### Carousels
+
+Pick one story shape and name it in `concept_why`: problem → turn → proof;
+one object, three distances; morning → noon → night; the wrong way / the
+right way; count-down (3, 2, 1 reasons); a day in one life. `role` keeps its
+four words; the shape is the order and the content.
+
+### People
+
+A face is a real face from the audience: age, skin, hair, dress and setting
+as the brand's references and `brand_identity` give them. No stock smile, no
+model look unless the brand's direction asks for it. A saved person or
+character comes first.
 
 Do not describe lighting, colour or finish here — that is what carries the
 frame's business, decided after you, from what the brand sells. Say what
@@ -86,8 +138,14 @@ silently dropped.
   "meanings": ["strength", "resilience", "load"],
   "candidates": [
     {
+      "metaphor": "long, strong hair, shown off",
+      "territory": "literal · the caption, drawn",
+      "score": 2,
+      "rejected_because": "the literal picture of the caption; adds nothing the reader just read"
+    },
+    {
       "metaphor": "a rope under tension",
-      "territory": "climbing gear",
+      "territory": "metaphor · climbing gear",
       "score": 7,
       "rejected_because": "reads as effort, not as the product's strength"
     }
@@ -95,7 +153,7 @@ silently dropped.
   "concept": "the one idea picked, in a sentence",
   "concept_why": "why this one beats the other scored ideas",
   "slides": [
-    { "order": 1, "role": "hook", "art_direction": "what this frame is of" }
+    { "order": 1, "role": "hook", "art_direction": "hero · what this frame is of" }
   ]
 }
 ```
