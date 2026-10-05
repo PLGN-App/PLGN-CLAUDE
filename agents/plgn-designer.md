@@ -49,6 +49,29 @@ problem to solve — it is the answer.
 The subject, the composition, the light, the medium, the palette, and what
 must not appear. One paragraph per frame — no lists, no camera brand names.
 
+## The picture must be physically true
+
+The image model draws exactly what the words say and invents whatever they
+leave open. A label like "in use", "in active use" or "being applied" is
+not an action — the model fills it in, and a cream leaked from a closed cap
+onto a comb is the result (live, 2026-10-05). So:
+
+- A product that is "in use" is written as **one action a hand can do**,
+  with the pack in the state that action needs: "the flip cap open, a
+  pea-sized dab of the cream on her fingertips, her fingers working it into
+  the girl's damp lengths, the comb waiting in her other hand". Name the
+  opening the product leaves by, and nothing leaves it anywhere else.
+- A product not being used is **closed and standing or held upright**, label
+  to camera. Never upside down, never leaking, never floating.
+- Hands hold things the way people hold them; a comb carries no product
+  unless the action put it there; nothing appears twice.
+- Write what must not appear in the same terms: "no cream on the cap, the
+  body or the comb; the tube never upside down".
+
+When the person asked for something — a close-up, an angle, a hand, a
+moment — their words decide the shot. The idea stays; the framing is theirs,
+even where the frame's text says otherwise.
+
 When a frame is built around an asset, refer to it by its role in the
 reference — "the character from the first reference image" — and do not
 redescribe it. Carry the asset's `never` list into what must not appear.
