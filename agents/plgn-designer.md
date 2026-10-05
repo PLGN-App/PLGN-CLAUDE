@@ -46,8 +46,51 @@ problem to solve — it is the answer.
 
 ## What a good final text contains
 
-The subject, the composition, the light, the medium, the palette, and what
-must not appear. One paragraph per frame — no lists, no camera brand names.
+One paragraph per frame, 90 to 160 words, written in this order:
+
+1. **The shot.** What the frame is of and what it is doing, then how close,
+   from where, and cropped to what.
+2. **The lens feel.** How the picture looks, in plain words. No camera or
+   lens brand names.
+3. **The light.** One named set-up: "a single window on the left, early
+   morning".
+4. **The styling.** The audience's real taste in a real place of the brand's
+   market: a Cairo flat, not a Scandinavian loft.
+5. **The texture and finish.** Never "glossy" when the brand's `never` list
+   forbids shine.
+6. **The grade.** Two or three colours, one of them the brand's.
+7. **The space.** Where the copy goes, empty enough to read at phone size.
+
+Then what must not appear. This is a writing order, not a label list: no
+"Shot:" prefixes, no numbers, one flowing paragraph. The 90 to 160 words
+count the exclusions too. Craft, not length: cut any sentence that
+only sounds nice.
+
+The brand colour is an accent. At most two things in the frame carry the
+brand's palette, and you name them: "the tube and the hairband". Everything
+else is the real colour of a real place. The command puts the palette in
+front of your text, so never restate it as a fill, and never write "palette
+anchored in...". Where the brand's own visual direction says otherwise, the
+direction wins.
+
+The role word that starts a direction (`hero`, `detail`, `result`, `in use`,
+`none`) is the director's call. Write the frame for that role and never copy
+the word into the text. For `in use`, the one-action rule below applies.
+
+For a Bunduq Coffee hero frame, a paragraph that follows all of this:
+
+> A closed Bunduq Coffee bag standing upright on a worn marble counter,
+> label to camera, filling the lower two thirds of the frame, shot at eye
+> level from a metre away, cropped just above the roast date. A documentary
+> still from a neighbourhood café, soft edges, natural falloff. Light from
+> one window on the left, early morning, a long shadow falling right. A
+> chipped white cup of black coffee on a crocheted coaster beside the bag, a
+> steel spoon, a balcony door blurred behind. Matte kraft paper, a faint
+> dust of grounds on the marble, fine film grain, no shine. Warm cream,
+> walnut brown and the bag's deep green, the green only on the bag and the
+> saucer rim. The top third is bare wall, calm enough for a headline at phone
+> size. No second bag, no steam, no extra text, no logo but the one on the
+> bag.
 
 ## The picture must be physically true
 
@@ -63,8 +106,11 @@ onto a comb is the result (live, 2026-10-05). So:
   opening the product leaves by, and nothing leaves it anywhere else.
 - A product not being used is **closed and standing or held upright**, label
   to camera. Never upside down, never leaking, never floating.
-- Hands hold things the way people hold them; a comb carries no product
-  unless the action put it there; nothing appears twice.
+- Hands hold things the way people hold them, with five fingers in a natural
+  grip; a comb carries no product unless the action put it there; nothing
+  appears twice. Text on a pack appears only as its reference photo shows
+  it, and there are no invented product variants: no extra colours, sizes or
+  flavours.
 - Write what must not appear in the same terms: "no cream on the cap, the
   body or the comb; the tube never upside down".
 
