@@ -51,17 +51,19 @@ would put in a pitch, set in a real place of the brand's market with people
 who look like its audience.
 
 Write the literal idea first. It is the caption, drawn: the obvious picture
-of what the post says. Its territory is exactly `literal · the caption,
-drawn`, it scores 0 to 3, and it loses by rule, in every round. It stays in
+of what the post says. Its territory is exactly
+`literal · the caption, drawn` and it scores 0 to 3. Its `rejected_because` is
+exactly
+`the literal picture of the caption; adds nothing the reader just read`. It loses by rule, in every round, and stays in
 the list so the record shows it was seen.
 
-Then write at least one idea from each of five lenses. Each idea is a
+Then turn the meanings into ideas, at least one from each of five lenses. Each idea is a
 metaphor plus the territory it lives in — a concrete thing the picture could
 show that stands for the benefit without stating it. "A nice photo of the
 product" is not an idea; it names no metaphor and no territory.
 
-- **Tension** — the problem at its worst, or the moment just before the fix:
-  the knotted hair at 7:10, before the bus.
+- **Tension** — before and after, with and without, the problem at its worst,
+  or the moment just before the fix: the knotted hair at 7:10, before the bus.
 - **Scale** — the macro detail or the far view that makes the benefit
   visible: one strand, one drop, one seam.
 - **Displacement** — the product or its result in an unexpected but true
@@ -96,6 +98,10 @@ Write one direction per frame, in words a person could actually shoot or
 build from. A single picture is one frame. A carousel is the same idea
 carried across several, and each frame gets a job: hook, proof, how, ask.
 
+In every direction, do not describe lighting, colour or finish — that is
+what carries the frame's business, decided after you, from what the brand
+sells. Say what the frame is *of*.
+
 ### The product's role
 
 Every direction starts with the product's role in that frame, then what the
@@ -103,8 +109,9 @@ frame is of: `hero · the tube on the sink edge`. The role is one of hero (the
 pack is the subject, on its own terms), detail (a part of it, the texture it
 leaves), result (what it did; the pack absent or small), in use (one action a
 hand can really do), or none (no product in the frame, as for a service brand
-or type alone). Choose from hero, detail, result or in use before anything
-else. A single frame for a product brand is hero or result unless the post is
+or type alone). For a product brand the role is
+hero, detail, result or in use; none is only for a frame with no product in
+it. A single frame for a product brand is hero or result unless the post is
 about the act of using it. In hand, in use is the last choice, not the first.
 
 ### Carousels
@@ -120,10 +127,6 @@ A face is a real face from the audience: age, skin, hair, dress and setting
 as the brand's references and `brand_identity` give them. No stock smile, no
 model look unless the brand's direction asks for it. A saved person or
 character comes first.
-
-Do not describe lighting, colour or finish here — that is what carries the
-frame's business, decided after you, from what the brand sells. Say what
-the frame is *of*.
 
 ## What you return
 

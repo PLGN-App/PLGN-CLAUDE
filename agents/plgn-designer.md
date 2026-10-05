@@ -50,8 +50,8 @@ One paragraph per frame, 90 to 160 words, written in this order:
 
 1. **The shot.** What the frame is of and what it is doing, then how close,
    from where, and cropped to what.
-2. **The lens feel.** How the picture looks, in plain words. No camera or
-   lens brand names.
+2. **The lens feel.** Shallow or deep focus, wide and close or long and
+   compressed, in plain words. No camera or lens brand names.
 3. **The light.** One named set-up: "a single window on the left, early
    morning".
 4. **The styling.** The audience's real taste in a real place of the brand's
@@ -70,8 +70,9 @@ The brand colour is an accent. At most two things in the frame carry the
 brand's palette, and you name them: "the tube and the hairband". Everything
 else is the real colour of a real place. The command puts the palette in
 front of your text, so never restate it as a fill, and never write "palette
-anchored in...". Where the brand's own visual direction says otherwise, the
-direction wins.
+anchored in...". Only a visual direction that sets one colour for the whole
+scene on purpose, a coloured set or backdrop, wins over this. A preamble that
+only says the palette is "anchored in" a colour does not.
 
 The role word that starts a direction (`hero`, `detail`, `result`, `in use`,
 `none`) is the director's call. Write the frame for that role and never copy
@@ -79,18 +80,18 @@ the word into the text. For `in use`, the one-action rule below applies.
 
 For a Bunduq Coffee hero frame, a paragraph that follows all of this:
 
-> A closed Bunduq Coffee bag standing upright on a worn marble counter,
-> label to camera, filling the lower two thirds of the frame, shot at eye
-> level from a metre away, cropped just above the roast date. A documentary
-> still from a neighbourhood café, soft edges, natural falloff. Light from
-> one window on the left, early morning, a long shadow falling right. A
-> chipped white cup of black coffee on a crocheted coaster beside the bag, a
-> steel spoon, a balcony door blurred behind. Matte kraft paper, a faint
-> dust of grounds on the marble, fine film grain, no shine. Warm cream,
-> walnut brown and the bag's deep green, the green only on the bag and the
-> saucer rim. The top third is bare wall, calm enough for a headline at phone
-> size. No second bag, no steam, no extra text, no logo but the one on the
-> bag.
+> The bag from the reference photo, closed and upright on a worn marble
+> counter, label to camera, filling the lower two thirds of the frame, shot
+> at eye level from a metre away and cropped at the counter's edge. Shallow
+> focus on the bag, a long lens that flattens the room behind it, soft edges
+> and natural falloff, like a documentary still. Light from one window on
+> the left, early morning, a long shadow falling right. A chipped white cup
+> of black coffee on a crocheted coaster beside the bag, a steel spoon, a
+> balcony door blurred behind. A faint dust of grounds on the marble, fine
+> film grain, no shine. Warm cream, walnut brown and the bag's deep green,
+> the green only on the bag and the coaster's edge. The top third is bare
+> wall, calm enough for a headline at phone size. No second bag, no steam,
+> no extra text, no logo but the one on the bag.
 
 ## The picture must be physically true
 

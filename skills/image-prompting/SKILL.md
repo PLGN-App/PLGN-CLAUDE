@@ -148,7 +148,8 @@ list (each model's points) — never assume a cost or a balance.
 - Never remake an image just because the first one was dull; that is a second
   payment for a small gain. Remake only when one genuinely failed. A picture
   that is physically wrong (a leak, a floating object, six fingers) is a failed
-  picture and may be remade; a dull one is not.
+  picture and may be remade, once its points are said and the person says yes;
+  a dull one is not.
 
 ## Alt text
 
