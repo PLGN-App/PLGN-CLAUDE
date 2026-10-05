@@ -18,7 +18,7 @@ Ten fields. Each carries the evidence it came from.
 
 | Field | What it records |
 |---|---|
-| **palette** | The colours, as hex values, with rough proportions and how backgrounds are treated |
+| **palette** | The colours, as hex values, with rough proportions and how backgrounds are treated. The proportions are of the brand's own things (the pack, the type, the set), not of the whole scene |
 | **composition** | Where the subject sits, how tight the crop is, how much empty space, where text can safely go |
 | **light** | Direction, hardness, warm or cool, how shadows behave |
 | **medium** | Photograph, illustration, 3D render or collage — and the camera feel: wide or long lens, shallow or deep focus, grain |
@@ -26,7 +26,7 @@ Ten fields. Each carries the evidence it came from.
 | **finish** | Matte or glossy, flat or gradient, texture, the colour grade |
 | **textInImage** | Whether words appear at all, where, how heavy, upper or lower case |
 | **never** | What these pictures never contain |
-| **promptPreamble** | A block appended to every later image description, plus what to exclude |
+| **promptPreamble** | A block put in front of every later image description, plus what to exclude. It names the palette as an accent, never as what the picture is "anchored in" |
 | **canonicalReference** | The one image that best represents the set |
 
 **The `never` field carries more weight than it looks.** A brand whose pictures

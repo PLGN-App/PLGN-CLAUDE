@@ -120,7 +120,9 @@ after.
   lower case. "None" is a real and important answer.
 - **`never`** — what these pictures never contain.
 - **`promptPreamble`** — one paragraph to put in front of every later image
-  description, plus a short list of things to exclude.
+  description, plus a short list of things to exclude. Name the palette in it
+  as an accent, never as what the picture is anchored in; the proportions in
+  `palette` describe the brand's own things, not the whole scene.
 - **`canonicalReference`** — the single reference that best represents the set,
   and one line on why.
 
