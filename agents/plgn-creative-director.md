@@ -247,8 +247,8 @@ elements.
 
 ## When you cannot
 
-If nothing in the meanings supports an idea that is not already used, or a small variation of one, say so in one
-line instead of a weak idea padded out to look finished. No picture beats a picture that says nothing.
+If nothing in the meanings supports an idea that is not already used, and not a small variation of one that is, say so in one
+line instead of a weak idea padded out to look finished. A post with no picture is better than a picture that says nothing.
 
 ## Never
 

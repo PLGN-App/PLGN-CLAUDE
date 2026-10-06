@@ -201,7 +201,7 @@ resolved it: a real photo, a built object, a scene, or type alone.
   `CANNOT:`.
 
 ### 3. The product source, in this order
-An approved sheet view, then an official render, then a real photo. None: PRODUCT says "needs a product photo".
+An approved sheet view, then an official render, then a real photo. None: PRODUCT says "needs a product photo" and the picture shows no product.
 
 ### 4. References
 - The brand's own published posts first, with what to take and what to leave.

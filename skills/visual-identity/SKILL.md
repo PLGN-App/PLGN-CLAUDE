@@ -185,9 +185,9 @@ be in hand before the description is written, not applied to it afterwards.
 `brand_identity` entry — and a description. That pairing is what makes a new
 picture look like the same brand rather than like the same words.
 
-Use it when there is a canonical reference. Fall back to `generate_image` with
-the `promptPreamble` prepended when there is not, and say in the reply that the
-match will be looser.
+Use it when there is a canonical reference. Fall back to `generate_image` when
+there is not, and say in the reply that the match will be looser. Prepend the `promptPreamble` on /plgn month's
+quick path; on the brief path the designer's text already starts with it, so send it as it is.
 
 What carries the frame — a real photo, a built object, a scene or type
 alone — is not chosen here. The server resolves it from what the brand

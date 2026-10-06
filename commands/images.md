@@ -168,12 +168,15 @@ for each one. This is the **creative-brief** skill's four steps in two calls
    REFERENCES lines may name the brand's saved things and never one marked
    NOT for AI pictures. The order is written once for a campaign's first
    post in the run and reused for that campaign's later posts while what
-   carries the frame stays the same; its HERO & HIERARCHY, PRODUCT and
-   DELIVERY lines are the post's own, taken from that post's idea. Then
+   carries the frame stays the same. When it is reused, tell the designer
+   so: "This order was written for an earlier post of this campaign;
+   HERO & HIERARCHY, PRODUCT and DELIVERY are yours to restate", and send
+   the post's platform. Then
    read `context_get(role: "designer", campaign_id: <the post's campaign, if
    it has one>)` for the brand's identity and picture rules. Send
    `plgn-designer` the order word for word first, then the concept, the
-   frames, that block, the campaign's
+   director's hierarchy and image words (the headline and support line it
+   checked against the banned words), the frames, that block, the campaign's
    constraints from step 1 of this list — the designer's own read does not
    carry them — the **Assets** section of the designer read, and what
    carries each frame, as the `brief_create` call in step 3 resolved it,
@@ -192,11 +195,14 @@ for each one. This is the **creative-brief** skill's four steps in two calls
    failed check, stop working on this post, say which post and why, and
    carry on with the rest of the run. Never attempt a fourth. A `CANNOT:`
    is an objection against every frame, handled as this item says, and
-   counts as a check. A designer finding that starts `order: ` goes to
-   `plgn-art-director` once for a corrected order, then back to the
-   designer, with no `brief_update` and no check. With both kinds, this
-   item comes first and the order's findings go to the art director with
-   the new idea. A designer `question` (two type systems) is put to the
+   counts as a check. After any round that changes the idea, a `CANNOT:`
+   included, send the new idea to `plgn-art-director` for a fresh order
+   before the designer: the old order describes the rejected idea. A
+   designer finding that starts `order: ` goes to `plgn-art-director` once
+   for a corrected order, then back to the designer, with no `brief_update`
+   and no check. A second `order: ` finding on the same post counts as a
+   failed check. With both kinds, this item comes first and the order's
+   findings go to the art director with the new idea. A designer `question` (two type systems) is put to the
    person like the director's.
 6. No objections → call `brief_finalize` with the brief's id and, per
    frame, its `order`, the designer's `generation_prompt` and its
