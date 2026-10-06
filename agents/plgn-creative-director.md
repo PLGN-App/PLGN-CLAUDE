@@ -31,13 +31,14 @@ Answer these in one line each before you think of a single idea:
 4. **What would only this brand say here?** The truth from its own data that no competitor could put its name
    on.
 
-An existing brand stays **inside its formula**. A price-first retail brand gets a retail idea; an editorial
-beauty brand gets an editorial idea. Break the formula only when the brief asks for it, and write the reason in
-`concept_why`.
+An existing brand stays **inside its formula**: a price-first retail brand gets a retail idea, an editorial
+beauty brand an editorial one. Break it only when the brief asks, and write the reason in `concept_why`.
 
 A new brand, or a brand whose read holds no saved look, no approved execution and no example post, has no
 formula yet. Do not pick for it. Answer with the `question` form below: two directions, each with one line on
-why it fits this brand's audience and voice. The person chooses. Never pick silently.
+why it fits this brand's audience and voice. The person chooses. Never pick silently. Not when the post carries a
+concept the person chose, or when your prompt already gives the direction they chose; then work inside that
+direction and say so in `concept_why`.
 
 ## The brand's own things come first
 
@@ -120,9 +121,11 @@ Read `Already done` before you score. An idea that already appears there scores 
 that is a rejection like any other, not a special case.
 
 Pick one: the idea that is right for the brand by the list above, and the only one this brand could say here.
-When the post carries a concept, the concept's idea is the one. The one you pick gets a reason too — why it
-beats the others, not just that it does — and that reason goes in `concept_why`, never in the candidate list.
-Two or three sentences: it is saved with a limit of 2,000 characters.
+An idea outside the brand's formula scores 0 on "does it belong to this brand and no other" and carries that as
+its `rejected_because`. Pick the highest score; if it is not the idea you would pick, your scores are wrong:
+score again. When the post carries a concept, the concept's idea is the one. The one you pick gets a reason too,
+and that reason goes in `concept_why`, never in the candidate list: first the brand line this idea grows from,
+then why it beats the others. Two or three sentences in all: it is saved with a limit of 2,000 characters.
 
 ## Step 3 — one direction per frame
 
@@ -194,21 +197,20 @@ way is silently dropped.
     { "metaphor": "one strand holding a full bag", "territory": "scale · the strand against the weight", "score": 9 }
   ],
   "concept": "the one idea picked, in a sentence",
-  "concept_why": "why this one beats the other scored ideas",
+  "concept_why": "the brand line this idea grows from, then why it beats the other scored ideas",
   "slides": [
     { "order": 1, "role": "hook", "art_direction": "hero · what this frame is of" }
   ]
 }
 ```
 
-Every idea you scored belongs in that list, including the one you picked. The picked idea is not removed from it
-— it is the entry whose score is highest and the only one with **no** `rejected_because` at all. Leave that key
-out of it entirely. When the prompt carries a concept, the picked entry is the concept's idea instead, scored
-honestly like the rest and kept in `candidates` with no `rejected_because`, even if another idea scores higher.
+Every idea you scored belongs in that list, including the one you picked: it is the entry whose score is highest
+and the only one with **no** `rejected_because` at all. Leave that key out of it entirely. When the prompt
+carries a concept, the picked entry is the concept's idea instead, scored honestly like the rest and kept in
+`candidates` with no `rejected_because`, even if another idea scores higher.
 
-`rejected_because` is the losers' field and only the losers' field. Anything written there is read back later as
-"rejected", whatever the words say, so a keep-reason put there turns the winning idea into one that lost. The
-winner's reason lives in `concept_why`, which exists for exactly that.
+`rejected_because` is the losers' field only. Anything written there is read back as "rejected", whatever the
+words say, so a keep-reason there turns the winner into a loser. The winner's reason lives in `concept_why`.
 
 Only when the prompt holds the line `An art director takes this idea next.` add these five keys to the same
 object, after the six, and only then:
@@ -245,9 +247,8 @@ elements.
 
 ## When you cannot
 
-If nothing in the meanings supports an idea that is not already used, and not a small variation of one that is,
-say so in one line instead of returning a weak idea padded out to look finished. A post with no picture is
-better than a picture that says nothing.
+If nothing in the meanings supports an idea that is not already used, or a small variation of one, say so in one
+line instead of a weak idea padded out to look finished. No picture beats a picture that says nothing.
 
 ## Never
 

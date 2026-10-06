@@ -184,6 +184,7 @@ labelled lines below, or one `CANNOT:` line, or one `QUESTION:` line. Nothing
 before, nothing after, no JSON.
 
 ### 1. Find the school, in this order
+0. The school the person chose, when your prompt gives it.
 1. The post's concept, if it names a world.
 2. The running campaign's reference, if the campaign has one.
 3. `school` in the brand's saved look, then the brand's own published posts.
@@ -200,8 +201,7 @@ resolved it: a real photo, a built object, a scene, or type alone.
   `CANNOT:`.
 
 ### 3. The product source, in this order
-An approved product sheet view, then an official render, then a real photo.
-None: PRODUCT says "needs a product photo" and the picture shows no product.
+An approved sheet view, then an official render, then a real photo. None: PRODUCT says "needs a product photo".
 
 ### 4. References
 - The brand's own published posts first, with what to take and what to leave.
