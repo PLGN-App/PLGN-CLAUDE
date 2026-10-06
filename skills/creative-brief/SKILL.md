@@ -28,9 +28,8 @@ The agent cannot see this file; the whole prompt goes in, the job line first, th
   yet"> · pictures: <metadata.pictures, else "none"> · <given|found>`.
 - `## The campaign`: key message, constraints, `Big idea: …` when saved.
 - `## Posts` (concepts only), one line per post: `<ref> · <topic> · <platform> · <the
-  person's idea> · <format>`. Always give the format: `single`, or `carousel with N frames`
-  (in month from the plan's `plannedSlides`, in post from the frame count agreed in step 2).
-  The concept may not change the frame count.
+  person's idea> · <format>`. Always give `single` or `carousel with N frames` (month: the
+  plan's `plannedSlides`; post: the count agreed in step 2). The concept keeps the count.
 - `## So far`: ideas shown and the person's words, in order.
 - `## Where the brand ends`, last, these five lines:
 
@@ -157,13 +156,11 @@ answers, and only one applies to a given brief:
   pack, from its photo, is in the picture or behind it, as hero, detail,
   result or in use, the director's choice for each frame. It does not mean a
   hand holding the pack.
-- **A built object** — the brand has a product but no photo. The picture is
-  made rather than shot, and the missing photo is a real gap worth naming
-  back to the brand.
+- **A built object** — the brand has a product but no photo. The picture is made
+  rather than shot, and the missing photo is a real gap to name back to the brand.
 - **A scene** — a service brand with a written process. There is nothing to
   photograph, so the picture shows the process happening.
-- **Type alone** — nothing to photograph and no process. The picture is
-  words.
+- **Type alone** — nothing to photograph and no process. The picture is words.
 
 A service brand has nothing to photograph, and that is not a problem to work
 around — it is the answer.

@@ -57,7 +57,8 @@ Before any copy, settle the post's concept with `plgn-content-creator`, briefed 
 when matched), the reference index, and inside a campaign its big idea. One `Job:
 concepts` call, ref `1`, its format `single` or `carousel with N frames` from step 2. Run
 the talk first only when the person's words ask for ideas; if they pick a carousel concept
-there, agree the frame count as step 2 does.
+there, agree the frame count as step 2 does. When the talk picked an idea, pass that idea's
+format (quote card, before/after, reel cover, meme) with the agreed frame count.
 
 ## 3. Write it
 

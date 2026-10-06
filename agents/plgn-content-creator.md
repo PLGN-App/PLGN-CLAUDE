@@ -117,8 +117,9 @@ The mood board takes references only, never an asset and never `S` stand-ins.
 
 One concept for each line of `## Posts`, in the same order. Build each from
 the campaign's big idea when `Big idea:` is there, otherwise from the brand
-and the references. The format on a post's line stays, and so does its frame count: a single
-stays single, and a carousel keeps its number of frames. Write the hook
+and the references. Only the frame count on a post's line stays: a one-frame line may become any
+one-picture format (single, quote card, reel cover, meme, a before/after in one
+picture), and a carousel keeps its number of frames. Write the hook
 and any words in the brand's first language. Use the person's idea from the
 post's line when it has one; make it better, do not replace it.
 

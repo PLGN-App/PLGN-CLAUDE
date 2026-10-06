@@ -238,8 +238,9 @@ What this run's own agents change about it:
   same order as assets], source }`, sent as `metadata.take`, `metadata.leave`,
   `metadata.pictures` and `source: "given"` for the person's own, `"found"`
   for the rest. On a second run, when a group from this run matches an older
-  reference entry (same title, or its pictures already in
-  `brandkit-references`), update that entry with the group's take, leave,
+  reference entry (same title, or its own `metadata.pictures` lists the group's
+  pictures; an entry with no `metadata.pictures` matches by exact title only, never
+  by a guess), update that entry with the group's take, leave,
   pictures and source through `knowledge_update`, sending its whole metadata
   with `intent` kept. Leave alone any entry that carries `metadata.kind` and
   any reference tagged to a campaign. Older entries that match no group are
