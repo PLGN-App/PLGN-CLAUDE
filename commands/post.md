@@ -50,9 +50,17 @@ quietly ignored. Say the number back, and say it again when you run
 `/plgn images` — that command costs and makes the frames asked for in its
 own run, and cannot see a carousel decided here.
 
+### The concept
+
+Before any copy, settle the post's concept with `plgn-content-creator`, briefed as
+**creative-brief** says: `context_get(role: "creative_director")` (with `campaign_id`
+when matched), the reference index, and inside a campaign its big idea. One `Job:
+concepts` call, ref `1`. Run the talk first only when the person's words ask for ideas.
+
 ## 3. Write it
 
-Start `plgn-copywriter` with the idea and the platform. Ask for **one** post.
+Start `plgn-copywriter` with the idea, its concept and the platform. Ask for **one**
+post, written to the concept.
 
 Per **_conventions** rule 6, pass the `context_get` block from step 1 into
 the prompt verbatim — the one read with `campaign_id` when a campaign was
@@ -83,6 +91,8 @@ A pass is not approval: never tell the user the post "passed". See
 Print the draft in full, with its length against the platform's target:
 
 ```
+Idea: <visual idea> — <what it cites>
+
 LinkedIn · 1,140 characters
 
 <full post text>
@@ -105,7 +115,8 @@ Call `post_create` as a draft. Carry `knowledge_used`, copied from the end of
 the `context_get` read in step 1 — it is the only record of exactly what the
 writer was told, and dropping it here is not a shortcut, it is the record
 going missing. If the idea was a carousel, carry `planned_slides` too, from
-the frame count agreed in step 2.
+the frame count agreed in step 2. Carry the concept in `notes`, as **creative-brief**
+says (`Concept:` line).
 
 The reply may carry `warning:` or `check:` lines — see **gate-recovery**. A
 `warning: would be blocked when scheduled` line is fixed now, with the change

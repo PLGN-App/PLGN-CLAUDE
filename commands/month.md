@@ -70,6 +70,9 @@ Say which campaign you are planning inside, in the plan, before anything is
 written. A month planned inside the wrong campaign inherits the wrong
 constraints thirty times.
 
+Inside a campaign, read its big idea too:
+`knowledge_get(type: "reference", campaign_id: <id>, keyword: "Creative platform")`.
+
 If the subject matches no campaign, that is ordinary. Plan without one and
 say so — do not offer to create one here. `/plgn campaign` does that, and
 creating a container as a side effect of filling it is how a workspace ends
@@ -82,6 +85,7 @@ Work out the shape of the month, then show it as a short table:
 ```
 Topics:     <name> · <name> · <name>
 Campaign:   <name, or "none">
+Big idea:   <its one sentence, or "none yet — think first?">
 Platforms:  LinkedIn, X, Instagram
 Languages:  <the brand's, from its record>
 Posting:    <n>/week — <n> posts total
@@ -100,6 +104,11 @@ with the first, no more than the number given with the second — and it is an
 upper bound either way, because a picture reused from the workspace costs
 nothing. Both controls are described in section 7; the number here is the one
 being approved.
+
+When the plan shows "none yet — think first?", answering **think first** instead of yes
+runs the talk from **creative-brief**, "The concept comes first". Inside a campaign it
+ends with the big idea saved after its own yes; outside one it guides this month only and
+saves nothing. Then show the plan again.
 
 Where the topics are new, get them from `plgn-strategist` using the subject and
 the brand's saved knowledge. Where you are adding to a topic that already
@@ -126,7 +135,13 @@ bulk.
 
 ## 4. Write, all at once
 
-Start one `plgn-copywriter` per topic, **at the same time**.
+First start `plgn-content-creator` **once for the whole month**: `Job: concepts`, one
+`## Posts` line per planned post with refs `t1-1`, `t1-2`…, briefed as **creative-brief**
+says. Give it its own progress line. It returns one concept per post, in order; if the
+count differs, run it once more.
+
+Then start one `plgn-copywriter` per topic, **at the same time**, each with its posts'
+concepts.
 
 Print one line before this starts and one before the images, per
 **reply-style** rule 5b — writing and illustrating are the two phases long
@@ -147,7 +162,9 @@ That block holds the voice, the banned words, what the brand sells with each
 benefit's meanings and clichés, and — when there is a campaign — its key
 message, constraints and vocabulary. Pass it into the prompt verbatim,
 alongside the topic, the platforms, their character limits, the brand's
-languages, and how many posts to write.
+languages, and how many posts to write. Add the concepts in order. Each post is
+written to its concept: the hook opens it, the call to action closes it, and the
+format decides its shape.
 
 Agents cannot read skills or see this file. Whatever is in the prompt is the
 whole world the writer works in.
@@ -211,6 +228,7 @@ invented. Carry `knowledge_used` on every `post_create` too, copied from the
 end of the `context_get(role: "copywriter", …)` read that briefed the writer
 who wrote this post — it is the only record of exactly what the writer was
 told, and dropping it here is not a shortcut, it is the record going missing.
+Carry each post's concept in `notes`, as **creative-brief** says (`Concept:` line).
 
 When the plan marked a topic's format as a carousel — a `postType` carrying
 `plannedSlides` — pass that number as `planned_slides` on posts written to
@@ -330,8 +348,8 @@ look the same way, for this reason.
 For each post that needs one, **write the image description yourself** — it is not
 written anywhere else on this path. One paragraph: the subject, the
 composition, the light, the medium, the brand colour on one or two things,
-and what must not appear. Never the caption drawn: take one of
-`plgn-creative-director`'s five lenses rather than restating the post's
+and what must not appear. Never the caption drawn: write it from the post's concept — its visual idea, its product's role, and the take and leave of the reference it cites —
+rather than restating the post's
 words, put the preamble of the `art_director` block read for this post's
 campaign group in front of it, and carry that block's `never` list as
 exclusions.
