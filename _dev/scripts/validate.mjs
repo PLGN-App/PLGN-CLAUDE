@@ -136,7 +136,7 @@ if (manifest) {
   // other but wrong in absolute terms. These three numbers pin that.
   const EXPECTED_COMMAND_COUNT = 26;
   const EXPECTED_SKILL_COUNT = 13;
-  const EXPECTED_AGENT_COUNT = 9;
+  const EXPECTED_AGENT_COUNT = 10;
   if ((manifest.commands ?? []).length !== EXPECTED_COMMAND_COUNT) {
     fail(`plugin.json commands array has ${(manifest.commands ?? []).length} entries, expected ${EXPECTED_COMMAND_COUNT}`);
   }
@@ -680,7 +680,7 @@ for (const p of CONTENT) {
   // missing or renamed agent file fails silently at runtime. This list is the
   // only place that notices.
   const AGENTS = [
-    "plgn-analyst", "plgn-art-director", "plgn-brand-architect",
+    "plgn-analyst", "plgn-art-director", "plgn-brand-architect", "plgn-content-creator",
     "plgn-copywriter", "plgn-creative-director", "plgn-designer", "plgn-librarian",
     "plgn-researcher", "plgn-strategist",
   ];
