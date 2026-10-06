@@ -60,6 +60,12 @@ it.
 
 Take the website from the argument. If there is none, ask — never invent one.
 
+**References first.** Before anything else, ask once for what they want the
+brand to look like: their own best posts, posts by others they admire,
+competitors too, any picture or account they want to look like. Pictures,
+links and account names all count. Everything they give is `your reference`
+from here on. "Nothing" is an answer.
+
 **Find the accounts.** Read `knowledge_get(type: "channels")`. If there is no
 entry, call `site_read` on the website: its `socials:` line lists the
 Instagram, TikTok, Facebook and X accounts the site links to. Ask once for
@@ -82,7 +88,6 @@ Keep the answer for step 4. "No" is an answer.
 Then ask, once, for anything else they have. Keep it to one short block:
 
 - A brand or style guide, if one exists
-- A few pictures, for the look
 - The brand's own things, as files or links — the logo (a PNG if they have
   one), a mascot, the founder or team, the shop, post templates, awards — so
   pictures are built around the real ones. Anything they do not give, this
@@ -104,7 +109,9 @@ businesses; drop directories, marketplaces, listings and news. Show them once:
 Start `plgn-researcher` on the brand — its site **and its posts** (each
 account in `channels`, 20 posts each) — and one on each of the five
 competitors, the same way, all at the same time. Competitor posts show themes,
-formats and gaps; they never set the brand's voice.
+formats and gaps; they never set the brand's voice. An account the person
+named as a reference gets its own researcher the same way, and its pictures
+are sorted as `your reference`.
 
 The brand's researcher also gets the place from step 3, and is asked for
 `allPictures` and `place`. Competitors' researchers are not.
@@ -125,9 +132,11 @@ Then, from those findings:
   competitor researcher's `pictures`. **The sort job**: number every
   picture in the brand's `allPictures`, plus the pictures the user gave in
   step 3 (`your file`). Start one art director per source group — each
-  account, the site, Maps, the user's files — all at the same time, each
+  account, the site, Maps, the user's files, and the person's references
+  (`your reference`, a group of their own) — all at the same time, each
   with its numbered slice (at most 36 pictures each), the offerings' names,
-  and the instruction to sort only. **The look**: one more art director,
+  and the instruction to sort only and to give a `take` and a `leave` for
+  every reference. **The look**: one more art director,
   given the pictures the sort marked `reference` plus each competitor's
   `pictures` as contrast only, exactly as `/plgn visuals` does. If the look
   comes back as `clusters`, ask which is current (as `/plgn visuals` does)
@@ -140,7 +149,9 @@ Give the librarian what is already saved, so it does not hand back things the
 brand has.
 
 Then group the sort's `reference` lines by `group`: 2–4 pictures each, the
-strongest first, one `take` per group. Those groups are what step 7 saves.
+strongest first, one `take` and one `leave` per group. The person's own
+references are grouped apart from the ones found. Those groups are what
+step 7 saves.
 
 ## 5. Ask at most five questions
 
@@ -176,7 +187,7 @@ Brand: <name>
   Competitors   <n> · Topics <n> · Lines to reuse <n>
 
   Pictures      <n> read · <n> skipped · <n> could not open
-    References  <group>: <n> pictures — "<take>"      (one line per group)
+    References  <group>: <n> pictures — take "<take>" · leave "<leave>"   (one line per group; yours first)
     Assets      Logo: <name> (from <source>) · Person: Sara — consent unknown · …
     Products    House Blend: 2 photos · …
   Proof         <n> from reviews and the site · Objections <n>
@@ -217,8 +228,13 @@ What this run's own agents change about it:
   first.
 - **References** — one `reference` entry per group, 2–4 pictures each, the
   group's `take` as its `intent`. Upload each picture first with
-  `upload_image_from_url(folder: "brandkit-references")`. Groups beyond the
-  knowledge cap are named as not saved, per **gate-recovery**.
+  `upload_image_from_url(folder: "brandkit-references")`. Its metadata is
+  `{ intent, take, leave, pictures: [<uploaded secure_url>, strongest first,
+  same order as assets], source }`, sent as `metadata.take`, `metadata.leave`,
+  `metadata.pictures` and `source: "given"` for the person's own, `"found"`
+  for the rest. On a second run an older reference entry gets the new keys
+  with `knowledge_update`: send its whole metadata, `intent` kept. Groups
+  beyond the knowledge cap are named as not saved, per **gate-recovery**.
 - **Found assets** — each asset line the user kept: upload with
   `upload_image_from_url(folder: "brandkit-assets")`, then `asset_create`
   with the clearest view first, per **brand-assets**. `consent` is never

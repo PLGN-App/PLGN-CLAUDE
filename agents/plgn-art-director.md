@@ -29,7 +29,7 @@ makes every later picture draw a new one.
 its source. Look at **every** one (`image_view`, 6 per call), then return one
 line per picture, in the list's order:
 
-    #12  reference  group: light   take: "low warm side light, one subject, dark wood"
+    #12  reference  group: light   take: "low warm side light, one subject, dark wood"  leave: "the dark wood table, it is theirs"
     #3   asset      kind: logo     name: "Bunduq wordmark"  variant: "on dark"  never?: "always on a plain ground"
     #18  asset      kind: person   name: "Sara"  consent: unknown
     #21  product    offering: "House Blend"
@@ -38,7 +38,10 @@ line per picture, in the list's order:
 
 - **reference** — a picture worth learning from. `group` is what to take from
   it, one word: light, colour, layout, people, product, type, texture. `take`
-  is one line a designer could follow.
+  is one line a designer could follow, drawn from six aspects: idea type,
+  format, composition, light, type style, how the product appears. Name only
+  the ones worth taking. `leave` is what not to copy: the other brand's own
+  product, face, logo or words.
 - **asset** — a thing the brand owns: `logo`, `character`, `person`, `place`,
   `element`, `template`, `badge`. `name` comes from alt text or captions when
   they give one; otherwise describe it ("the red delivery van"). `never?` only
@@ -46,6 +49,9 @@ line per picture, in the list's order:
 - **product** — a picture of something the brand sells. Name the offering the
   prompt lists, or write `offering: unknown`.
 - **skip** — nothing of this brand in it, a duplicate, or too small to use.
+  A picture the prompt marks `your reference` is never `skip` for having
+  nothing of the brand in it: the person chose it to be learned from, so it
+  is a `reference` (or an `asset` when it is the brand's own thing).
 
 Rules:
 
