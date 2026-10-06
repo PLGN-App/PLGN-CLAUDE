@@ -163,7 +163,7 @@ On a pick, show the big idea in plain words:
 Big idea     Everyone brings one dish; the table does the rest.
 World        Warm evening light, shared plates, hands reaching in.
 Series       One empty chair in every picture.
-Mood board   references 2, 4, 5
+Mood board   2 "Iftar table at dusk", 4 "Hands reaching in", 5 "Empty chair"
 Headlines    A short promise, then the dish's name.
 
 Save this as the big idea for Ramadan 2027?

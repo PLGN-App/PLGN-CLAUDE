@@ -136,7 +136,7 @@ for each one. This is the **creative-brief** skill's four steps in two calls
    inside one, the `Already done` lines from the read, the **Assets**
    section of that same read, the `asset:` id `picture_need` gave this post
    if it gave one, the post's concept when its notes carry a `Concept:`
-   line (read it with `post_get`), and the frame count settled in section 4. Per **_conventions** rule 6, all of it goes in the
+   line (read it with `post_get`), and the frame count settled in section 4, which beats the concept's shape. Per **_conventions** rule 6, all of it goes in the
    prompt — the agent cannot see this file.
 3. Call `brief_create` with what it returned, plus `post_id` for the post
    being illustrated, its `campaign_id`, `offering_ids` and `topic_id`

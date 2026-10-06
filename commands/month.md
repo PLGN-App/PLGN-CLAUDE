@@ -141,7 +141,10 @@ says. Give it its own progress line. It returns one concept per post, in order; 
 count differs, run it once more.
 
 Then start one `plgn-copywriter` per topic, **at the same time**, each with its posts'
-concepts.
+concepts. Tell each writer to write exactly one post per concept, in order, on the
+concept line's platform. Match each draft back to its concept by platform and hook, never
+by position. A draft that matches no concept is saved without a `Concept:` line and named
+in the report.
 
 Print one line before this starts and one before the images, per
 **reply-style** rule 5b — writing and illustrating are the two phases long

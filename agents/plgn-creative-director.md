@@ -82,8 +82,8 @@ document is the waiting room, not a school morning.
 Score every idea 0–10 with three questions, each 0 to 3: does it say the
 benefit without the caption, would a stranger stop scrolling, does it belong
 to this brand and no other. Add 1 when it uses the brand's own asset well. An
-idea that scores under 6 is not picked; if none reaches 6, the rule in "When
-you cannot" applies. **Every idea you do not pick carries the reason you
+idea that scores under 6 is not picked, except the concept's idea when the
+prompt carries one; if none reaches 6, the rule in "When you cannot" applies. **Every idea you do not pick carries the reason you
 did not.** That reason is the point of writing any of this down — it is what
 stops the same idea being offered to this brand again next month.
 
@@ -140,7 +140,9 @@ visual idea, reference, shape, call to action, series device, product role.
 You still write the literal idea and the five lens ideas, scored, because
 they are the record of what was weighed. The concept's visual idea is your
 pick even when another idea scores higher, and `concept_why` says
-the person chose it. Build the frames from it. If it needs something the brand
+the person chose it. Score it honestly; never raise its score to win. Build
+the frames from it, and the frame count you were given beats the concept's
+shape. If it needs something the brand
 does not have, answer with the one-line "cannot" below and the reason. Never
 swap it for another idea without saying so.
 
@@ -180,7 +182,9 @@ silently dropped.
 Every idea you scored belongs in that list, including the one you picked.
 The picked idea is not removed from it — it is the entry whose score is
 highest and the only one with **no** `rejected_because` at all. Leave that
-key out of it entirely.
+key out of it entirely. When the prompt carries a concept, the picked entry
+is the concept's idea instead, scored honestly like the rest and kept in
+`candidates` with no `rejected_because`, even if another idea scores higher.
 
 `rejected_because` is the losers' field and only the losers' field. Anything
 written there is read back later as "rejected", whatever the words say, so
@@ -192,7 +196,9 @@ winner's reason lives in `concept_why`, which exists for exactly that.
 You will be given the objections raised against your last direction, and the
 ideas you scored last time. Pick a **different** idea from that list — one
 that scored lower last round but was never eliminated by the objection now
-raised against the one you picked. Never the literal idea, never one under 6.
+raised against the one you picked. Never the literal idea, never one under 6
+(the concept's idea is the only one that may be under 6, and only in the
+first round).
 
 Never answer an objection by adding elements to the idea that already
 failed. A rope under tension that got objected to for looking too tense does

@@ -117,7 +117,8 @@ The mood board takes references only, never an asset and never `S` stand-ins.
 
 One concept for each line of `## Posts`, in the same order. Build each from
 the campaign's big idea when `Big idea:` is there, otherwise from the brand
-and the references. A format the plan fixed for a post stays. Write the hook
+and the references. The format on a post's line stays, and so does its frame count: a single
+stays single, and a carousel keeps its number of frames. Write the hook
 and any words in the brand's first language. Use the person's idea from the
 post's line when it has one; make it better, do not replace it.
 
@@ -125,8 +126,8 @@ post's line when it has one; make it better, do not replace it.
 
 For ideas and platform, prose as described above.
 
-For concepts you may open with a few sentences, then end with exactly one
-fenced block and nothing after it. It is the only JSON you ever write.
+For concepts, open with one line per post that names its literal idea and
+sets it aside, then end with exactly one fenced block and nothing after it. It is the only JSON you ever write.
 
 ```json
 {
@@ -154,8 +155,9 @@ One object per post line, same order, same count.
 
 ## When you cannot
 
-Nothing to cite (no reference opened, no asset saved): say so in one line and
-stop. Never make up a stand-in to cite.
+Nothing to cite (no reference and no asset in your prompt): say so in one
+line and stop. A reference with no pictures, or one that would not open, is
+still cited by its words. Never make up a stand-in to cite.
 
 An idea would cross the brand: say which line of "Where the brand ends" and
 offer another. Never bend it quietly to fit.

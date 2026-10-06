@@ -137,8 +137,13 @@ Then, from those findings:
   with its numbered slice (at most 36 pictures each), the offerings' names,
   and the instruction to sort only and to give a `take` and a `leave` for
   every reference. **The look**: one more art director,
-  given the pictures the sort marked `reference` plus each competitor's
-  `pictures` as contrast only, exactly as `/plgn visuals` does. If the look
+  given the brand's own pictures the sort marked `reference` as its
+  evidence, plus each competitor's `pictures` as contrast only, exactly as
+  `/plgn visuals` does. Pictures from other accounts marked `your reference`
+  go in only as "what they want to look like", for light and composition,
+  the way competitors' pictures go in as contrast. They never feed the
+  palette, `never` or the canonical reference. The person's own posts stay
+  evidence. If the look
   comes back as `clusters`, ask which is current (as `/plgn visuals` does)
   before the plan.
 - `plgn-strategist` proposes the brand's positioning and three to five things
@@ -232,8 +237,13 @@ What this run's own agents change about it:
   `{ intent, take, leave, pictures: [<uploaded secure_url>, strongest first,
   same order as assets], source }`, sent as `metadata.take`, `metadata.leave`,
   `metadata.pictures` and `source: "given"` for the person's own, `"found"`
-  for the rest. On a second run an older reference entry gets the new keys
-  with `knowledge_update`: send its whole metadata, `intent` kept. Groups
+  for the rest. On a second run, when a group from this run matches an older
+  reference entry (same title, or its pictures already in
+  `brandkit-references`), update that entry with the group's take, leave,
+  pictures and source through `knowledge_update`, sending its whole metadata
+  with `intent` kept. Leave alone any entry that carries `metadata.kind` and
+  any reference tagged to a campaign. Older entries that match no group are
+  listed as "not read yet". Groups
   beyond the knowledge cap are named as not saved, per **gate-recovery**.
 - **Found assets** — each asset line the user kept: upload with
   `upload_image_from_url(folder: "brandkit-assets")`, then `asset_create`

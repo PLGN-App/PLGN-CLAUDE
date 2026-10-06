@@ -28,7 +28,9 @@ The agent cannot see this file; the whole prompt goes in, the job line first, th
   yet"> · pictures: <metadata.pictures, else "none"> · <given|found>`.
 - `## The campaign`: key message, constraints, `Big idea: …` when saved.
 - `## Posts` (concepts only), one line per post: `<ref> · <topic> · <platform> · <the
-  person's idea> · <format, if the plan fixed one>`.
+  person's idea> · <format>`. Always give the format: `single`, or `carousel with N frames`
+  (in month from the plan's `plannedSlides`, in post from the frame count agreed in step 2).
+  The concept may not change the frame count.
 - `## So far`: ideas shown and the person's words, in order.
 - `## Where the brand ends`, last, these five lines:
 
@@ -43,8 +45,9 @@ This campaign: <its constraints, or "none">.
 **No references saved.** Say so; offer stand-ins from `web_search` and `social_fetch` on
 the category's best accounts (`S1`, `S2`, never saved) or `/plgn brandkit` first.
 
-**Talking it through.** Say once that nothing is saved or spent while you talk. Print ideas
-as returned. Every steer runs the agent again with `## So far`; it remembers nothing.
+**Talking it through.** Say once that nothing is saved or spent while you talk. Before the
+first ideas, print the numbered reference titles, one line each (never call it an "index").
+Print ideas as returned. Every steer runs the agent again with `## So far`; it remembers nothing.
 Words that start a talk: ideas, options, brainstorm, let's think, think, «أفكار», «نفكر».
 Words that end one with a pick: this one, do it, a number, "3 and 7 together", «نفذ».
 

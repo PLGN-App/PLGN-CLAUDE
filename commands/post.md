@@ -55,7 +55,9 @@ own run, and cannot see a carousel decided here.
 Before any copy, settle the post's concept with `plgn-content-creator`, briefed as
 **creative-brief** says: `context_get(role: "creative_director")` (with `campaign_id`
 when matched), the reference index, and inside a campaign its big idea. One `Job:
-concepts` call, ref `1`. Run the talk first only when the person's words ask for ideas.
+concepts` call, ref `1`, its format `single` or `carousel with N frames` from step 2. Run
+the talk first only when the person's words ask for ideas; if they pick a carousel concept
+there, agree the frame count as step 2 does.
 
 ## 3. Write it
 
@@ -91,7 +93,7 @@ A pass is not approval: never tell the user the post "passed". See
 Print the draft in full, with its length against the platform's target:
 
 ```
-Idea: <visual idea> — <what it cites>
+Idea: <visual idea> — <what it cites, by the reference's title, not its number>
 
 LinkedIn · 1,140 characters
 
