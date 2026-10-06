@@ -1240,6 +1240,21 @@ for (const [c, needles] of REPORTS) {
   for (const c of ["setup", "brandkit", "competitors", "strategy", "voice", "audit", "repurpose"]) {
     need(`commands/${c}.md`, ["`[flagged: …]`"]);
   }
+  need("commands/product-sheet.md", ["image_quote", "`--yes` is not accepted", "Approve? yes / pick / no",
+    "a real photo or official render of this exact variant", "sheet_create", "sheet_mark", "sheet_cut",
+    "sheet_approve", "image_view", "Never a third"]);
+  need("agents/plgn-product-sheet.md", ["mcp__plugin_plgn_plgn__image_view", "No source, no sheet",
+    "No price on any sheet", "needs_real_photo"]);
+  need("commands/images.md", ["sheet_get(sheet_id:"]);
+  need("agents/plgn-art-director.md", ["sheet <asset id> · cell <id>"]);
+  if (exists("commands/product-sheet.md")) {
+    const sheetCmd = read("commands/product-sheet.md");
+    const quoteAt = sheetCmd.indexOf("image_quote");
+    const spendAt = sheetCmd.indexOf("generate_image_from_image");
+    if (quoteAt === -1 || spendAt === -1 || quoteAt > spendAt) {
+      fail("commands/product-sheet.md: the command must quote before it spends");
+    }
+  }
   // (later tasks add their needles above this line)
 }
 

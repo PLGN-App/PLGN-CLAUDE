@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.15.0 (2026-10-07)
+
+- Product sheets: a product variant gets a checked set of pictures, one per view, and a person approves the sheet before any picture uses it.
+- `/plgn product-sheet` builds one: it quotes the points first, makes the sheet, checks every view against the real photo, and hands it over for approval.
+- `/plgn images` can take a product from an approved sheet view instead of a plain photo.
+- The art director names the exact sheet view a picture should use.
+
 ## 1.14.0 (2026-10-07)
 
 - The three picture agents are now an agency's three roles: the creative director owns the idea, the art director owns the direction (a written order), the designer owns the execution and the finish.
