@@ -34,6 +34,12 @@ never show a face, never use pure white, or never contain a logo has an
 identity built on those refusals. Getting a refusal wrong is what makes a
 generated image feel like a different company.
 
+**The school.** After the ten fields the art director names the school the
+look belongs to: one school, several approved worlds, or per campaign, taken
+from its library of schools. It is saved as `metadata.school` and named in
+`content`. When the art director writes the order for a post, it looks there
+for the post's school.
+
 ## Reading the references
 
 At least three. Fewer than three is a sample, not a pattern — say so rather
@@ -118,7 +124,8 @@ knowledge_add(
     finish: "...",
     textInImage: "...",
     never: ["stock smiles", "pure white backgrounds"],
-    promptPreamble: "..."
+    promptPreamble: "...",
+    school: "product beauty / still life"
   },
   assets: [{ secure_url: ..., public_id: ... }],
   confirm: true
@@ -130,7 +137,7 @@ Three things about that call are not obvious and all three matter.
 **`content` is for a person.** It is what someone reads on the Knowledge page
 to understand the look. Write it as prose.
 
-**`metadata` is for the machine.** Nine of the ten fields live here as keys.
+**`metadata` is for the machine.** Nine of the ten fields live here as keys, with `school` beside them.
 An art director reads them back through `context_get`; a field written into
 `content` instead is a field no image generation will ever use.
 

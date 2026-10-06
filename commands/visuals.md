@@ -84,7 +84,7 @@ yes / edit / no
 ## 6. Save
 
 Upload the chosen reference picture first, with `upload_image_from_url` or
-`upload_image_base64`. Save it as **`brand_identity`** — one entry, nine fields
+`upload_image_base64`. Save it as **`brand_identity`** — one entry, nine fields and the school
 in its metadata, the canonical reference attached as `assets[0]`, and
 `confirm: true` **after** the user has said yes. See **visual-identity** for
 the fields.
