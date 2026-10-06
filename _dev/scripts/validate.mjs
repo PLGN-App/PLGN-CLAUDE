@@ -136,7 +136,7 @@ if (manifest) {
   // other but wrong in absolute terms. These three numbers pin that.
   const EXPECTED_COMMAND_COUNT = 26;
   const EXPECTED_SKILL_COUNT = 13;
-  const EXPECTED_AGENT_COUNT = 10;
+  const EXPECTED_AGENT_COUNT = 11;
   if ((manifest.commands ?? []).length !== EXPECTED_COMMAND_COUNT) {
     fail(`plugin.json commands array has ${(manifest.commands ?? []).length} entries, expected ${EXPECTED_COMMAND_COUNT}`);
   }
@@ -682,7 +682,7 @@ for (const p of CONTENT) {
   const AGENTS = [
     "plgn-analyst", "plgn-art-director", "plgn-brand-architect", "plgn-content-creator",
     "plgn-copywriter", "plgn-creative-director", "plgn-designer", "plgn-librarian",
-    "plgn-researcher", "plgn-strategist",
+    "plgn-product-sheet", "plgn-researcher", "plgn-strategist",
   ];
   const onDisk = ls("agents").filter((f) => f.endsWith(".md")).map((f) => f.replace(/\.md$/, ""));
   for (const a of AGENTS) {
@@ -885,6 +885,8 @@ const AGENT_CONTRACTS = [
   ["plgn-creative-director", ["candidates", "\"rejected_because\":", "art_direction", "\"concept\":"]],
   // 1.11.0: the designer writes the alt text (plgn-visual is gone); brief_finalize carries it.
   ["plgn-designer", ["\"generation_prompt\":", "\"qa_findings\":", "\"alt_text\":"]],
+  // 1.15.0: the product sheet agent plans and checks; the command saves what it returns.
+  ["plgn-product-sheet", ["\"parts_map\":", "\"grid_prompt\":", "\"cells\":", "\"marks\":", "\"cell_id\":"]],
 ];
 for (const [agent, needles] of AGENT_CONTRACTS) {
   const p = `agents/${agent}.md`;

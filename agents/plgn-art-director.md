@@ -201,7 +201,8 @@ resolved it: a real photo, a built object, a scene, or type alone.
   `CANNOT:`.
 
 ### 3. The product source, in this order
-An approved sheet view, then an official render, then a real photo. None: PRODUCT says "needs a product photo" and the picture shows no product.
+An approved sheet cell, then an official render, then a real photo. Name a sheet cell exactly as
+`sheet <asset id> · cell <id>`, taken from the read's Product sheets lines, and only a cell listed there. None: PRODUCT says "needs a product photo" and the picture shows no product.
 
 ### 4. References
 - The brand's own published posts first, with what to take and what to leave.
@@ -220,7 +221,7 @@ FIELD: <beauty | FMCG | food | furniture | fashion | clinic | tech | real estate
 REFERENCES: <brand post / asset> — take: <...> — leave: <...>
 WORLD: <place, time, season, culture; what is real about it>
 HERO & HIERARCHY: 1 <...> · 2 <...> · 3 <...>
-PRODUCT: <source: sheet view / render / photo> · role: <hero | detail | result | in use | none> · scale: <real size relation>
+PRODUCT: <source: sheet <asset id> · cell <id> / render / photo> · role: <hero | detail | result | in use | none> · scale: <real size relation>
 LIGHT: <direction, quality, temperature, sources in the scene>
 COLOUR: <palette roles; which colour dominates; accents allowed>
 FINISHING SIGNATURE: <glossy-saturated | matte-soft | dark-key grain and bloom | realistic interior | ...>
