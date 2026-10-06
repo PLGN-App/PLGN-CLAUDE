@@ -37,12 +37,14 @@ Then stop and ask what they want. Do not create anything on an empty argument.
 
 ## 3. With a subject: work out what they mean
 
-Three shapes, and they are told apart by the words, not by a flag:
+Four shapes, and they are told apart by the words, not by a flag:
 
 - **"start a Ramadan campaign"** → create. Go to step 4.
 - **"mark the launch done"**, **"archive Ramadan"** → go to step 6.
 - **"what's in Ramadan"** → `campaign_get`, print it, stop. That is a read and
   needs no confirmation.
+- **"let's think about Ramadan"**, "ideas for Ramadan", "brainstorm Ramadan" → go to
+  step 8.
 
 **A subject that names a campaign that already exists is never a second one.**
 Match on the name, say which one you found, and ask whether they meant to
@@ -111,6 +113,7 @@ Then say what to do next:
 Ramadan 2027 saved · 1 Feb → 2 Mar
 
 Plan posts inside it with:  /plgn month "Ramadan"
+Think it through first:  /plgn campaign think "Ramadan"
 ```
 
 ## 6. Mark done, or archive
@@ -141,6 +144,38 @@ The list is **replaced**, not appended. Read the campaign first with
 id removes the rest.
 
 Same for `topic_ids`.
+
+## 8. Think: the campaign's big idea
+
+The big idea is the one thing every post in the campaign starts from. It is worked out
+with `plgn-content-creator`, before any post is written.
+
+**Which campaign.** The one named. If only one is running, that one. If several are,
+ask which. If none exists, create it in step 4 first.
+
+Everything else follows the **creative-brief** skill, "The concept comes first": the
+reads, the reference index, the line for a brand with no references, the talk, and the
+pick. Run the `Job: ideas` talk until the person picks, then `Job: platform`.
+
+On a pick, show the big idea in plain words:
+
+```
+Big idea     Everyone brings one dish; the table does the rest.
+World        Warm evening light, shared plates, hands reaching in.
+Series       One empty chair in every picture.
+Mood board   references 2, 4, 5
+Headlines    A short promise, then the dish's name.
+
+Save this as the big idea for Ramadan 2027?
+yes / edit / no
+```
+
+Save it as creative-brief says, updating the one that exists instead of adding a second.
+If the cap refuses, follow the **gate-recovery** skill.
+
+`--dry-run` stops before the save: show the big idea, write nothing, say so.
+
+Then point at `/plgn month "Ramadan"`.
 
 ## Notes
 
