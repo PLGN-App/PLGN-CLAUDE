@@ -242,10 +242,17 @@ See **brand-assets**. If the call refuses an asset, it says which and why:
 say so in one line, make that frame without it, and carry on.
 
 **A product from a sheet.** When the order's PRODUCT names `sheet <id> ·
-cell <cell>`, call `sheet_get(sheet_id: <id>)` and put that cell's picture
-link first in `input_urls`. It is the one exception to the rule above about
-asset links, because a sheet's main picture is only its front view. A sheet
-never goes in `asset_ids`. When an order says "needs a product photo" for a
+cell <cell>`, call `sheet_get(sheet_id: <id>)` and use the cell only when
+the header says the sheet is approved and that cell's line has a usable mark
+and a picture link. Otherwise say so in one line and make that frame without
+the product, as "needs a product photo". A cell's link goes first in
+`input_urls`, before the canonical reference. The server puts the pictures of
+the frame's `asset_ids` before all of `input_urls`, so the cell is reference
+image number (`asset_ids` count + 1), and the first only when the frame has
+no `asset_ids`; the designer names it that way. It is the one exception to the rule above about asset
+links, because a sheet's main picture is only its front view. A sheet never
+goes in `asset_ids`. A frame carrying a sheet cell always uses
+`generate_image_from_image`, with or without a canonical reference. When an order says "needs a product photo" for a
 product, name `/plgn product-sheet` once in section 8.
 
 If the read shows no assets at all and the brand plainly has some — a logo

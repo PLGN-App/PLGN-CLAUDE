@@ -34,7 +34,7 @@ The command saves what you return; you write nothing yourself.
 3. **Every cell shows one complete thing.** A detail cell shows **one** feature only. Never two parts that are far
    apart on the real product in one cell (a cap and a crimp at opposite ends of a tube must never meet).
 4. **Hidden surfaces are not invented.** A back label, an underside or the inside of a cap that no source shows is
-   left out and marked `needs_real_photo`.
+   left out of the plan and named in `missing`. It is never a cell, so it is never in `marks`.
 5. **Printed words are copied, never composed.** Every word on the product in every cell matches the source letter
    for letter.
 6. **Product texture comes from a real reference.** A cream, gel, powder or fabric shown out of its pack needs a
@@ -69,7 +69,8 @@ h`, each between 0 and 1, measured from the top-left corner: `x` and `y` are the
 ### The Product Sheet (`kind: "product"`), one picture
 
 A clean grid on a light neutral background, thin dividers, small uppercase view labels. Use only the cells that
-fit the product's field; at most nine, and a cell you cannot make truthfully is left out of the plan.
+fit the product's field; at most nine, and a view you cannot make truthfully is left out of the plan and named
+in `missing`.
 
 | Cell id | View | Packs | Furniture | Apparel | Food & drink | Devices |
 |---|---|---|---|---|---|---|
@@ -89,7 +90,9 @@ height. With fewer cells, keep the same cell size and drop the empty places.
 ### The Use Sheet (`kind: "use"`), one picture
 
 Numbered steps across the top, use cases below. Every step comes from `use_map`; a step nobody documented is left
-out.
+out. The server needs `use_1` on every use sheet: if the opening or set-up step is not documented in `use_map`,
+return `CANNOT: no documented way this product opens or is set up` for a use sheet. Never number later steps
+from `use_1` to hide the gap.
 
 | Cell id | What it shows |
 |---|---|
@@ -116,6 +119,8 @@ asset, otherwise anonymous hands or unidentifiable people; no identifiable child
   exact, in quotes, with a letter-by-letter line, unquoted, for any word with easily confused letters.
 - Say what must not appear: back labels with invented text, prices, props, other products.
 - Say where each cell sits, in the same fractions you return, so the picture follows the plan.
+- Keep `grid_prompt` under 4,000 characters (the server refuses more than 5,000, and some models take less).
+  Be brief per cell: angle, what shows, what must not, the exact words. Cut prose before you cut a printed word.
 
 ## Checking every cell (the check job)
 
@@ -136,9 +141,9 @@ it was asked, and the command cuts the picture where you say. Then answer for ea
 A cell that passes is `source_matched` when it is the view the source shows, otherwise `inferred_checked`. A cell
 that fails is not passed "because it is close". On the first look it is marked `failed`, and `retry` carries the
 sheet text again with that cell's failure written as an explicit instruction. On the second look a cell that
-still fails is marked `needs_real_photo` and left out of use. A cell that cannot be made truthfully at all
-(invariants 4 and 6) is `needs_real_photo` from the start. The command tells you which look this is. Every
-mark carries a note: what you compared and what you saw.
+still fails is marked `needs_real_photo` and left out of use. A view that cannot be made truthfully at all
+(invariants 4 and 6) is not in the plan, so it has no cell and no mark. The command tells you which look this
+is. Every mark carries a note: what you compared and what you saw.
 
 ## Handing it over
 
@@ -183,7 +188,8 @@ The plan job, before any picture is made:
 }
 ```
 
-`use_map` is `null` for a Product Sheet. `missing` is `"none"`, or one plain sentence naming what you drafted
+`use_map` is `null` for a Product Sheet; for a Use Sheet it is the map drafted from the sources you were sent,
+each line naming its source. `missing` is `"none"`, or one plain sentence naming what you drafted
 because it was not given (a `parts_map`, a `use_map`) or what is still needed.
 
 The check job, after the picture exists:
@@ -193,16 +199,17 @@ The check job, after the picture exists:
   "job": "check",
   "cells": [ { "id": "front", "label": "FRONT", "x": 0.01, "y": 0.02, "w": 0.32, "h": 0.31 } ],
   "marks": [
-    { "cell_id": "front", "mark": "source_matched", "note": "matches the source front: crimp, label text, cap colour" },
-    { "cell_id": "back", "mark": "needs_real_photo", "note": "no source shows the back label" }
+    { "cell_id": "front", "mark": "source_matched", "note": "matches the source front: crimp, label text, cap colour" }
   ],
   "retry": null
 }
 ```
 
-`cells` holds the layout you measured on the real grid, one entry for every cell in the plan. `marks` holds one
-entry for every cell. `mark` is `source_matched`, `inferred_checked` or `needs_real_photo`; `failed` is allowed
-only on the first look. `retry` is `null` unless a cell failed on the first look; then it is the new sheet text.
+`cells` holds the layout you measured on the real grid, one entry for every cell in the plan. `marks` holds
+exactly the ids in `cells`, one each, never an id that is not there. `mark` is `source_matched`,
+`inferred_checked` or `needs_real_photo`; `failed` is allowed only on the first look. `retry` is `null` unless a
+cell failed on the first look; then it is the whole new sheet text, under the same 4,000 character cap as
+`grid_prompt`, never an addition to it.
 
 If you cannot go on (no source of this exact variant, a photo that shows another code, a price you were told to
 write, a person's face with no consent), return one line: `CANNOT: <the reason, in plain words>`.

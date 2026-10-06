@@ -93,8 +93,10 @@ Plain sentences in this order, with no labels and no numbering. Under 4,000 char
 5. **The product:** which input image it comes from, by role ("the pack from the first reference image"); its
    parts in physical order, top to bottom or left to right, with colours; its own label, exactly as in the
    product photo, copy exactly, never redraw or restyle. Never retype its words. When PRODUCT names
-   `sheet <asset id> · cell <id>`, the product is that cell's picture, which the command puts first among the
-   input images: write "the product from the first reference image" and leave the sheet out of `asset_ids`.
+   `sheet <asset id> · cell <id>`, the product is that cell's picture, which the command puts first in the input
+   links. The server puts the pictures of the frame's `asset_ids` before them, so the cell is reference image
+   number (count of `asset_ids` + 1): "the product from the second reference image" when the frame has one asset,
+   the first only when `asset_ids` is empty. Leave the sheet out of `asset_ids`.
 6. **Typography and grid:** every text element with its exact string in quotes, typeface style, weight, colour,
    treatment and position. Quote the director's image words exactly and write no others; `[]` means no words.
 7. **Rules:** the brand's never list and the order's never list, in the same terms as the picture, and a line

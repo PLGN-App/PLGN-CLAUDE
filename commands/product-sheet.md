@@ -89,15 +89,18 @@ the `never` lines, the cells, and "first look". It opens the pictures with
 `image_view` and returns the cells as it measured them on the real grid,
 and a mark for each.
 
-Any cell it marks `failed`: make one more picture with `grid_prompt` plus
-its `retry` text, and send the check job again as "second look". On the
+Any cell it marks `failed`: make one more picture whose prompt is the
+agent's `retry` text alone (it is the whole new sheet text; never add it to
+`grid_prompt`), and send the check job again as "second look". On the
 second look a cell that still fails is `needs_real_photo`. Never a third
 picture. A second picture is paid for with the points the quote stated.
 
 ## 7. Save
 
 Call `sheet_create(offering_id, variant, kind, grid: { secure_url, public_id
-}, cells: <the measured cells>, parts_map, use_map, never)`. Then
+}, cells: <the measured cells>, parts_map, use_map, never)`. `grid` is the
+picture the last look checked (the second picture after a retry), and
+`cells` are that look's measured cells. Then
 `sheet_mark(sheet_id, marks: [{ cell_id, mark, note }])` with the agent's
 marks and notes. Then `sheet_cut(sheet_id)`.
 
@@ -131,10 +134,14 @@ the Assets page. Say so and stop there.
 
 ## 9. The Use Sheet
 
-When the use map documents at least how the product is used, run sections 3
-to 8 again with `kind: "use"` and `use_map`, with its own quote and its own
-yes. Otherwise say there is no use sheet and why: nothing in the source shows
-how it is used.
+Send the agent the plan job again with `kind: "use"` and the sources a use
+map needs: the offering's text and benefits, its photo links, and the
+designer read's lines about who uses it (never a price). Go on only when the
+`use_map` it returns documents the opening or set-up step (the sheet needs
+`use_1`); then run sections 3 to 8 again with that `use_map`, with its own
+quote and its own yes. When it answers `CANNOT:` or the opening is not
+documented, say there is no use sheet and why: nothing in the source shows
+how it opens or is set up.
 
 ## 10. Say what happened
 

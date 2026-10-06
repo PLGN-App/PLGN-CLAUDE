@@ -1244,8 +1244,11 @@ for (const [c, needles] of REPORTS) {
     "a real photo or official render of this exact variant", "sheet_create", "sheet_mark", "sheet_cut",
     "sheet_approve", "image_view", "Never a third"]);
   need("agents/plgn-product-sheet.md", ["mcp__plugin_plgn_plgn__image_view", "No source, no sheet",
-    "No price on any sheet", "needs_real_photo"]);
-  need("commands/images.md", ["sheet_get(sheet_id:"]);
+    "No price on any sheet", "needs_real_photo", "under 4,000 characters", "exactly the ids in `cells`",
+    "CANNOT: no documented way"]);
+  need("commands/images.md", ["sheet_get(sheet_id:", "the header says the sheet is approved",
+    "always uses\n`generate_image_from_image`", "`asset_ids` count + 1"]);
+  need("agents/plgn-designer.md", ["number (count of `asset_ids` + 1)"]);
   need("agents/plgn-art-director.md", ["sheet <asset id> · cell <id>"]);
   if (exists("commands/product-sheet.md")) {
     const sheetCmd = read("commands/product-sheet.md");
