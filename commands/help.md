@@ -6,7 +6,7 @@ description: Show every plgn command in one list, split into the ones that need 
 
 Print the command list. Call no tools. Answer nothing else.
 
-This exists because twenty-six commands is more than anyone remembers, and the
+This exists because twenty-seven commands is more than anyone remembers, and the
 README is not open while someone is working.
 
 ## Rules
@@ -48,6 +48,9 @@ NEEDS AN ACCOUNT
                             people, places — so pictures use them
   /plgn import-store <url>  Bring products in from a Shopify, WooCommerce
                             or EasyOrders store
+  /plgn product-sheet <product>
+                            Check a product from every side and approve it,
+                            so pictures show the real thing
 
   Making content
   /plgn campaign <subject>  Start a campaign, see what's running, mark one done

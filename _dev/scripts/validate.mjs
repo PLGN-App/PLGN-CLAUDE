@@ -28,6 +28,7 @@ const TOOLS = new Set([
   "site_read", "social_fetch", "web_search",
   "snippet_create", "snippet_delete", "snippet_get", "snippet_list", "snippet_update",
   "store_import", "store_products",
+  "sheet_approve", "sheet_create", "sheet_cut", "sheet_get", "sheet_list", "sheet_mark", "image_quote",
   "topic_create", "topic_delete", "topic_get", "topic_list", "topic_update",
   "upload_image_base64", "upload_image_from_url", "workspace_info",
 ]);
@@ -35,7 +36,7 @@ const TOOLS = new Set([
 const FREE = ["demo", "audit", "strategy", "voice", "competitors", "calendar"];
 const CONNECTED = ["setup", "brand", "campaign", "knowledge", "month", "post", "repurpose",
   "topics", "library", "images", "queue", "refresh", "report", "visuals", "brandkit", "undo", "why",
-  "assets", "import-store"];
+  "assets", "import-store", "product-sheet"];
 // `help` is neither free nor connected: it calls nothing and carries no seam.
 const NEITHER = ["help"];
 
@@ -134,7 +135,7 @@ if (manifest) {
   // they add up to, so a file added or removed without updating plugin.json
   // or the agent roster could still keep both sides consistent with each
   // other but wrong in absolute terms. These three numbers pin that.
-  const EXPECTED_COMMAND_COUNT = 26;
+  const EXPECTED_COMMAND_COUNT = 27;
   const EXPECTED_SKILL_COUNT = 13;
   const EXPECTED_AGENT_COUNT = 11;
   if ((manifest.commands ?? []).length !== EXPECTED_COMMAND_COUNT) {
@@ -203,6 +204,8 @@ const NON_TOOL_NAMES = new Set([
   // 1.11.0: picture_need and post_label take `post_ids`; `campaign_rule` is a
   // check code plgn prints (`check: campaign_rule:<n> — ...`), not a tool.
   "post_ids", "campaign_rule",
+  // Product sheets (1.15.0): the argument of sheet_get, sheet_cut, sheet_mark and sheet_approve.
+  "sheet_id",
 ]);
 for (const p of CONTENT) {
   const body = read(p);
@@ -221,7 +224,7 @@ for (const p of CONTENT) {
     // other file does.
     if (MAP_ONLY_LEGACY_TYPES.has(name) && p === MAP_SKILL_PATH) continue;
     // only judge names that look like plgn tools: a known prefix
-    if (/^(brand|brief|campaign|check|cloudinary|context|delete|generate|hashtagset|image|kie|knowledge|list|offering|post|snippet|store|topic|upload|workspace)_/.test(name)
+    if (/^(brand|brief|campaign|check|cloudinary|context|delete|generate|hashtagset|image|kie|knowledge|list|offering|post|sheet|snippet|store|topic|upload|workspace)_/.test(name)
       && !TOOLS.has(name)) {
       fail(`${p}: unknown MCP tool name \`${name}\``);
     }
@@ -396,7 +399,7 @@ for (const c of FREE) {
 // means the mutation above now fails, naming the file, because the mutated
 // sentence no longer contains it.
 const NO_YES = ["month", "images", "visuals", "brandkit", "undo", "repurpose",
-  "refresh", "library", "brand", "knowledge", "campaign", "import-store"];
+  "refresh", "library", "brand", "knowledge", "campaign", "import-store", "product-sheet"];
 {
   const conv = exists("reference/_conventions.md") ? read("reference/_conventions.md") : "";
   for (const c of NO_YES) {
@@ -933,7 +936,8 @@ for (const [agent, needles] of AGENT_CONTRACTS) {
 // the second clause's genuine instruction to call a write tool. Added ';' to
 // the boundary set so a semicolon splits the two clauses like a period would.
 const WRITE_TOOLS = [...TOOLS].filter((t) => /_(create|update|delete|add|schedule|archive|restore|set)$/.test(t)
-  || ["post_create_many", "post_schedule_many", "post_unschedule_run", "post_delete_run", "post_label"].includes(t));
+  || ["post_create_many", "post_schedule_many", "post_unschedule_run", "post_delete_run", "post_label",
+    "sheet_mark", "sheet_cut", "sheet_approve"].includes(t));
 // "the command passes/calls ..." names the command as the caller, not the
 // agent (plgn-creative-director: "the command passes them to `brief_create`").
 const WRITE_TOOL_PROHIBITION = /(do not|does not|don't|doesn't|never|must not)\s+(call|save)\b|the command\s+(passes|calls)\b/i;

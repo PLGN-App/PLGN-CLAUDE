@@ -196,6 +196,7 @@ not inside Claude Code.
 | `/plgn knowledge` | Check the brand profile for gaps, stale entries and conflicts |
 | `/plgn assets` | Save the brand's real things — logo, character, people, places — so pictures are built around them, not invented |
 | `/plgn import-store <url>` | Bring the brand's products in from its Shopify, WooCommerce or EasyOrders store — names, prices, variants, pictures. Safe to run again |
+| `/plgn product-sheet <product>` | Build a product's approved picture sheet — every useful view, checked against its real photo — so pictures show the real product |
 | `/plgn brand` | List, create, rename, archive and restore brands |
 | `/plgn undo` | Take back the last batch of posts — unschedule or delete |
 | `/plgn refresh [filters]` | Rewrite and reschedule older posts that still hold up. Narrow with `--platform`, `--campaign`, `--topic` |

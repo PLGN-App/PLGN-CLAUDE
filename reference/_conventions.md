@@ -109,7 +109,7 @@ These commands also accept `--yes`, which skips the confirmation:
 `post`, `topics`.
 
 `--yes` is **never** accepted by `month`, `images`, `visuals`, `brandkit`, `undo`,
-`repurpose`, `refresh`, `library`, `brand`, `knowledge`, `campaign` or `import-store`.
+`repurpose`, `refresh`, `library`, `brand`, `knowledge`, `campaign`, `import-store` or `product-sheet`.
 Those either spend points, write in bulk, or remove things.
 
 Unknown flags are reported, never ignored, so a typo cannot quietly change what

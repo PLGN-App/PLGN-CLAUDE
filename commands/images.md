@@ -241,6 +241,13 @@ asset's main picture itself; never paste an asset's URL into `input_urls`.
 See **brand-assets**. If the call refuses an asset, it says which and why:
 say so in one line, make that frame without it, and carry on.
 
+**A product from a sheet.** When the order's PRODUCT names `sheet <id> ·
+cell <cell>`, call `sheet_get(sheet_id: <id>)` and put that cell's picture
+link first in `input_urls`. It is the one exception to the rule above about
+asset links, because a sheet's main picture is only its front view. A sheet
+never goes in `asset_ids`. When an order says "needs a product photo" for a
+product, name `/plgn product-sheet` once in section 8.
+
 If the read shows no assets at all and the brand plainly has some — a logo
 on its site, a mascot in its posts — say so once for the run and offer
 `/plgn assets`.

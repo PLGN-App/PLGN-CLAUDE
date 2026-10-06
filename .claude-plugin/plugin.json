@@ -49,6 +49,7 @@
     "./commands/knowledge.md",
     "./commands/assets.md",
     "./commands/import-store.md",
+    "./commands/product-sheet.md",
     "./commands/month.md",
     "./commands/post.md",
     "./commands/repurpose.md",
