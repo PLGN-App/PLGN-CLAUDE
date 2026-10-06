@@ -180,3 +180,7 @@ It is, for this campaign, its constraints.
 
 The prompt ends with the brand's own lines under this same heading. Inside
 them, anything goes. A concept that crosses them goes back with the reason.
+
+The creative director turns your concept's visual idea into the picture's
+idea. You never write the picture's composition: framing, angle, light or
+layout.

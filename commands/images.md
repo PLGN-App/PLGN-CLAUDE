@@ -137,8 +137,15 @@ for each one. This is the **creative-brief** skill's four steps in two calls
    section of that same read, the `asset:` id `picture_need` gave this post
    if it gave one, the post's concept when its notes carry a `Concept:`
    line (read it with `post_get`), and the frame count settled in section 4, which beats the concept's shape. Per **_conventions** rule 6, all of it goes in the
-   prompt — the agent cannot see this file.
-3. Call `brief_create` with what it returned, plus `post_id` for the post
+   prompt — the agent cannot see this file. End the prompt with the line
+   `An art director takes this idea next.` A `question` answer (two
+   directions) is put to the person in plain words, the director starts
+   again with their answer, and later posts of this brand in the run get the
+   same answer. A `missing` other than none is named in section 8.
+3. Call `brief_create` with what it returned, naming only the six keys it
+   takes (`benefit_label`, `meanings`, `candidates`, `concept`,
+   `concept_why`, `slides`) and keeping the rest of the answer for the art
+   director, plus `post_id` for the post
    being illustrated, its `campaign_id`, `offering_ids` and `topic_id`
    where the post has them, and `knowledge_used` copied from the end of the
    `context_get` read. **`post_id` is not optional in practice.** Without
@@ -151,9 +158,22 @@ for each one. This is the **creative-brief** skill's four steps in two calls
    frames: skip step 4 this round and go straight to step 5, with each
    line's sentence as the objection for its frame. It counts as one of the
    three checks — see **creative-brief**.
-4. Read `context_get(role: "designer", campaign_id: <the post's campaign, if
+4. Read `context_get(role: "art_director", campaign_id: <the post's
+   campaign, if it has one>)` once per campaign (the read section 6 uses:
+   make it here and reuse it) and send `plgn-art-director` that block, the
+   **Assets** section of step 1's read, the director's whole answer, the
+   post's `Concept:` line, what carries each frame as step 3 resolved it,
+   and the platform. It answers with the order, `CANNOT:` or `QUESTION:`
+   (two schools, asked of the person like the director's). Its PRODUCT and
+   REFERENCES lines may name the brand's saved things and never one marked
+   NOT for AI pictures. The order is written once for a campaign's first
+   post in the run and reused for that campaign's later posts while what
+   carries the frame stays the same; its HERO & HIERARCHY, PRODUCT and
+   DELIVERY lines are the post's own, taken from that post's idea. Then
+   read `context_get(role: "designer", campaign_id: <the post's campaign, if
    it has one>)` for the brand's identity and picture rules. Send
-   `plgn-designer` the concept, the frames, that block, the campaign's
+   `plgn-designer` the order word for word first, then the concept, the
+   frames, that block, the campaign's
    constraints from step 1 of this list — the designer's own read does not
    carry them — the **Assets** section of the designer read, and what
    carries each frame, as the `brief_create` call in step 3 resolved it,
@@ -170,7 +190,14 @@ for each one. This is the **creative-brief** skill's four steps in two calls
    `check: frame <n>: …` lines, which are another failed check, handled the
    same way without a designer round. Up to three checks per post — on the third
    failed check, stop working on this post, say which post and why, and
-   carry on with the rest of the run. Never attempt a fourth.
+   carry on with the rest of the run. Never attempt a fourth. A `CANNOT:`
+   is an objection against every frame, handled as this item says, and
+   counts as a check. A designer finding that starts `order: ` goes to
+   `plgn-art-director` once for a corrected order, then back to the
+   designer, with no `brief_update` and no check. With both kinds, this
+   item comes first and the order's findings go to the art director with
+   the new idea. A designer `question` (two type systems) is put to the
+   person like the director's.
 6. No objections → call `brief_finalize` with the brief's id and, per
    frame, its `order`, the designer's `generation_prompt` and its
    `alt_text`. plgn copies each frame's alt text onto the picture when it is
