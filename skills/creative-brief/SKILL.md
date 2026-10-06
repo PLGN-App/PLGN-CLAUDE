@@ -91,9 +91,35 @@ When the post carries a concept, the one is the concept's visual idea.
 one direction per frame. What carries the frame is not this agent's call —
 the server decides it from what the brand sells. See below.
 
-**4 · check → final text.** `plgn-designer` checks the direction against the
-brand and the brief, then writes the final image text and the alt text per
-frame — or raises objections if the direction doesn't hold up.
+**Between 3 and 4 · the order.** `plgn-art-director` turns the idea into the
+order: the school, the world, the light, the hierarchy, where the product comes
+from, and what never changes. One order per post, for every frame of it. Inside
+a campaign it is written once per run, for the campaign's first post, and
+reused while what carries the frame stays the same. The order is not saved in the brief;
+the command hands it to the designer as written. Bunduq Coffee, a hero
+post, looks like this:
+
+```
+SCHOOL: Product beauty / still life
+FIELD: food
+REFERENCES: Bunduq Coffee's latest tin post — take: one tin, warm side light — leave: the busy shelf
+WORLD: a Cairo kitchen counter at 7 am, morning in autumn; the coffee is real
+HERO & HIERARCHY: 1 the tin · 2 steam rising from the cup · 3 the counter
+PRODUCT: approved sheet view · role: hero · scale: a hand-sized tin beside a small cup
+LIGHT: soft window light from the left, warm, one source
+COLOUR: cream and walnut brown dominate; the brand's red only on the tin
+FINISHING SIGNATURE: matte-soft
+FIXED: the tin's shape, its label, the logo, the brand palette
+FREE: the cup, the angle, the steam
+TYPE NOTES: designer to propose
+DELIVERY: Instagram feed, 4:5, keep 10% clear at the edges
+NEVER: stock-looking beans, hands holding the tin, the brand's banned words
+```
+
+**4 · check → final text.** `plgn-designer` checks the direction and the order
+against the brand and the brief, then writes the final image text in the prompt
+order (see **image-prompting**) and the alt text per frame — or raises
+objections if the direction or the order doesn't hold up.
 
 ## Two calls, not four
 

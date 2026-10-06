@@ -28,7 +28,9 @@ Read it before writing the description, not after.
 
 When one exists:
 
-- Put its **promptPreamble** in front of the description, before the subject.
+- On `/plgn month`'s quick path, put its **promptPreamble** in front of the
+  description, before the subject. On the brief path the designer's text
+  already starts with it, so never add it a second time.
 - Apply its **never** list as exclusions.
 - Once **visual-identity** says a canonical reference exists, use
   `generate_image_from_image` with the saved **canonicalReference** instead of
@@ -62,9 +64,20 @@ A post about wasted planning time does not need a picture of a calendar. The
 literal illustration is the first idea and almost always the weakest — it adds
 nothing the reader just read.
 
-On the brief path, `plgn-creative-director` writes the literal picture first and
-rejects it, then scores one idea from each of five lenses, and `plgn-designer`
-writes the final text in seven parts with the brand colour as an accent.
+On the brief path the work runs as a chain: idea, order, execution.
+`plgn-creative-director` writes the literal picture first and rejects it, then
+scores one idea from each of five lenses. `plgn-art-director` turns the idea
+into the order. `plgn-designer` writes the final text in seven parts, in this
+order, with the brand colour as an accent:
+
+1. the preamble, without quotation marks
+2. the school and the finishing signature
+3. the concept, in one line
+4. the scene
+5. the product
+6. typography and grid
+7. the rules
+
 **creative-brief** owns those steps. The aim is the mood of the argument, or
 what it leads to rather than what it is about. Empty chairs after a meeting says
 more about wasted meetings than a clock does.
