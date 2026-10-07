@@ -1340,6 +1340,16 @@ if (exists("reference/_conventions.md")) {
       fail("commands/images.md: no level-2 heading may sit inside section 5");
     }
   }
+  // /plgn month: the quick path styles a word picture with the typographer.
+  if (exists("commands/month.md")) {
+    const month = read("commands/month.md").replace(/\r\n/g, "\n");
+    const m4b = month.indexOf("**4b. Words in a picture.**");
+    const m4bEnd = m4b < 0 ? -1 : month.indexOf("\n\n", m4b);
+    const para = m4b < 0 ? "" : month.slice(m4b, m4bEnd < 0 ? undefined : m4bEnd);
+    if (!para.includes("`plgn-typographer`") || !para.includes("quote card")) {
+      fail("commands/month.md: the quick path must style a word picture with plgn-typographer");
+    }
+  }
 }
 
 if (fails.length) {

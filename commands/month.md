@@ -361,6 +361,20 @@ reference it cites — rather than restating the post's words, put the preamble
 of the `art_director` block read for this post's campaign group in front of
 it, and carry that block's `never` list as exclusions.
 
+**4b. Words in a picture.** This quick path draws no words, except for a post
+whose concept format is made of words — a quote card, a reel cover or a meme.
+That picture carries the concept's hook exactly as saved, and nothing else.
+For it, send `plgn-typographer` the group's `art_director` block in place of an
+order (it has no type system in it: its TYPE NOTES say "designer to propose"),
+the hook, and the platform and ratio. Write its system, styling, concept and
+each placement line, with the hook in quotes, into the image description as
+given. For Arabic, add a letter-by-letter line for each easily confused
+letter, unquoted, and say it is not to be drawn. If it answers with a
+`question` (two type systems), ask the person once for the whole run, before
+the first such picture, and use the answer for every one. A `fit` never stops
+the run: the hook stays as saved, and step 9 names the line and the shorter
+one.
+
 Write the post's **alt text** at the same time, one per language the brand
 publishes in: what the picture will show, in one sentence, starting with the
 subject, leaving out "image of", never repeating the post. This quick path
@@ -464,6 +478,7 @@ no frame count at all because step 5 could not tell which draft they were.
   1 is still a draft — it says "40% faster onboarding" and nothing in your
     brand profile backs that number
   1 has no image — that one took too long; the post goes out without it
+  1 quote card's line is long for its frame — a shorter one: "…"; /plgn images can remake it
 
 Review at useplgn.com
 ```
