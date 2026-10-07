@@ -108,6 +108,25 @@ set; the block then carries `"frames": [ { "frame": 1, "placement": [...] }, ...
   words never calls it; a carousel gets one system and a placement per frame; `fit` asks and changes nothing on
   "no"; the points line shows the typographer; typecheck, lint, whole suite.
 
+## 5. Two picture switches in the desk chat (owner, 2026-10-07, desk only)
+
+Next to the picture model picker in the chat (the control that chooses the provider; `imageModel` in
+`src/app/chat/page.tsx`), two small toggles, both remembered per brand through the kept picks (`kept.ts`, per
+account) and sent with every request like the model is:
+
+- **Logo** on / off (default on). On: the brand's logo asset goes into the picture as a reference image, where the
+  brand allows AI use of it (today's rule); the designer's prompt names it. Off: no logo in the picture at all, the
+  logo asset is not sent, and the prompt says "no brand mark".
+- **Text** on / off (default on). Off: no headline and no added words anywhere; the typographer stage is skipped
+  (nothing spent); the designer's prompt says "no added text; the product's own label exactly as in the source
+  photo". The product's printed label is never touched either way (the physical-truth rule already forbids changing
+  it), so "text off" can never corrupt the label. The creative director still gets the words for the idea; only the
+  picture carries none.
+
+The picture job saves both flags in its state before anything paid starts, so a resumed job keeps the choice. The
+job card's first line names the choice when either is off («بلا شعار», «بلا نص» / "no logo", "no text"). No server
+change: the flags live in the desk's kept picks and the job state.
+
 **Out of scope**: placing words on a finished picture (a design layer), rewriting words, agency-roles phase 3 (the
 art director in the desk, the finishing pass in the desk, product sheets in the desk).
 
