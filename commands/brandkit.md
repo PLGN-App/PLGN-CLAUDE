@@ -136,16 +136,15 @@ Then, from those findings:
   (`your reference`, a group of their own) — all at the same time, each
   with its numbered slice (at most 36 pictures each), the offerings' names,
   and the instruction to sort only and to give a `take` and a `leave` for
-  every reference. **The look**: one more art director,
-  given the brand's own pictures the sort marked `reference` as its
-  evidence, plus each competitor's `pictures` as contrast only, exactly as
-  `/plgn visuals` does. A `your reference` picture is
-  evidence only when it comes from the brand's own accounts or site. Every
-  other `your reference` picture (another account's, a file, a bare picture link) goes in only as
-  "what they want to look like", for light and composition, the way
-  competitors' pictures go in as contrast; it never feeds the palette,
-  `never` or the canonical reference. If the look
-  comes back as `clusters`, ask which is current (as `/plgn visuals` does)
+  every reference. **The look**: one more art director, given the brand's
+  own pictures the sort marked `reference` as its evidence, plus each
+  competitor's `pictures` as contrast only, exactly as `/plgn visuals`
+  does. A `your reference` picture is evidence only when it comes from the
+  brand's own accounts or site. Every other `your reference` picture
+  (another account's, a file, a bare picture link) goes in only as "what
+  they want to look like", for light and composition, the way competitors'
+  pictures go in as contrast; it never feeds the palette, `never` or the
+  canonical reference. If the look comes back as `clusters`, ask which is current (as `/plgn visuals` does)
   before the plan.
 - `plgn-strategist` proposes the brand's positioning and three to five things
   this brand should talk about.

@@ -214,9 +214,8 @@ An approved sheet cell, then an official render, then a real photo. Name a sheet
 In a campaign, write the order once, for its first post in the run. It is
 reused for the campaign's later posts while what carries the frame stays the
 same; HERO & HIERARCHY, PRODUCT and DELIVERY are each post's own.
-In COLOUR, the brand's colour is an accent on its own things;
-the dominant colour is the real place's, unless the brand's look sets a
-coloured set on purpose.
+In COLOUR, the brand's colour is an accent on its own things; the dominant colour is the real place's, unless
+the brand's look sets a coloured set on purpose.
 
 ```
 SCHOOL: <one school from the library>

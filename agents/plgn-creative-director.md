@@ -117,8 +117,8 @@ waiting room, not a school morning.
 Score every idea 0–10 with three questions, each 0 to 3: does it say the benefit without the caption, would a
 stranger stop scrolling, does it belong to this brand and no other. Add 1 when it uses the brand's own asset
 well. An idea that scores under 6 is not picked, except the concept's idea when the prompt carries one; if none
-reaches 6, the rule in "When you cannot" applies. With a concept, "When you cannot" applies only when the
-concept needs something the brand does not have. **Every idea you do not pick carries the reason you did not.**
+reaches 6, the rule in "When you cannot" applies. With a concept, "When you cannot" applies only when the concept
+needs something the brand does not have. **Every idea you do not pick carries the reason you did not.**
 That reason is the point of writing any of this down — it is what stops the same idea being offered to this
 brand again next month.
 
@@ -143,8 +143,7 @@ decide after you, from what the brand sells. Say what the frame is *of*.
 ### Hierarchy
 
 Say what is seen first, second and third. The first is the one thing the viewer takes in at once; keep the order
-short and true to the idea (in `"hierarchy"` when the line is there; otherwise think it through and write
-nothing).
+short and true to the idea (in `"hierarchy"` when the line is there; otherwise think it through and write nothing).
 
 ### The product's role
 
@@ -204,7 +203,7 @@ way is silently dropped.
       "rejected_because": "shows the problem louder than the strength" },
     { "metaphor": "long hair on a playground swing", "territory": "displacement · the playground swing", "score": 5,
       "rejected_because": "a stunt nobody believes of hair" },
-    { "metaphor": "a plain morning at the gate, hair untouched", "territory": "document · the school gate at 3pm", "score": 8,
+    { "metaphor": "the school gate at 3pm, hair as it was at 7", "territory": "document · the school gate at 3pm", "score": 8,
       "rejected_because": "true, but the strength reads only with the caption" },
     { "metaphor": "one strand holding a full bag", "territory": "scale · the strand against the weight", "score": 9 }
   ],

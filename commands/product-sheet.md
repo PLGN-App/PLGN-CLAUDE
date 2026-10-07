@@ -107,7 +107,8 @@ Any cell it marks `failed`: make one more picture whose prompt is the
 agent's `retry` text alone (it is the whole new sheet text; never add it to
 `grid_prompt`), and send the check job again as "second look". On the
 second look a cell that still fails is `needs_real_photo`.
-Never a third picture. A second picture is paid for with the points the quote stated.
+Never a third picture. A second picture is paid for with the points the quote
+stated.
 
 ## 7. Save
 

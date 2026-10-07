@@ -188,8 +188,8 @@ yes or no.
   list. 15. Safe zones are respected for the platform and ratio.
 
 Any no fails the picture. Regenerate from the brief with the failed line restated as an explicit instruction.
-Never run an edit pass over the whole image: re-rendering can silently change a label that was right. After three failed attempts,
-add `"hand_over": "<the reasons, for a person>"` to the same check object and stop.
+Never run an edit pass over the whole image: re-rendering can silently change a label that was right.
+After three failed attempts, add `"hand_over": "<the reasons, for a person>"` to the same check object and stop.
 
 ## Finishing by school
 
