@@ -1319,6 +1319,27 @@ if (exists("reference/_conventions.md")) {
       fail("agents/plgn-designer.md: the two type systems question is plgn-typographer's");
     }
   }
+  // /plgn images: step 4b sends the typographer before the designer.
+  if (exists("commands/images.md")) {
+    const images = read("commands/images.md").replace(/\r\n/g, "\n");
+    const s4b = images.indexOf("\n4b. When a frame carries words");
+    const s4bEnd = s4b < 0 ? -1 : images.indexOf("\n5. ", s4b);
+    const item4b = s4b < 0 ? "" : images.slice(s4b, s4bEnd < 0 ? undefined : s4bEnd);
+    const iTy = item4b.indexOf("`plgn-typographer`");
+    const iDe = item4b.indexOf("`plgn-designer`");
+    if (iTy < 0 || iDe < 0 || iTy > iDe) {
+      fail("commands/images.md: item 4b must send plgn-typographer before plgn-designer");
+    }
+    if (images.includes("A designer `question`")) {
+      fail("commands/images.md: the two type systems question is the typographer's");
+    }
+    // Desk guard: the desk replaces section 5 up to the next level-2 heading.
+    const h5 = images.indexOf("## 5. Per post: read, think, check, save");
+    const h6 = images.indexOf("## 6. Make the pictures");
+    if (h5 < 0 || h6 < h5 || images.slice(h5 + 3, h6).includes("\n## ")) {
+      fail("commands/images.md: no level-2 heading may sit inside section 5");
+    }
+  }
 }
 
 if (fails.length) {
