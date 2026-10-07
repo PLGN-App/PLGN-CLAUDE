@@ -55,8 +55,8 @@ agent again with `## So far`; it remembers nothing. Words that start a talk:
 ideas, options, brainstorm, let's think, think, «أفكار», «نفكر». Words that
 end one with a pick: this one, do it, a number, "3 and 7 together", «نفذ». A
 pick runs `Job: platform` when the talk is for a big idea (`/plgn campaign`,
-and `/plgn month`'s think first) or `Job: concepts` (in `/plgn post`), with the
-pick in `## So far`.
+and `/plgn month`'s think first) or `Job: concepts` (in `/plgn post`),
+with the pick in `## So far`.
 
 **The big idea.** Save the platform reply's five lines once per campaign:
 

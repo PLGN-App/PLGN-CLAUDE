@@ -141,12 +141,12 @@ Then, from those findings:
   competitor's `pictures` as contrast only, exactly as `/plgn visuals`
   does. A `your reference` picture is
   evidence only when it comes from the brand's own accounts or site. Every
-  other `your reference` picture (another account's, a file, a bare picture
-  link) goes in only as "what they want to look like", for light and
-  composition, the way competitors' pictures go in as contrast; it never
-  feeds the palette, `never` or the canonical reference. If the look comes
-  back as `clusters`, ask which is current (as `/plgn visuals` does) before
-  the plan.
+  other `your reference` picture (another account's, a file,
+  a bare picture link) goes in only as "what they want to look like", for
+  light and composition, the way competitors' pictures go in as contrast;
+  it never feeds the palette, `never` or the canonical reference. If the
+  look comes back as `clusters`, ask which is current (as `/plgn visuals`
+  does) before the plan.
 - `plgn-strategist` proposes the brand's positioning and three to five things
   this brand should talk about.
 - `plgn-librarian` pulls out the lines and hashtag groups it already reuses.
