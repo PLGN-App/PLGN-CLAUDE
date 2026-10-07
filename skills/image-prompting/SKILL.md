@@ -74,14 +74,40 @@ order, with the brand colour as an accent:
 1. the preamble, without quotation marks
 2. the school and the finishing signature
 3. the concept, in one line
-4. the scene
+4. the scene: camera, framing, where things stand, light, styling, materials and people, grade, space for the words
 5. the product
 6. the words, as the typographer's block places them
-7. the rules
+7. the rules, ending on the priority line
 
 **creative-brief** owns those steps. The aim is the mood of the argument, or
 what it leads to rather than what it is about. Empty chairs after a meeting says
 more about wasted meetings than a clock does.
+
+## Think in the form, write in prose
+
+A professional picture brief covers a long form: camera, place, light,
+surfaces, people, what matters most. It is the right checklist and the wrong
+shape for a prompt. Image models read plain sentences; headings, labels and
+brackets burn the budget (4,000 characters, and some models take only 1,000).
+
+`plgn-designer` answers eight questions before it writes, then writes the
+answers as sentences:
+
+1. What is the frame of, and what does it do?
+2. Where is the camera: height, distance, focal length as a number, and what
+   is sharp? No camera or lens brand names.
+3. Where does each thing stand, and what must not move or double?
+4. Where does the product sit on the grid, and where do the words go (where
+   the typographer's placement lines put them)?
+5. What is the light?
+6. What is each surface?
+7. Who is in it, and what one thing are they doing?
+8. What gives first? The priority line, word for word, last.
+
+When the model takes only 1,000 characters, the designer cuts in this order:
+style words, then materials, then people detail, then light detail. Never the
+label, the words, the product or where things stand, and the priority line
+stays last.
 
 ## When to make nothing
 

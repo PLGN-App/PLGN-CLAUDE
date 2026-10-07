@@ -1422,6 +1422,8 @@ if (exists("reference/_conventions.md")) {
       fail("agents/plgn-designer.md: the check example must end \"18 yes\"");
     }
   }
+  need("skills/image-prompting/SKILL.md", ["## Think in the form, write in prose"]);
+  need("skills/creative-brief/SKILL.md", ["CAMERA:", "keep in this order"]);
   // 1.17.0: later tasks add their checks above this line
 }
 
