@@ -1378,7 +1378,7 @@ if (exists("reference/_conventions.md")) {
     const body = read(p).replace(/\r\n/g, "\n");
     for (const n of needles) if (!body.includes(n)) fail(`${p} must name "${n}"`);
   };
-  need("agents/plgn-art-director.md", ["CAMERA:"]);
+  need("agents/plgn-art-director.md", ["CAMERA:", "the fifteen"]);
   if (exists("agents/plgn-art-director.md")) {
     const ad = read("agents/plgn-art-director.md").replace(/\r\n/g, "\n");
     const iLight = ad.indexOf("\nLIGHT: ");
@@ -1403,7 +1403,10 @@ if (exists("reference/_conventions.md")) {
       at = i;
     }
   }
-  need("agents/plgn-designer.md", ["keep in this order"]);
+  need("agents/plgn-designer.md", [
+    "keep in this order",
+    "If anything must give, keep in this order: the label and the words, the product, where things stand, the light, the style.",
+  ]);
   if (exists("agents/plgn-designer.md")) {
     const d = read("agents/plgn-designer.md").replace(/\r\n/g, "\n");
     if (d.includes("cut craft first")) {

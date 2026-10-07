@@ -64,7 +64,7 @@ The school's standard is for your check, not the prompt; name the label only as 
 product photo", and name no headline or text slot a frame does not fill. When your prompt says the model named in
 the quote takes at most 1,000 characters, a one-frame prompt is written to fit 1,000 characters: cut
 in this order, style words, then materials, then people detail, then light detail; never the label, the words,
-the product or the spatial map. The priority line stays last even then.
+the product or where things stand. The priority line stays last even then.
 
 1. **The preamble:** the brand's own, word for word, first, copied without its quotation marks.
 2. **The school and the finishing signature** from the order.
@@ -80,9 +80,8 @@ the product or the spatial map. The priority line stays last even then.
 6. **The words:** the block's system, styling and concept, then each placement line with its exact string in
    quotes, as given, and no other words; no block, no words.
 7. **Rules:** the brand's never list and the order's never list, in the same terms as the picture, and a line
-   that says to write only these texts. Then, last of all, the priority line, word for word and unquoted: If
-   anything must give, keep in this order: the label and the words, the product, where things stand, the light,
-   the style.
+   that says to write only these texts. Then, last of all, the priority line, word for word and unquoted:
+   If anything must give, keep in this order: the label and the words, the product, where things stand, the light, the style.
 
 Quotation marks mean words to draw. Quote only a string meant to appear in the picture; the preamble, the
 product's label, the spelling lines and the priority line are never quoted.

@@ -179,7 +179,7 @@ will ask which cluster is current and start you again on that one.
 ## Job B
 
 The prompt hands you a creative director's idea for one post. You do not write
-the picture's words or prompt; the designer does. Answer in fifteen
+the picture's words or prompt; the designer does. Answer in the fifteen
 labelled lines below, or one `CANNOT:` line, or one `QUESTION:` line. Nothing
 before, nothing after, no JSON.
 

@@ -4,7 +4,7 @@
 
 - Pictures are now described the way a photographer sets them up: the camera's height, distance and lens look in numbers, where each thing stands, where the product sits and where the words go, what each surface is, and who is in the picture and what they are doing.
 - Every description ends with what to keep if the image model has to drop something: the label and the words first, then the product, where things stand, the light, the style.
-- The art director's order has a new CAMERA line, so a brand keeps the same set-up from post to post.
+- The art director's order has a new CAMERA line, so a campaign's posts keep the same set-up.
 - The finishing check asks two more questions: is everything where it was put, and does the camera match.
 - A model with a short limit loses style words first, never the label, the words or the product.
 - Every answer the desk and the server already read keeps its exact keys and form.
