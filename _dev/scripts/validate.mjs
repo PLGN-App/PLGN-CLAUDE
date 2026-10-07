@@ -209,7 +209,8 @@ const NON_TOOL_NAMES = new Set([
 ]);
 for (const p of CONTENT) {
   const body = read(p);
-  for (const m of body.matchAll(/`([a-z]+_[a-z0-9_]+)`/g)) {
+  // 1.15.1 (PS15): a backticked name followed by "(" is checked too.
+  for (const m of body.matchAll(/`([a-z]+_[a-z0-9_]+)(?:`|\()/g)) {
     const name = m[1];
     if (KNOWLEDGE_TYPES.has(name) || NON_TOOL_NAMES.has(name)) continue;
     // `offering_get` does not exist, and a file naming it is almost always
@@ -1259,6 +1260,32 @@ for (const [c, needles] of REPORTS) {
     }
   }
   // (later tasks add their needles above this line)
+}
+
+// --- 16. 1.15.1 (PS15) ----------------------------------------------------
+// The product-sheet agent may only look at pictures, and the conventions'
+// Connected list names every connected command.
+if (exists("agents/plgn-product-sheet.md")) {
+  const fm = read("agents/plgn-product-sheet.md").replace(/\r\n/g, "\n").match(/^---\n([\s\S]*?)\n---/);
+  const toolsBlock = fm ? fm[1].match(/^tools:\n((?:  - .*\n?)+)/m) : null;
+  const tools = toolsBlock ? toolsBlock[1].split("\n").map((l) => l.replace(/^  - /, "").trim()).filter(Boolean) : [];
+  if (tools.length !== 1 || tools[0] !== "mcp__plugin_plgn_plgn__image_view") {
+    fail("agents/plgn-product-sheet.md: tools must be exactly mcp__plugin_plgn_plgn__image_view");
+  }
+}
+if (exists("reference/_conventions.md")) {
+  const conv = read("reference/_conventions.md").replace(/\r\n/g, "\n");
+  const at = conv.indexOf("- **Connected**");
+  if (at === -1) {
+    fail("reference/_conventions.md: no '- **Connected**' bullet");
+  } else {
+    const end = conv.indexOf("\n\n", at);
+    const bullet = conv.slice(at, end === -1 ? undefined : end);
+    const missing = CONNECTED.filter((c) => !bullet.includes("`" + c + "`"));
+    if (missing.length) {
+      fail(`reference/_conventions.md: the Connected list is missing ${missing.map((c) => "`" + c + "`").join(", ")}`);
+    }
+  }
 }
 
 if (fails.length) {
