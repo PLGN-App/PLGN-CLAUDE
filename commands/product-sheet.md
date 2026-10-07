@@ -36,13 +36,19 @@ no source is a guess.
 Call `sheet_list(offering_id: <the offering's id>)`. When an approved sheet of
 this variant already exists, say that this run makes the next version, and
 that the approved one stays in use until the new one is approved.
+When it lists a draft of this variant, of either kind, waiting for approval or
+not, say that this run replaces it (plgn retires the older draft of the same
+variant and kind when the new one is saved), and ask `yes / pick / no` before
+going on.
 
 ## 3. Draft the maps
 
 Call `context_get(role: "designer")` and keep the brand's `never` lines.
 
 Send `plgn-product-sheet` the plan job: `kind: "product"`, the offering's
-name, the variant, the description, its photo links, and the `never` lines.
+name, the variant, the description, its photo links, the `never` lines, and
+its dimensions when the offering's text or the brand's saved knowledge states
+them. Never estimate one; with none, say so in the prompt.
 Never a price, and never a price in the offering's text: leave it out.
 Per **_conventions** rule 6, all of it goes in the prompt. A `CANNOT:` is
 said in plain words and the run stops.
@@ -105,9 +111,10 @@ Never a third picture. A second picture is paid for with the points the quote st
 
 ## 7. Save
 
-Call `sheet_create(offering_id, variant, kind, grid: { secure_url, public_id
-}, cells: <the measured cells>, parts_map, use_map, never)`. `grid` is the
-picture the last look checked (the second picture after a retry), and
+Call `sheet_create(offering_id, kind, grid: { secure_url, public_id }, cells:
+<the measured cells>, parts_map, never)`, adding `variant`
+only when the offering has variants and `use_map` only for a use sheet. `grid`
+is the picture the last look checked (the second picture after a retry), and
 `cells` are that look's measured cells. Then
 `sheet_mark(sheet_id, marks: [{ cell_id, mark, note }])` with the agent's
 marks and notes. Then `sheet_cut(sheet_id)`.
