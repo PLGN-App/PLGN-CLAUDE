@@ -366,7 +366,8 @@ whose concept format is made of words — a quote card, a reel cover or a meme.
 That picture carries the concept's hook exactly as saved, and nothing else.
 For it, send `plgn-typographer` the group's `art_director` block in place of an
 order (it has no type system in it: its TYPE NOTES say "designer to propose"),
-the hook, and the platform and ratio. Write its system, styling, concept and
+the hook, the post's `Concept:` line (its visual idea and the product's
+role), and the platform and ratio. Write its system, styling, concept and
 each placement line, with the hook in quotes, into the image description as
 given. For Arabic, add a letter-by-letter line for each easily confused
 letter, unquoted, and say it is not to be drawn. If it answers with a

@@ -174,10 +174,13 @@ for each one. This is the **creative-brief** skill's four steps in two calls
    HERO & HIERARCHY, PRODUCT and DELIVERY are yours to restate", and send
    the post's platform.
 4b. When a frame carries words (the creative director's image words for that
-   frame are not empty), send `plgn-typographer` the order word for word,
-   each such frame's words exactly as the director returned them, the
-   `art_director` block from item 4 (palette and look) and the platform and
-   ratio: one call per post, covering all its frames with words. A post
+   frame are not empty), send `plgn-typographer` the order word for word
+   (and say so when it was written for an earlier post of this campaign, as
+   item 4 does for the designer), the director's concept and hierarchy, each
+   such frame's direction and its words exactly as the director returned
+   them, the `art_director` block from item 4 (palette and look) and the
+   platform and ratio: one call per post, covering all its frames with
+   words. A post
    whose frames carry none never calls it. A `question` answer (two type
    systems) is put to the person like the director's, in plain words, and
    the typographer starts again with the answer; later posts of this brand
@@ -185,14 +188,17 @@ for each one. This is the **creative-brief** skill's four steps in two calls
    words with the shorter line, for example: "The line 'Fresh coffee, roasted
    this morning, at your door' is too long to read at this size. Use 'Fresh
    coffee, at your door' instead? yes / edit / no". On yes that frame's words become
-   the shorter line and 4b runs again with them; on no nothing changes. The
-   words change only on a yes. Then
-   read `context_get(role: "designer", campaign_id: <the post's campaign, if
+   the shorter line and 4b runs again with them; on edit the person's own line
+   becomes that frame's words and 4b runs again with it; on no nothing
+   changes. The words change only on the person's yes or edit.
+
+   Then, for every post, words or not, read
+   `context_get(role: "designer", campaign_id: <the post's campaign, if
    it has one>)` for the brand's identity and picture rules. Send
    `plgn-designer` the order word for word first, then the typography block,
-   word for word, when this step ran, then the concept, the
+   word for word, when the typographer ran, then the concept, the
    director's hierarchy and image words (the headline and support line it
-   checked against the banned words), the frames, that block, the campaign's
+   checked against the banned words), the frames, the designer read's block, the campaign's
    constraints from step 1 of this list — the designer's own read does not
    carry them — the **Assets** section of the designer read, and what
    carries each frame, as the `brief_create` call in step 3 resolved it,

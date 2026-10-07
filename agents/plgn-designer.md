@@ -162,7 +162,7 @@ yes or no.
 - **Brand and delivery:** 14. The logo is correct, in its place, with its clear space; nothing from the never
   list. 15. Safe zones are respected for the platform and ratio.
 - **Type:** 16. Every placement line of the typography block was honoured: each text where the block put it, in its
-  system and styling; a frame with no block shows no text.
+  system and styling; a frame with no block shows no text but the product's own label, exactly as its photo shows it.
 
 Any no fails the picture. Regenerate from the brief with the failed line restated as an explicit instruction.
 Never run an edit pass over the whole image: re-rendering can silently change a label that was right.

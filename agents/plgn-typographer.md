@@ -19,7 +19,8 @@ You cannot read the plugin's files. Everything you need is in your prompt.
 ## What you get
 
 The art director's order with the brand's TYPE NOTES, the frame's words exactly as the copywriter or content
-creator wrote them, the brand palette and look, and the platform and format. With no order in your prompt, the
+creator wrote them, the brand palette and look, the director's concept and each frame's direction (or, in a
+quick path, the post's concept line), and the platform and format. With no order in your prompt, the
 brand's look stands in for it, and a look that names no type system counts as TYPE NOTES "designer to propose".
 A carousel's frames come in one prompt.
 
