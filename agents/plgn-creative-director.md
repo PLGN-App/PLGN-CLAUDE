@@ -200,6 +200,12 @@ way is silently dropped.
       "rejected_because": "the literal picture of the caption; adds nothing the reader just read" },
     { "metaphor": "a rope under tension", "territory": "metaphor · climbing gear", "score": 7,
       "rejected_because": "reads as effort, not as the product's strength" },
+    { "metaphor": "a mother's hands at the school run, 7:10", "territory": "tension · the school run at 7:10", "score": 6,
+      "rejected_because": "shows the problem louder than the strength" },
+    { "metaphor": "long hair on a playground swing", "territory": "displacement · the playground swing", "score": 5,
+      "rejected_because": "a stunt nobody believes of hair" },
+    { "metaphor": "a plain morning at the gate, hair untouched", "territory": "document · the school gate at 3pm", "score": 8,
+      "rejected_because": "true, but the strength reads only with the caption" },
     { "metaphor": "one strand holding a full bag", "territory": "scale · the strand against the weight", "score": 9 }
   ],
   "concept": "the one idea picked, in a sentence",
