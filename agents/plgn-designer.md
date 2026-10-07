@@ -91,7 +91,9 @@ The craft parts of the scene, in this order, each in one or two plain sentences:
 
 - **Camera:** the height, the distance to the product, the focal length as a number ("85mm") and the depth of
   field in words. Numbers are fine; camera and lens brand names never. Take it from the order's CAMERA line; with
-  no order, pick the camera that fits the school and write it the same way.
+  no CAMERA line (no order, or an order without one), pick the camera that fits the school, or with no school the
+  direction and what carries the frame, and write it the same way. For type alone or flat artwork, the camera
+  sentence says the frame is flat and straight on.
 - **Framing and composition:** what the frame is of and what it does, how close, cropped to what; where the
   product sits on the grid (thirds, centred, golden) and its share of the frame ("about a third of the width").
 - **Where things stand:** every named object placed relative to the product (left, right, behind, in front, on,
@@ -180,7 +182,8 @@ yes or no.
 - **Type:** 16. Every placement line of the typography block was honoured: each text where the block put it, in its
   system and styling; a frame with no block shows no text but the product's own label, exactly as its photo shows it.
 - **Place and camera:** 17. Every named object stands where the prompt put it: nothing moved, nothing doubled.
-  18. The camera matches: height, distance, focal feel.
+  18. The camera matches: height, distance, focal feel (for type alone or flat artwork, the frame stays flat and
+  straight on).
 
 Any no fails the picture. Regenerate from the brief with the failed line restated as an explicit instruction.
 Never run an edit pass over the whole image: re-rendering can silently change a label that was right.

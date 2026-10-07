@@ -224,6 +224,7 @@ its distance range to the product ("1 to 1.5 m"), the focal length as a number
 ("an 85mm look") and the depth in words ("the product sharp, the room soft").
 Numbers are fine; a camera or lens brand name never. It is the brand's usual
 set-up, so a campaign's later posts reuse it with the rest of the order.
+For type-led or flat illustration, CAMERA reads "flat artwork, straight on, no depth".
 
 ```
 SCHOOL: <one school from the library>
