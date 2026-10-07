@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.16.0 (2026-10-07)
+
+- A fifth picture role, the typographer: it chooses the type, the styling and the place for the words in a picture, before the picture is made. It never changes a word.
+- `/plgn images` has a new step 4b for a post whose frames carry words. When a line is too long it asks you in plain words, with the shorter line, `yes / no`. The words change only on a yes.
+- The designer takes the typographer's block as given and checks every placement in the finish. A frame with no words gets none written.
+- `/plgn month` styles quote cards, reel covers and memes the same way, using the hook exactly as saved.
+- Every answer the desk and the server already read keeps its exact keys and form.
+
 ## 1.15.1 (2026-10-07)
 
 - Wording fixes in the picture agents and commands: no new tool, and every answer keeps its shape.

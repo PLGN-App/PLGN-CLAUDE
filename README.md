@@ -243,6 +243,8 @@ rather than one post at a time. Platform limits, brand voice, error recovery and
 **how plgn talks to you** each live in exactly one skill file, so commands can't
 drift apart as the plugin grows.
 
+A picture has four roles: `plgn-creative-director` (the idea), `plgn-art-director` (the order), `plgn-typographer` (the words' type and place, only when a frame carries words) and `plgn-designer` (execution and finish).
+
 Because agents run in their own context and cannot read those skill files,
 commands pass the rules an agent needs directly in its prompt — see
 `reference/_conventions.md` rule 6.

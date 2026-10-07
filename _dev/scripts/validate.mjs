@@ -1356,6 +1356,17 @@ if (exists("reference/_conventions.md")) {
   if (exists("skills/image-prompting/SKILL.md") && read("skills/image-prompting/SKILL.md").includes("6. typography and grid")) {
     fail("skills/image-prompting/SKILL.md: part 6 follows the typographer's block, not \"typography and grid\"");
   }
+  // README names the new role.
+  need("README.md", ["plgn-typographer"]);
+  // The manifest, the marketplace entry and the newest CHANGELOG heading agree.
+  if (exists(".claude-plugin/plugin.json") && exists(".claude-plugin/marketplace.json") && exists("CHANGELOG.md")) {
+    const vPlugin = JSON.parse(read(".claude-plugin/plugin.json")).version;
+    const vMarket = JSON.parse(read(".claude-plugin/marketplace.json")).plugins?.[0]?.version;
+    const vLog = (read("CHANGELOG.md").match(/^## (\d+\.\d+\.\d+)/m) || [])[1];
+    if (vPlugin !== vMarket || vPlugin !== vLog) {
+      fail(`versions disagree: plugin.json ${vPlugin}, marketplace.json ${vMarket}, CHANGELOG ${vLog}`);
+    }
+  }
 }
 
 if (fails.length) {
