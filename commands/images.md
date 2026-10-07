@@ -160,8 +160,9 @@ for each one. This is the **creative-brief** skill's four steps in two calls
    three checks — see **creative-brief**.
 4. Read `context_get(role: "art_director", campaign_id: <the post's
    campaign, if it has one>)` once per campaign (the read section 6 uses:
-   make it here and reuse it) and send `plgn-art-director` that block, the
-   **Assets** section of step 1's read, the director's whole answer, the
+   make it here and reuse it) and send `plgn-art-director` a prompt whose
+   first line is `Job B: write the order for this post.`, then that block,
+   the **Assets** section of step 1's read, the director's whole answer, the
    post's `Concept:` line, what carries each frame as step 3 resolved it,
    and the platform. It answers with the order, `CANNOT:` or `QUESTION:`
    (two schools, asked of the person like the director's). Its PRODUCT and

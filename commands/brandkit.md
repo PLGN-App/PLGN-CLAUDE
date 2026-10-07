@@ -127,8 +127,8 @@ Then, from those findings:
   a knowledge entry. Ask product-or-service when the source does not say.
   Give it the `place` reviews too: 4–5 stars are proof, 1–3 stars are
   objections.
-- `plgn-art-director` reads the pictures, in two jobs. It cannot call
-  `social_fetch`, so give it the links: the brand's `allPictures` and each
+- `plgn-art-director` reads the pictures, in two passes of Job A. It cannot
+  call `social_fetch`, so give it the links: the brand's `allPictures` and each
   competitor researcher's `pictures`. **The sort job**: number every
   picture in the brand's `allPictures`, plus the pictures the user gave in
   step 3 (`your file`). Start one art director per source group — each
