@@ -1410,6 +1410,18 @@ if (exists("reference/_conventions.md")) {
       fail("agents/plgn-designer.md: the 1,000-character cut order replaces \"cut craft first\"");
     }
   }
+  if (exists("agents/plgn-designer.md")) {
+    const d = read("agents/plgn-designer.md").replace(/\r\n/g, "\n");
+    const from = d.indexOf("## The finishing pass");
+    const to = d.indexOf("## Finishing by school");
+    const pass = from >= 0 && to > from ? d.slice(from, to) : "";
+    if (!pass.includes("17. ") || !pass.includes("18. ")) {
+      fail("agents/plgn-designer.md: the finishing pass must hold checks 17. and 18.");
+    }
+    if (!d.includes('· 18 yes"')) {
+      fail("agents/plgn-designer.md: the check example must end \"18 yes\"");
+    }
+  }
   // 1.17.0: later tasks add their checks above this line
 }
 

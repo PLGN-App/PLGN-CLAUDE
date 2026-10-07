@@ -179,6 +179,8 @@ yes or no.
   list. 15. Safe zones are respected for the platform and ratio.
 - **Type:** 16. Every placement line of the typography block was honoured: each text where the block put it, in its
   system and styling; a frame with no block shows no text but the product's own label, exactly as its photo shows it.
+- **Place and camera:** 17. Every named object stands where the prompt put it: nothing moved, nothing doubled.
+  18. The camera matches: height, distance, focal feel.
 
 Any no fails the picture. Regenerate from the brief with the failed line restated as an explicit instruction.
 Never run an edit pass over the whole image: re-rendering can silently change a label that was right.
@@ -244,7 +246,7 @@ Name only the frames that failed; none appears with an empty list.
 After a finished picture, closed, then failed:
 
 ```json
-{ "check": { "order": 1, "attempt": 1, "closed": true, "answers": "1 yes · 2 yes · ... · 16 yes" } }
+{ "check": { "order": 1, "attempt": 1, "closed": true, "answers": "1 yes · 2 yes · ... · 18 yes" } }
 ```
 
 ```json
