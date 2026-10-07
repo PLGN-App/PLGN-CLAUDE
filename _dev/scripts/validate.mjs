@@ -1241,8 +1241,8 @@ for (const [c, needles] of REPORTS) {
     need(`commands/${c}.md`, ["`[flagged: …]`"]);
   }
   need("commands/product-sheet.md", ["image_quote", "`--yes` is not accepted", "Approve? yes / pick / no",
-    "a real photo or official render of this exact variant", "sheet_create", "sheet_mark", "sheet_cut",
-    "sheet_approve", "image_view", "Never a third"]);
+    "needs a real photo or official render of this exact variant", "sheet_create", "sheet_mark", "sheet_cut",
+    "sheet_approve", "image_view", "Never a third picture"]);
   need("agents/plgn-product-sheet.md", ["mcp__plugin_plgn_plgn__image_view", "No source, no sheet",
     "No price on any sheet", "needs_real_photo", "under 4,000 characters", "exactly the ids in `cells`",
     "CANNOT: no documented way"]);

@@ -16,9 +16,10 @@ Call `workspace_info`. If it fails, print the message from **_conventions**
 rule 2 and stop.
 
 Read the `Image points` line and the `Integrations` line, as `/plgn images`
-section 1 does. No points left: say so, point at billing in the dashboard,
-never ask for a key in the terminal, and stop. `cloudinary: missing`: say so
-in one line, because the sheet's cells need storage, and stop.
+section 1 does. No points left: say so, point at
+Plan & usage (useplgn.com/settings/plan), never ask for a key in a chat,
+and stop. `cloudinary: missing`: say so in one line, because the sheet's
+cells need storage, and stop.
 
 ## 2. Find the product
 
@@ -27,10 +28,10 @@ service). One variant per run: when the offering has variants and the
 argument names none, list them and ask which one, `yes / pick / no`. When
 nothing matches, say so and stop. Never guess a product.
 
-The offering must have at least one photo. With none, stop and say it needs
-a real photo or official render of this exact variant, and point at
-Knowledge › Offerings in the dashboard. A sheet with no source is a
-guess.
+The offering must have at least one photo. With none, stop: the sheet
+needs a real photo or official render of this exact variant. Point at
+Knowledge › Offerings (useplgn.com/knowledge?tab=offerings). A sheet with
+no source is a guess.
 
 Call `sheet_list(offering_id: <the offering's id>)`. When an approved sheet of
 this variant already exists, say that this run makes the next version, and
@@ -92,8 +93,8 @@ and a mark for each.
 Any cell it marks `failed`: make one more picture whose prompt is the
 agent's `retry` text alone (it is the whole new sheet text; never add it to
 `grid_prompt`), and send the check job again as "second look". On the
-second look a cell that still fails is `needs_real_photo`. Never a third
-picture. A second picture is paid for with the points the quote stated.
+second look a cell that still fails is `needs_real_photo`.
+Never a third picture. A second picture is paid for with the points the quote stated.
 
 ## 7. Save
 
