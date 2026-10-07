@@ -1350,6 +1350,12 @@ if (exists("reference/_conventions.md")) {
       fail("commands/month.md: the quick path must style a word picture with plgn-typographer");
     }
   }
+  // The skills name the typographer.
+  need("skills/creative-brief/SKILL.md", ["`plgn-typographer`", "\"placement\":"]);
+  need("skills/image-prompting/SKILL.md", ["`plgn-typographer`"]);
+  if (exists("skills/image-prompting/SKILL.md") && read("skills/image-prompting/SKILL.md").includes("6. typography and grid")) {
+    fail("skills/image-prompting/SKILL.md: part 6 follows the typographer's block, not \"typography and grid\"");
+  }
 }
 
 if (fails.length) {

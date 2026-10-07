@@ -64,10 +64,11 @@ A post about wasted planning time does not need a picture of a calendar. The
 literal illustration is the first idea and almost always the weakest — it adds
 nothing the reader just read.
 
-On the brief path the work runs as a chain: idea, order, execution.
+On the brief path the work runs as a chain: idea, order, words, execution.
 `plgn-creative-director` writes the literal picture first and rejects it, then
 scores one idea from each of five lenses. `plgn-art-director` turns the idea
-into the order. `plgn-designer` writes the final text in seven parts, in this
+into the order. `plgn-typographer` styles and places the words a frame carries,
+when it carries any, and keeps every word as written. `plgn-designer` writes the final text in seven parts, in this
 order, with the brand colour as an accent:
 
 1. the preamble, without quotation marks
@@ -75,7 +76,7 @@ order, with the brand colour as an accent:
 3. the concept, in one line
 4. the scene
 5. the product
-6. typography and grid
+6. the words, as the typographer's block places them
 7. the rules
 
 **creative-brief** owns those steps. The aim is the mood of the argument, or

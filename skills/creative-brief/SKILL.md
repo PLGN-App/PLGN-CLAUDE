@@ -126,10 +126,37 @@ DELIVERY: Instagram feed, 4:5, keep 10% clear at the edges
 NEVER: stock-looking beans, hands holding the tin, the brand's banned words
 ```
 
+**Between the order and 4 · the words.** `plgn-typographer` is the fifth role,
+and it runs only when a frame carries words: the director's image words for
+that frame are not empty. It styles and places the words, one call per post for
+all its frames, and never changes, cuts or drops a word. If a line cannot fit
+at a readable size it says so in `fit` and proposes a shorter one; the words
+change only when the person says yes. A frame with no words never reaches it,
+and the designer then writes none. Like the order, its block is not saved in
+the brief; the command hands it to the designer. For the Bunduq Coffee hero
+order above, with one frame, a headline and a support line, in the order's
+Kufi:
+
+```json
+{
+  "typography": {
+    "system": "Geometric Kufi, heavy for the headline, light for the support line, 3:1 in size; Western digits",
+    "styling": "The headline in cream, the support line in walnut brown on a cream plate; plain, size steps 96 and 32",
+    "concept": "The headline is a painted shop sign above the counter, the support line a small tag under the tin",
+    "placement": [
+      { "text": "قهوة تصحّيك", "where": "top third, right-aligned, inside the 10% safe zone", "near": "keeps off the tin's label and the steam" },
+      { "text": "من أول رشفة", "where": "lower right, under the cup, right-aligned", "near": "keeps clear of the bottom trim" }
+    ],
+    "fit": null
+  }
+}
+```
+
 **4 · check → final text.** `plgn-designer` checks the direction and the order
-against the brand and the brief, then writes the final image text in the prompt
-order (see **image-prompting**) and the alt text per frame — or raises
-objections if the direction or the order doesn't hold up.
+against the brand and the brief, then writes the final image text, taking the
+typography block as given, in the prompt order (see **image-prompting**) and
+the alt text per frame — or raises objections if the direction or the order
+doesn't hold up.
 
 ## Two calls, not four
 
