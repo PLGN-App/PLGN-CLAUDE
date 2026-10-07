@@ -198,12 +198,15 @@ for each one. This is the **creative-brief** skill's four steps in two calls
    is an objection against every frame, handled as this item says, and
    counts as a check. After any round that changes the idea, a `CANNOT:`
    included, send the new idea to `plgn-art-director` for a fresh order
-   before the designer: the old order describes the rejected idea. A
-   designer finding that starts `order: ` goes to `plgn-art-director` once
-   for a corrected order, then back to the designer, with no `brief_update`
-   and no check. A second `order: ` finding on the same post counts as a
-   failed check. With both kinds, this item comes first and the order's
-   findings go to the art director with the new idea. A designer `question` (two type systems) is put to the
+   before the designer, in item 4's prompt with the first line
+   `Job B: write the order for this post.`: the old order describes the
+   rejected idea. A designer finding that starts `order: ` goes to
+   `plgn-art-director` once for a corrected order, again in item 4's prompt
+   with the first line `Job B: write the order for this post.`, then back to
+   the designer, with no `brief_update` and no check. A second `order: `
+   finding on the same post counts as a failed check. With both kinds, this
+   item comes first and the order's findings go to the art director with
+   the new idea. A designer `question` (two type systems) is put to the
    person like the director's.
 6. No objections → call `brief_finalize` with the brief's id and, per
    frame, its `order`, the designer's `generation_prompt` and its

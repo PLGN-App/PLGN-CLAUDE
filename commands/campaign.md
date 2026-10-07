@@ -113,7 +113,7 @@ Then say what to do next:
 Ramadan 2027 saved · 1 Feb → 2 Mar
 
 Plan posts inside it with:  /plgn month "Ramadan 2027"
-Think it through first:  /plgn campaign think "Ramadan"
+Think it through first:  /plgn campaign think "Ramadan 2027"
 ```
 
 ## 6. Mark done, or archive

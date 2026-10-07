@@ -36,10 +36,20 @@ no source is a guess.
 Call `sheet_list(offering_id: <the offering's id>)`. When an approved sheet of
 this variant already exists, say that this run makes the next version, and
 that the approved one stays in use until the new one is approved.
-When it lists a draft of this variant, of either kind, waiting for approval or
-not, say that this run replaces it (plgn retires the older draft of the same
-variant and kind when the new one is saved), and ask `yes / pick / no` before
-going on.
+When it lists a draft of this variant, waiting for approval or not, say that
+this run replaces it: plgn retires the older draft of the same variant and
+kind when the new one is saved. A product draft goes when section 7 saves the
+new Product Sheet; a use draft goes only when section 9 makes the Use Sheet,
+so a run that stops before it (a `CANNOT:`, or a balance for one picture)
+leaves the use draft as it is. Name the draft, or each draft, in the
+question, variant and kind, and ask `yes / edit / no`:
+
+```
+Replace the draft "Ethiopia 250g · Product Sheet"? yes / edit / no
+```
+
+`edit` keeps the old draft and stops, so the person can approve it on the
+Assets page first. `no` stops and changes nothing.
 
 ## 3. Draft the maps
 
@@ -83,6 +93,10 @@ waits until there are points for it.
 yes / pick / no
 ```
 
+With a balance for one picture the first line reads instead
+`1 picture now, none more: the balance covers one — <model>, <n> points,
+leaving <n>.`
+
 `--dry-run` stops here and spends nothing.
 **`--yes` is not accepted by this command.** It spends points.
 
@@ -105,8 +119,10 @@ and a mark for each.
 
 Any cell it marks `failed`: make one more picture whose prompt is the
 agent's `retry` text alone (it is the whole new sheet text; never add it to
-`grid_prompt`), and send the check job again as "second look". On the
-second look a cell that still fails is `needs_real_photo`.
+`grid_prompt`), and send the check job again as "second look", unless
+section 4 said the balance covers one picture: then that cell is
+`needs_real_photo` and no second picture is made. On the second look a cell
+that still fails is `needs_real_photo`.
 Never a third picture. A second picture is paid for with the points the quote
 stated.
 

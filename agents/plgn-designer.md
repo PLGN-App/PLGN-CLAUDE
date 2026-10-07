@@ -126,9 +126,9 @@ for the whole scene on purpose, a coloured set or backdrop, wins over this.
 
 The role word that starts a direction (`hero`, `detail`, `result`, `in use`, `none`) is the director's call.
 Write the frame for it; never copy the word into the text. Name each input image by its role, and put
-in `asset_ids` the ids of the assets the frame uses, at most four, and only ids of saved assets your prompt lists;
-a reference that is a post has no id. A frame that uses none has an empty list. For `in use`, the one-action rule
-below applies.
+in `asset_ids` the ids of the assets the frame uses, at most four, in this order: the product's source first,
+then the chosen reference, then the rest; only ids of saved assets your prompt lists, and a reference that is
+a post has no id. A frame that uses none has an empty list. For `in use`, the one-action rule below applies.
 
 ## The picture must be physically true
 

@@ -118,6 +118,10 @@ labelled lines, each on its own line, no JSON:
     Headlines: <how a headline is built, in one line>
 
 The mood board takes references only, never an asset and never `S` stand-ins.
+With no saved reference at all (the prompt's `## References` holds only `S`
+stand-ins, or nothing), the mood board cannot be written: answer in one line
+that the brand needs at least one saved reference first, from
+`/plgn brandkit`, and write none of the five lines.
 
 ## Job: concepts
 

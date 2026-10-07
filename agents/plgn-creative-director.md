@@ -144,7 +144,8 @@ decide after you, from what the brand sells. Say what the frame is *of*.
 ### Hierarchy
 
 Say what is seen first, second and third. The first is the one thing the viewer takes in at once; keep the order
-short and true to the idea (in `"hierarchy"` when the line is there; otherwise think it through and write nothing).
+short and true to the idea (in `"hierarchy"` when the prompt holds the line
+`An art director takes this idea next.`; otherwise think it through and write nothing).
 
 ### The product's role
 
