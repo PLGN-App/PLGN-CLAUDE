@@ -1308,6 +1308,17 @@ if (exists("reference/_conventions.md")) {
     }
   }
   need("agents/plgn-typographer.md", ["Two type systems", "designer to propose", "letter for letter"]);
+  // The designer takes the typography block as given.
+  need("agents/plgn-designer.md", ["## The typography block", "16. Every placement line"]);
+  if (exists("agents/plgn-designer.md")) {
+    const designer = read("agents/plgn-designer.md").replace(/\r\n/g, "\n");
+    if (/^## (Typography|Grid)\s*$/m.test(designer)) {
+      fail("agents/plgn-designer.md: the Typography and Grid sections moved to plgn-typographer");
+    }
+    if (designer.includes("Two type systems")) {
+      fail("agents/plgn-designer.md: the two type systems question is plgn-typographer's");
+    }
+  }
 }
 
 if (fails.length) {
