@@ -1391,6 +1391,18 @@ if (exists("reference/_conventions.md")) {
       fail("agents/plgn-art-director.md: Job B answers in fifteen labelled lines");
     }
   }
+  if (exists("agents/plgn-designer.md")) {
+    const d = read("agents/plgn-designer.md").replace(/\r\n/g, "\n");
+    const labels = ["Camera", "Framing and composition", "Where things stand", "Light", "Styling",
+      "Materials and people", "Grade", "Space for the words"];
+    let at = -1;
+    for (const l of labels) {
+      const i = d.indexOf(`\n- **${l}:**`);
+      if (i < 0) { fail(`agents/plgn-designer.md: the craft part "- **${l}:**" is missing`); break; }
+      if (i < at) { fail(`agents/plgn-designer.md: the craft part "${l}" is out of order`); break; }
+      at = i;
+    }
+  }
   // 1.17.0: later tasks add their checks above this line
 }
 

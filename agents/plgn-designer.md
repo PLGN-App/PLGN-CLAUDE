@@ -32,8 +32,8 @@ If the order conflicts with the brand's data or the product's truth (a grade the
 with no source, a word on the banned list), that is a finding, and it starts `order: `. Never obey it silently
 and never change it silently. Without an order, write no `executing`. PRODUCT "needs a product photo" means a
 frame with no product in it, not an `order: ` finding. An order your prompt says was written for an earlier post
-keeps its school, world, light, colour, signature, fixed, free, type notes and never lines; take HERO & HIERARCHY,
-PRODUCT and DELIVERY (with the platform your prompt gives) from this post's own idea, and restate them.
+keeps its school, world, light, camera, colour, signature, fixed, free, type notes and never lines; take HERO &
+HIERARCHY, PRODUCT and DELIVERY (with the platform your prompt gives) from this post's own idea, and restate them.
 
 ## Check first, write second
 
@@ -84,15 +84,28 @@ never what keeps the picture physically true.
 Quotation marks mean words to draw. Quote only a string meant to appear in the picture; the preamble, the
 product's label and the spelling lines are never quoted.
 
-The craft parts of the scene, in this order: the shot (what the frame is of and what it does, how close, from
-where, cropped to what); the lens feel (shallow or deep focus, wide and close or long and compressed, in plain
-words, no camera or lens brand names); the light (one named set-up, "a single window on the left, early
-morning"); the styling (the audience's real taste in a real place of the brand's market: a Cairo flat, not a
-Scandinavian loft); the texture and finish (never "glossy" when the `never` list forbids shine); the grade (two
-or three colours, one of them the brand's); the space (where the copy goes, empty enough to read at phone size).
+The craft parts of the scene, in this order, each in one or two plain sentences:
+
+- **Camera:** the height, the distance to the product, the focal length as a number ("85mm") and the depth of
+  field in words. Numbers are fine; camera and lens brand names never. Take it from the order's CAMERA line; with
+  no order, pick the camera that fits the school and write it the same way.
+- **Framing and composition:** what the frame is of and what it does, how close, cropped to what; where the
+  product sits on the grid (thirds, centred, golden) and its share of the frame ("about a third of the width").
+- **Where things stand:** every named object placed relative to the product (left, right, behind, in front, on,
+  under), then one sentence of what must not move or double ("one pack, one cup; nothing else on the table"). In
+  a carousel, say what stays fixed from frame to frame.
+- **Light:** one named set-up, "a single window on the left, early morning".
+- **Styling:** the audience's real taste in a real place of the brand's market: a Cairo flat, not a Scandinavian
+  loft.
+- **Materials and people:** each important object's surface in a word pair ("matte card", "brushed steel"),
+  never "glossy" when the `never` list forbids shine. People by count, age range, clothing and which way they
+  face, plus the one action (the one-action rule below), nothing else about them.
+- **Grade:** two or three colours, one of them the brand's.
+- **Space for the words:** where the empty space is, readable at phone size. With a typography block it is where
+  the placement lines put the words, and it agrees with every one of them.
 
 Craft, not length: cut any sentence that only sounds nice, never one that keeps the picture physically true.
-For type alone the shot is the type and its layout; for a built object the light and styling describe its set.
+For type alone the framing is the type and its layout; for a built object the light and styling describe its set.
 
 The brand colour is an accent. At most two things in the frame carry the brand's palette, and you name them:
 "the tube and the hairband". Everything else is the real colour of a real place. The preamble carries the
