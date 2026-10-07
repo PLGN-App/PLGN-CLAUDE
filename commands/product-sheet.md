@@ -66,9 +66,14 @@ points for both, and what is left, in plain words, and offer to switch the
 model. If they name one, pass it as `model` here and on every picture of
 this run.
 
+When the balance covers only one picture, say so before the yes: this run
+makes the Product Sheet's picture alone, a cell that fails its first look
+is marked `needs_real_photo` with no second picture, and the Use Sheet
+waits until there are points for it.
+
 ```
-1 picture now, 1 more only if a cell fails — GPT 2.5 Flare 2K, 2 points
-each, 4 at most, leaving 20.
+1 picture now, 1 more only if a cell fails — <model>, <n> points each,
+2 at most, leaving <n>.
 yes / pick / no
 ```
 
@@ -80,8 +85,10 @@ yes / pick / no
 Only after the yes, call `generate_image_from_image(prompt: <grid_prompt>,
 input_urls: <the photo links>, aspect_ratio: <the agent's aspect_ratio>)`.
 Then follow the **image-prompting** skill's waiting cycle with
-`check_generation`. It reports the picture's `url` and `public_id`; keep
-both.
+`check_generation`. The grid's address is the finished picture's `url` and
+`public_id`: where the client waits for the picture, `check_generation`
+reports them; where a sheet job makes the picture, the job's answer
+carries them. Keep both; section 7 sends the `url` as `secure_url`.
 
 ## 6. Check every cell
 
