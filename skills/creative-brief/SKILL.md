@@ -25,7 +25,7 @@ The agent cannot see this file; the whole prompt goes in, the job line first, th
 - `## References`: from `knowledge_get(type: "reference", limit: 20)`, keep entries with
   no `[campaign: …]` tag or this campaign's, leave out the big idea, number from 1: `<n>.
   <title> · take: <metadata.take, else intent> · leave: <metadata.leave, else "not read
-  yet"> · pictures: <metadata.pictures, else "none"> · <given|found>`.
+  yet"> · pictures: <metadata.pictures, else "none"> · <metadata.source: given or found; else found>`.
 - `## The campaign`: key message, constraints, `Big idea: …` when saved.
 - `## Posts` (concepts only), one line per post: `<ref> · <topic> · <platform> · <the
   person's idea> · <format>`. Always give `single` or `carousel with N frames` (month: the
@@ -49,13 +49,14 @@ first ideas, print the numbered reference titles, one line each (never call it a
 Print ideas as returned. Every steer runs the agent again with `## So far`; it remembers nothing.
 Words that start a talk: ideas, options, brainstorm, let's think, think, «أفكار», «نفكر».
 Words that end one with a pick: this one, do it, a number, "3 and 7 together", «نفذ».
+A pick runs `Job: platform` (in `/plgn campaign`) or `Job: concepts` (in `/plgn post` and `/plgn month`), with the pick in `## So far`.
 
 **The big idea.** Save the platform reply's five lines once per campaign:
 
 ```
 knowledge_add(type: "reference", title: "Creative platform", campaign_id: <id>,
   content: <prose for a person>, metadata: { kind: "creative_platform",
-    intent: "every post in this campaign starts here; not a look to copy",
+    intent: "<the big idea's one sentence>; every post in this campaign starts here; not a look to copy",
     big_idea, visual_world, series_devices,
     mood_board: [<entry ids of its numbers>], headline_system })
 ```
@@ -105,13 +106,13 @@ FIELD: food
 REFERENCES: Bunduq Coffee's latest tin post — take: one tin, warm side light — leave: the busy shelf
 WORLD: a Cairo kitchen counter at 7 am, morning in autumn; the coffee is real
 HERO & HIERARCHY: 1 the tin · 2 steam rising from the cup · 3 the counter
-PRODUCT: approved sheet view · role: hero · scale: a hand-sized tin beside a small cup
+PRODUCT: sheet <asset id> · cell three_quarter · role: hero · scale: a hand-sized tin beside a small cup
 LIGHT: soft window light from the left, warm, one source
 COLOUR: cream and walnut brown dominate; the brand's red only on the tin
 FINISHING SIGNATURE: matte-soft
 FIXED: the tin's shape, its label, the logo, the brand palette
 FREE: the cup, the angle, the steam
-TYPE NOTES: designer to propose
+TYPE NOTES: the brand's geometric Kufi, heavy headline, light support
 DELIVERY: Instagram feed, 4:5, keep 10% clear at the edges
 NEVER: stock-looking beans, hands holding the tin, the brand's banned words
 ```

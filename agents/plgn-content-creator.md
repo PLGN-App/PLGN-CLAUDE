@@ -114,7 +114,7 @@ labelled lines, each on its own line, no JSON:
     Big idea: <one sentence>
     World: <the visual world: place, light, kind of people>
     Series: <the devices that repeat across posts>
-    Mood board: references <3 to 6 numbers from the index>
+    Mood board: references <3 to 6 numbers from the index; with fewer saved, as many as exist>
     Headlines: <how a headline is built, in one line>
 
 The mood board takes references only, never an asset and never `S` stand-ins.
@@ -155,10 +155,11 @@ sets it aside, then end with exactly one fenced block and nothing after it. It i
 
 The eight keys never change. `format` is one of single, carousel, reel
 cover, quote card, before/after, meme. `visual` is the visual idea in one
-sentence. `reference` is `reference <n>` or `asset <name>`. `shape` is one of
-the six carousel shapes, or `single`. `device` is the series device the post
-uses, or `none`. `product_role` is hero, detail, result, in use, or none.
-One object per post line, same order, same count.
+sentence. `reference` is `reference <n>`, `reference S<n>` for a stand-in, or
+`asset <name>`. `shape` is one of the six carousel shapes, or `single`.
+`device` is the series device the post uses, or `none`. `product_role` is
+hero, detail, result, in use, or none. One object per post line, same order,
+same count.
 
 ## When you cannot
 
