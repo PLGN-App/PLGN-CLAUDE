@@ -13,23 +13,26 @@ that just gets busier each round.
 
 ## The concept comes first
 
-A **concept** is what one post is doing, settled before any caption or picture: format,
-hook, visual idea, reference or asset, story shape, call to action, series device, product
-role. `plgn-content-creator` writes it; the copywriter and designer carry it out.
+A **concept** is what one post is doing, settled before any caption or
+picture: format, hook, visual idea, reference or asset, story shape, call to
+action, series device, product role. `plgn-content-creator` writes it; the
+copywriter and designer carry it out.
 
-**Briefing the content creator.** Jobs: `Job: ideas`, `Job: platform`, `Job: concepts`.
-The agent cannot see this file; the whole prompt goes in, the job line first, then
+**Briefing the content creator.** Jobs: `Job: ideas`, `Job: platform`,
+`Job: concepts`. The agent cannot see this file; the whole prompt goes in, the
+job line first, then
 
-- `## The brand`: the `context_get(role: "creative_director", campaign_id: <id>)` block,
-  verbatim.
-- `## References`: from `knowledge_get(type: "reference", limit: 20)`, keep entries with
-  no `[campaign: …]` tag or this campaign's, leave out the big idea, number from 1: `<n>.
-  <title> · take: <metadata.take, else intent> · leave: <metadata.leave, else "not read
-  yet"> · pictures: <metadata.pictures, else "none"> · <metadata.source: given or found; else found>`.
+- `## The brand`: the
+  `context_get(role: "creative_director", campaign_id: <id>)` block, verbatim.
+- `## References`: from `knowledge_get(type: "reference", limit: 20)`, keep
+  entries with no `[campaign: …]` tag or this campaign's, leave out the big
+  idea, number from 1:
+  `<n>. <title> · take: <metadata.take, else intent> · leave: <metadata.leave, else "not read yet"> · pictures: <metadata.pictures, else "none"> · <metadata.source: given or found; else found>`.
 - `## The campaign`: key message, constraints, `Big idea: …` when saved.
-- `## Posts` (concepts only), one line per post: `<ref> · <topic> · <platform> · <the
-  person's idea> · <format>`. Always give `single` or `carousel with N frames` (month: the
-  plan's `plannedSlides`; post: the count agreed in step 2). The concept keeps the count.
+- `## Posts` (concepts only), one line per post:
+  `<ref> · <topic> · <platform> · <the person's idea> · <format>`. Always give
+  `single` or `carousel with N frames` (month: the plan's `plannedSlides`;
+  post: the count agreed in step 2). The concept keeps the count.
 - `## So far`: ideas shown and the person's words, in order.
 - `## Where the brand ends`, last, these five lines:
 
@@ -41,15 +44,18 @@ Words it never uses: <the record's list>.
 This campaign: <its constraints, or "none">.
 ```
 
-**No references saved.** Say so; offer stand-ins from `web_search` and `social_fetch` on
-the category's best accounts (`S1`, `S2`, never saved) or `/plgn brandkit` first.
+**No references saved.** Say so; offer stand-ins from `web_search` and
+`social_fetch` on the category's best accounts (`S1`, `S2`, never saved) or
+`/plgn brandkit` first.
 
-**Talking it through.** Say once that nothing is saved or spent while you talk. Before the
-first ideas, print the numbered reference titles, one line each (never call it an "index").
-Print ideas as returned. Every steer runs the agent again with `## So far`; it remembers nothing.
-Words that start a talk: ideas, options, brainstorm, let's think, think, «أفكار», «نفكر».
-Words that end one with a pick: this one, do it, a number, "3 and 7 together", «نفذ».
-A pick runs `Job: platform` (in `/plgn campaign`) or `Job: concepts` (in `/plgn post` and `/plgn month`), with the pick in `## So far`.
+**Talking it through.** Say once that nothing is saved or spent while you
+talk. Before the first ideas, print the numbered reference titles, one line
+each (never call it an "index"). Print ideas as returned. Every steer runs the
+agent again with `## So far`; it remembers nothing. Words that start a talk:
+ideas, options, brainstorm, let's think, think, «أفكار», «نفكر». Words that
+end one with a pick: this one, do it, a number, "3 and 7 together", «نفذ». A
+pick runs `Job: platform` (in `/plgn campaign`) or `Job: concepts` (in
+`/plgn post` and `/plgn month`), with the pick in `## So far`.
 
 **The big idea.** Save the platform reply's five lines once per campaign:
 
@@ -62,19 +68,21 @@ knowledge_add(type: "reference", title: "Creative platform", campaign_id: <id>,
 ```
 
 Read first with
-`knowledge_get(type: "reference", campaign_id: <id>, keyword: "Creative platform")`; a
-second one is a `knowledge_update`. To the person, say "big idea", never "platform".
+`knowledge_get(type: "reference", campaign_id: <id>, keyword: "Creative platform")`;
+a second one is a `knowledge_update`. To the person, say "big idea", never
+"platform".
 
-**Where the concept is kept.** On the post, in `notes`, one line in the brand's first
-language: `notes: { <first language>: "Concept: <format> · <product_role> · <visual>
-(<reference title or asset name>) · hook: <hook> · shape: <shape> · series: <device> ·
-cta: <cta>" }`. Cite by title, not number.
+**Where the concept is kept.** On the post, in `notes`, one line in the
+brand's first language:
+`notes: { <first language>: "Concept: <format> · <product_role> · <visual> (<reference title or asset name>) · hook: <hook> · shape: <shape> · series: <device> · cta: <cta>" }`.
+Cite by title, not number.
 
-**The concept is the brief's source.** The director still writes the literal and five lens
-ideas, scored, as the record. The concept's visual idea is the pick even when another
-scores higher; `concept_why` says the person chose it. A concept that needs something
-outside the brand comes back as the one-line "cannot" with the reason. A check round that
-drops it is named in the run's report, never swapped quietly.
+**The concept is the brief's source.** The director still writes the literal
+and five lens ideas, scored, as the record. The concept's visual idea is the
+pick even when another scores higher; `concept_why` says the person chose it.
+A concept that needs something outside the brand comes back as the one-line
+"cannot" with the reason. A check round that drops it is named in the run's
+report, never swapped quietly.
 
 ## The four steps
 
@@ -93,12 +101,12 @@ one direction per frame. What carries the frame is not this agent's call —
 the server decides it from what the brand sells. See below.
 
 **Between 3 and 4 · the order.** `plgn-art-director` turns the idea into the
-order: the school, the world, the light, the hierarchy, where the product comes
-from, and what never changes. One order per post, for every frame of it. Inside
-a campaign it is written once per run, for the campaign's first post, and
-reused while what carries the frame stays the same. The order is not saved in the brief;
-the command hands it to the designer as written. Bunduq Coffee, a hero
-post, looks like this:
+order: the school, the world, the light, the hierarchy, where the product
+comes from, and what never changes. One order per post, for every frame of it.
+Inside a campaign it is written once per run, for the campaign's first post,
+and reused while what carries the frame stays the same. The order is not saved
+in the brief; the command hands it to the designer as written. Bunduq Coffee,
+a hero post, looks like this:
 
 ```
 SCHOOL: Product beauty / still life
@@ -183,8 +191,9 @@ answers, and only one applies to a given brief:
   pack, from its photo, is in the picture or behind it, as hero, detail,
   result or in use, the director's choice for each frame. It does not mean a
   hand holding the pack.
-- **A built object** — the brand has a product but no photo. The picture is made
-  rather than shot, and the missing photo is a real gap to name back to the brand.
+- **A built object** — the brand has a product but no photo. The picture is
+  made rather than shot, and the missing photo is a real gap to name back to
+  the brand.
 - **A scene** — a service brand with a written process. There is nothing to
   photograph, so the picture shows the process happening.
 - **Type alone** — nothing to photograph and no process. The picture is words.

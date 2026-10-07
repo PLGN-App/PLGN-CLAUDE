@@ -43,8 +43,8 @@ Four shapes, and they are told apart by the words, not by a flag:
 - **"mark the launch done"**, **"archive Ramadan"** → go to step 6.
 - **"what's in Ramadan"** → `campaign_get`, print it, stop. That is a read and
   needs no confirmation.
-- **"let's think about Ramadan"**, "ideas for Ramadan", "brainstorm Ramadan" → go to
-  step 8.
+- **"let's think about Ramadan"**, "ideas for Ramadan", "brainstorm Ramadan" →
+  go to step 8.
 
 **A subject that names a campaign that already exists is never a second one.**
 Match on the name, say which one you found, and ask whether they meant to
@@ -147,15 +147,16 @@ Same for `topic_ids`.
 
 ## 8. Think: the campaign's big idea
 
-The big idea is the one thing every post in the campaign starts from. It is worked out
-with `plgn-content-creator`, before any post is written.
+The big idea is the one thing every post in the campaign starts from. It is
+worked out with `plgn-content-creator`, before any post is written.
 
-**Which campaign.** The one named. If only one is running, that one. If several are,
-ask which. If none exists, create it in step 4 first.
+**Which campaign.** The one named. If only one is running, that one. If
+several are, ask which. If none exists, create it in step 4 first.
 
-Everything else follows the **creative-brief** skill, "The concept comes first": the
-reads, the reference index, the line for a brand with no references, the talk, and the
-pick. Run the `Job: ideas` talk until the person picks, then `Job: platform`.
+Everything else follows the **creative-brief** skill, "The concept comes
+first": the reads, the reference index, the line for a brand with no
+references, the talk, and the pick. Run the `Job: ideas` talk until the person
+picks, then `Job: platform`.
 
 On a pick, show the big idea in plain words:
 
@@ -170,8 +171,8 @@ Save this as the big idea for Ramadan 2027?
 yes / edit / no
 ```
 
-Save it as creative-brief says, updating the one that exists instead of adding a second.
-If the cap refuses, follow the **gate-recovery** skill.
+Save it as creative-brief says, updating the one that exists instead of adding
+a second. If the cap refuses, follow the **gate-recovery** skill.
 
 `--dry-run` stops before the save: show the big idea, write nothing, say so.
 

@@ -105,11 +105,12 @@ upper bound either way, because a picture reused from the workspace costs
 nothing. Both controls are described in section 7; the number here is the one
 being approved.
 
-When the plan shows "none yet — think first?", answering **think first** instead of yes
-runs the talk from **creative-brief**, "The concept comes first". Inside a campaign it
-ends with the big idea saved after its own yes; outside one it saves nothing: its five
-lines go into the concepts prompt as `Big idea:` under `## The campaign`, for this run
-only. Then show the plan again.
+When the plan shows "none yet — think first?", answering **think first**
+instead of yes runs the talk from **creative-brief**, "The concept comes
+first". Inside a campaign it ends with the big idea saved after its own yes;
+outside one it saves nothing: its five lines go into the concepts prompt as
+`Big idea:` under `## The campaign`, for this run only. Then show the plan
+again.
 
 Where the topics are new, get them from `plgn-strategist` using the subject and
 the brand's saved knowledge. Where you are adding to a topic that already
@@ -136,16 +137,17 @@ bulk.
 
 ## 4. Write, all at once
 
-First start `plgn-content-creator` **once for the whole month**: `Job: concepts`, one
-`## Posts` line per planned post with refs `t1-1`, `t1-2`…, briefed as **creative-brief**
-says. Give it its own progress line. It returns one concept per post, in order; if the
-count differs, run it once more.
+First start `plgn-content-creator` **once for the whole month**:
+`Job: concepts`, one `## Posts` line per planned post with refs `t1-1`,
+`t1-2`…, briefed as **creative-brief** says. Give it its own progress line. It
+returns one concept per post, in order; if the count differs, run it once
+more.
 
-Then start one `plgn-copywriter` per topic, **at the same time**, each with its posts'
-concepts. Tell each writer to write exactly one post per concept, in order, on the
-concept line's platform. Match each draft back to its concept by platform and hook, never
-by position. A draft that matches no concept is saved without a `Concept:` line and named
-in the report.
+Then start one `plgn-copywriter` per topic, **at the same time**, each with
+its posts' concepts. Tell each writer to write exactly one post per concept,
+in order, on the concept line's platform. Match each draft back to its concept
+by platform and hook, never by position. A draft that matches no concept is
+saved without a `Concept:` line and named in the report.
 
 Print one line before this starts and one before the images, per
 **reply-style** rule 5b — writing and illustrating are the two phases long
@@ -232,7 +234,8 @@ invented. Carry `knowledge_used` on every `post_create` too, copied from the
 end of the `context_get(role: "copywriter", …)` read that briefed the writer
 who wrote this post — it is the only record of exactly what the writer was
 told, and dropping it here is not a shortcut, it is the record going missing.
-Carry each post's concept in `notes`, as **creative-brief** says (`Concept:` line).
+Carry each post's concept in `notes`, as **creative-brief** says (`Concept:`
+line).
 
 When the plan marked a topic's format as a carousel — a `postType` carrying
 `plannedSlides` — pass that number as `planned_slides` on posts written to
@@ -346,17 +349,17 @@ campaign by `/plgn visuals` — is held against that campaign, so a read made
 without its `campaign_id` cannot see it at all. Use each group's block for
 that group's posts only. A post in no campaign gets the brand's
 **permanent look**: in the no-campaign read, a reference listed under a
-running campaign belongs to that campaign's posts, never to this one. `/plgn images` reads the
-look the same way, for this reason.
+running campaign belongs to that campaign's posts, never to this one.
+`/plgn images` reads the look the same way, for this reason.
 
-For each post that needs one, **write the image description yourself** — it is not
-written anywhere else on this path. One paragraph: the subject, the
-composition, the light, the medium, the brand colour on one or two things,
-and what must not appear. Never the caption drawn: write it from the post's concept — its visual idea, its product's role, and the take and leave of the reference it cites —
-rather than restating the post's
-words, put the preamble of the `art_director` block read for this post's
-campaign group in front of it, and carry that block's `never` list as
-exclusions.
+For each post that needs one, **write the image description yourself** — it is
+not written anywhere else on this path. One paragraph: the subject, the
+composition, the light, the medium, the brand colour on one or two things, and
+what must not appear. Never the caption drawn: write it from the post's
+concept — its visual idea, its product's role, and the take and leave of the
+reference it cites — rather than restating the post's words, put the preamble
+of the `art_director` block read for this post's campaign group in front of
+it, and carry that block's `never` list as exclusions.
 
 Write the post's **alt text** at the same time, one per language the brand
 publishes in: what the picture will show, in one sentence, starting with the
@@ -394,8 +397,9 @@ schedule in the **image-prompting** skill.
 
 If it takes too long, leave the image out for now, note the post for the
 report as **still running** (never as failed, while the check still says
-waiting, queuing or generating), and **carry on** — a missing image never blocks scheduling. A post that goes out
-text-only is fine; a month that stalls waiting on a picture is not.
+waiting, queuing or generating), and **carry on** — a missing image never
+blocks scheduling. A post that goes out text-only is fine; a month that stalls
+waiting on a picture is not.
 
 **Every picture gets alt text.** A new picture carries it from the generate
 call — plgn puts it on the post with the picture, so there is nothing to save
