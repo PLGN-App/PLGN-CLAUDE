@@ -112,7 +112,7 @@ Then say what to do next:
 ```
 Ramadan 2027 saved · 1 Feb → 2 Mar
 
-Plan posts inside it with:  /plgn month "Ramadan"
+Plan posts inside it with:  /plgn month "Ramadan 2027"
 Think it through first:  /plgn campaign think "Ramadan"
 ```
 
@@ -175,7 +175,7 @@ If the cap refuses, follow the **gate-recovery** skill.
 
 `--dry-run` stops before the save: show the big idea, write nothing, say so.
 
-Then point at `/plgn month "Ramadan"`.
+Then point at `/plgn month "<campaign>"`, with the campaign's name.
 
 ## Notes
 

@@ -107,8 +107,9 @@ being approved.
 
 When the plan shows "none yet — think first?", answering **think first** instead of yes
 runs the talk from **creative-brief**, "The concept comes first". Inside a campaign it
-ends with the big idea saved after its own yes; outside one it guides this month only and
-saves nothing. Then show the plan again.
+ends with the big idea saved after its own yes; outside one it saves nothing: its five
+lines go into the concepts prompt as `Big idea:` under `## The campaign`, for this run
+only. Then show the plan again.
 
 Where the topics are new, get them from `plgn-strategist` using the subject and
 the brand's saved knowledge. Where you are adding to a topic that already
