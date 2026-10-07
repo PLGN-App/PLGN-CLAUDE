@@ -139,11 +139,12 @@ Then, from those findings:
   every reference. **The look**: one more art director,
   given the brand's own pictures the sort marked `reference` as its
   evidence, plus each competitor's `pictures` as contrast only, exactly as
-  `/plgn visuals` does. Pictures from other accounts marked `your reference`
-  go in only as "what they want to look like", for light and composition,
-  the way competitors' pictures go in as contrast. They never feed the
-  palette, `never` or the canonical reference. The person's own posts stay
-  evidence. If the look
+  `/plgn visuals` does. A `your reference` picture is
+  evidence only when it comes from the brand's own accounts or site. Every
+  other `your reference` picture (another account's, a file, a bare picture link) goes in only as
+  "what they want to look like", for light and composition, the way
+  competitors' pictures go in as contrast; it never feeds the palette,
+  `never` or the canonical reference. If the look
   comes back as `clusters`, ask which is current (as `/plgn visuals` does)
   before the plan.
 - `plgn-strategist` proposes the brand's positioning and three to five things
@@ -321,8 +322,8 @@ run it without the user's yes.
 
 - **No seam.** This user is already signed up.
 - **No points are spent.** Nothing here makes a picture. Reading uses the
-  workspace's free daily research limits; a full run uses about 17 picture
-  views of 60. When a limit is used up, say which reads were skipped.
+  workspace's free daily research limits, and each account read adds its own
+  picture views. When a limit is used up, say which reads were skipped.
 - **Safe to run twice.** Compare against what is saved, mark each thing new,
   changed or unchanged, and write only what changed. A second run must never
   leave a brand with two voices.

@@ -159,9 +159,10 @@ After the look, because the look says how a picture works and these say
 what it is of or what to copy.
 
 - **References** — one `reference` entry per group the art director sorted,
-  2–4 pictures each, per **visual-identity**. Open each picture with
-  `image_view` before it is saved, and put `metadata.take`, `metadata.leave`,
-  `metadata.pictures` and `metadata.source` on the entry beside `intent`.
+  2–4 pictures each, per **visual-identity**. Each picture was
+  opened once, in the art director's sort; do not open it again to save it.
+  Put `metadata.take`, `metadata.leave`, `metadata.pictures` and
+  `metadata.source` on the entry beside `intent`.
   The person's own references are asked for first and saved as `given`.
 - **Assets** — one `asset_create` per thing the user handed over, or the
   plan listed and the user kept, per **brand-assets**. Only what was looked
