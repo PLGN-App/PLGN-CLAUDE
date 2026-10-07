@@ -1369,6 +1369,31 @@ if (exists("reference/_conventions.md")) {
   }
 }
 
+// --- 18. 1.17.0: think in the form, write in prose ------------------------
+// The order names the camera; the designer writes the five blocks, ends on the
+// priority line and checks place and camera; the skill keeps the eight questions.
+{
+  const need = (p, needles) => {
+    if (!exists(p)) { fail(`${p} is missing`); return; }
+    const body = read(p).replace(/\r\n/g, "\n");
+    for (const n of needles) if (!body.includes(n)) fail(`${p} must name "${n}"`);
+  };
+  need("agents/plgn-art-director.md", ["CAMERA:"]);
+  if (exists("agents/plgn-art-director.md")) {
+    const ad = read("agents/plgn-art-director.md").replace(/\r\n/g, "\n");
+    const iLight = ad.indexOf("\nLIGHT: ");
+    const iCamera = ad.indexOf("\nCAMERA: ");
+    const iColour = ad.indexOf("\nCOLOUR: ");
+    if (!(iLight >= 0 && iLight < iCamera && iCamera < iColour)) {
+      fail("agents/plgn-art-director.md: the order's CAMERA: line sits between LIGHT: and COLOUR:");
+    }
+    if (ad.includes("the fourteen")) {
+      fail("agents/plgn-art-director.md: Job B answers in fifteen labelled lines");
+    }
+  }
+  // 1.17.0: later tasks add their checks above this line
+}
+
 if (fails.length) {
   for (const f of fails) console.error(`FAIL: ${f}`);
   console.error(`\n${fails.length} problem(s).`);

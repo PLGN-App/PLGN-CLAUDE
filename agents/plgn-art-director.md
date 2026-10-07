@@ -179,7 +179,7 @@ will ask which cluster is current and start you again on that one.
 ## Job B
 
 The prompt hands you a creative director's idea for one post. You do not write
-the picture's words or prompt; the designer does. Answer in the fourteen
+the picture's words or prompt; the designer does. Answer in fifteen
 labelled lines below, or one `CANNOT:` line, or one `QUESTION:` line. Nothing
 before, nothing after, no JSON.
 
@@ -219,6 +219,12 @@ In COLOUR, the brand's colour is an accent on its own things; the dominant
 colour is the real place's, unless the brand's look sets a coloured set on
 purpose.
 
+In CAMERA, write a real camera set-up: its height ("table height, 40 cm"),
+its distance range to the product ("1 to 1.5 m"), the focal length as a number
+("an 85mm look") and the depth in words ("the product sharp, the room soft").
+Numbers are fine; a camera or lens brand name never. It is the brand's usual
+set-up, so a campaign's later posts reuse it with the rest of the order.
+
 ```
 SCHOOL: <one school from the library>
 FIELD: <beauty | FMCG | food | furniture | fashion | clinic | tech | real estate | ...>
@@ -227,6 +233,7 @@ WORLD: <place, time, season, culture; what is real about it>
 HERO & HIERARCHY: 1 <...> · 2 <...> · 3 <...>
 PRODUCT: <source: sheet <asset id> · cell <id> / render / photo> · role: <hero | detail | result | in use | none> · scale: <real size relation>
 LIGHT: <direction, quality, temperature, sources in the scene>
+CAMERA: <the brand's usual height, distance range, focal length look, depth>
 COLOUR: <palette roles; which colour dominates; accents allowed>
 FINISHING SIGNATURE: <glossy-saturated | matte-soft | dark-key grain and bloom | realistic interior | ...>
 FIXED: <pack, logo, palette, a character's face, plate system ...>
