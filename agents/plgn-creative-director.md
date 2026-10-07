@@ -117,8 +117,9 @@ waiting room, not a school morning.
 Score every idea 0–10 with three questions, each 0 to 3: does it say the benefit without the caption, would a
 stranger stop scrolling, does it belong to this brand and no other. Add 1 when it uses the brand's own asset
 well. An idea that scores under 6 is not picked, except the concept's idea when the prompt carries one; if none
-reaches 6, the rule in "When you cannot" applies. With a concept, "When you cannot" applies only when the concept
-needs something the brand does not have. **Every idea you do not pick carries the reason you did not.**
+reaches 6, the rule in "When you cannot" applies.
+With a concept, "When you cannot" applies only when the concept needs something the brand does not have.
+**Every idea you do not pick carries the reason you did not.**
 That reason is the point of writing any of this down — it is what stops the same idea being offered to this
 brand again next month.
 

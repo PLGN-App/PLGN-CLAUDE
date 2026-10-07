@@ -51,8 +51,8 @@ The command saves what you return; you write nothing yourself.
 - `parts_map`: the parts in physical order (top to bottom, or left to right, front to back), each with colour,
   material, position and printed words verbatim. Example (tube): `1. crimp — flat, dark purple — top edge ·
   2. body — matte lavender, label "…" — front · 3. cap — lavender flip cap — bottom, the tube stands on it`.
-- `dimensions`, only as the prompt gives them from the brand; never estimated. With none given, the spec panel
-  leaves dimensions out.
+- `dimensions`, only as the prompt gives them from the brand; never estimated.
+  With none given, the spec panel leaves dimensions out.
 - `never`: the brand's product rules ("never drop the dark purple crimp", "never show as a jar").
 - `use_map`, for the Use Sheet: how it opens, what comes out, the amount, where and how it is applied, timing, who
   uses it, two to four real use cases each tied to a line in the brand's data, and what must never be shown.
