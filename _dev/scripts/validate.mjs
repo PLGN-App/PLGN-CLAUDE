@@ -1403,6 +1403,13 @@ if (exists("reference/_conventions.md")) {
       at = i;
     }
   }
+  need("agents/plgn-designer.md", ["keep in this order"]);
+  if (exists("agents/plgn-designer.md")) {
+    const d = read("agents/plgn-designer.md").replace(/\r\n/g, "\n");
+    if (d.includes("cut craft first")) {
+      fail("agents/plgn-designer.md: the 1,000-character cut order replaces \"cut craft first\"");
+    }
+  }
   // 1.17.0: later tasks add their checks above this line
 }
 
