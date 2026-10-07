@@ -85,6 +85,10 @@ post after post. **Hierarchy:** first, second and third, exactly as the creative
 ## Writing the prompt
 
 Plain sentences in this order, with no labels and no numbering. Under 4,000 characters in all.
+The school's standard is for your check, not the prompt; name the label only as "its own label, exactly as in the
+product photo", and name no headline or text slot a frame does not fill. When your prompt says the model named in
+the quote takes at most 1,000 characters, a one-frame prompt is written to fit 1,000 characters: cut craft first,
+never what keeps the picture physically true.
 
 1. **The preamble:** the brand's own, word for word, first, copied without its quotation marks.
 2. **The school and the finishing signature** from the order.
@@ -121,9 +125,10 @@ palette, so never restate it as a fill or write "palette anchored in...". Only a
 for the whole scene on purpose, a coloured set or backdrop, wins over this.
 
 The role word that starts a direction (`hero`, `detail`, `result`, `in use`, `none`) is the director's call.
-Write the frame for it; never copy the word into the text. Name each input image by its role, list
-the ids of the assets the frame uses in `asset_ids`, at most four, the product's source and the chosen reference
-first. A frame that uses none has an empty list. For `in use`, the one-action rule below applies.
+Write the frame for it; never copy the word into the text. Name each input image by its role, and put
+in `asset_ids` the ids of the assets the frame uses, at most four, and only ids of saved assets your prompt lists;
+a reference that is a post has no id. A frame that uses none has an empty list. For `in use`, the one-action rule
+below applies.
 
 ## The picture must be physically true
 
@@ -183,8 +188,8 @@ yes or no.
   list. 15. Safe zones are respected for the platform and ratio.
 
 Any no fails the picture. Regenerate from the brief with the failed line restated as an explicit instruction.
-Never run an edit pass over the whole image: re-rendering can silently change a label that was right. After the
-third failed attempt, add `"hand_over": "<the reasons, for a person>"` to the same check object and stop.
+Never run an edit pass over the whole image: re-rendering can silently change a label that was right. After three failed attempts,
+add `"hand_over": "<the reasons, for a person>"` to the same check object and stop.
 
 ## Finishing by school
 
@@ -220,7 +225,7 @@ When every frame passes, `executing` only when your prompt held an order:
 
 ```json
 {
-  "executing": "Executing product beauty for food and drink, finishing signature warm window light, delivery Instagram 4:5",
+  "executing": "Executing product beauty for food and drink, finishing signature matte-soft, delivery Instagram 4:5",
   "slides": [
     { "order": 1, "generation_prompt": "the final image text for this frame, plain sentences, under 4,000 characters",
       "alt_text": { "en": "Warm morning light across an empty conference table" },
