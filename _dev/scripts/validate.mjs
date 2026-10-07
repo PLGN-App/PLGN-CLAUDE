@@ -137,7 +137,7 @@ if (manifest) {
   // other but wrong in absolute terms. These three numbers pin that.
   const EXPECTED_COMMAND_COUNT = 27;
   const EXPECTED_SKILL_COUNT = 13;
-  const EXPECTED_AGENT_COUNT = 11;
+  const EXPECTED_AGENT_COUNT = 12;
   if ((manifest.commands ?? []).length !== EXPECTED_COMMAND_COUNT) {
     fail(`plugin.json commands array has ${(manifest.commands ?? []).length} entries, expected ${EXPECTED_COMMAND_COUNT}`);
   }
@@ -686,7 +686,7 @@ for (const p of CONTENT) {
   const AGENTS = [
     "plgn-analyst", "plgn-art-director", "plgn-brand-architect", "plgn-content-creator",
     "plgn-copywriter", "plgn-creative-director", "plgn-designer", "plgn-librarian",
-    "plgn-product-sheet", "plgn-researcher", "plgn-strategist",
+    "plgn-product-sheet", "plgn-researcher", "plgn-strategist", "plgn-typographer",
   ];
   const onDisk = ls("agents").filter((f) => f.endsWith(".md")).map((f) => f.replace(/\.md$/, ""));
   for (const a of AGENTS) {
@@ -891,6 +891,8 @@ const AGENT_CONTRACTS = [
   ["plgn-designer", ["\"generation_prompt\":", "\"qa_findings\":", "\"alt_text\":"]],
   // 1.15.0: the product sheet agent plans and checks; the command saves what it returns.
   ["plgn-product-sheet", ["\"parts_map\":", "\"grid_prompt\":", "\"cells\":", "\"marks\":", "\"cell_id\":"]],
+  // 1.16.0: the typographer styles and places the words a frame carries; the designer takes its block as given.
+  ["plgn-typographer", ["\"typography\":", "\"placement\":", "\"fit\":", "\"frames\":"]],
 ];
 for (const [agent, needles] of AGENT_CONTRACTS) {
   const p = `agents/${agent}.md`;
@@ -1286,6 +1288,26 @@ if (exists("reference/_conventions.md")) {
       fail(`reference/_conventions.md: the Connected list is missing ${missing.map((c) => "`" + c + "`").join(", ")}`);
     }
   }
+}
+
+// --- 17. 1.16.0: the typographer ------------------------------------------
+// The typographer may only read, and it keeps the two phrases the desk and
+// the commands key on. Later tasks add their needles to `need` below.
+{
+  const need = (p, needles) => {
+    if (!exists(p)) { fail(`${p} is missing`); return; }
+    const body = read(p);
+    for (const n of needles) if (!body.includes(n)) fail(`${p} must name "${n}"`);
+  };
+  if (exists("agents/plgn-typographer.md")) {
+    const fm = read("agents/plgn-typographer.md").replace(/\r\n/g, "\n").match(/^---\n([\s\S]*?)\n---/);
+    const toolsBlock = fm ? fm[1].match(/^tools:\n((?:  - .*\n?)+)/m) : null;
+    const tools = toolsBlock ? toolsBlock[1].split("\n").map((l) => l.replace(/^  - /, "").trim()).filter(Boolean) : [];
+    if (tools.length !== 1 || tools[0] !== "Read") {
+      fail("agents/plgn-typographer.md: tools must be exactly Read");
+    }
+  }
+  need("agents/plgn-typographer.md", ["Two type systems", "designer to propose", "letter for letter"]);
 }
 
 if (fails.length) {
