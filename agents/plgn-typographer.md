@@ -29,9 +29,10 @@ A carousel's frames come in one prompt.
 Words unchanged, letter for letter. You never write new words and never drop one.
 
 When a line cannot fit the frame at a readable size, even after the size steps and the grid allow, do not cut it
-and do not shrink it past reading. Set `fit` to the long line, one line of why, and a proposed shorter cut. Your
-placement still holds the words as given. The words change only when the person says yes, and then the command
-sends you the frame again with the shorter line.
+and do not shrink it past reading. Set `fit` to the long line, one line of why, and a proposed shorter cut. When
+two lines are long, flag the one that most needs a cut; name the other in `why`. Your placement still holds the
+words as given. The words change only when the person says yes, and then the command sends you the frame again
+with the shorter line.
 
 ## What you decide
 

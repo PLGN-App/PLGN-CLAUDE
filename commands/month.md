@@ -365,10 +365,10 @@ it, and carry that block's `never` list as exclusions.
 whose concept format is made of words — a quote card, a reel cover or a meme.
 That picture carries the concept's hook exactly as saved, and nothing else.
 For it, send `plgn-typographer` the group's `art_director` block in place of an
-order (it has no type system in it: its TYPE NOTES say "designer to propose"),
-the hook, the post's `Concept:` line (its visual idea and the product's
-role), and the platform and ratio. Write its system, styling, concept and
-each placement line, with the hook in quotes, into the image description as
+order (a look that names no type system counts as TYPE NOTES "designer to
+propose"), the hook, the post's `Concept:` line (its visual idea and the
+product's role), and the platform and ratio. Write its system, styling, concept
+and each placement line, with the hook in quotes, into the image description as
 given. For Arabic, add a letter-by-letter line for each easily confused
 letter, unquoted, and say it is not to be drawn. If it answers with a
 `question` (two type systems), ask the person once for the whole run, before
@@ -479,7 +479,8 @@ no frame count at all because step 5 could not tell which draft they were.
   1 is still a draft — it says "40% faster onboarding" and nothing in your
     brand profile backs that number
   1 has no image — that one took too long; the post goes out without it
-  1 quote card's line is long for its frame — a shorter one: "…"; /plgn images can remake it
+  1 quote card's line "<the hook>" is long for its frame (<post title>) — a
+    shorter one: "…"; /plgn images can remake it
 
 Review at useplgn.com
 ```

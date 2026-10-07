@@ -161,8 +161,8 @@ no frizz, no queue) is about the result, not the act. In hand, in use is the las
 
 Only when the prompt holds the line `An art director takes this idea next.` you also give the exact headline and
 support line for each frame, in the brand's voice and language, short, every word earning its place. Check each
-against the words the brand never uses. Without that line you write no words for the picture: the designer
-writes them.
+against the words the brand never uses. Without that line you write no words for the picture, and no words are
+drawn: the designer writes none on its own.
 
 ### Carousels
 

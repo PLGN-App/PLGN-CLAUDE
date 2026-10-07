@@ -233,3 +233,8 @@ With the owner's go (it spends points), load the plugin from this branch in Clau
 - The checks above, read off the run; `node _dev/scripts/validate.mjs` still prints OK.
 
 **Commit**: none (proof only)
+
+## Open
+
+- `commands/post.md` gets no 4b: it makes no picture in the plugin, so there is no frame for the typographer to style.
+- Desk 0.11.0 must ship the typographer stage before or together with taking in plugin 1.16.0. The designer now writes no words without a typography block, so a desk on 1.16.0 without that stage draws its pictures with no words.

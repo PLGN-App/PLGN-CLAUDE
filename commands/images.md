@@ -208,7 +208,9 @@ for each one. This is the **creative-brief** skill's four steps in two calls
    each objection belongs to the frame it was raised against. Send
    `plgn-creative-director` the objections and the ideas it already scored,
    so it can pick a **different idea** and write fresh directions for it.
-   Call `brief_update` with the brief's id, the objections as `qa_findings`
+   That retry prompt ends with the same line
+   `An art director takes this idea next.`, so the image words come back
+   with the new idea. Call `brief_update` with the brief's id, the objections as `qa_findings`
    — grouped by frame, so an objection about frame 3 lands on frame 3 — and
    the new idea and directions the director returned. Then send the result
    back to `plgn-designer` — unless the `brief_update` reply carries

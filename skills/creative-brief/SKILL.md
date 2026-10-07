@@ -141,10 +141,10 @@ Kufi:
 {
   "typography": {
     "system": "Geometric Kufi, heavy for the headline, light for the support line, 3:1 in size; Western digits",
-    "styling": "The headline in cream, the support line in walnut brown on a cream plate; plain, size steps 96 and 32",
+    "styling": "The headline in walnut brown, the support line in walnut brown on a cream plate; plain, size steps 96 and 32",
     "concept": "The headline is a painted shop sign above the counter, the support line a small tag under the tin",
     "placement": [
-      { "text": "قهوة تصحّيك", "where": "top third, right-aligned, inside the 10% safe zone", "near": "keeps off the tin's label and the steam" },
+      { "text": "قهوة تصحّيك", "where": "top third, right-aligned, inside the safe area, clear of the 10% edge", "near": "keeps off the tin's label and the steam" },
       { "text": "من أول رشفة", "where": "lower right, under the cup, right-aligned", "near": "keeps clear of the bottom trim" }
     ],
     "fit": null
