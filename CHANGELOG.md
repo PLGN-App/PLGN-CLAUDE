@@ -8,6 +8,7 @@
 - The designer names only the inputs the prompt lists, and leaves the logo rule as it was given.
 - Every answer the desk and the server read keeps its exact keys.
 - Brand kit searches for the accounts a brand's site does not link, keeps only the ones the researcher confirms, and saves them on the brand too; the researcher can search the web and reports an account only after its name and a second sign match the brand; a chat never says a tool is missing when it has it.
+- `/plgn import-store` reads one product page when the store is not Shopify, WooCommerce or EasyOrders: every spec line, the product's photos (never the logos), one yes, then the photos go to the library and the product is saved with them.
 
 ## 1.17.1 (2026-10-08)
 
