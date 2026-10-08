@@ -263,10 +263,12 @@ What this run's own agents change about it:
 - The accounts found in step 3 become one **`channels`** entry (website,
   instagram, tiktok, facebook, x, linkedin), saved with the Business pass. When one is
   already saved and unchanged, write nothing; when it changed, update it. The
-  accounts also go on the brand itself, in one `brand_update` with
-  `social_links`: the links its `links:` line shows plus the new ones, since the
-  list is replaced whole. When that line is cut with "…", leave the links alone
-  and say so.
+  accounts also go on the brand itself, in a `brand_update` of their own after
+  the brand record's (never in that call: one refused link refuses the whole
+  call), sending only `social_links`: every social link its `links:` line
+  shows, in order (not the website), then each new account as its full profile
+  link, never a bare handle. The list is replaced whole. Nothing new: no call.
+  When that line is cut with "…", leave the links alone and say so.
 - Competitors become **one `competitor` entry each**, never one entry listing
   several, with their `url` and the handles their reader found.
 - Reviews from `place` feed the **`proof`** and **`objection`** entries,

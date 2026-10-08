@@ -76,7 +76,8 @@ platform joined by ` OR `, with `limit: 10`:
 3. `"<brand name>" <city> <platform>`, only when the prompt gives a city.
 
 Keep only profile links. A share, post, video, status or search link is not an
-account. Read each profile you keep with `social_fetch`.
+account. Read at most the first profile link per platform, in result order,
+with `social_fetch`; a second one only when the first is not the brand.
 
 Report an account only when its name matches the brand and at least one more
 sign does: the brand's website in its profile, the city, or what it posts. A
