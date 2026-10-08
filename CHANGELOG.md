@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- plgn's commands, roles and skills can be used in other AI tools: `_dev/scripts/portable.mjs` writes them as 53 skills in the Agent Skills form, which `npx plgn-setup` installs. Validate checks them too.
+- Words that only fitted Claude Code now fit every tool: `/plgn help` and the "can't reach your workspace" message say to restart your AI tool, and `/plgn setup` connects your AI tool.
+
 ## 1.17.1 (2026-10-08)
 
 - LinkedIn is read now: a brand's company page, or a person's profile, gives its last 20 posts, their pictures and its profile, the same as Instagram, TikTok, Facebook and X. No login is needed.

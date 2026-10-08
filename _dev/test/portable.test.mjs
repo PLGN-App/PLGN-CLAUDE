@@ -8,6 +8,7 @@ import {
 } from "node:fs";
 import { join, dirname } from "node:path";
 import { tmpdir } from "node:os";
+import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import {
   FLAGGED, SLASH_PARAGRAPH, ROLE_PARAGRAPH, applyRewrites, buildPortable, main,
@@ -231,4 +232,14 @@ test("the workflow regenerates from the latest plugin tag and commits as PLGN", 
     "git push origin HEAD:main",
   ]) assert.ok(yml.includes(piece), `generate.yml is missing: ${piece}`);
   assert.ok(!yml.includes("secrets."), "generate.yml must not use a secret");
+});
+
+test("validate runs the portable check", () => {
+  const validate = join(ROOT, "_dev", "scripts", "validate.mjs");
+  const text = readFileSync(validate, "utf8");
+  assert.ok(text.includes("portable.mjs"), "validate.mjs never names portable.mjs");
+  assert.ok(text.includes("--check"), "validate.mjs never passes --check");
+  const run = spawnSync(process.execPath, [validate], { encoding: "utf8" });
+  assert.equal(run.status, 0, run.stderr);
+  assert.ok(run.stdout.includes("OK: plugin structure valid."));
 });

@@ -4,6 +4,7 @@
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { execFileSync } from "node:child_process";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const fails = [];
@@ -1428,6 +1429,17 @@ if (exists("reference/_conventions.md")) {
   need("skills/image-prompting/SKILL.md", ["## Think in the form, write in prose"]);
   need("skills/creative-brief/SKILL.md", ["CAMERA:", "keep in this order"]);
   // 1.17.0: later tasks add their checks above this line
+}
+
+// --- 19. Portable skills: every command, role and skill converts ---
+try {
+  execFileSync(process.execPath, [join(ROOT, "_dev", "scripts", "portable.mjs"), "--check"], {
+    encoding: "utf8", stdio: ["ignore", "pipe", "pipe"],
+  });
+} catch (e) {
+  const lines = String(e.stderr || "").split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+  if (!lines.length) fail(`portable: check did not run (${e.message})`);
+  for (const line of lines) fail("portable: " + line.replace(/^FAIL: /, ""));
 }
 
 if (fails.length) {
