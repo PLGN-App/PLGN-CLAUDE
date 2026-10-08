@@ -4,9 +4,9 @@
 // Not part of the shipped plugin surface. Node built-ins only: the plgn-setup
 // workflow runs it from a bare clone with no npm install.
 import {
-  readFileSync, readdirSync, existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync,
+  readFileSync, readdirSync, existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync, realpathSync,
 } from "node:fs";
-import { join, dirname, resolve, sep } from "node:path";
+import { join, dirname, resolve, relative, isAbsolute, basename } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { tmpdir } from "node:os";
 
@@ -181,7 +181,11 @@ export function buildPortable(root = PLUGIN_ROOT) {
 export function writePortable(outDir, built) {
   mkdirSync(outDir, { recursive: true });
   for (const e of readdirSync(outDir, { withFileTypes: true })) {
-    if (e.isDirectory() && e.name.startsWith("plgn-")) rmSync(join(outDir, e.name), { recursive: true, force: true });
+    // Only folders this generator made: they hold a SKILL.md and are not a git checkout.
+    const dir = join(outDir, e.name);
+    if (e.isDirectory() && e.name.startsWith("plgn-") && existsSync(join(dir, "SKILL.md")) && !existsSync(join(dir, ".git"))) {
+      rmSync(dir, { recursive: true, force: true });
+    }
   }
   for (const s of built.skills) {
     mkdirSync(join(outDir, s.name), { recursive: true });
@@ -201,10 +205,33 @@ export function writePortable(outDir, built) {
 const USAGE = "usage: node _dev/scripts/portable.mjs --out <dir> | --check";
 
 // --out must not be able to wipe the plugin's own sources.
-function refusedOut(out, root) {
-  const inside = (p, dir) => p === dir || p.startsWith(dir + sep);
+// Resolve links on the part of the path that exists, then fold case where the
+// file system ignores it.
+function canon(p) {
+  let head = resolve(p);
+  const tail = [];
+  for (;;) {
+    try { head = realpathSync.native(head); break; } catch {
+      const up = dirname(head);
+      if (up === head) break;
+      tail.unshift(basename(head));
+      head = up;
+    }
+  }
+  const full = join(head, ...tail);
+  return process.platform === "win32" || process.platform === "darwin" ? full.toLowerCase() : full;
+}
+
+function refusedOut(outPath, rootPath) {
+  const out = canon(outPath);
+  const root = canon(rootPath);
+  // true when p is dir itself or lies inside it
+  const inside = (p, dir) => {
+    const rel = relative(dir, p);
+    return rel === "" || (!rel.startsWith("..") && !isAbsolute(rel));
+  };
   if (inside(root, out)) return true;
-  return ["commands", "agents", "skills", "reference"].some((d) => inside(out, join(root, d)));
+  return ["commands", "agents", "skills", "reference"].some((d) => inside(out, canon(join(rootPath, d))));
 }
 
 export function main(argv, root = PLUGIN_ROOT) {
@@ -234,6 +261,15 @@ export function main(argv, root = PLUGIN_ROOT) {
   return 0;
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+// True when this file is the script node was started with, also through a link.
+function isEntry() {
+  if (!process.argv[1]) return false;
+  const self = fileURLToPath(import.meta.url);
+  try { return realpathSync(process.argv[1]) === realpathSync(self); } catch {
+    return import.meta.url === pathToFileURL(process.argv[1]).href;
+  }
+}
+
+if (isEntry()) {
   process.exitCode = main(process.argv.slice(2));
 }

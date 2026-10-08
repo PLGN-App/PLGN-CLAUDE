@@ -4,9 +4,9 @@
 import { test, before, after } from "node:test";
 import assert from "node:assert/strict";
 import {
-  mkdtempSync, mkdirSync, writeFileSync, readFileSync, readdirSync, existsSync, rmSync,
+  mkdtempSync, mkdirSync, writeFileSync, readFileSync, readdirSync, existsSync, rmSync, symlinkSync,
 } from "node:fs";
-import { join, dirname } from "node:path";
+import { join, dirname, parse } from "node:path";
 import { tmpdir } from "node:os";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
@@ -242,4 +242,54 @@ test("validate runs the portable check", () => {
   const run = spawnSync(process.execPath, [validate], { encoding: "utf8" });
   assert.equal(run.status, 0, run.stderr);
   assert.ok(run.stdout.includes("OK: plugin structure valid."));
+});
+
+test("--out refuses the plugin, its parent, the drive root and a case-changed parent; keeps foreign plgn-* folders", () => {
+  const parent = tmp();
+  const fake = join(parent, "plgn-fake");
+  mkdirSync(fake);
+  for (const [rel, text] of Object.entries({
+    ".claude-plugin/plugin.json": JSON.stringify({ version: "9.9.9", commands: ["./commands/x.md"], skills: [] }),
+    "commands/x.md": "---\ndescription: Does x.\n---\n\nBody of x.\n",
+    "reference/_conventions.md": "---\ndescription: The rules.\n---\n\nRule one.\n",
+  })) {
+    mkdirSync(dirname(join(fake, rel)), { recursive: true });
+    writeFileSync(join(fake, rel), text);
+  }
+  mkdirSync(join(fake, "agents"));
+  const sibling = join(parent, "plgn-sibling-repo");
+  mkdirSync(join(sibling, ".git"), { recursive: true });
+  writeFileSync(join(sibling, "SKILL.md"), "keep");
+
+  const quietLog = console.log;
+  const quietErr = console.error;
+  console.log = () => {};
+  console.error = () => {};
+  try {
+    assert.equal(main(["--out", fake], fake), 2);
+    assert.equal(main(["--out", parent], fake), 2);
+    assert.equal(main(["--out", parse(fake).root], fake), 2);
+    if (process.platform === "win32" || process.platform === "darwin") {
+      assert.equal(main(["--out", parent.toUpperCase()], fake), 2);
+    }
+    // a plgn-* folder that is a git checkout survives a normal run
+    const out = join(tmp(), "out");
+    mkdirSync(join(out, "plgn-mine", ".git"), { recursive: true });
+    writeFileSync(join(out, "plgn-mine", "SKILL.md"), "keep");
+    assert.equal(main(["--out", out], fake), 0);
+    assert.ok(existsSync(join(out, "plgn-mine", "SKILL.md")));
+  } finally {
+    console.log = quietLog;
+    console.error = quietErr;
+  }
+  assert.ok(existsSync(join(sibling, ".git")));
+  assert.ok(existsSync(join(fake, "commands", "x.md")));
+});
+
+test("the script runs when started through a link", (t) => {
+  const link = join(tmp(), "lane");
+  try { symlinkSync(ROOT, link, process.platform === "win32" ? "junction" : "dir"); } catch { t.skip("cannot create a link here"); return; }
+  const script = join(link, "_dev", "scripts", "portable.mjs");
+  assert.equal(spawnSync(process.execPath, [script], { encoding: "utf8" }).status, 2);
+  assert.equal(spawnSync(process.execPath, [script, "--check"], { encoding: "utf8" }).status, 0);
 });
