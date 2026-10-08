@@ -3,24 +3,26 @@
 Owner, 2026-10-08: the plugin must work in other AI CLIs and apps with a professional install, "like `npx skills add`".
 Order: CLIs first, ChatGPT second. `npx plgn-setup` (0.1.1, on npm) already connects a tool to plgn's MCP server, which
 gives the tools only. This round ships the rest: the 26 commands, the 12 roles (agents) and the 13 skills, in the Agent
-Skills standard every tool reads, installed with one line.
+Skills standard every tool reads. Owner, 19:50: **everything lives in the one `plgn-setup` repo** (installer + skills),
+no second repo.
 
 ## What a person gets
 
 ```
-npx skills add PLGN-App/plgn-skills          # every plgn skill, into every AI tool found on the machine
-npx plgn-setup codex                         # connects Codex, then offers the same install for Codex
+npx plgn-setup                    # connects every AI tool found, then installs plgn's 52 skills into each
+npx plgn-setup codex              # one tool
+npx skills add PLGN-App/plgn-setup   # the skills alone, for people who already use the skills CLI
 ```
 
 Afterwards, in Codex, Cursor, Gemini CLI, Devin, VS Code Copilot or OpenCode: "plgn month for Bunduq" loads the
-`plgn-month` skill, which reads `plgn-conventions`, starts the `plgn-role-copywriter` work per topic, and saves with the
+`plgn-month` skill, which reads `plgn-conventions`, does the `plgn-role-copywriter` work per topic, and saves with the
 plgn tools over MCP. Claude Code keeps the plugin; the portable set is for the other tools.
 
 ## Decisions
 
-1. **Source of truth stays `plgn-claude`.** Nothing is hand-written twice. A generator reads `commands/`, `agents/`,
-   `skills/` and `reference/_conventions.md` and writes a flat skills tree. `PLGN-App/plgn-skills` (new public repo) holds
-   only generated output plus a README; its history is the generator's history.
+1. **Source of truth stays `plgn-claude`.** Nothing is hand-written twice. A generator there reads `commands/`, `agents/`,
+   `skills/` and `reference/_conventions.md` and writes a flat skills tree. The output is committed into
+   `plgn-setup/skills/` (generated, never edited by hand; the folder's README says so) and ships inside the npm package.
 2. **Name every skill with the `plgn-` prefix** so nothing collides in a person's skill folder: `plgn-<command>`
    (26), `plgn-role-<agent without the plgn- prefix>` (12, e.g. `plgn-role-copywriter`), `plgn-<skill>` (13, e.g.
    `plgn-brand-voice`), `plgn-conventions` (1). 52 skills.
@@ -43,50 +45,57 @@ plgn tools over MCP. Claude Code keeps the plugin; the portable set is for the o
    `Task tool`, `subagent_type`, `AskUserQuestion`, `TodoWrite`, `claude plugin`, `/plugin `, `.claude-plugin`,
    `plgn:plgn-`. Each hit is fixed in the SOURCE file in plgn-claude (words that mean the same in every tool), so the
    Claude Code plugin improves too. The fix list is part of this round.
-7. **Versioning**: `plgn-skills` carries `VERSION` (= plgn-claude's plugin.json version) and the README says which plugin
-   version it was generated from. Generation is the plugin's `npm run portable` (`_dev/scripts/portable.mjs --out
-   <dir>`), run in CI of the `plgn-skills` repo itself: a workflow there (schedule every 6 hours + manual run) clones
-   `PLGN-App/PLGN-CLAUDE` at its latest `v*` tag, generates into the working tree, commits as PLGN when something
-   changed. No secret crosses repos (the repo's own GITHUB_TOKEN commits). After each plugin release I run
-   `gh workflow run` there.
-8. **`npx plgn-setup` gets a skills step** (plgn-setup 0.2.0): after the MCP entry is written for a host, it offers
-   *"Install plgn's skills (commands and roles) for <host>?"* and runs `npx -y skills@latest add PLGN-App/plgn-skills
-   -g -y -a <agent>`; `--yes` says yes; `--dry-run` prints the command; `--no-skills` skips. Host → `skills` agent id:
-   codex→`codex`, cursor→`cursor`, gemini→`gemini-cli`, devin→`devin`, vscode→`github-copilot`; claude-code and
-   claude-desktop get no skills step (plugin / no skills folder). `doctor` adds one row per skills host: `skills ✔ 52
-   plgn skills` (counts `plgn-*` folders in the host's global skills dir as the `skills` CLI lays them out; verify the
-   path per host from the CLI on the day) or `✘ not installed · npx plgn-setup <host>`. The "no network" rule gains the
-   one exception: this step, only after a yes.
-9. **Not in this round**: ChatGPT `plugin.json` + `agents/openai.yaml` (round 2, same generated folder); a
-   `/.well-known/agent-skills/index.json` on useplgn.com so `npx skills add https://useplgn.com` works (nice, later; it
-   needs the tarballs published from the server repo); a server-side crew.
+7. **Refresh and versioning.** `plgn-setup/skills/VERSION` holds the plugin version the tree came from. A workflow in
+   plgn-setup, `.github/workflows/generate.yml` (schedule every 6 hours + manual run; `permissions: contents: write`),
+   clones `https://github.com/PLGN-App/PLGN-CLAUDE` at its latest `v*` tag, runs `node _dev/scripts/portable.mjs --out
+   <plgn-setup>/skills` from that clone, and commits to main as `PLGN <waslahapp993@gmail.com>` with the message
+   `skills: regenerated from plugin X.Y.Z` only when something changed. No secret: the repo's own GITHUB_TOKEN. After
+   each plugin release I run `gh workflow run generate.yml`, then bump + tag plgn-setup, and the existing publish
+   workflow puts it on npm.
+8. **`npx plgn-setup` installs the skills itself (0.2.0), no network, no `skills` CLI.** After the MCP entry is written
+   for a host that has a skills folder, it offers *"Install plgn's 52 skills for <host>?"* and copies every
+   `skills/plgn-*` folder from its own package into the host's global skills folder, replacing only folders named
+   `plgn-*` (a person's other skills are never touched). `--yes` says yes; `--dry-run` lists what it would copy;
+   `--no-skills` skips. Host → folder, taken from the `skills` CLI 1.7.1 agent table and verified by the builder on the
+   day (Source line in the file like the host files have): codex `~/.codex/skills`, cursor `~/.cursor/skills`, gemini
+   `~/.gemini/skills`, devin `~/.devin/skills`, vscode (Copilot) its global skills folder per that table. claude-code and
+   claude-desktop get no skills step (plugin / no skills folder). `doctor` adds one row per skills host: `skills ✔ 52 of
+   52 plgn skills` or `✘ 40 of 52 · run npx plgn-setup <host>` or `✘ none · run npx plgn-setup <host>`. The package's
+   `files` list gains `skills`; the "files list" test is updated.
+9. **Not in this round**: ChatGPT `plugin.json` + `agents/openai.yaml` (round 2, same `skills/` folder, same repo); a
+   `/.well-known/agent-skills/index.json` on useplgn.com so `npx skills add https://useplgn.com` works (later); a
+   server-side crew; a skills version check in doctor (follow-up).
 
 ## Interfaces
 
-- `plgn-claude/_dev/scripts/portable.mjs --out <dir> [--check]`: writes `<dir>/skills/*/SKILL.md`, `<dir>/README.md`,
-  `<dir>/VERSION`, `<dir>/LICENSE`; prints `52 skills, N rewrites`; exit 1 with the file and line on any flagged word,
-  any frontmatter over the limits, any sibling file a skill reads. `--check` runs the generation into a temp dir and
-  only reports. `npm run portable` and `npm run portable:check` in plgn-claude's package.json; `validate.mjs` calls the
-  check so the plugin's own gate covers it.
-- `plgn-claude/_dev/portable-repo/`: the files the `plgn-skills` repo needs besides the output: `.github/workflows/
-  generate.yml`, `README.md` template. I copy them into the new repo once.
-- `plgn-setup/src/skills-step.js`: `skillsAgentFor(hostId) → id | null`, `skillsCommand(agent) → string[]`,
-  `runSkillsInstall(ctx, host)` (spawns npx, inherits stdio, returns ok/fail), `skillsInstalled(ctx, host) → count`.
-  `cli.js` calls it after each host write; `doctor.js` adds the row; `i18n.js` gets the five new lines in both
-  languages (Arabic by the Edit/Write tool only, simple formal MSA, Western digits).
+- `plgn-claude/_dev/scripts/portable.mjs --out <dir> [--check]`: writes `<dir>/<name>/SKILL.md` for the 52 skills,
+  `<dir>/VERSION`, `<dir>/README.md` ("generated from PLGN-App/PLGN-CLAUDE X.Y.Z by _dev/scripts/portable.mjs; do not
+  edit; install with npx plgn-setup or npx skills add PLGN-App/plgn-setup"); removes stale `plgn-*` folders in `<dir>`
+  first; prints `52 skills, N rewrites`; exit 1 with the file and line on any flagged word, any frontmatter over the
+  limits, any sibling file a skill reads. `--check` generates into a temp dir and only reports. plgn-claude gets a
+  minimal private `package.json` with `validate`, `portable`, `portable:check` and `test` scripts; `validate.mjs` calls
+  the check so the plugin's own gate covers it.
+- `plgn-claude/_dev/portable-repo/generate.yml`: the workflow file for plgn-setup, kept beside the generator so the two
+  move together; copied into `plgn-setup/.github/workflows/` by the plgn-setup lane (same content).
+- `plgn-setup/src/skills.js`: `skillsDirFor(hostId, ctx) → path | null`, `bundledSkills() → [{name, dir}]` (reads the
+  package's own `skills/`), `installSkills(ctx, hostId, {dryRun}) → {copied, replaced}`, `skillsStatus(ctx, hostId) →
+  {installed, total}`. `cli.js` calls it after each host write; `doctor.js` adds the row; `i18n.js` gets the new lines
+  in both languages (Arabic by the Edit/Write tool only, simple formal MSA, Western digits).
 
 ## Tests
 
 - plgn-claude (`node --test _dev/test/portable.test.mjs`): runs the generator on the real repo into a temp dir; exactly
   52 folders, every `name` equals its folder, every description ≤ 1024 chars, no `mcp__`, none of the flagged words,
   every command/agent/skill of plugin.json present, the two fixed opening paragraphs present where they belong, the four
-  tool-name rewrites applied, VERSION equals plugin.json's version. A second run is byte-identical (deterministic).
-- plgn-setup (`node --test`): agent map covers every host id with the right id or null; the command line is exactly
-  `npx -y skills@latest add PLGN-App/plgn-skills -g -y -a <agent>`; `--dry-run` prints it and spawns nothing; `--no-skills`
-  and a "no" answer skip; doctor row green/red from a fake home; i18n keys exist in both languages.
-- Live proof (me, after merge): `npx skills add PLGN-App/plgn-skills -l` lists 52; `npx skills add PLGN-App/plgn-skills
-  -g -y -a codex` on this machine, then Codex (`codex mcp login plgn` done) runs "plgn post for Bunduq" end to end.
-  Points are spent only on the owner's go.
+  tool-name rewrites applied, VERSION equals plugin.json's version. A second run is byte-identical (deterministic). A
+  stale `plgn-old` folder in the target is removed; a `my-own-skill` folder there is kept.
+- plgn-setup (`node --test`): host → folder map covers every host id with a path or null; install from a fake package
+  dir into a fake home copies 52 folders, replaces an old `plgn-*` folder, keeps a foreign one; `--dry-run` lists and
+  writes nothing; `--no-skills` and a "no" answer skip; doctor row green / partial / none from a fake home; i18n keys
+  exist in both languages; the `files` list test includes `skills`; the real bundled `skills/` has 52 folders and a
+  VERSION once the generated tree is committed (the lane commits a first generation).
+- Live proof (me, after merge): `npx skills add PLGN-App/plgn-setup -l` lists 52; `npx plgn-setup codex` on this
+  machine, then Codex (`codex mcp login plgn` done) runs "plgn post for Bunduq" end to end. Points only on the owner's go.
 
 ## Rules carried over
 
