@@ -132,6 +132,8 @@ assume it can. Pass the numbers, limits and voice rules it needs directly.
 
 Agents never call tools that write. The command owns every write.
 
+Never tell the person a tool is missing when it is in your own tool list. When an agent reports a tool it lacks, call that tool yourself. `web_search` is the way to search the web.
+
 ## 7. The seam
 
 Free commands close with the block from the **upsell-seam** skill, once, at the

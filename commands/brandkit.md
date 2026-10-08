@@ -68,9 +68,15 @@ from here on. "Nothing" is an answer.
 
 **Find the accounts.** Read `knowledge_get(type: "channels")`. If there is no
 entry, call `site_read` on the website: its `socials:` line lists the
-Instagram, TikTok, Facebook, X and LinkedIn accounts the site links to. Ask
-once for any of the five that is missing ("no account" is an answer). Keep the
-accounts in hand — nothing is written until the plan in step 6 gets its yes.
+Instagram, TikTok, Facebook, X and LinkedIn accounts the site links to. Add the
+links on the brand's own `links:` line in `brand_list`. For Instagram, Facebook
+and LinkedIn still missing (TikTok and X only when the site or the person names
+them), start `plgn-researcher` with the brand's name, website and city to find
+them (its "Finding a brand's accounts"). Keep only the ones it confirms. The
+plan in step 6 lists them apart, as "found by search: facebook @… (check it)".
+Only when no account is found at all, ask once for the links ("no account" is an
+answer). Keep the accounts in hand — nothing is written until the plan in step 6
+gets its yes.
 
 **Notice a shop.** If the pages `site_read` returned are a shop's — product
 pages, prices, a cart or checkout — remember it for step 9.
@@ -256,7 +262,11 @@ What this run's own agents change about it:
   the new ones added, per **brand-assets**.
 - The accounts found in step 3 become one **`channels`** entry (website,
   instagram, tiktok, facebook, x, linkedin), saved with the Business pass. When one is
-  already saved and unchanged, write nothing; when it changed, update it.
+  already saved and unchanged, write nothing; when it changed, update it. The
+  accounts also go on the brand itself, in one `brand_update` with
+  `social_links`: the links its `links:` line shows plus the new ones, since the
+  list is replaced whole. When that line is cut with "…", leave the links alone
+  and say so.
 - Competitors become **one `competitor` entry each**, never one entry listing
   several, with their `url` and the handles their reader found.
 - Reviews from `place` feed the **`proof`** and **`objection`** entries,

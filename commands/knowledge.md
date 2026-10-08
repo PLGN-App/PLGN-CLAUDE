@@ -1,5 +1,5 @@
 ---
-description: Check what plgn knows about a brand — voice, audience, offers, banned words — and fix what's missing, out of date, or contradicting itself. Use for "check my brand profile", "update my voice", "my posts sound wrong", or after a repositioning.
+description: Check what plgn knows about a brand — voice, audience, offers, banned words — and fix what's missing, out of date, or contradicting itself. Use for "check my brand profile", "update my voice", "my posts sound wrong", or after a repositioning. Not for a brand's social accounts: /plgn brandkit finds them.
 ---
 
 # /plgn knowledge
