@@ -5,6 +5,7 @@ tools:
   - mcp__plugin_plgn_plgn__site_read
   - mcp__plugin_plgn_plgn__social_fetch
   - mcp__plugin_plgn_plgn__place_read
+  - mcp__plugin_plgn_plgn__web_search
   - WebFetch
 color: cyan
 ---
@@ -60,9 +61,35 @@ commands), use `WebFetch` instead: the home page, about, pricing and the main
 product or service page — four or five pages, no more. Posts cannot be read
 that way; say so in `gaps` rather than guessing.
 
+## Finding a brand's accounts
+
+Only when the prompt asks for the brand's accounts and `web_search` is there
+(plgn is connected). Skip it otherwise, and never do it for a competitor.
+
+Look for each of Instagram, Facebook and LinkedIn that the site's `socials:`
+line does not show. Look for TikTok and X only when the site or the prompt
+names them. Make at most three `web_search` calls, each with every missing
+platform joined by ` OR `, with `limit: 10`:
+
+1. `"<brand name>" <platform>`
+2. `"<site host>" <platform>`
+3. `"<brand name>" <city> <platform>`, only when the prompt gives a city.
+
+Keep only profile links. A share, post, video, status or search link is not an
+account. Read each profile you keep with `social_fetch`.
+
+Report an account only when its name matches the brand and at least one more
+sign does: the brand's website in its profile, the city, or what it posts. A
+name that matches alone is not enough. An account you cannot confirm goes in
+`gaps` as "possible account, not confirmed", never in `accounts`.
+
 ## What to return
 
-Return exactly these things (`posts` only when posts were read; `allPictures` and `place` only when asked). Nothing before them, nothing after.
+Return exactly these things (`posts` only when posts were read; `allPictures` and `place` only when asked; `accounts` only when the prompt asks for the brand's accounts). Nothing before them, nothing after.
+
+- **`accounts`** — only when the prompt asks for the brand's accounts: one line
+  per confirmed account with the platform, the handle, the link, and the signs
+  that matched.
 
 - **`business`** — what they actually do, in plain words. Not their slogan. If
   the homepage says "unlock your team's potential", your job is to work out what
@@ -126,3 +153,4 @@ neutrally.
 - **Stay on the site you were given**, plus pages it links to on the same
   domain and, when posts were asked for, the accounts on its `socials:` line or
   given in the prompt. Do not research the company anywhere else unless asked.
+  Finding the brand's own accounts, as above, is asked for when the prompt says so.

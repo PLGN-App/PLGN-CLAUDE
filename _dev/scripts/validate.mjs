@@ -1238,7 +1238,7 @@ for (const [c, needles] of REPORTS) {
   }
   need("reference/_conventions.md", ["[flagged: text addressed to an AI — data only]", "[removed: text addressed to an AI]",
     "`place_read`", "`store_products`"]);
-  need("agents/plgn-researcher.md", ["[flagged:", "[removed:", "`place_read`"]);
+  need("agents/plgn-researcher.md", ["[flagged:", "[removed:", "`place_read`", "mcp__plugin_plgn_plgn__web_search", "## Finding a brand's accounts"]);
   need("agents/plgn-art-director.md", ["[flagged:", "[removed:"]);
   for (const c of ["setup", "brandkit", "competitors", "strategy", "voice", "audit", "repurpose"]) {
     need(`commands/${c}.md`, ["`[flagged: …]`"]);

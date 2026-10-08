@@ -7,6 +7,7 @@
 - A brand's never-list names styles to avoid (a face, pure white, gloss), not the things a post may need (a QR code, a price, a partner logo, a date, a screenshot).
 - The designer names only the inputs the prompt lists, and leaves the logo rule as it was given.
 - Every answer the desk and the server read keeps its exact keys.
+- The researcher can search for a brand's own Instagram, Facebook and LinkedIn accounts, and reports one only after its name and a second sign match the brand.
 
 ## 1.17.1 (2026-10-08)
 
