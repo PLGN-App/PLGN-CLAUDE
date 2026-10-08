@@ -3,3 +3,6 @@ node_modules/
 _backup-*/
 _dev/*
 !_dev/scripts/
+!_dev/test/
+!_dev/portable-repo/
+dist/

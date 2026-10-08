@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "node _dev/scripts/validate.mjs",
+    "portable": "node _dev/scripts/portable.mjs --out dist/portable",
+    "portable:check": "node _dev/scripts/portable.mjs --check",
+    "test": "node --test _dev/test/*.test.mjs"
+  }
+}
