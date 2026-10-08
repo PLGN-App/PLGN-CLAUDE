@@ -49,8 +49,8 @@ Print this, then stop:
 
 > I can't reach your workspace. Two things cause this:
 >
-> **You haven't restarted** since installing or updating plgn. Restart Claude
-> Code and run this again — that fixes it most of the time.
+> **You haven't restarted** since installing or updating plgn. Restart your AI
+> tool and run this again — that fixes it most of the time.
 >
 > **You don't have a workspace yet.** Create one at **useplgn.com**, then run
 > this again — you'll be asked to approve access in your browser.

@@ -1,5 +1,5 @@
 ---
-description: Connect Claude Code to a plgn workspace and prepare a brand — checks the connection, picks or creates a brand, and saves its voice, audience, offers and banned words from your website. Run this once before /plgn month. Use for "connect plgn", "set up my workspace", or first-time onboarding.
+description: Connect your AI tool to a plgn workspace and prepare a brand — checks the connection, picks or creates a brand, and saves its voice, audience, offers and banned words from your website. Run this once before /plgn month. Use for "connect plgn", "set up my workspace", or first-time onboarding.
 ---
 
 # /plgn setup

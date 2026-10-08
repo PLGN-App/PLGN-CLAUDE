@@ -75,7 +75,7 @@ NEEDS AN ACCOUNT
 
 New here? Try /plgn demo with your website. It needs no account.
 
-Just installed or updated plgn? Restart Claude Code first, or the commands
+Just installed or updated plgn? Restart your AI tool first, or the commands
 won't be there yet.
 ```
 
