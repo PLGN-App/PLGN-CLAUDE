@@ -215,3 +215,20 @@ test("--check passes and a bad --out is refused", () => {
     console.error = quietErr;
   }
 });
+
+test("the workflow regenerates from the latest plugin tag and commits as PLGN", () => {
+  const yml = readFileSync(join(ROOT, "_dev", "portable-repo", "generate.yml"), "utf8");
+  for (const piece of [
+    "workflow_dispatch",
+    'cron: "17 */6 * * *"',
+    "contents: write",
+    "https://github.com/PLGN-App/PLGN-CLAUDE",
+    "refs/tags/v*",
+    'portable.mjs" --out ./skills',
+    "user.name=PLGN",
+    "user.email=waslahapp993@gmail.com",
+    "skills: regenerated from plugin",
+    "git push origin HEAD:main",
+  ]) assert.ok(yml.includes(piece), `generate.yml is missing: ${piece}`);
+  assert.ok(!yml.includes("secrets."), "generate.yml must not use a secret");
+});
