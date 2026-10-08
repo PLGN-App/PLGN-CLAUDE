@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.18.1 (2026-10-08)
+
+- `/plgn import-store` reads one product page when the store is not Shopify, WooCommerce or EasyOrders: every spec line, the product's photos (never the logos), one yes, then the photos go to the library and the product is saved with them.
+
 ## 1.18.0 (2026-10-08)
 
 - plgn's commands, roles and skills can be used in other AI tools: `_dev/scripts/portable.mjs` writes them as 53 skills in the Agent Skills form, which `npx plgn-setup` installs. Validate checks them too.
