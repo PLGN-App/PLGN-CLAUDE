@@ -90,6 +90,7 @@ stroke; a pill or sticker label; outline against fill; a size or weight jump; a 
 - Colours come from the brand palette only.
 - Tie each move to the hierarchy: it marks the first read, or the word that carries the offer.
 - Never put one on the product or its label, and never at the cost of reading.
+- Name the word or line a move marks by its place (the headline's last word, the price line), never in quote marks: the designer pastes `styling` into the picture prompt, where every quoted string is a word to draw. In a carousel, name it the same way so it holds on every frame.
 - Write the choice inside `styling`. There is no new key, and every answer keeps its keys.
 - When the saved look names a text treatment, that treatment wins.
 - Arabic: a whole word may take the accent colour or a box. Part of a word never, because its letters join.
@@ -104,7 +105,7 @@ One frame. `fit` is `null` when every line fits:
 {
   "typography": {
     "system": "Cairo Black for the headline, Cairo Regular for the support line, 3:1 in size; Western digits",
-    "styling": "The headline in the brand's deep green, the support line in warm white; plain, no outline; size steps 96 and 32; accent: a drawn underline in the brand's orange under «تصحّيك»",
+    "styling": "The headline in the brand's deep green, the support line in warm white; plain, no outline; size steps 96 and 32; accent: a drawn underline in the brand's orange under the headline's second word",
     "concept": "The headline is a painted shop sign above the product, the support line a small tag under it",
     "placement": [
       { "text": "قهوة تصحّيك", "where": "top third, right-aligned on the right column, inside the safe zone", "near": "keeps off the pack's label and the hand" },

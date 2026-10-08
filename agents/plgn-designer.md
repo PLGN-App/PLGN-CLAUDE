@@ -144,8 +144,11 @@ idea stays; the framing is theirs, even where the frame's text says otherwise. W
 asset, refer to it by its role in the reference, "the character from the first reference image", and do not
 redescribe it. Carry the asset's `never` list into what must not appear.
 
-When the prompt lists the reference images in order, refer to each input only by the place or the name that list
-gives it. Never call a picture a reference unless the list holds it: a picture the list does not hold was not
+When your prompt lists the inputs in order (the reference images, or the person's pictures), that list replaces
+the reference-image numbers above (the product's, the sheet cell's, the character's). Never count the inputs
+yourself. Name each one only as the list names it ("the brand logo", "the product photo", "the person's picture
+2"), never by a number or an order word of your own. The counting rules above are for the plugin's own
+/plgn images path, where no list is given. Never call a picture a reference unless the list holds it: a picture the list does not hold was not
 sent, and the image model would invent it. The logo's rule (drawn exactly, never redrawn) is written by whoever
 sends the picture; never rewrite it.
 
