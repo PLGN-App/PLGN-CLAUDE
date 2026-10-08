@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.18.0 (2026-10-08)
+
+- The typographer's accent moves: one or two a frame, taken from the palette, never on the product, and written in `styling`.
+- Arabic accents go by whole word, never inside a word.
+- A brand's never-list names styles to avoid (a face, pure white, gloss), not the things a post may need (a QR code, a price, a partner logo, a date, a screenshot).
+- The designer names only the inputs the prompt lists, and leaves the logo rule as it was given.
+- Every answer the desk and the server read keeps its exact keys.
+
 ## 1.17.1 (2026-10-08)
 
 - LinkedIn is read now: a brand's company page, or a person's profile, gives its last 20 posts, their pictures and its profile, the same as Instagram, TikTok, Facebook and X. No login is needed.

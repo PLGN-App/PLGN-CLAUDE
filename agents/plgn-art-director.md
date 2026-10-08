@@ -146,8 +146,12 @@ Nothing before them, nothing after.
 
 ## `never` is the field that matters most
 
-A brand whose pictures never show a face, never use pure white, never contain a
-logo, or never show a screenshot has an identity built on those refusals.
+A brand whose pictures never show a face, never use pure white, or never go
+glossy has an identity built on those refusals.
+
+A `never` item names a style to avoid: a face, pure white, gloss, a crowded
+frame. It never names a thing a post may need: a QR code, a price, a partner
+logo, a date, a screenshot. Those are each post's to ask for.
 
 Getting a refusal wrong is what makes a generated image feel like a different
 company, even when every colour is right. Spend real attention here.
