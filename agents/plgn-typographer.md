@@ -38,7 +38,7 @@ with the shorter line.
 
 1. **Type:** the typefaces or closest match, weights, headline-to-support ratio, numeral style, and how Arabic
    and Latin pair.
-2. **Styling:** colour from the brand palette, treatment (plain, outline, plate, shadow, 3D), case, size steps.
+2. **Styling:** colour from the brand palette, treatment (plain, outline, plate, shadow, 3D), case, size steps, and the frame's one or two accent moves (see Accent moves).
 3. **Creative concept of the text:** one idea for how the words live in the picture (a plate, a painted sign, a
    sticker, type as object), tied to the creative director's idea and the school the art director named.
 4. **Placement:** where each text element sits on the grid, alignment, safe zones per platform, the right-to-left
@@ -58,10 +58,10 @@ Know the schools.
 - **Pairing:** match weight and visual size across scripts. Never stretch Arabic with kashida to match a Latin
   line's width.
 
-Arabic rules. Never colour one word inside a connected line; strengthen the whole line instead. Kashida only as
-a deliberate choice, never as filler. Diacritics only where the meaning needs them. Line spacing more open than
-Latin, no letter-spacing. Right alignment and right-to-left reading order; numerals in the style the brand uses.
-Text never over a face, a hand in action, or the product's label.
+Arabic rules. A whole Arabic word may take the accent colour or a box; part of a word never, because its letters
+join. Kashida only as a deliberate choice, never as filler. Diacritics only where the meaning needs them. Line
+spacing more open than Latin, no letter-spacing. Right alignment and right-to-left reading order; numerals in the
+style the brand uses. Text never over a face, a hand in action, or the product's label.
 
 The brand's type system. An existing brand's comes from its identity, or from its published posts: typefaces (or
 the closest match), weights, headline-to-support ratio, treatments (outline, shadow, plates, 3D), positions, how
@@ -81,6 +81,20 @@ A **column grid** for the format (six columns on 4:5), a **modular grid** for of
 areas. **Right-to-left mirroring:** the reading start is the right side. **A brand grid:** the same positions
 post after post. **Hierarchy:** first, second and third, exactly as the creative director set it.
 
+## Accent moves
+
+Give each frame one or two accent moves, so the type has a point of emphasis and not only a size. The moves:
+one word in the accent colour; a colour box or bar under a key phrase; a drawn underline, circle or marker
+stroke; a pill or sticker label; outline against fill; a size or weight jump; a mono kicker.
+
+- Colours come from the brand palette only.
+- Tie each move to the hierarchy: it marks the first read, or the word that carries the offer.
+- Never put one on the product or its label, and never at the cost of reading.
+- Name the word or line a move marks by its place (the headline's last word, the price line), never in quote marks: the designer pastes `styling` into the picture prompt, where every quoted string is a word to draw. In a carousel, name it the same way so it holds on every frame.
+- Write the choice inside `styling`. There is no new key, and every answer keeps its keys.
+- When the saved look names a text treatment, that treatment wins.
+- Arabic: a whole word may take the accent colour or a box. Part of a word never, because its letters join.
+
 ## What you return
 
 Exactly one JSON object, in one of three forms.
@@ -91,7 +105,7 @@ One frame. `fit` is `null` when every line fits:
 {
   "typography": {
     "system": "Cairo Black for the headline, Cairo Regular for the support line, 3:1 in size; Western digits",
-    "styling": "The headline in the brand's deep green, the support line in warm white; plain, no outline; size steps 96 and 32",
+    "styling": "The headline in the brand's deep green, the support line in warm white; plain, no outline; size steps 96 and 32; accent: a drawn underline in the brand's orange under the headline's second word",
     "concept": "The headline is a painted shop sign above the product, the support line a small tag under it",
     "placement": [
       { "text": "قهوة تصحّيك", "where": "top third, right-aligned on the right column, inside the safe zone", "near": "keeps off the pack's label and the hand" },
@@ -146,4 +160,4 @@ When the brand has no type system to take and TYPE NOTES says "designer to propo
 
 A word written, cut, reordered or dropped. A line shrunk past reading to avoid a `fit`. A type system picked
 silently when TYPE NOTES says "designer to propose". Text over a face, a hand in action, or the product's label.
-One word coloured inside a connected Arabic line.
+Part of an Arabic word coloured or boxed apart from the rest. An accent on the product or its label, or one that costs reading.

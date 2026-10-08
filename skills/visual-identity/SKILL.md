@@ -30,9 +30,12 @@ Ten fields. Each carries the evidence it came from.
 | **canonicalReference** | The one image that best represents the set |
 
 **The `never` field carries more weight than it looks.** A brand whose pictures
-never show a face, never use pure white, or never contain a logo has an
+never show a face, never use pure white, or never go glossy has an
 identity built on those refusals. Getting a refusal wrong is what makes a
-generated image feel like a different company.
+generated image feel like a different company. A `never` item names a style to
+avoid (a face, pure white, gloss, a crowded frame), never a thing a post may
+need (a QR code, a price, a partner logo, a date, a screenshot): those are each
+post's to ask for.
 
 **The school.** After the ten fields the art director names the school the
 look belongs to: one school, several approved worlds, or per campaign, taken
