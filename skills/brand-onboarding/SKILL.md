@@ -28,10 +28,10 @@ Use every rung available, best first.
 | 5 | The user's own answers | Only what no source can show |
 
 A brand's accounts live in one `channels` knowledge entry (website, instagram,
-tiktok, facebook, x). Find them once — `site_read`'s `socials:` line, then ask
-for what is missing — save them with the Business pass after the plan's yes
-(never while gathering), and read them from there on every later run.
-LinkedIn is not read.
+tiktok, facebook, x, linkedin). Find them once — `site_read`'s `socials:` line,
+then ask for what is missing — save them with the Business pass after the
+plan's yes (never while gathering), and read them from there on every later
+run. A LinkedIn account is saved as `company/name` (or `in/name` for a person).
 
 **The rule that governs all five:**
 

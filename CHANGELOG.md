@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.17.1 (2026-10-08)
+
+- LinkedIn is read now: a brand's company page, or a person's profile, gives its last 20 posts, their pictures and its profile, the same as Instagram, TikTok, Facebook and X. No login is needed.
+- A brand's LinkedIn page is saved with its other accounts, as `company/name`.
+
 ## 1.17.0 (2026-10-08)
 
 - Pictures are now described the way a photographer sets them up: the camera's height, distance and lens look in numbers, where each thing stands, where the product sits and where the words go, what each surface is, and who is in the picture and what they are doing.

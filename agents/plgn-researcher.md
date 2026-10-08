@@ -39,15 +39,16 @@ to four useful pages (about, services or products, pricing, contact), and a
 
 If the prompt asks for the brand's or competitor's posts too, call
 `social_fetch` once per account on that `socials:` line (Instagram, TikTok,
-Facebook, X), or per handle the prompt gives you. It always returns the last
-20 posts. Never LinkedIn.
+Facebook, X, LinkedIn), or per handle the prompt gives you. It always returns
+the last 20 posts. A LinkedIn `quote` post's words are the brand's own, but
+its pictures come from the post it shared, often a founder's or a partner's.
 
 If the prompt gives a place ("Bunduq Coffee Zamalek", or a Google Maps
 link), call `place_read` once with it. If the name it returns is not the
 brand, say so in `gaps` and use nothing from it.
 
 `site_read` ends each page with a `pictures:` list, and `social_fetch` starts
-with a `profile:` block for Instagram, TikTok and X. Both are part of what you
+with a `profile:` block for Instagram, TikTok, X and LinkedIn. Both are part of what you
 return when the prompt asks for pictures.
 
 A tool reply that starts with `ERROR:` is a finding, not a failure: an account

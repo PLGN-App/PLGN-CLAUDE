@@ -68,10 +68,9 @@ from here on. "Nothing" is an answer.
 
 **Find the accounts.** Read `knowledge_get(type: "channels")`. If there is no
 entry, call `site_read` on the website: its `socials:` line lists the
-Instagram, TikTok, Facebook and X accounts the site links to. Ask once for
-any of the four that is missing ("no account" is an answer). Keep the
+Instagram, TikTok, Facebook, X and LinkedIn accounts the site links to. Ask
+once for any of the five that is missing ("no account" is an answer). Keep the
 accounts in hand — nothing is written until the plan in step 6 gets its yes.
-LinkedIn is not read.
 
 **Notice a shop.** If the pages `site_read` returned are a shop's — product
 pages, prices, a cart or checkout — remember it for step 9.
@@ -256,7 +255,7 @@ What this run's own agents change about it:
 - **Product photos** — `offering_update` with the existing pictures kept and
   the new ones added, per **brand-assets**.
 - The accounts found in step 3 become one **`channels`** entry (website,
-  instagram, tiktok, facebook, x), saved with the Business pass. When one is
+  instagram, tiktok, facebook, x, linkedin), saved with the Business pass. When one is
   already saved and unchanged, write nothing; when it changed, update it.
 - Competitors become **one `competitor` entry each**, never one entry listing
   several, with their `url` and the handles their reader found.
