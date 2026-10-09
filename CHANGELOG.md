@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.18.2 (2026-10-09)
+
+- `/plgn month` and `/plgn images` ask plgn what the pictures cost before making any: one quote for the whole batch, the model and the total in plain words, a yes before a point is spent. No price is worked out by hand any more, and the quote's prompt limit is handed to the designer.
+- The `Image points` line is read as what plgn prints: used of included this period, plus purchased.
+
 ## 1.18.1 (2026-10-08)
 
 - `/plgn import-store` reads one product page when the store is not Shopify, WooCommerce or EasyOrders: every spec line, the product's photos (never the logos), one yes, then the photos go to the library and the product is saved with them.

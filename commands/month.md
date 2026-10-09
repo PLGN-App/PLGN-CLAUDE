@@ -89,21 +89,51 @@ Big idea:   <its one sentence, or "none yet — think first?">
 Platforms:  LinkedIn, X, Instagram
 Languages:  <the brand's, from its record>
 Posting:    <n>/week — <n> posts total
-Images:     <n> to make — <n> points, leaving <n>
+Images:     <n> to make — <model>, <n> points in all, leaving <n>
 Dates:      <start> → <end>, <timezone>
 ```
 
 Four of those lines exist to be corrected. Languages and timezone come from the
-brand, not from the conversation, and both are invisible when wrong. The points
-line says what is left afterwards, because that is the number people decide on.
-Work it out from `workspace_info`: the `Image points` line is the balance, and
-each image model has its own points price — never assume one point a picture.
+brand, not from the conversation, and both are invisible when wrong. The
+`Images:` line says what is left afterwards, because that is the number people
+decide on — and every number on it is plgn's, never your own sum.
+
+### Ask plgn what the pictures cost
+
+Before showing the plan, call `image_quote` **once for the whole month**:
+
+```
+image_quote(pictures: <the Images figure>, from_images: <true or false>)
+```
+
+`from_images` is true when step 7 will make the pictures with
+`generate_image_from_image` — the brand holds a canonical reference, or its
+saved things may go into a picture. To know, make step 7's no-campaign read
+here, `context_get(role: "art_director")`, and keep it: step 7 uses that same
+read for the posts in no campaign. The quote answers with the model, the
+tool, the points each and in all, what is left now and after, the longest
+prompt the model takes (`Prompt: up to N characters.`), and the other models
+the points cover. Put the model, the total and what is left after into the
+`Images:` line, in plain words, and offer to switch the model under the plan,
+naming the others the quote lists with their points. If they name one, pass it
+as `model` on the quote and on every picture of this run; leave `model` empty
+otherwise. Keep the `Prompt: up to N characters.` line: it is the cap
+every image description in step 7 is written to fit. Never write a price
+yourself, from `workspace_info` or from memory: the `Image points` line there
+reads `<used> of <included> used this period`, plus any purchased points — it
+is what has been used, not what a picture costs.
+
+When the quote says `not enough points for this batch`, say so in the plan and
+offer fewer pictures (`--max-images`) or none (`--no-images`) rather than
+stopping with no explanation. With `--no-images` there is nothing to quote: make
+no call and the line reads `Images: none`.
 
 The `Images:` figure already reflects `--no-images` and `--max-images` — zero
 with the first, no more than the number given with the second — and it is an
 upper bound either way, because a picture reused from the workspace costs
-nothing. Both controls are described in section 7; the number here is the one
-being approved.
+nothing and a post `picture_need` skips costs nothing. Fewer pictures than the
+quote covered is fine; more is never made. Both controls are described in
+section 7; the number here is the one being approved.
 
 When the plan shows "none yet — think first?", answering **think first**
 instead of yes runs the talk from **creative-brief**, "The concept comes
@@ -129,8 +159,10 @@ Stop on a flag you do not recognise, and say which one. A misread flag spends
 points on the wrong posts — `--no-image` is not `--no-images`, and reading it
 as nothing at all is a full month of pictures the user asked you not to make.
 
-State the image cost in the plan, not afterwards. It spends real points, and
-it is the part a user is most likely to want reduced.
+State the image cost in the plan, not afterwards, and state it as the quote
+gave it. It spends real points, and it is the part a user is most likely to
+want reduced. The yes to the plan is the yes to the quote: step 7 asks nothing
+again.
 
 **`--yes` is not accepted by this command.** It spends points and writes in
 bulk.
@@ -290,7 +322,10 @@ controls, and they combine:
 - `--max-images 8` — make at most this many, best candidates first, and say in
   the report which posts went out without one.
 
-Say the number you are about to spend before spending it, not after.
+Say how many pictures you are about to make before making them, not after —
+never more than the plan's `Images:` figure, which is the number the quote in
+step 3 covered. No new quote and no price of your own here: the cost was
+stated and agreed in the plan.
 
 ### Look for a picture that already exists
 
@@ -359,7 +394,10 @@ what must not appear. Never the caption drawn: write it from the post's
 concept — its visual idea, its product's role, and the take and leave of the
 reference it cites — rather than restating the post's words, put the preamble
 of the `art_director` block read for this post's campaign group in front of
-it, and carry that block's `never` list as exclusions.
+it, and carry that block's `never` list as exclusions. Write the whole
+description to fit the quote's `Prompt: up to N characters.` line from step 3;
+when it runs long, cut style words first, then materials, then light detail —
+never the subject, the brand colour or the exclusions.
 
 **4b. Words in a picture.** This quick path draws no words, except for a post
 whose concept format is made of words — a quote card, a reel cover or a meme.
@@ -402,7 +440,8 @@ call `generate_image`. See **visual-identity** for why the two are
 different.
 
 Carry `post_id` and `alt_text` on every call — `alt_text` keyed by language,
-as written with the description. plgn then puts the finished picture on the
+as written with the description — and `model` only when the person picked one
+at the quote in step 3. plgn then puts the finished picture on the
 post by itself, with its alt text, whether `check_generation` or plgn's own
 finish gets there first.
 

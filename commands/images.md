@@ -12,10 +12,12 @@ Call `workspace_info`. If it fails, print the message from **_conventions**
 rule 2 and stop.
 
 Check the image setup from the same `workspace_info` result. Images are paid
-for in **points**, and the cost depends on the image model — `workspace_info`
-lists every model with its points, and the `Image points` line shows what is
-used and what is left. Read both; never assume one picture costs one point. If
-no points are left, say so and stop — point them at billing in the dashboard,
+for in **points**, and the cost depends on the image model. The `Image points`
+line reads `<used> of <included> used this period`, with `, plus <n> purchased`
+when the workspace bought more — it says what has been used, not what a picture
+costs. What this run will cost comes only from `image_quote`, in section 4;
+never assume a price here, and never one point a picture. If the line shows
+nothing left, say so and stop — point them at billing in the dashboard,
 never ask for a key in the terminal. Same for Cloudinary (the `Integrations`
 line): without storage, new images have nowhere to live.
 
@@ -58,10 +60,12 @@ Say what you found, and name the filter on the same line, so a narrowed run is
 never read as an empty board:
 
 ```
-7 posts have no image in "Ramadan 2027" · 24 points available
+7 posts have no image in "Ramadan 2027" · 12 of 36 image points used this period
 ```
 
-With no filter, the same line without the campaign clause.
+With no filter, the same line without the campaign clause. The points clause
+is the `Image points` line as `workspace_info` printed it; what the pictures
+will cost is said in section 4, from the quote.
 
 ## 3. Decide which deserve a picture
 
@@ -106,19 +110,46 @@ the request.
 
 A carousel planned earlier by `/plgn month` cannot be seen from here, so
 unless the user asks for one in this run, a post is costed and made as one
-picture:
+picture.
+
+With the frame count settled, call `image_quote` **once for the whole run**,
+every frame of every post together:
+
+```
+image_quote(pictures: <all frames of all posts left after section 3>, from_images: <true or false>)
+```
+
+`from_images` is true when any frame will be made with
+`generate_image_from_image`: a `picture_need` line named an `asset:`, a
+product will come from a sheet, or the brand holds a canonical reference. To
+know about the reference, make section 6's no-campaign read here,
+`context_get(role: "art_director")`, and keep it for section 6. The quote
+answers with the model, the tool, the points each and in all, what is left now
+and after, the longest prompt the model takes (`Prompt: up to N characters.`),
+and the other models the points cover. Say the model, the total and what is
+left after in plain words, offer to switch the model, naming the others the
+quote lists with their points, and wait for the yes:
 
 ```
 8 pictures for 5 posts — one is a carousel on X, asked for in this run and
 cut from 6 frames to 4, which is all X allows.
-8 points at 1 point each, leaving 16.
+<model> makes them: <points in all> points, leaving <points left after>.
+Another model? <the others the quote lists, each with its points>
 yes / pick / no
 ```
 
-Images spend from a real balance, and this states the whole run's bill, not
-one post's. Work the bill out from the points `workspace_info` gives for the
-model you will use — frames × that model's points. If the number is more than the workspace has, say so and offer to
-do the most valuable posts rather than stopping halfway with no explanation.
+Every number in that block is the quote's. Never work a bill out yourself,
+from `workspace_info` or from memory, and never state a price before the
+quote. If they name a model, pass it as `model` on the quote and on every
+picture of this run; leave `model` empty otherwise. Keep the quote's
+`Prompt: up to N characters.` line: section 5 hands it to the designer.
+
+Images spend from a real balance, and the quote states the whole run's bill,
+not one post's. When it says `not enough points for this batch`, say so and
+offer to do the most valuable posts — the `need` reasons `shows_offer`,
+`shows_place_or_person` and `steps_or_before_after` first — rather than
+stopping halfway with no explanation. A shorter run is quoted again before its
+yes.
 
 `--dry-run` stops here and spends nothing.
 **`--yes` is not accepted by this command.** It spends points.
@@ -204,6 +235,11 @@ for each one. This is the **creative-brief** skill's four steps in two calls
    carries each frame, as the `brief_create` call in step 3 resolved it,
    and the brand's languages from the record at the top of the designer
    read — the designer writes each frame's alt text in every one of them.
+   End with one line from section 4's quote, `Prompt cap: N characters`, N
+   being the number on its `Prompt: up to N characters.` line — the designer
+   writes each frame's text to fit it, and a text over it is refused by plgn
+   when the picture is started. When the quote carried no such line, leave the
+   line out.
 5. A frame that fails a check comes back as objections, not a picture, and
    each objection belongs to the frame it was raised against. Send
    `plgn-creative-director` the objections and the ideas it already scored,
@@ -258,7 +294,9 @@ When the brand holds a canonical reference, call
 `generate_image_from_image` with it, for every frame. Otherwise call
 `generate_image`. See **visual-identity** for why the two are different.
 Either way, carry `post_id`, `brief_id` and `slide_order` on the call, and
-use each frame's finalized image text from section 5.
+use each frame's finalized image text from section 5. Add `model` only when
+the person picked one at the quote in section 4; otherwise leave it empty and
+the workspace's model is used, as the quote said.
 
 **A frame built around the brand's own things names them.** When the
 designer gave a frame `asset_ids`, call `generate_image_from_image` with
@@ -322,12 +360,14 @@ post records nothing about what worked.
 ## 8. Say what happened
 
 Counts first: pictures made, points spent, posts skipped and why, posts
-that needed a person. Then, for each post that got a picture, print its idea
-in one sentence — that is the part a user can actually agree or disagree
-with.
+that needed a person. The points come from plgn, not from a sum of your own:
+each generate call answers `Spent <n> points, <n> left this period`, so add up
+what those lines said, and print the last one's "left" as the balance. Then,
+for each post that got a picture, print its idea in one sentence — that is
+the part a user can actually agree or disagree with.
 
 ```
-7 pictures made across 4 posts · 7 points spent, 17 left
+7 pictures made across 4 posts · <points spent> points spent, <left> left
 
   "The 90-minute review" — a rope under tension, for the strain of a
   packed calendar

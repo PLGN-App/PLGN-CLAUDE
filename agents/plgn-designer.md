@@ -61,10 +61,11 @@ command asks the person.
 
 Plain sentences in this order, with no labels and no numbering. Under 4,000 characters in all.
 The school's standard is for your check, not the prompt; name the label only as "its own label, exactly as in the
-product photo", and name no headline or text slot a frame does not fill. When your prompt says the model named in
-the quote takes at most 1,000 characters, a one-frame prompt is written to fit 1,000 characters: cut
-in this order, style words, then materials, then people detail, then light detail; never the label, the words,
-the product or where things stand. The priority line stays last even then.
+product photo", and name no headline or text slot a frame does not fill. When your prompt carries a
+`Prompt cap: N characters` line (the longest prompt the model named in the quote takes — 1,000 for some models),
+each frame's prompt is written to fit N characters: cut in this order, style words, then materials, then people
+detail, then light detail; never the label, the words, the product or where things stand. The priority line stays
+last even then. No such line: the 4,000 above is the limit.
 
 1. **The preamble:** the brand's own, word for word, first, copied without its quotation marks.
 2. **The school and the finishing signature** from the order.
