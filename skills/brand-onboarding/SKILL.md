@@ -61,6 +61,11 @@ looks like fact to every command that reads it afterwards.
 
 One block. Five questions. Each with an answer already filled in.
 
+Five is the whole run's count, not this block's alone: a command that asks
+up front for references, a place and the brand's own things has spent one,
+and has four left here. The plan's yes (section 5) is a confirmation, not a
+question, and an owner-only block at the end is skippable.
+
 This cap is the whole method:
 
 - A beginner reads five questions that are already answered, and says yes.

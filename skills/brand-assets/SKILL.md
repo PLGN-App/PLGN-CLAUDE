@@ -100,10 +100,29 @@ Every asset says `AI may use it` or `NOT for AI pictures`.
 
 Logos, templates and badges start as **not for AI**. Image models redraw
 them: wrong letters, wrong proportions. A wrong logo is worse than none, so
-the default is that an image model is not given the logo file. The owner can turn it on for one asset
-after checking the results; nothing turns it on for them.
+the default is that an image model is not given the logo file. The owner
+turns it on for one asset when they want it used; nothing turns it on for
+them. A logo that is turned on still follows the logo rule below.
 
 Characters, places, elements and people with consent start as usable.
+
+## The logo rule
+
+The owner's rule (2026-10-08), and the only place it is written — every
+command and role points here instead of copying it:
+
+- The logo is handed to the image model as a **colour reference only**. Its
+  colours may be used — on an accent, a plate, a surface, the grade.
+- The mark itself is **never drawn, placed or redrawn** in the picture. Not
+  "in its place with its clear space", not small in a corner, not on the
+  product. A frame that shows the mark fails.
+- **No other brand's logo, ever** — not a partner's, not a platform's, not
+  a competitor's — and nothing invents one the brand has not saved.
+
+Whoever sends the picture writes this rule into the image text; the
+designer carries it as given and never rewrites it. A product's own label is
+not the logo: it is part of the product photo and is copied exactly, as
+**creative-brief** says.
 
 ## Building a picture around one
 

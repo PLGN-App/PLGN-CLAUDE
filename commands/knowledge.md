@@ -76,7 +76,16 @@ Where a website is available, offer to read it again with `plgn-researcher` and
 draft entries from the current copy, exactly as `/plgn setup` does. A brand that
 repositioned six months ago needs a fresh read, not an edit.
 
-**Show every suggested entry in full and ask before saving.** Then:
+**Show every suggested entry in full, then ask once for the whole list:**
+
+```
+Save these fixes?
+yes / pick / no
+```
+
+`pick` keeps some entries, or changes a line in the reply. One question for
+the list, never one per fix — **_conventions** rule 3; a fix-by-fix round
+of questions is an interrogation, not a check-up. Then, for each kept entry:
 
 - `knowledge_add` for an entry that does not exist at all — with `confirm: true`
   when it is a Foundation slot, sent only after the user's yes.
@@ -84,10 +93,9 @@ repositioned six months ago needs a fresh read, not an edit.
   the same `confirm: true` rule applies when it is Foundation.
 - `offering_update` for offerings.
 
-One fix at a time, each one confirmed.
-
-Where two entries disagree, do not pick a side. Show both readings and ask which
-is true — only the user knows.
+Where two entries disagree, do not pick a side. Show both readings in the
+same block, as a line that asks which is true — only the user knows — and
+save that one only when the reply says.
 
 `--dry-run` prints the report and changes nothing.
 **`--yes` is not accepted.** These are the brand's own words.

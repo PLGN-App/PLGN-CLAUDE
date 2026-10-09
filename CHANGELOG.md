@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+- `/plgn import-store` no longer offers to connect Cloudinary from the chat: it points at Settings › Media keys (useplgn.com/settings/keys), where the key belongs.
+- The logo rule is written once, in the brand-assets skill: the logo reaches the image model as a colour reference only — its colours may be used, the mark itself is never drawn or placed, and no other brand's logo ever. The designer's check 14 and its input rule, `/plgn assets`, `/plgn images` and `/plgn month` point at it instead of saying the opposite.
+- One answer per list, not one stop per item: `/plgn assets` shows every draft and asks once (a real face's consent is a named line in the same block), and its move-from-references question covers removing the old entries; `/plgn import-store` asks once for all the benefits; `/plgn knowledge` asks once for all the fixes.
+- `/plgn brandkit` asks five questions in the whole run: one block up front (references, place, guide, own things, accounts only when none was found), at most four pre-answered ones after reading, the plan's yes, and the owner-only block it keeps; the competitors are no longer confirmed on their own and appear in the plan where `pick` drops one.
+- `/plgn setup` uses the only brand without asking, asks for banned words once (inside the four drafts, with the timezone and languages on the same question), and names the real pages: Plan & usage (useplgn.com/settings/plan) and Settings › Media keys (useplgn.com/settings/keys).
+- Dashboard pages are named as they are: `/plgn undo` sends unused images to the library (useplgn.com/library), `/plgn brand` to Settings › Brands, and the conventions give the link to the page that holds a missing connection.
+
 ## 1.18.2 (2026-10-09)
 
 - `/plgn month` and `/plgn images` ask plgn what the pictures cost before making any: one quote for the whole batch, the model and the total in plain words, a yes before a point is spent. No price is worked out by hand any more, and the quote's prompt limit is handed to the designer.

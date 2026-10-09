@@ -146,7 +146,11 @@ Sign-in belongs to plgn. No command may ask the user to type, paste or store a
 token, API key or password, and none may repeat one back if a user sends one.
 
 When something is not connected, say what is missing and what it costs them,
-then point them at the dashboard. A terminal is the wrong place for a secret.
+then give the link to the page that holds it: Settings › Media keys
+(useplgn.com/settings/keys) for Cloudinary and image keys, Plan & usage
+(useplgn.com/settings/plan) for the plan and points, Settings › Brands
+(useplgn.com/settings/brands) for a new brand. A terminal is the wrong place
+for a secret.
 Read connection status from `workspace_info` only. Never call `kie_key_set` or
 `cloudinary_connect`.
 

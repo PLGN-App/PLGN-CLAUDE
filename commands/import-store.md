@@ -16,8 +16,9 @@ rule 2 and stop.
 
 Read its `Integrations:` line. The pictures go to the workspace's own
 Cloudinary, so if it says `cloudinary: missing`, say that in one line —
-connect Cloudinary in plgn (Settings, Integrations), or with
-`cloudinary_connect` — and stop. Nothing is read or saved without it.
+connect Cloudinary in Settings › Media keys (useplgn.com/settings/keys) —
+and stop. Nothing is read or saved without it. The key is typed there,
+never here, per **_conventions** rule 8.
 
 ## 2. Pick the brand and find the store
 
@@ -130,10 +131,18 @@ yes / pick / no
 On yes, start `plgn-brand-architect` with the new products' names and
 descriptions and the brand's voice (**_conventions** rule 6: it gets what it
 needs in its prompt). Ask it for `benefits` only, each with its meanings and
-`avoid_cliches`, as **brand-knowledge-map** describes. Show them per product
-with `yes / edit / no`, then save each with
-`offering_update(offering_id, benefits: [...])`. A new product has no
-benefits yet, so the list you send is the whole list.
+`avoid_cliches`, as **brand-knowledge-map** describes. Show them all at once,
+grouped by product, and ask one question for the whole list:
+
+```
+Save these benefits?
+yes / pick / no
+```
+
+`pick` keeps whole products or single lines. Then save each kept product
+with `offering_update(offering_id, benefits: [...])`. A new product has no
+benefits yet, so the list you send is the whole list. One question for the
+list, never one per product — **_conventions** rule 3.
 
 ## 6. Finish
 

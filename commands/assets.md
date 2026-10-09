@@ -63,15 +63,18 @@ shop — say so and offer to move it:
 Saved as references, but they are assets:
   Character: Sara (straight)   3 pictures
   Character: Mona (wavy)       3 pictures
-Move them to the Characters shelf?
+Move them to the Characters shelf? The old reference entries named above
+are removed once each move is saved, so nothing is counted twice.
 yes / pick / no
 ```
 
-To move one: `knowledge_get` it for its pictures, then `asset_create` with
-those same pictures, its name without the prefix, and its `intent` as the
-description. Then ask, separately and by name, whether to remove the old
-reference with `knowledge_delete` — left in place it is counted twice, as a
-look and as a thing. Never delete it without that second yes.
+One question for the whole list, per **_conventions** rule 3. It names the
+entries that will go, so the yes covers the removal too; never ask a second
+time per entry. To move one: `knowledge_get` it for its pictures, then
+`asset_create` with those same pictures, its name without the prefix, and
+its `intent` as the description, then `knowledge_delete` the old reference
+— left in place it is counted twice, as a look and as a thing. Delete only
+what the yes or the pick covered.
 
 A reference that says what to *take from* a picture — a pose, a light, a
 layout — is a reference and stays one.
@@ -84,23 +87,27 @@ Ask what they want to add — one question, not a form. They will paste a
 link, name a file, or point at a picture already in the workspace
 (`list_images`).
 
-For each one:
+Then one pass over everything they gave, and one question at the end:
 
-1. **Look at it.** A local file with `Read`; a link with `image_view`, which
-   shows the picture (if it is not answering, the `WebFetch`-then-`Read`
-   fallback in **visual-identity**). Never save a picture nobody looked at,
-   and never name a kind from a filename.
-2. **Draft the record** — kind, name, version, what it is, when to use it,
-   and the `never` list. Ask for the `never` rules; suggest only what the
-   picture itself shows ("it is always on a plain ground").
-3. **A real face:** ask, in words, whether that person agreed to AI pictures
-   of themselves. Send `consent: true` only after a yes. Never assume it —
-   not for the founder, not for the user.
-4. **Show the draft and ask** — `yes / edit / no`, per **_conventions**
-   rule 3.
-5. **Upload, then save:** `upload_image_from_url` or `upload_image_base64`,
-   then `asset_create` with what that returned. The clearest view goes
-   first.
+1. **Look at every one.** A local file with `Read`; a link with
+   `image_view`, which shows the picture (if it is not answering, the
+   `WebFetch`-then-`Read` fallback in **visual-identity**). Never save a
+   picture nobody looked at, and never name a kind from a filename.
+2. **Draft every record** — kind, name, version, what it is, when to use
+   it, and a suggested `never` list drawn only from what the picture itself
+   shows ("it is always on a plain ground"). A `never` rule nobody confirms
+   is dropped, not invented.
+3. **A real face** gets a line in the same block, by name: "Sara — has she
+   agreed to AI pictures of herself?" Send `consent: true` only when the
+   answer names that person with a yes. Never assume it — not for the
+   founder, not for the user.
+4. **Show all the drafts and ask once** — `yes / pick / no`, per
+   **_conventions** rule 3. `pick` keeps some assets, or changes a rule or a
+   `never` line in the reply. Three stops per asset is a form; one answer
+   for the list is a conversation.
+5. **Upload, then save** each kept one: `upload_image_from_url` or
+   `upload_image_base64`, then `asset_create` with what that returned. The
+   clearest view goes first.
 
 A product shot is not an asset. Put it on the offering:
 `offering_update(offering_id, assets: [...])` — the list replaces what is
@@ -120,8 +127,9 @@ there, so send the existing pictures with the new one.
 Saved: <names>. /plgn images now builds pictures around them.
 ```
 
-If a logo was saved, add one line: generated pictures still leave the logo
-out unless the owner turns "AI may use it" on for that logo in plgn.
+If a logo was saved, add one line: in generated pictures the logo is a
+colour reference only — its colours may be used, the mark itself is never
+drawn in — per the logo rule in **brand-assets**.
 
 ## Notes
 

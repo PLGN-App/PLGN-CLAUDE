@@ -102,7 +102,8 @@ call, because this one has no preview.
 Neither call touches a published post; plgn refuses to.
 
 Deleting posts does not delete the images they used. Say how many images are
-now unused, and that they can be removed from the plgn dashboard.
+now unused, and that they can be removed in the library
+(useplgn.com/library).
 
 ## 5. Report
 

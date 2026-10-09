@@ -35,15 +35,16 @@ Read the points from the `Image points` line of `workspace_info` (included
 minus used, plus any purchased). There is no free plan: a new workspace gets a
 14-day trial, then a paid plan. If `workspace_info` shows a `Trial ends:` line,
 say the date in one line. If the plan is `none`, the workspace is read-only
-until they subscribe — say that and point them at billing in the dashboard.
-Say it as a fact, not a pitch.
+until they subscribe — say that and point them at Plan & usage
+(useplgn.com/settings/plan). Say it as a fact, not a pitch.
 
 ## 3. Pick the brand
 
 Call `brand_list`.
 
 - **Brands exist** → list them and ask which to set up. If there is exactly
-  one, name it and confirm rather than assuming.
+  one, use it: say its name in one line and carry on. A question with one
+  possible answer is not a question.
 - **They want a brand that is not in the list** → no tool creates one. Send
   them to `https://useplgn.com/settings/brands` → **New brand**, wait for them
   to say it is there, then call `brand_list` again and carry on with its id.
@@ -73,14 +74,30 @@ gives a thinner result than a site does.
 | offers | what is sold, named the way the brand names it |
 | banned words | suggested from how the site writes, then confirmed |
 
-**Show all four and ask before saving.** Print the drafts in full. This is the
-brand's identity as the system will understand it — the user must see it, and
-it is far cheaper to fix now than after thirty posts inherit it.
+**Show all four and ask once before saving.** Print the drafts in full. This
+is the brand's identity as the system will understand it — the user must see
+it, and it is far cheaper to fix now than after thirty posts inherit it.
+
+The banned-words draft is the one line most people have not thought about,
+so it says what it is for, in the block itself — never as a second question
+afterwards:
+
+> Words this brand refuses to use — competitor names, industry clichés,
+> claims you can't back up. Suggested: <list>. Add yours in the reply.
+
+Under the four, print the languages and the timezone as read from the site,
+or as a stated guess when the site does not say ("Timezone: Africa/Cairo,
+from the Cairo address — tell me if that's wrong"). They ride on the same
+question. A wrong timezone is invisible until a nine o'clock post lands at
+two in the morning.
 
 ```
 Save these four?
 yes / pick / no
 ```
+
+`pick` keeps some, or changes a line — a banned word added, a timezone
+corrected — in the same reply.
 
 **Then save each one, following the write order the brand-onboarding skill
 sets out.** That skill owns the order and which tool each thing is saved
@@ -103,15 +120,9 @@ Offers become one `offering_create` per offer:
   checks never see them, and the post goes out with the word in it.
 
 > Save the languages, the banned words and the **timezone** together in one
-> `brand_update`. Ask for the timezone if the site does not say it — a brand
-> with none cannot be scheduled without a guess, and the guess is invisible
-> when it is wrong.
-
-The refused words deserve a direct question — most people have not thought
-about it:
-
-> Any words this brand refuses to use? Competitor names, industry clichés,
-> claims you can't back up. I've suggested: <list>.
+> `brand_update`, as the one question above settled them. A brand with no
+> timezone cannot be scheduled without a guess, which is why the guess was
+> shown before it was saved.
 
 ## 5. Connections
 
@@ -123,8 +134,10 @@ Say what is set up and what it costs them:
   made and posts go out text-only. Each image model costs a different number
   of points; `workspace_info` lists them.
 
-**Never ask them to type a key into the terminal.** Point them at the dashboard.
-Missing connections do not block this command — say so and carry on.
+**Never ask them to type a key into the terminal.** Point them at Settings ›
+Media keys (useplgn.com/settings/keys) for Cloudinary, and at Plan & usage
+(useplgn.com/settings/plan) for points. Missing connections do not block this
+command — say so and carry on.
 
 ## 6. Finish
 

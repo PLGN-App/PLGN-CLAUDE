@@ -60,54 +60,54 @@ it.
 
 Take the website from the argument. If there is none, ask — never invent one.
 
-**References first.** Before anything else, ask once for what they want the
-brand to look like: their own best posts, posts by others they admire,
-competitors too, any picture or account they want to look like. Pictures,
-links and account names all count. Everything they give is `your reference`
-from here on. "Nothing" is an answer.
+The whole run asks **five questions**: the one block below is the first,
+step 5 holds at most four more, step 6's yes is a confirmation, and step 8
+is the skippable block only the owner can answer. Nothing else stops to ask.
 
-**Find the accounts.** Read `knowledge_get(type: "channels")`. If there is no
-entry, call `site_read` on the website: its `socials:` line lists the
-Instagram, TikTok, Facebook, X and LinkedIn accounts the site links to. Add the
-links on the brand's own `links:` line in `brand_list`. For Instagram, Facebook
-and LinkedIn still missing (TikTok and X only when the site or the person names
-them), start `plgn-researcher` with the brand's name, website and city to find
-them (its "Finding a brand's accounts"). Keep only the ones it confirms. The
-plan in step 6 lists them apart, as "found by search: facebook @… (check it)".
-Only when no account is found at all, ask once for the links ("no account" is an
-answer). Keep the accounts in hand — nothing is written until the plan in step 6
-gets its yes.
+**Read the site first, so the block below is short.** Read
+`knowledge_get(type: "channels")`. If there is no entry, call `site_read` on
+the website: its `socials:` line lists the Instagram, TikTok, Facebook, X and
+LinkedIn accounts the site links to. Add the links on the brand's own
+`links:` line in `brand_list`. For Instagram, Facebook and LinkedIn still
+missing (TikTok and X only when the site or the person names them), start
+`plgn-researcher` with the brand's name, website and city to find them (its
+"Finding a brand's accounts"). Keep only the ones it confirms. The plan in
+step 6 lists them apart, as "found by search: facebook @… (check it)". Keep
+the accounts in hand — nothing is written until the plan in step 6 gets its
+yes.
 
 **Notice a shop.** If the pages `site_read` returned are a shop's — product
 pages, prices, a cart or checkout — remember it for step 9.
 
-**Notice a place people visit.** If the site shows a street address, or the
-business is a shop, café, clinic, office or venue, ask once:
+**Then ask once, in one block, every line optional:**
 
-> Is there a place customers visit? Its Google Maps name or link lets me
-> bring in its photos and reviews.
-> <name and city> / no
+> Before I read everything, anything you can hand me — skip any line:
+>
+> 1. What should the brand look like? Your own best posts, posts by others
+>    you admire, competitors too, any picture or account. Links, pictures
+>    and account names all count.
+> 2. Is there a place customers visit? Its Google Maps name or link brings
+>    in its photos and reviews. (only when the site shows a street address,
+>    or the business is a shop, café, clinic, office or venue)
+> 3. A brand or style guide, if one exists.
+> 4. The brand's own things, as files or links — the logo (a PNG if you
+>    have one), a mascot, the founder or team, the shop, post templates,
+>    awards — so pictures are built around the real ones. Anything you do
+>    not give, I look for.
+> 5. Your social accounts. (only when none was found at all; "no account"
+>    is an answer)
 
-Keep the answer for step 4. "No" is an answer.
-
-Then ask, once, for anything else they have. Keep it to one short block:
-
-- A brand or style guide, if one exists
-- The brand's own things, as files or links — the logo (a PNG if they have
-  one), a mascot, the founder or team, the shop, post templates, awards — so
-  pictures are built around the real ones. Anything they do not give, this
-  run looks for.
-
-Every one of these is optional. Say what each adds so the answer is informed,
-and carry on with whatever they give.
+Everything given under 1 is `your reference` from here on. Keep the place
+for step 4. Say in a few words what each line adds, so the answer is
+informed, and carry on with whatever they give — "nothing" is an answer.
+Never follow this block with a second one.
 
 **Find the top five competitors.** Run two or three `web_search` queries built
 from what the brand sells and where, the way its customers would search
 ("umrah packages Cairo", "travel agency Egypt"). Keep the five closest real
-businesses; drop directories, marketplaces, listings and news. Show them once:
-
-> Top five competitors: <a>, <b>, <c>, <d>, <e>. Right list?
-> yes / edit / no
+businesses; drop directories, marketplaces, listings and news. Do not stop to
+confirm them: they appear in the plan in step 6, where `pick` drops a wrong
+one. Say in one line that they were found by search.
 
 ## 4. Read everything at once
 
@@ -164,21 +164,23 @@ strongest first, one `take` and one `leave` per group. The person's own
 references are grouped apart from the ones found. Those groups are what
 step 7 saves.
 
-## 5. Ask at most five questions
+## 5. Ask at most four questions
 
-One block, five questions, every one already answered with your best draft.
+One block, at most four questions, every one already answered with your best
+draft. Step 3's block was the first of the run's five; these are the rest.
 
 Choose them by how much breaks if they are wrong. The **brand-onboarding**
 skill sets the order — the words this brand refuses to use come first, because
 every post is checked against them.
 
-One of the five asks where this brand publishes: **which languages, and which
+One of them asks where this brand publishes: **which languages, and which
 timezone**. Both are invisible when wrong. A brand posting to Riyadh from a
 server thinking in UTC publishes in the middle of the night for months before
 anyone connects the two.
 
-Anything past the fifth is printed as an assumption, not asked. Per
+Anything past the fourth is printed as an assumption, not asked. Per
 **reply-style** rule 7, a user cannot correct an assumption they cannot see.
+When nothing is left that reading could not answer, skip this block.
 
 ## 6. Show the whole plan, ask once
 
@@ -195,7 +197,8 @@ Brand: <name>
   Refuses       <words>
   Looks like    <the direction, in full>
   Channels      <website · instagram · tiktok · facebook · x, as found>
-  Competitors   <n> · Topics <n> · Lines to reuse <n>
+  Competitors   <a>, <b>, <c>, <d>, <e> (found by search)
+  Topics        <n> · Lines to reuse <n>
 
   Pictures      <n> read · <n> skipped · <n> could not open
     References  <group>: <n> pictures — take "<take>" · leave "<leave>"   (one line per group; yours first)
@@ -214,8 +217,8 @@ Save all this?
 yes / pick / no
 ```
 
-`pick` drops a whole group or one item — a single asset or picture included.
-Ask once, not six times.
+`pick` drops a whole group or one item — a single asset, picture or
+competitor included. Ask once, not six times.
 
 **If a cap blocks part of this** — the plan's limits are the
 **brand-knowledge-map** skill's numbers — follow **gate-recovery**: say which

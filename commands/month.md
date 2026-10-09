@@ -425,8 +425,9 @@ one of them — the mascot's tip of the week, a day at the shop, or the one
 says the AI may use it, build the picture around it: refer to it by its role
 ("the character from the reference image"), carry its own `never` list, and
 pass its id as `asset_ids` on `generate_image_from_image`. At most one or
-two on this quick path. Never invent one the read does not list. See
-**brand-assets**.
+two on this quick path. Never invent one the read does not list. A logo is
+a colour reference only — its colours may be used, the mark is never drawn
+in — per the logo rule in **brand-assets**.
 
 This is the quick path, on purpose. A picture worth working the idea out
 for first — every idea considered, the ones that lost kept with their

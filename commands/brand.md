@@ -31,11 +31,11 @@ yes / pick / no
 
 ## 3. Create
 
-**No tool creates a brand.** A new brand is made in the dashboard, because it
+**No tool creates a brand.** A new brand is made on the website, because it
 takes one of the plan's brand slots and that is a billing decision:
 
 ```
-A new brand is made in your dashboard, not from here:
+A new brand is made in Settings › Brands, not from here:
 https://useplgn.com/settings/brands → New brand
 
 Tell me when it's there and I'll set it up.
