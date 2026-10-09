@@ -113,6 +113,32 @@ A carousel planned earlier by `/plgn month` cannot be seen from here, so
 unless the user asks for one in this run, a post is costed and made as one
 picture.
 
+**One picture for copies of one idea.** One idea is often saved as several
+posts, one per platform; `/plgn month` saves it that way. Copies whose
+pictures have the same shape share one picture. Feed posts on Instagram,
+Facebook, LinkedIn and X all show a square (1:1) or a 4:5 picture well, so
+their copies share one. A TikTok post, a reel cover or a story is tall
+(9:16): it keeps a picture of its own, unless the person says one picture is
+fine for all. Carousel copies share only when they have the same number of
+frames after the platform's limit. One picture goes on six posts at most: its
+own and five more.
+
+To find copies, look among the posts left after section 3 for ones on
+different platforms that share a topic or a run. Read each one's `Concept:`
+line with `post_get` (section 5 reads it anyway) and treat them as copies
+only when the idea is the same: the same visual idea and hook. When you
+cannot tell, they are not copies. A picture made twice costs points; the
+wrong picture on a post costs the post.
+
+Each group is costed and made as one picture, or one carousel, on its first
+post. In the quote a shared picture counts once, never once per platform, and
+the quote block says so in one plain line under its first line:
+
+```
+2 of them each go on 2 posts — the Instagram and Facebook copies of one
+idea — for the points of one.
+```
+
 With the frame count settled, call `image_quote` **once for the whole run**,
 every frame of every post together:
 
@@ -160,6 +186,10 @@ yes.
 Once the user says yes, work through the posts one at a time, in this order,
 for each one. This is the **creative-brief** skill's four steps in two calls
 — read it before changing anything here.
+
+Copies that share a picture (section 4) are worked through once, as their
+first post. Wherever a step below sends the platform, send every copy's
+platform, so the order and the designer choose a shape that suits them all.
 
 1. Read `context_get(role: "creative_director", campaign_id: <the post's
    campaign, if it has one>)`.
@@ -299,6 +329,19 @@ use each frame's finalized image text from section 5. Add `model` only when
 the person picked one at the quote in section 4; otherwise leave it empty and
 the workspace's model is used, as the quote said.
 
+**Copies share the call.** For a group from section 4, every frame's call
+carries the first post's `post_id` and the other copies' ids as
+`also_post_ids`. plgn puts each finished picture on every one of them, in the
+same frame order and with the same alt text, for the points of one. The
+start reply then has a line starting `ALSO:` that names them. With no `ALSO:`
+line, plgn may not have taken the copies: name them in section 8, and a later
+`/plgn images` fills any that still have none. A line starting `NOTE:` says
+the picture's shape is not the usual one for one of the copies; it still
+goes on that post, so say so in section 8 in plain words. A refusal about
+`also_post_ids` comes before any points are spent: take out the post it
+names (named twice, the first post named again, or not in this brand), send
+the call again, and name in section 8 a post left with no picture this way.
+
 **A frame built around the brand's own things names them.** When the
 designer gave a frame `asset_ids`, call `generate_image_from_image` with
 those as `asset_ids` — alongside the canonical reference in `input_urls`
@@ -353,10 +396,12 @@ it, do not restate it here.
 plgn attaches each picture itself when `check_generation` reports it done:
 onto the post the call carried in `post_id`, in frame order — `media[0]` is
 the cover — and with the alt text `brief_finalize` saved for that frame.
+It does the same on each copy the call named in `also_post_ids`.
 Do not send the pictures again with `post_update`.
 
-Once a post's frames are made, call `post_update` once for it with only
-`brief_id` set to the brief these pictures came from. The `brief_id` is the
+Once a post's frames are made, call `post_update` once for it, and once for
+each copy that shared them, with only `brief_id` set to the brief these
+pictures came from. The `brief_id` is the
 only thing that joins the post to its thinking: leave it off and `/plgn why`
 reads back nothing for a picture this command just made, and approving the
 post records nothing about what worked.
@@ -364,18 +409,22 @@ post records nothing about what worked.
 ## 8. Say what happened
 
 Counts first: pictures made, points spent, posts skipped and why, posts
-that needed a person. The points come from plgn, not from a sum of your own:
+that needed a person. When a picture went on several posts, say so in one
+plain line, with any `NOTE:` about its shape in plain words. The points come
+from plgn, not from a sum of your own:
 each generate call answers `Spent <n> points, <n> left this period`, so add up
 what those lines said, and print the last one's "left" as the balance. Then,
 for each post that got a picture, print its idea in one sentence — that is
 the part a user can actually agree or disagree with.
 
 ```
-7 pictures made across 4 posts · <points spent> points spent, <left> left
+7 pictures made across 5 posts · <points spent> points spent, <left> left
 
   "The 90-minute review" — a rope under tension, for the strain of a
   packed calendar
 
+  1 picture went on 2 posts — the Instagram and Facebook copies of "The
+  90-minute review", for the points of one
   1 needed a person — "Why we cut prices" failed its check three times
   2 skipped — they read better plain
 ```

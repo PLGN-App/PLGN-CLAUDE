@@ -1,7 +1,8 @@
 # Changelog
 
-## Unreleased
+## 1.18.3 (2026-10-10)
 
+- One picture for one idea on several platforms: when `/plgn month` or `/plgn images` has the same idea as feed posts on Instagram, Facebook, LinkedIn or X, it makes one picture and plgn puts it on every copy (`also_post_ids`, up to five more posts), quoted and paid for once. A TikTok post, a reel cover or a story (9:16) keeps its own picture unless you say one is fine. You are told in one plain line when a picture goes on several posts. Needs the plgn server that takes `also_post_ids`.
 - `/plgn import-store` no longer offers to connect Cloudinary from the chat: it points at Settings › Media keys (useplgn.com/settings/keys), where the key belongs.
 - The logo rule is written once, in the brand-assets skill: the logo reaches the image model as a colour reference only — its colours may be used, the mark itself is never drawn or placed, and no other brand's logo ever. The designer's check 14 and its input rule, `/plgn assets`, `/plgn images` and `/plgn month` point at it instead of saying the opposite.
 - One answer per list, not one stop per item: `/plgn assets` shows every draft and asks once (a real face's consent is a named line in the same block), and its move-from-references question covers removing the old entries; `/plgn import-store` asks once for all the benefits; `/plgn knowledge` asks once for all the fixes.

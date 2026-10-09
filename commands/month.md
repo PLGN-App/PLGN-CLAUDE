@@ -135,6 +135,21 @@ nothing and a post `picture_need` skips costs nothing. Fewer pictures than the
 quote covered is fine; more is never made. Both controls are described in
 section 7; the number here is the one being approved.
 
+**One picture for copies of one idea.** When the plan puts one idea on
+several platforms, those posts are copies, and copies whose pictures have the
+same shape share one picture. Feed posts on Instagram, Facebook, LinkedIn and
+X all show a square (1:1) or a 4:5 picture well, so their copies share one. A
+TikTok post, a reel cover or a story is tall (9:16): it keeps a picture of its
+own, unless the person says one picture is fine for all. One picture goes on
+six posts at most: its own and five more. The `Images:` figure, and so the
+quote, counts a shared picture once, never once per platform. When copies
+share, say so under the plan in one plain line:
+
+```
+6 of these pictures each go on 2 posts — the Instagram and Facebook copies of
+one idea — for the points of one.
+```
+
 When the plan shows "none yet — think first?", answering **think first**
 instead of yes runs the talk from **creative-brief**, "The concept comes
 first". Inside a campaign it ends with the big idea saved after its own yes;
@@ -174,6 +189,11 @@ First start `plgn-content-creator` **once for the whole month**:
 `t1-2`…, briefed as **creative-brief** says. Give it its own progress line. It
 returns one concept per post, in order; if the count differs, run it once
 more.
+
+Copies that share a picture (step 3) need one look. After the `## Posts`
+lines, add one line per group, for example: `t1-1 and t1-2 are one idea on
+two platforms and share one picture: give them the same format, visual,
+reference and product role.`
 
 Then start one `plgn-copywriter` per topic, **at the same time**, each with
 its posts' concepts. Tell each writer to write exactly one post per concept,
@@ -287,6 +307,8 @@ the order you sent them — `<n>. ok <id>` or `<n>. ERROR: <reason>` — with th
 item's `warning:` and `check:` lines indented under it. Match each id to the
 n-th post you sent, and never guess one. If a later step needs a post you
 cannot identify, read the run back with `post_list(run: <this run's marker>)`.
+Note which saved ids are copies sharing one picture, by their refs: step 7
+needs them.
 
 Nothing is scheduled until step 8.
 
@@ -320,7 +342,8 @@ controls, and they combine:
   are saved without media and `/plgn images` can fill them later, with a brief
   behind each one.
 - `--max-images 8` — make at most this many, best candidates first, and say in
-  the report which posts went out without one.
+  the report which posts went out without one. A picture shared by copies
+  counts once.
 
 Say how many pictures you are about to make before making them, not after —
 never more than the plan's `Images:` figure, which is the number the quote in
@@ -366,6 +389,9 @@ best candidates first are `need` posts whose reason is `shows_offer`,
 
 If the call answers `ERROR:`, say so in one line and treat every post as
 needing one; the plan's image number is still the ceiling.
+
+Copies share a picture only among the ones that need one: a skipped copy gets
+none, and the first copy left carries the call.
 
 ### The brand's look, once per campaign
 
@@ -446,6 +472,20 @@ at the quote in step 3. plgn then puts the finished picture on the
 post by itself, with its alt text, whether `check_generation` or plgn's own
 finish gets there first.
 
+**Copies share one call.** For a group of copies, write the description and
+the alt text once, from the first copy's concept, and make one call with the
+first copy's `post_id` and the other copies' ids as `also_post_ids`. plgn
+puts the finished picture, with its alt text, on every one of them, for the
+points of one picture. The start reply then has a line starting `ALSO:` that
+names them. With no `ALSO:` line, plgn may not have taken the copies: name
+them in the report, and a later `/plgn images` fills any that still have
+none. A line starting `NOTE:` says the picture's shape is not the usual one
+for one of the copies; it still goes on that post, so say so in the report in
+plain words. A refusal about `also_post_ids` comes before any points are
+spent: take out the post it names (named twice, the first copy named again,
+or not in this brand), send the call again, and name in the report a post
+left with no picture this way.
+
 **Making an image takes time.** `generate_image` and `generate_image_from_image`
 both return a job number, not an image. Check with `check_generation` on the
 schedule in the **image-prompting** skill.
@@ -462,7 +502,8 @@ afterwards. A picture reused from the library is not generated, so it is the
 one case that needs a save: `post_update` with `media` holding that picture —
 its `secure_url` and `public_id` from `list_images` — and the alt text in its
 `alt` field. `media` replaces the post's list, which is safe here because a
-post saved in step 5 held no picture before. This is the plugin's busiest
+post saved in step 5 held no picture before. A picture reused for copies of
+one idea is saved on each copy the same way. This is the plugin's busiest
 image path, so an image saved here without alt text is most of a month
 unreadable to anyone using a screen reader.
 
@@ -501,14 +542,19 @@ user how many to expect.
 ## 9. Report
 
 Counts first, then the exceptions by name, then the link. Step 7 makes **one
-picture per post**, carousel or not — so count pictures, never frames this
-run did not make, and name every post whose carousel is unfinished: the ones
-that got a cover and still need their other frames, and the ones saved with
-no frame count at all because step 5 could not tell which draft they were.
+picture per post**, carousel or not, and one for copies that share it — so
+count pictures, never frames this run did not make, and name every post whose
+carousel is unfinished: the ones that got a cover and still need their other
+frames, and the ones saved with no frame count at all because step 5 could
+not tell which draft they were. When copies shared a picture, say so in one
+plain line, and name any copy a `NOTE:` line was about.
 
 ```
-28 posts scheduled across 4 weeks · 3 topics · 24 images — one per post
+28 posts scheduled across 4 weeks · 3 topics · 18 images — one per post, or
+one per idea where its copies share it
 
+  6 images each went on 2 posts — the Instagram and Facebook copies of one
+    idea, for the points of one
   1 was planned as a carousel and has its first picture only — run
     /plgn images and ask for a carousel to make the rest
   1 was planned as a carousel but I couldn't tell which draft it was, so it
