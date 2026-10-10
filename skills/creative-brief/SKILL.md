@@ -130,12 +130,16 @@ NEVER: stock-looking beans, hands holding the tin, the brand's banned words
 ```
 
 **Between the order and 4 · the words.** `plgn-typographer` is the fifth role,
-and it runs only when a frame carries words: the director's image words for
-that frame are not empty. It styles and places the words, one call per post for
-all its frames, and never changes, cuts or drops a word. If a line cannot fit
-at a readable size it says so in `fit` and proposes a shorter one; the command
-asks the person once for all of a post's fits, and the words change only on
-their answer. A frame with no words never reaches it,
+and it runs only when the picture carries words: the director's image words are
+not empty, or the person gave lines. It reads the whole job (the person's
+request, the post as the content creator wrote it, its products, the brand's
+rules for pictures) and writes the picture's lines, the director's image words
+its starting point, every line the brand's rules ask a design to carry
+included, and every figure word for word from the saved material. Then it
+styles and places them, one call per post for all its frames. The person's own
+lines are kept letter for letter: if one cannot fit at a readable size it says
+so in `fit` and proposes a shorter one; the command asks the person once for
+all of a post's fits, and their lines change only on their answer. A frame with no words never reaches it,
 and the designer then writes none. Like the order, its block is not saved in
 the brief; the command hands it to the designer. For the Bunduq Coffee hero
 order above, with one frame, a headline and a support line, in the order's

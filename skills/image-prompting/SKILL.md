@@ -67,8 +67,10 @@ nothing the reader just read.
 On the brief path the work runs as a chain: idea, order, words, execution.
 `plgn-creative-director` writes the literal picture first and rejects it, then
 scores one idea from each of five lenses. `plgn-art-director` turns the idea
-into the order. `plgn-typographer` styles and places the words a frame carries,
-when it carries any, and keeps every word as written. `plgn-designer` writes the final text in seven parts, in this
+into the order. `plgn-typographer` writes, styles and places the words a picture
+carries, when it carries any: from the person's request, the post, its products
+and the brand's rules, with the person's own lines kept as written and every
+figure from the saved material. `plgn-designer` writes the final text in seven parts, in this
 order, with the brand colour as an accent:
 
 1. the preamble, without quotation marks

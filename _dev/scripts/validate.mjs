@@ -1359,7 +1359,7 @@ if (exists("reference/_conventions.md")) {
   // /plgn images: step 4b sends the typographer before the designer.
   if (exists("commands/images.md")) {
     const images = read("commands/images.md").replace(/\r\n/g, "\n");
-    const s4b = images.indexOf("\n4b. When a frame carries words");
+    const s4b = images.indexOf("\n4b. When the picture carries words");
     const s4bEnd = s4b < 0 ? -1 : images.indexOf("\n5. ", s4b);
     const item4b = s4b < 0 ? "" : images.slice(s4b, s4bEnd < 0 ? undefined : s4bEnd);
     const iTy = item4b.indexOf("`plgn-typographer`");

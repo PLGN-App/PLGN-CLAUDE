@@ -235,18 +235,26 @@ platform, so the order and the designer choose a shape that suits them all.
    so: "This order was written for an earlier post of this campaign;
    HERO & HIERARCHY, PRODUCT and DELIVERY are yours to restate", and send
    the post's platform.
-4b. When a frame carries words (the creative director's image words for that
-   frame are not empty), send `plgn-typographer` the order word for word
-   (and say so when it was written for an earlier post of this campaign, as
-   item 4 does for the designer), the director's concept and hierarchy, each
-   such frame's direction and its words exactly as the director returned
-   them, the `art_director` block from item 4 (palette and look) and the
-   platform and ratio: one call per post, covering all its frames with
-   words. A post
-   whose frames carry none never calls it. A `question` answer (two type
+4b. When the picture carries words (the creative director's image words are
+   not empty, or the person gave lines for the picture), send
+   `plgn-typographer` the order word for word (and say so when it was written
+   for an earlier post of this campaign, as item 4 does for the designer), the
+   director's concept and hierarchy, each frame's direction, the director's
+   image words as its starting point, the person's own lines (to keep letter
+   for letter) and their request, the post's caption from `post_get` word for
+   word, the `offering_list` entries of the products the post names, the
+   `art_director` block from item 4 (palette and look), the brand's rules for
+   pictures from the designer read below, the campaign's constraints, and the
+   platform and ratio: one call per post, covering all its frames. It writes
+   the picture's lines (every line the brand's rules ask a design to carry
+   included), then styles and places them. Check every line it writes against
+   that material: a figure, website or phone found nowhere in it goes back to
+   the typographer once, by name. A post whose picture carries no words never
+   calls it. A `question` answer (two type
    systems) is put to the person like the director's, in plain words, and
    the typographer starts again with the answer; later posts of this brand
-   in the run get the same answer. Collect every `fit` in the answer (a
+   in the run get the same answer. A `fit` is only ever on one of the
+   person's own lines (the typographer shortens its own). Collect every `fit` in the answer (a
    carousel can raise one on several frames) and ask the person once for
    the post, in plain words, each long line with its shorter one. One line
    is one thing, for example: "The line 'Fresh coffee, roasted this

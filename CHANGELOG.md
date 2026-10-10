@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.19.0 (2026-10-10)
+
+- The typographer writes a picture's words, not only styles them. It reads the person's request, the post as the content creator wrote it, the products the post names and the brand's rules for pictures, then writes the lines the picture needs: the director's image words are its starting point, and a footer, a contact line, a model code, spec lines or a button go in when the brand's rules ask every design to carry them. The person's own lines are kept letter for letter, and every figure, website and phone comes word for word from the saved material. Before, it could only place the director's headline and one line, so a brand rule like "every design ends with our website and phone" left the designer with nothing it was allowed to write, and it refused every idea.
+- `/plgn images` sends the typographer that whole job and checks each line it writes: a figure, website or phone found nowhere in the material goes back to it once, by name.
+- A `fit` question (a line too long for the picture) is only ever about one of the person's own lines; the typographer shortens its own lines itself.
+
 ## 1.18.5 (2026-10-10)
 
 - The knowledge map lists seventeen types: `channels` (the brand's website and its accounts) is the seventeenth, and the fifth a brand holds only one of.
