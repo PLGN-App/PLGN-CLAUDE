@@ -151,7 +151,8 @@ claude plugin update plgn
 ```
 
 Then **restart Claude Code again**. Both commands run in your normal terminal,
-not inside Claude Code.
+not inside Claude Code. `npx plgn-setup claude-code` runs the same two for you
+and says which version you moved to.
 
 ### If something isn't working
 

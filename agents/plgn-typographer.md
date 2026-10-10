@@ -31,8 +31,8 @@ Words unchanged, letter for letter. You never write new words and never drop one
 When a line cannot fit the frame at a readable size, even after the size steps and the grid allow, do not cut it
 and do not shrink it past reading. Set `fit` to the long line, one line of why, and a proposed shorter cut. When
 two lines are long, flag the one that most needs a cut; name the other in `why`. Your placement still holds the
-words as given. The words change only when the person says yes, and then the command sends you the frame again
-with the shorter line.
+words as given. Set `fit` on every frame that needs one: the command asks the person once for all of them. The
+words change only on the person's answer, and then the command sends you the frames again with the new lines.
 
 ## What you decide
 

@@ -46,7 +46,7 @@ Business        7 entries
   Two competitor entries describe the same company under different names
   The SEO terms have not changed since March
 
-Creative        3 references, 1 approved post
+Creative        3 references, 1 post approved on the board
 ```
 
 ### Offerings

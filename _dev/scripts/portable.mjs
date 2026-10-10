@@ -14,7 +14,16 @@ const PLUGIN_ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 
 export const FLAGGED = [
   "Task tool", "subagent_type", "AskUserQuestion", "TodoWrite", "claude plugin",
-  "/plugin ", ".claude-plugin", "plgn:plgn-", "Claude Code",
+  "/plugin ", ".claude-plugin", "plgn:plgn-", "Claude Code", "WebFetch", "`Read`",
+];
+
+// Claude Code's own tools, named where a method falls back on them (a picture at a
+// link without plgn, a researcher without plgn). Other AI tools name theirs
+// differently, so the portable text says what the tool does instead. Longest first.
+export const HOST_TOOLS = [
+  ["`WebFetch`-then-`Read`", "fetch-then-open"],
+  ["`WebFetch`", "your web fetch"],
+  ["`Read`", "your file reader"],
 ];
 
 export const SLASH_PARAGRAPH =
@@ -42,6 +51,24 @@ function literalRewrite(text, from, to) {
   return { text: parts.join(to), count: parts.length - 1 };
 }
 
+// A host tool's name becomes HOST_TOOLS' words, capitalised where it starts a
+// sentence or a list item.
+function hostToolRewrite(text) {
+  let count = 0;
+  const re = new RegExp(HOST_TOOLS.map(([from]) => escapeRe(from)).join("|"), "g");
+  text = text.replace(re, (match, at, whole) => {
+    count++;
+    const to = HOST_TOOLS.find(([from]) => from === match)[1];
+    const lineStart = whole.lastIndexOf("\n", at - 1) + 1;
+    const before = whole.slice(lineStart, at);
+    const prevLine = lineStart === 0 ? "" : whole.slice(whole.lastIndexOf("\n", lineStart - 2) + 1, lineStart - 1);
+    const starts = /^\s*(?:\d+\.|-)\s+$/.test(before) || /[.!?]\s+$/.test(before)
+      || (before.trim() === "" && (prevLine.trim() === "" || /[.!?:]\s*$/.test(prevLine)));
+    return starts ? to[0].toUpperCase() + to.slice(1) : to;
+  });
+  return { text, count };
+}
+
 // Rewrites never add or remove a line, so a line number in the output is the source line.
 export function applyRewrites(text, names) {
   let count = 0;
@@ -50,6 +77,7 @@ export function applyRewrites(text, names) {
   step(tokenRewrite(text, names.agents, (n) => `plgn-role-${n.replace(/^plgn-/, "")}`));
   step(tokenRewrite(text, names.skills, (n) => `plgn-${n}`));
   step(literalRewrite(text, "**_conventions**", "**plgn-conventions**"));
+  step(hostToolRewrite(text));
   return { text, count };
 }
 

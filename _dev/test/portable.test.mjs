@@ -146,6 +146,30 @@ test("applyRewrites changes whole names only", () => {
   assert.equal(r.count, 5);
 });
 
+// Audit PL13: Codex, Gemini and the rest have no tools called WebFetch or Read.
+test("Claude Code's own tool names become what the tool does, capitalised only where a sentence starts", () => {
+  const r = applyRewrites([
+    "A local file with `Read`; a link (the `WebFetch`-then-`Read` fallback in",
+    "**visual-identity**).",
+    "1. Fetch the URL with `WebFetch`.",
+    "`WebFetch` alone never sees a picture, and `Read` cannot",
+    "take a URL. `Read` cannot either.",
+  ].join("\n"), { agents: [], skills: [] });
+  assert.deepEqual(r.text.split("\n"), [
+    "A local file with your file reader; a link (the fetch-then-open fallback in",
+    "**visual-identity**).",
+    "1. Fetch the URL with your web fetch.",
+    "Your web fetch alone never sees a picture, and your file reader cannot",
+    "take a URL. Your file reader cannot either.",
+  ]);
+  assert.equal(r.count, 6);
+  for (const name of ["plgn-assets", "plgn-role-art-director", "plgn-role-researcher", "plgn-visual-identity"]) {
+    const text = read(out, name);
+    assert.ok(!text.includes("WebFetch") && !text.includes("`Read`"), name);
+  }
+  assert.ok(read(out, "plgn-visual-identity").includes("Open that saved path with your file reader."));
+});
+
 test("VERSION and README", () => {
   assert.equal(readFileSync(join(out, "VERSION"), "utf8"), `${manifest.version}\n`);
   const readme = readFileSync(join(out, "README.md"), "utf8");

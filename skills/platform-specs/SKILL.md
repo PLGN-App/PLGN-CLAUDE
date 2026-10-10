@@ -1,6 +1,6 @@
 ---
 name: platform-specs
-description: Use inside a /plgn command that writes or fixes a post for LinkedIn, X, Instagram, Facebook or TikTok — character limits, target lengths, opening styles, hashtag conventions, how links behave, and how to rewrite one idea per platform instead of copying it across. Not for social posts written outside plgn.
+description: Use inside a /plgn command that writes or fixes a post for LinkedIn, X, Instagram, Facebook, TikTok or YouTube — character limits, target lengths, opening styles, hashtag conventions, how links behave, and how to rewrite one idea per platform instead of copying it across. Not for social posts written outside plgn.
 ---
 
 # Platform limits and habits
@@ -20,6 +20,7 @@ Agents cannot read this file.
 | **Instagram** | 2,200 | 300–600 | First line only; the rest hides behind "more" | 5–10, at the end or first comment | Not clickable in captions — say "link in bio" or leave it out |
 | **Facebook** | 63,206 | 100–250 | Short beats long; the platform buries walls of text | 0–3 | Clickable, with a preview |
 | **TikTok** | 2,200 | 80–150 | The caption supports the video, it never replaces it | 3–5, inline | Not clickable |
+| **YouTube** | 5,000 | 200–500 | The first 2 lines show under the video before "more" — say what the video gives | 3–5, at the end | Clickable in the description |
 
 **Aim for the target, not the limit.** Write to the target so the server's check
 has room. A post at 2,995 of LinkedIn's 3,000 fails the moment anyone edits a
@@ -36,6 +37,7 @@ Not every platform takes one, and the ones that do cap it differently.
 | **Facebook** | yes | up to 10 |
 | **X** | yes | up to 4 |
 | **TikTok** | no — video only | — |
+| **YouTube** | no — video only | — |
 
 A carousel caption is written differently from a single picture's, because
 the first frame already does the work a caption normally opens with. The

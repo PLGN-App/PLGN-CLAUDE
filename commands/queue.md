@@ -118,7 +118,7 @@ behind the attempt, and leave the idea for someone to rework by hand.
 - **Never say the queue is clean without reading it.** The single most damaging
   thing this command could do is report "all good" from a partial look.
 - **Ask before changing anything**, per **_conventions**. Show the fix, then
-  apply it.
+  apply it. **`--yes` is not accepted.** Each fix is shown before it is made.
 - **Never delete a post to clear a problem.** A blocked post still holds a
   usable idea. Deleting only ever happens when the user asks, confirmed by name.
 - **Judge by the point, not the length.** A 90-character X post can be

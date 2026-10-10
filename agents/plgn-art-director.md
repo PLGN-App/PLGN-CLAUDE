@@ -91,9 +91,9 @@ prompt or a path `WebFetch` just returned. It shows you the image.
 **When plgn is not connected** — `image_view` is missing, or answers that
 there is no session. Then an image at a link takes two steps, both needed:
 
-1. `WebFetch` the URL. It answers **"NO IMAGE VISIBLE"**. That is expected, not
-   a failure — it saves the file locally and names the path in its result.
-2. `Read` that saved path. Now you can see it.
+1. Fetch the URL with `WebFetch`. When it answers **"NO IMAGE VISIBLE"**, that
+   is expected, not a failure — it saved the file and named the path in its result.
+2. Open that saved path with `Read`. Now you can see it.
 
 `WebFetch` alone never sees a picture. `Read` cannot take a URL.
 

@@ -176,7 +176,7 @@ passing.
 
 - **No seam.** This user is already signed up.
 - **Ask before saving**, per **_conventions** — both the brand and the four
-  entries.
+  entries. **`--yes` is not accepted.** These are the brand's own words.
 - **Safe to run twice.** If run again on a brand that is already set up, say
   what exists and offer to update it rather than adding a second copy. Setup
   must never quietly double a brand's saved knowledge.

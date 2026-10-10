@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.18.5 (2026-10-10)
+
+- The knowledge map lists seventeen types: `channels` (the brand's website and its accounts) is the seventeenth, and the fifth a brand holds only one of.
+- YouTube has its row in the platform rules: a 5,000-character description, aim for 200–500, video only.
+- One size for a hashtag set that has grown too big: about 10 tags, in `/plgn library` and its helper alike.
+- Numbers are Western digits (0–9) in every reply and every post, Arabic included.
+- The skills `npx plgn-setup` gives other AI tools no longer name Claude Code's own tools: the picture fallback and the researcher say "your web fetch" and "your file reader".
+- `/plgn import-store` on one product page skips `(svg)` pictures, uploads each picture once, saves the description keyed by language, and finishes on its own instead of running the store import. `/plgn repurpose` saves each snippet's text keyed by language too.
+- `/plgn images` asks once for all of a post's lines that are too long for the picture (a carousel of 10 is one question, not 10).
+- A yes in the chat saves or schedules a post; it never approves it. Approving is a person's, on the board, and the commands now say "saved" or "scheduled", never "approved".
+- Every connected command now says whether it takes `--yes`: `/plgn post` and `/plgn topics` do; `/plgn setup`, `/plgn assets`, `/plgn queue` join the commands that never do; `/plgn report` and `/plgn why` take no flags.
+- Validate knows all of plgn's tools (85, with `place_read`, `route_request`, `brief_delete`, `create_folder`, `move_images` and `hashtagset_get`) and judges every tool prefix, and pins each change above.
+
 ## 1.18.4 (2026-10-10)
 
 - Waiting for pictures is one call, not one every five seconds: `/plgn images`, `/plgn month` and `/plgn product-sheet` start every picture first, then ask plgn about all of them at once (`check_generation` with `job_ids` and `wait_s: 20`). plgn waits on its side and answers as soon as one is done; the call is repeated with the ones still pending until each succeeds or fails. A job still pending after about 3 minutes is reported as still running, never as failed. The quote and its yes still come before any picture. Needs the plgn server that takes `job_ids` and `wait_s`.

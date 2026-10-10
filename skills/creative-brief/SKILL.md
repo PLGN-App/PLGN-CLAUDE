@@ -133,8 +133,9 @@ NEVER: stock-looking beans, hands holding the tin, the brand's banned words
 and it runs only when a frame carries words: the director's image words for
 that frame are not empty. It styles and places the words, one call per post for
 all its frames, and never changes, cuts or drops a word. If a line cannot fit
-at a readable size it says so in `fit` and proposes a shorter one; the words
-change only when the person says yes. A frame with no words never reaches it,
+at a readable size it says so in `fit` and proposes a shorter one; the command
+asks the person once for all of a post's fits, and the words change only on
+their answer. A frame with no words never reaches it,
 and the designer then writes none. Like the order, its block is not saved in
 the brief; the command hands it to the designer. For the Bunduq Coffee hero
 order above, with one frame, a headline and a support line, in the order's

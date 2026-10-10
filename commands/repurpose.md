@@ -94,7 +94,9 @@ yes / pick / no
 
 `pick` lets them choose some. Then call `post_create` per approved post,
 following **gate-recovery** on any `ERROR:`, and `snippet_create` once per idea
-behind an approved post, with the point and its evidence. Nothing is saved
+behind an approved post, with the point and its evidence as `body`. `body` is
+keyed by language, like a post's caption: `body: { "en": "…" }`, one key for
+each of the brand's languages the posts were written in. Nothing is saved
 before this yes.
 
 The snippets are what make the command build up over time: the next

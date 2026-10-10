@@ -1,6 +1,6 @@
 ---
 name: brand-knowledge-map
-description: Use inside a /plgn command that saves or reads brand data in a plgn workspace — deciding where a piece of brand knowledge belongs, which knowledge types exist, why a saved banned-word list is not being enforced, or why a second voice entry was refused. Covers the brand record, the three layers and sixteen types, and offerings and campaigns as records. Not for general brand questions outside plgn.
+description: Use inside a /plgn command that saves or reads brand data in a plgn workspace — deciding where a piece of brand knowledge belongs, which knowledge types exist, why a saved banned-word list is not being enforced, or why a second voice entry was refused. Covers the brand record, the three layers and seventeen types, and offerings and campaigns as records. Not for general brand questions outside plgn.
 ---
 
 # Where a brand's knowledge lives
@@ -16,7 +16,7 @@ Read this before saving anything about a brand.
 | Place | What it holds | Written with |
 |---|---|---|
 | **The brand record** | Name, languages, banned words, **timezone** | `brand_update` |
-| **Knowledge entries** | What the brand knows about itself — sixteen types, three layers | `knowledge_add`, `knowledge_update` |
+| **Knowledge entries** | What the brand knows about itself — seventeen types, three layers | `knowledge_add`, `knowledge_update` |
 | **Offerings** | What it sells: a product or a service, with its benefits | `offering_create`, `offering_update` |
 | **Campaigns** | One thing it is saying for a while, with dates | `campaign_create`, `campaign_update` |
 | **Assets** | The real things it owns — logo, character, people, places, elements, templates, badges — each with pictures and rules | `asset_create`, `asset_update` |
@@ -64,17 +64,21 @@ overrides what.
 | Layer | Rule | Types |
 |---|---|---|
 | **Foundation** | Read first, never overridden | `brand_identity`, `brand_positioning`, `voice_tone`, `audience`, `visual_rules`, `creative_rules` |
-| **Business** | What it sells, and the proof | `promotion`, `proof`, `objection`, `competitor`, `market_context`, `seo_rules`, `platform_rules` |
+| **Business** | What it sells, and the proof | `promotion`, `proof`, `objection`, `competitor`, `market_context`, `seo_rules`, `platform_rules`, `channels` |
 | **Creative** | How it says one thing, this once | `reference`, `approved_execution`, `example_post` |
 
-Sixteen types. That is the entire list. There is no `offers` type and no
+Seventeen types. That is the entire list. There is no `offers` type and no
 `publishing` type — those are an Offering and the brand record.
 
-## Four of them are singletons
+`channels` is where the brand publishes: its `website` and its `instagram`,
+`tiktok`, `facebook`, `x` and `linkedin` accounts in the metadata, each a
+bare handle as `social_fetch` takes it.
+
+## Five of them are singletons
 
 A brand holds **exactly one** `brand_identity`, one `brand_positioning`, one
-`voice_tone` and one `audience`. A second one is refused, and the refusal
-carries the id of the entry that already exists.
+`voice_tone`, one `audience` and one `channels`. A second one is refused, and
+the refusal carries the id of the entry that already exists.
 
 **That refusal is an instruction, not an error.** Update the entry it names
 with `knowledge_update`. Never report it to the user as a failure, and never

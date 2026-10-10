@@ -246,13 +246,18 @@ platform, so the order and the designer choose a shape that suits them all.
    whose frames carry none never calls it. A `question` answer (two type
    systems) is put to the person like the director's, in plain words, and
    the typographer starts again with the answer; later posts of this brand
-   in the run get the same answer. A `fit` is asked of the person in plain
-   words with the shorter line, for example: "The line 'Fresh coffee, roasted
-   this morning, at your door' is too long to read at this size. Use 'Fresh
-   coffee, at your door' instead? yes / edit / no". On yes that frame's words become
-   the shorter line and 4b runs again with them; on edit the person's own line
-   becomes that frame's words and 4b runs again with it; on no nothing
-   changes. The words change only on the person's yes or edit.
+   in the run get the same answer. Collect every `fit` in the answer (a
+   carousel can raise one on several frames) and ask the person once for
+   the post, in plain words, each long line with its shorter one. One line
+   is one thing, for example: "The line 'Fresh coffee, roasted this
+   morning, at your door' is too long to read at this size. Use 'Fresh
+   coffee, at your door' instead? yes / edit / no". Yes takes the shorter
+   line, edit takes the person's own line, no changes nothing. Several
+   lines are a list, by frame, asked with `yes / pick / no`: yes takes every
+   shorter line, pick takes the ones the person names (or their own
+   wording), no keeps every line as it is. Then 4b runs again once, with
+   every frame whose words changed. The words change only on the person's
+   answer, never one frame at a time.
 
    Then, for every post, words or not, read
    `context_get(role: "designer", campaign_id: <the post's campaign, if
@@ -406,8 +411,8 @@ Once a post's frames are made, call `post_update` once for it, and once for
 each copy that shared them, with only `brief_id` set to the brief these
 pictures came from. The `brief_id` is the
 only thing that joins the post to its thinking: leave it off and `/plgn why`
-reads back nothing for a picture this command just made, and approving the
-post records nothing about what worked.
+reads back nothing for a picture this command just made, and a person
+approving the post on the board records nothing about what worked.
 
 ## 8. Say what happened
 

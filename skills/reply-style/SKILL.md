@@ -30,6 +30,9 @@ Look at what the user wrote. Reply in that language.
 Keep these unchanged in any language: command names (`/plgn month`), brand
 names, platform names (LinkedIn, X), and the word `plgn`.
 
+Numbers are always Western digits (0–9), in Arabic too: `3`, never `٣`;
+`الثلاثاء 09:00`, never `٠٩:٠٠`. Counts, points, prices, dates and times alike.
+
 Never say "I will reply in English for clarity". Reply in their language.
 
 ## 2. Keep it simple in every language

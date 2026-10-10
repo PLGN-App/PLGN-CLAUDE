@@ -13,26 +13,35 @@ const fail = (m) => fails.push(m);
 const TOOLS = new Set([
   "asset_create", "asset_delete", "asset_get", "asset_list", "asset_update",
   "brand_archive", "brand_list", "brand_restore", "brand_update",
-  "brief_create", "brief_update", "brief_finalize", "brief_get", "brief_list",
+  "brief_create", "brief_update", "brief_finalize", "brief_get", "brief_list", "brief_delete",
   "campaign_create", "campaign_delete", "campaign_get", "campaign_list", "campaign_update",
   "check_generation", "cloudinary_connect", "context_get", "delete_image",
   "generate_image", "generate_image_from_image",
-  "hashtagset_create", "hashtagset_delete", "hashtagset_list", "hashtagset_update",
+  "hashtagset_create", "hashtagset_delete", "hashtagset_get", "hashtagset_list", "hashtagset_update",
   "image_view", "kie_key_set", "knowledge_add", "knowledge_delete", "knowledge_get",
   "knowledge_history", "knowledge_update",
-  "list_images",
+  "list_images", "create_folder", "move_images",
   "offering_create", "offering_delete", "offering_list", "offering_update",
   "post_create", "post_delete", "post_get", "post_list", "post_schedule", "post_update",
   // 1.11.0: bulk writes, run-wide undo, and plgn's own checks (Jev rollout, plan A).
   "post_create_many", "post_schedule_many", "post_unschedule_run", "post_delete_run",
-  "post_check", "post_label", "picture_need",
-  "site_read", "social_fetch", "web_search",
+  "post_check", "post_label", "picture_need", "route_request",
+  "site_read", "social_fetch", "web_search", "place_read",
   "snippet_create", "snippet_delete", "snippet_get", "snippet_list", "snippet_update",
   "store_import", "store_products",
   "sheet_approve", "sheet_create", "sheet_cut", "sheet_get", "sheet_list", "sheet_mark", "image_quote",
   "topic_create", "topic_delete", "topic_get", "topic_list", "topic_update",
   "upload_image_base64", "upload_image_from_url", "workspace_info",
 ]);
+// The server's registry (plgn src/mcp/registry.ts) serves 84 of these; the 85th,
+// kie_key_set, is only served while plgn's own-key setting is on.
+const EXPECTED_TOOL_COUNT = 85;
+if (TOOLS.size !== EXPECTED_TOOL_COUNT) {
+  fail(`the MCP tool allow-list holds ${TOOLS.size} names, expected ${EXPECTED_TOOL_COUNT}: match it to plgn's src/mcp/registry.ts`);
+}
+// Every prefix a real tool starts with is judged in section 4, so an invented
+// `place_*` or `route_*` name fails the same as an invented `post_*` one.
+const TOOL_PREFIXES = [...new Set([...TOOLS].map((t) => t.split("_")[0]))];
 
 const FREE = ["demo", "audit", "strategy", "voice", "competitors", "calendar"];
 const CONNECTED = ["setup", "brand", "campaign", "knowledge", "month", "post", "repurpose",
@@ -180,7 +189,7 @@ const KNOWLEDGE_TYPES = new Set([
   "brand_identity", "brand_positioning", "voice_tone", "audience",
   "visual_rules", "creative_rules",
   "promotion", "proof", "objection", "competitor", "market_context",
-  "seo_rules", "platform_rules",
+  "seo_rules", "platform_rules", "channels",
   "reference", "approved_execution", "example_post",
 ]);
 // Names that share a tool's prefix but are arguments passed *to* a tool,
@@ -202,6 +211,8 @@ const NON_TOOL_NAMES = new Set([
   "asset_id", "asset_ids", "input_urls", "is_primary", "ai_use",
   // brand_update's argument, named by brand.md and setup.md (1.7.1).
   "brand_id",
+  // brand_update's accounts argument, named by brandkit.md (1.18.0).
+  "social_links",
   // 1.11.0: picture_need and post_label take `post_ids`; `campaign_rule` is a
   // check code plgn prints (`check: campaign_rule:<n> — ...`), not a tool.
   "post_ids", "campaign_rule",
@@ -225,9 +236,8 @@ for (const p of CONTENT) {
     // exists and that nothing else writes it. Section 10 enforces that no
     // other file does.
     if (MAP_ONLY_LEGACY_TYPES.has(name) && p === MAP_SKILL_PATH) continue;
-    // only judge names that look like plgn tools: a known prefix
-    if (/^(brand|brief|campaign|check|cloudinary|context|delete|generate|hashtagset|image|kie|knowledge|list|offering|post|sheet|snippet|store|topic|upload|workspace)_/.test(name)
-      && !TOOLS.has(name)) {
+    // only judge names that look like plgn tools: a prefix a real tool has
+    if (TOOL_PREFIXES.includes(name.split("_")[0]) && !TOOLS.has(name)) {
       fail(`${p}: unknown MCP tool name \`${name}\``);
     }
   }
@@ -400,8 +410,29 @@ for (const c of FREE) {
 // the phrase itself is verbatim in all eleven). Requiring that exact string
 // means the mutation above now fails, naming the file, because the mutated
 // sentence no longer contains it.
-const NO_YES = ["month", "images", "visuals", "brandkit", "undo", "repurpose",
-  "refresh", "library", "brand", "knowledge", "campaign", "import-store", "product-sheet"];
+const NO_YES = ["setup", "month", "images", "visuals", "brandkit", "undo", "repurpose",
+  "refresh", "library", "brand", "knowledge", "campaign", "assets", "queue", "import-store", "product-sheet"];
+// Audit PL21: the lists disagreed (assets refused --yes but rule 4 did not name
+// it). Every connected command is now in exactly one of three lists.
+const YES_OK = ["post", "topics"];
+const NO_FLAGS = ["report", "why"];
+{
+  for (const c of CONNECTED) {
+    const n = [NO_YES, YES_OK, NO_FLAGS].filter((l) => l.includes(c)).length;
+    if (n !== 1) fail(`validate.mjs: \`${c}\` must be in exactly one of NO_YES, YES_OK and NO_FLAGS (it is in ${n})`);
+  }
+  const conv = exists("reference/_conventions.md") ? read("reference/_conventions.md").replace(/\r\n/g, "\n") : "";
+  const accepts = conv.match(/also accept `--yes`, which skips the confirmation:\n([^\n]*)/)?.[1] ?? "";
+  for (const c of YES_OK) {
+    if (!accepts.includes(`\`${c}\``)) fail(`reference/_conventions.md rule 4 does not list \`${c}\` among the commands that accept --yes`);
+    const p = `commands/${c}.md`;
+    if (exists(p) && !/`--yes` skips/.test(read(p))) fail(`${p}: accepts --yes, so it must say what \`--yes\` skips`);
+  }
+  for (const c of NO_FLAGS) {
+    const p = `commands/${c}.md`;
+    if (exists(p) && !/takes no flags/.test(read(p))) fail(`${p}: writes nothing, so it must say it takes no flags`);
+  }
+}
 {
   const conv = exists("reference/_conventions.md") ? read("reference/_conventions.md") : "";
   for (const c of NO_YES) {
@@ -459,14 +490,19 @@ for (const p of CONTENT) {
     if (!body.includes("brand_update")) {
       fail(`${MAP} must name \`brand_update\` as where banned words are written`);
     }
-    // All sixteen. The map is the only file that has to list the whole
-    // taxonomy; every other file names the two or three types it writes.
+    // All seventeen (plgn src/domains/knowledge/types.ts). The map is the only
+    // file that has to list the whole taxonomy; every other file names the two
+    // or three types it writes.
     for (const t of KNOWLEDGE_TYPES) {
-      if (!body.includes(t)) fail(`${MAP} must list the knowledge type "${t}"`);
+      if (!body.includes(`\`${t}\``)) fail(`${MAP} must list the knowledge type "${t}"`);
     }
-    // The four that a brand holds exactly one of. A command that does not
-    // know which types are singletons treats a refusal as a failure.
-    for (const s of ["brand_identity", "brand_positioning", "voice_tone", "audience"]) {
+    if (!/\bSeventeen types\b/.test(body) || /\bsixteen\b/i.test(body)) {
+      fail(`${MAP} must count seventeen knowledge types`);
+    }
+    // The five that a brand holds exactly one of (SINGLETON_TYPES on the
+    // server). A command that does not know which types are singletons treats
+    // a refusal as a failure.
+    for (const s of ["brand_identity", "brand_positioning", "voice_tone", "audience", "channels"]) {
       if (!new RegExp(`${s}[\\s\\S]{0,400}(singleton|only one|exactly one)`, "i").test(body)
         && !new RegExp(`(singleton|only one|exactly one)[\\s\\S]{0,400}${s}`, "i").test(body)) {
         fail(`${MAP} must say that a brand holds only one "${s}"`);
@@ -1429,6 +1465,43 @@ if (exists("reference/_conventions.md")) {
   need("skills/image-prompting/SKILL.md", ["## Think in the form, write in prose"]);
   need("skills/creative-brief/SKILL.md", ["CAMERA:", "keep in this order"]);
   // 1.17.0: later tasks add their checks above this line
+}
+
+// --- 18b. 1.18.5: the full product audit of 2026-10-09 (plugin rows) -------
+// Each needle below is a sentence that goes when the fix is undone.
+{
+  const text = (p) => (exists(p) ? read(p).replace(/\r\n/g, "\n") : (fail(`${p} is missing`), ""));
+  const need = (p, needles) => {
+    const body = text(p);
+    for (const n of needles) if (!body.includes(n)) fail(`${p} must name "${n}"`);
+  };
+  // PL9: every network the server takes (validation-gate.ts PLATFORMS) has a row, with its cap.
+  const specs = text("skills/platform-specs/SKILL.md");
+  for (const [name, cap] of [["LinkedIn", "3,000"], ["X", "280"], ["Instagram", "2,200"], ["Facebook", "63,206"],
+    ["TikTok", "2,200"], ["YouTube", "5,000"]]) {
+    if (!specs.includes(`| **${name}** | ${cap} |`)) fail(`skills/platform-specs/SKILL.md: the table needs a ${name} row with its ${cap} cap`);
+  }
+  // PL10: one size for a hashtag set that has grown too big.
+  need("commands/library.md", ["Past about 10 tags"]);
+  need("agents/plgn-librarian.md", ["more than about 10 tags"]);
+  // PL11: Western digits only, in replies and in posts.
+  need("skills/reply-style/SKILL.md", ["Numbers are always Western digits (0–9)"]);
+  need("agents/plgn-copywriter.md", ["Numbers are Western digits (0–9)"]);
+  // PL18: a page read skips (svg) pictures, uploads each address once, and has its own way out.
+  need("commands/import-store.md", ["never a\n   line marked `(svg)`", "list each picture address once",
+    "Section 4 is for a listed store: skip it."]);
+  // PL24: offering and snippet text fields are keyed by language.
+  need("commands/import-store.md", ["`description: { \"en\": \"…\" }`"]);
+  need("commands/repurpose.md", ["`body: { \"en\": \"…\" }`"]);
+  // PL23: a post's fits are one question, never one stop per frame.
+  need("commands/images.md", ["Collect every `fit` in the answer", "never one frame at a time"]);
+  need("agents/plgn-typographer.md", ["the command asks the person once for all of them"]);
+  // PL25: a yes in chat saves; approving a post is a person's, on the board.
+  need("reference/_conventions.md", ["**A yes here is not a post's approval.**"]);
+  need("commands/post.md", ["**Saved is not approved.**"]);
+  for (const p of CONTENT) {
+    if (/approval:\s*"approved"/.test(read(p))) fail(`${p}: never sends approval: "approved" — approving is a person's, on the board`);
+  }
 }
 
 // --- 19. Portable skills: every command, role and skill converts ---

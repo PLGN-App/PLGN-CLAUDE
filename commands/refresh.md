@@ -1,5 +1,5 @@
 ---
-description: Find older posts worth running again, rewrite the strongest ones, and reschedule them after your approval. Use for "refresh old content", "repost the good ones", "reuse what worked", or filling a thin month from what you already have. Supports --platform, --campaign and --topic.
+description: Find older posts worth running again, rewrite the strongest ones, and reschedule them after you say yes. Use for "refresh old content", "repost the good ones", "reuse what worked", or filling a thin month from what you already have. Supports --platform, --campaign and --topic.
 ---
 
 # /plgn refresh

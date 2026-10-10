@@ -101,6 +101,13 @@ Four exceptions to the format:
 
 Silence is not a yes. If the answer is unclear, ask again.
 
+**A yes here is not a post's approval.** It lets the command save or
+schedule. A post is approved only by a person, who opens it on the board at
+useplgn.com and presses Approve. plgn refuses `approval: "approved"` from any
+tool, and a post whose words change goes back to waiting for approval. So say
+"saved" or "scheduled", never "approved", after a yes here. When the person
+wants a post signed off, say it waits for Approve on the board.
+
 ## 4. Flags
 
 Every command that writes accepts:
@@ -110,9 +117,11 @@ Every command that writes accepts:
 These commands also accept `--yes`, which skips the confirmation:
 `post`, `topics`.
 
-`--yes` is **never** accepted by `month`, `images`, `visuals`, `brandkit`, `undo`,
-`repurpose`, `refresh`, `library`, `brand`, `knowledge`, `campaign`, `import-store` or `product-sheet`.
-Those either spend points, write in bulk, or remove things.
+`--yes` is **never** accepted by `setup`, `month`, `images`, `visuals`, `brandkit`, `undo`,
+`repurpose`, `refresh`, `library`, `brand`, `knowledge`, `campaign`, `assets`, `queue`,
+`import-store` or `product-sheet`. Those either spend points, write in bulk,
+remove things, or write the brand's own words and things. `report` and `why`
+write nothing and take no flags.
 
 Unknown flags are reported, never ignored, so a typo cannot quietly change what
 happens.

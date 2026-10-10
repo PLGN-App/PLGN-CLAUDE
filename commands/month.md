@@ -1,5 +1,5 @@
 ---
-description: Fill a plgn workspace with a month of on-brand content — picks topics, writes posts in parallel, makes images, and schedules everything after your approval. Reuses topics you already have instead of creating duplicates. Supports --dry-run, --no-images and --max-images. Use for "a month of content", "fill my calendar", or "plan next month".
+description: Fill a plgn workspace with a month of on-brand content — picks topics, writes posts in parallel, makes images, and schedules everything after you say yes. Reuses topics you already have instead of creating duplicates. Supports --dry-run, --no-images and --max-images. Use for "a month of content", "fill my calendar", or "plan next month".
 ---
 
 # /plgn month

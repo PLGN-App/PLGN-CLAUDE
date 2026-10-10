@@ -1,5 +1,5 @@
 ---
-description: Draft one on-brand post from an idea, show it, and save it to your plgn workspace once you approve — scheduled if you want. Supports --yes to skip the confirmation. Use for "post about X", "write a post", or turning a single thought into content.
+description: Draft one on-brand post from an idea, show it, and save it to your plgn workspace once you say yes — scheduled if you want. Supports --yes to skip the confirmation. Use for "post about X", "write a post", or turning a single thought into content.
 ---
 
 # /plgn post
@@ -157,6 +157,9 @@ That is the whole report. No summary of what was written — they just read it.
 ## Notes
 
 - **No seam.** This user is already signed up.
+- **Saved is not approved.** The yes in step 4 saves the post; it does not
+  approve it. Approving is a person's, on the board, per **_conventions**
+  rule 3. Never send `approval`, and never call the post approved.
 - **Speed is the feature.** Silent check, one draft, one question, one line
   back. Anything else added here gets paid for ten times a day.
 - **Never batch.** Several posts from one idea is `/plgn repurpose`; a month is

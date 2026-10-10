@@ -57,6 +57,8 @@ A translation is not a post. Write the idea again in the second language, with
 that language's own rhythm and idiom. A literal translation of an English hook
 reads as translated, which is the one thing a native reader notices first.
 
+Numbers are Western digits (0–9) in every language, Arabic too: `3`, never `٣`.
+
 If no language was given, write in the language the brand's own material used
 and say that you assumed it.
 

@@ -187,7 +187,7 @@ already there. Skip the step entirely when nothing was given or found;
 
 ### 5. Business
 
-`channels` first — one entry, the brand's website and its four accounts. It is
+`channels` first — one entry, the brand's website and its five accounts. It is
 a singleton: when one is saved already, update it, never add a second.
 
 `competitor` — **one entry each**, not one entry listing five. A competitor you

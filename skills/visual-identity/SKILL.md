@@ -74,10 +74,10 @@ image.
 **When plgn is not connected**, there is no `image_view`. An image at a URL
 then takes two steps:
 
-1. `WebFetch` the URL. It will answer **"NO IMAGE VISIBLE"**. That is not a
-   failure. It saves the binary to a local file and names that path in its
-   result.
-2. `Read` that saved path. The image is now visible.
+1. Fetch the URL with `WebFetch`. When it answers **"NO IMAGE VISIBLE"**, that
+   is not a failure. It saved the binary to a local file and named that path in
+   its result.
+2. Open that saved path with `Read`. The image is now visible.
 
 Both steps are needed. `WebFetch` alone never sees a picture, and `Read` cannot
 take a URL.

@@ -61,7 +61,7 @@ one way and hiring posts another has two sets, not one long one.
   in", "Unpopular opinion:"
 - Legal text, cookie notices, interface labels
 - A hashtag used once
-- A set of more than about twelve tags, which is a dumping ground rather than a
+- A set of more than about 10 tags, which is a dumping ground rather than a
   set. Split it or cut it.
 
 ## Rules
