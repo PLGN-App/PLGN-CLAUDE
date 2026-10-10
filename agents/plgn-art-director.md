@@ -205,8 +205,10 @@ resolved it: a real photo, a built object, a scene, or type alone.
   `CANNOT:`.
 
 ### 3. The product source, in this order
-An approved sheet cell, then an official render, then a real photo. Name a sheet cell exactly as
-`sheet <asset id> · cell <id>`, taken from the read's Product sheets lines, and only a cell listed there. None: PRODUCT says "needs a product photo" and the picture shows no product.
+An approved sheet cell, then an official render, then a real photo: a product with no approved sheet is shown from
+its own saved photos, which the read's Product sheets and photos lines list. Name a sheet cell exactly as
+`sheet <asset id> · cell <id>`, taken from those lines, and only a cell listed there; name a product photo as
+`photo` and its link. None of these: PRODUCT says "needs a product photo" and the picture shows no product.
 
 ### 4. References
 - The brand's own published posts first, with what to take and what to leave.

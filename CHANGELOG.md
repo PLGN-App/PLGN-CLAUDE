@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.19.1 (2026-10-10)
+
+- A product's own saved photos are used for its pictures from the first try. With no approved product sheet, the photos saved on the product are its real look: the art director names them as the product source, and `/plgn images` passes them to the picture, with no extra request. A product is never redrawn from words. Needs the plgn server whose context lists each product's own photos.
+
 ## 1.19.0 (2026-10-10)
 
 - The typographer writes a picture's words, not only styles them. It reads the person's request, the post as the content creator wrote it, the products the post names and the brand's rules for pictures, then writes the lines the picture needs: the director's image words are its starting point, and a footer, a contact line, a model code, spec lines or a button go in when the brand's rules ask every design to carry them. The person's own lines are kept letter for letter, and every figure, website and phone comes word for word from the saved material. Before, it could only place the director's headline and one line, so a brand rule like "every design ends with our website and phone" left the designer with nothing it was allowed to write, and it refused every idea.

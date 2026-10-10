@@ -148,7 +148,7 @@ image_quote(pictures: <all frames of all posts left after section 3>, from_image
 
 `from_images` is true when any frame will be made with
 `generate_image_from_image`: a `picture_need` line named an `asset:`, a
-product will come from a sheet, or the brand holds a canonical reference. To
+product will come from a sheet or from its own saved photos, or the brand holds a canonical reference. To
 know about the reference, make section 6's no-campaign read here,
 `context_get(role: "art_director")`, and keep it for section 6. The quote
 answers with the model, the tool, the points each and in all, what is left now
@@ -365,6 +365,13 @@ colours may be used, the mark is never drawn in, and no other brand's logo
 ever — per the logo rule in **brand-assets**. If the call refuses an asset,
 it says which and why: say so in one line, make that frame without it, and
 carry on.
+
+**A product from its own photos.** A product with no approved sheet is shown
+from its own saved photos, from the first picture, with no extra request: the
+read's Product sheets and photos lines list them. When the order's PRODUCT
+names `photo`, put that product's photo links first in `input_urls` and make
+the frame with `generate_image_from_image`; the product is never redrawn from
+words.
 
 **A product from a sheet.** When the order's PRODUCT names `sheet <id> ·
 cell <cell>`, call `sheet_get(sheet_id: <id>)` and use the cell only when

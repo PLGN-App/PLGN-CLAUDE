@@ -165,7 +165,7 @@ Approve? yes / pick / no
 
 - The art director picks the cell whose angle and moment match the scene.
 - The designer takes that cell as the product's input and names it; the product is never described from memory.
-- A visual may show a product only from an approved sheet of that exact variant.
+- A visual shows a product from an approved sheet of that exact variant or, while it has none, from the product's own saved photos; never from words alone.
 - Price, offer and claims come from the variant's record at the time of the post, never from the sheet.
 
 ## What you return
