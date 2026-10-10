@@ -19,6 +19,10 @@ not read. Either way this command writes nothing to any workspace and calls no
 other plgn tool — saving competitors to a brand is `/plgn brandkit`'s job,
 which has a brand, a plan and a yes.
 
+plgn's reads spend the connected workspace's points, per **_conventions**
+rule 12: say what each batch costs before it is read, and what all of it cost
+at the end. Web fetches without plgn cost nothing.
+
 ## Argument
 
 The user's own URL. If none was given, ask.
@@ -26,7 +30,8 @@ The user's own URL. If none was given, ask.
 ## Steps
 
 **1. Read the user's own site.** Start `plgn-researcher` so the comparison has
-a baseline.
+a baseline. With plgn connected, first say in one line that reading your site
+and searching for competitors costs up to about 1 point.
 
 **2. Find the top five, and check them.** Run two or three `web_search`
 queries built from what the brand sells and where. Keep the five closest real
@@ -36,12 +41,18 @@ the manual process where that is the real alternative. Never assume:
 > I'd look at these: <a>, <b>, <c>, <d>, <e>. Right list?
 > yes / edit / no
 
+With plgn connected, put what step 3 costs in the same question, above its
+last line: `Reading them costs up to 2.5 points for the sites, plus 3 for
+each account (5 for Instagram).`
+
 **3. Read each one at the same time.** One `plgn-researcher` per competitor,
 together, each told to read the site and the accounts on its `socials:` line
 (20 posts each). Keep each one's address and the accounts found, for the
 report.
 
-**4. Report.**
+**4. Report.** With plgn connected, end it with one line on what the reading
+cost: the `Points:` lines of your own searches and each researcher's
+`points`, added up.
 
 **5. Close** with the **upsell-seam** skill — the **analysis close**, using
 **This competitor read**.

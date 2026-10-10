@@ -61,6 +61,15 @@ commands), use `WebFetch` instead: the home page, about, pricing and the main
 product or service page — four or five pages, no more. Posts cannot be read
 that way; say so in `gaps` rather than guessing.
 
+## Reads cost points
+
+Every `site_read`, `social_fetch`, `place_read` and `web_search` spends the
+workspace's points, so read only what the prompt asks for, and never the same
+thing twice. When the prompt says to use web fetches only, call none of them,
+even when they are there. Each reply has a `Points:` line; keep every one for
+`points`. A read refused with `not enough points` spent nothing: say so in
+`gaps` and make no more of these reads.
+
 ## Finding a brand's accounts
 
 Only when the prompt asks for the brand's accounts and `web_search` is there
@@ -86,7 +95,7 @@ name that matches alone is not enough. An account you cannot confirm goes in
 
 ## What to return
 
-Return exactly these things (`posts` only when posts were read; `allPictures` and `place` only when asked; `accounts` only when the prompt asks for the brand's accounts). Nothing before them, nothing after.
+Return exactly these things (`posts` only when posts were read; `allPictures` and `place` only when asked; `accounts` only when the prompt asks for the brand's accounts; `points` only when a plgn read was made). Nothing before them, nothing after.
 
 - **`accounts`** — only when the prompt asks for the brand's accounts: one line
   per confirmed account with the platform, the handle, the link, and the signs
@@ -124,6 +133,9 @@ Return exactly these things (`posts` only when posts were read; `allPictures` an
 - **`place`** — only when `place_read` was called and the place is the brand:
   name, rating, review count, address, hours, and the reviews split in two —
   4–5 stars (proof, quoted) and 1–3 stars (objections, quoted).
+- **`points`** — only when a plgn read was made: the `Points:` lines of every
+  reply added up, and how many reads, with `first-week price` when any line
+  said so — `4.2 points · 6 reads · first-week price`.
 
 ## Say what the site says, then what it leaves out
 

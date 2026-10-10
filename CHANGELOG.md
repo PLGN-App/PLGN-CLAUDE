@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.18.4 (2026-10-10)
+
+- Waiting for pictures is one call, not one every five seconds: `/plgn images`, `/plgn month` and `/plgn product-sheet` start every picture first, then ask plgn about all of them at once (`check_generation` with `job_ids` and `wait_s: 20`). plgn waits on its side and answers as soon as one is done; the call is repeated with the ones still pending until each succeeds or fails. A job still pending after about 3 minutes is reported as still running, never as failed. The quote and its yes still come before any picture. Needs the plgn server that takes `job_ids` and `wait_s`.
+- Reading the web through plgn costs points now, and the commands say so. In a new brand's first 7 days each read costs only what plgn pays for it (often under 1 point); after that a search is 0.2, a site 0.5, a Google Maps place 1 and an account's posts 3 (Instagram 5). A copy plgn read in the last 7 days and a failed read are free, and so are the store tools and looking at pictures. `/plgn setup`, `/plgn brandkit`, `/plgn competitors`, `/plgn audit` and `/plgn import-store` say roughly what a batch of reads costs before reading, and add up the `Points:` lines at the end; `/plgn setup` and `/plgn brandkit` say that a new brand's first week is at plgn's own cost. The rule is written once, in the conventions (rule 12), and the researcher reports what its reads cost.
+- The free commands that read with web fetches only (`demo`, `strategy`, `voice`, `calendar`) now tell the researcher so, so it never spends a connected workspace's points.
+
 ## 1.18.3 (2026-10-10)
 
 - One picture for one idea on several platforms: when `/plgn month` or `/plgn images` has the same idea as feed posts on Instagram, Facebook, LinkedIn or X, it makes one picture and plgn puts it on every copy (`also_post_ids`, up to five more posts), quoted and paid for once. A TikTok post, a reel cover or a story (9:16) keeps its own picture unless you say one is fine. You are told in one plain line when a picture goes on several posts. Needs the plgn server that takes `also_post_ids`.

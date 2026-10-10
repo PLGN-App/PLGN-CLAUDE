@@ -17,6 +17,12 @@ read-only research tools (`site_read`, `social_fetch`); when it is not, it is
 web fetches only. Call no other plgn tool — this command reads nothing from a
 workspace, so it works the same on any site.
 
+plgn's reads spend the connected workspace's points, per **_conventions**
+rule 12. Before step 1 say so in one line — `Reading the site costs 0.5
+points, and each account's posts 3 (5 for Instagram).` — and after the fixes
+say what the reading cost, from the researcher's `points`. Web fetches
+without plgn cost nothing.
+
 ## Argument
 
 A URL. If none was given, ask. Never score a site you have not read.

@@ -12,7 +12,8 @@ It has one job: produce posts good enough that the reader wants them scheduled.
 ## No account needed
 
 **Call zero plgn tools.** Not for a connection check, not for anything. Reading
-the site uses web fetches only. This command
+the site uses web fetches only — say so in `plgn-researcher`'s prompt, since
+plgn's own reads cost points. This command
 must work the same way for someone who has never heard of plgn.
 
 If the user has already run a connected /plgn command in this conversation, do

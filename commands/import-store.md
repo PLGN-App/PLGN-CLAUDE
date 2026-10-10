@@ -35,7 +35,7 @@ to "see what they sell" — `/plgn competitors` is for that.
 ## 3. List the products
 
 Call `store_products(url)` once. It reads the whole store live, up to 500
-products, and a workspace has 20 of these reads a day.
+products, costs no points, and a workspace has 20 of these reads a day.
 
 If it answers that the store is not Shopify, WooCommerce or EasyOrders, and
 the person gave one or more product page links, or asked for "this
@@ -72,6 +72,12 @@ the prices are in ("EGP", "USD") before importing. Send it as `currency`.
 ## 3b. One product page
 
 For a store that cannot be listed, one page at a time.
+
+Unlike the store tools, a page read costs points, per **_conventions** rule
+12: 0.5 a page, and in a new brand's first 7 days only what plgn pays for it,
+often under 1 point. Before the first page, say in one line how many pages
+will be read and what they cost: `Reading 3 product pages costs up to 1.5
+points.`
 
 1. Read each page with `site_read(url, max_pages: 1)`.
 2. Show, per page: the name, the maker, the category, every spec line on the
@@ -154,12 +160,16 @@ Run /plgn month <subject> — posts can now name the real products.
 
 Name every skipped product and why, in plain words.
 
+When pages were read in 3b, add one line with what reading them cost: their
+`Points:` lines added up, per **_conventions** rule 12.
+
 ## Notes
 
 - **No seam.** This user is already signed up.
 - **One brand and one store per run.**
 - **`--yes` is not accepted.** This writes up to 500 products at once.
-- **No points are spent.** Pictures are copied from the store, not made.
+- **The store costs no points.** Listing and importing a store is free, and
+  pictures are copied from it, not made. Only a page read in 3b costs points.
 - **It never deletes.** A product that left the store stays in plgn; archive
   it there if it is gone for good. Importing again updates the name, the
   description, the price, the variants and the pictures, and keeps the

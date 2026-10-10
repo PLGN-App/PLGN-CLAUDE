@@ -64,6 +64,16 @@ The whole run asks **five questions**: the one block below is the first,
 step 5 holds at most four more, step 6's yes is a confirmation, and step 8
 is the skippable block only the owner can answer. Nothing else stops to ask.
 
+**Reading costs points** (**_conventions** rule 12). Before the first read,
+say so in one plain line, and that a new brand's first 7 days are at plgn's
+own cost — each read costs only what plgn pays for it, often under 1 point.
+It is a line, not a question:
+
+```
+Reading costs points: in a new brand's first 7 days only what plgn pays for
+each read, often under 1 point. I'll say the total before the big read.
+```
+
 **Read the site first, so the block below is short.** Read
 `knowledge_get(type: "channels")`. If there is no entry, call `site_read` on
 the website: its `socials:` line lists the Instagram, TikTok, Facebook, X and
@@ -110,6 +120,19 @@ confirm them: they appear in the plan in step 6, where `pick` drops a wrong
 one. Say in one line that they were found by search.
 
 ## 4. Read everything at once
+
+**First say what this read costs**, in one line, per **_conventions** rule
+12: count what will be read — the brand's site, each of its accounts, the
+place, each reference account, and the five competitors' sites — and price
+it at the rule's prices. Competitors' accounts are found only while reading,
+so give their price per account. When the `Points:` lines so far said
+`first-week price`, say that each read costs what plgn pays instead.
+
+```
+Reading your site, your Instagram, Facebook and TikTok, your Google Maps
+place and 5 competitors' sites costs up to 15 points, plus 3 for each
+competitor account (5 for Instagram).
+```
 
 Start `plgn-researcher` on the brand — its site **and its posts** (each
 account in `channels`, 20 posts each) — and one on each of the five
@@ -319,11 +342,15 @@ step.
   — Decaf has no photo
   — Sara: no consent, so never in AI pictures
 
+Reading cost 6.4 points (first-week price).
+
 Run /plgn campaign to start one.
 ```
 
 The scorecard's lines and what "ready" means are the **brand-onboarding**
-skill's section 8. Name every picture that could not be uploaded.
+skill's section 8. Name every picture that could not be uploaded. The
+reading line adds up the `Points:` lines of the reads this command made and
+each researcher's `points`, per **_conventions** rule 12.
 
 If step 3 noticed a shop, add one line, once: `Your site is a shop.
 /plgn import-store brings its products in, with prices and pictures.` Never
@@ -335,9 +362,12 @@ run it without the user's yes.
 ## Notes
 
 - **No seam.** This user is already signed up.
-- **No points are spent.** Nothing here makes a picture. Reading uses the
-  workspace's free daily research limits, and each account read adds its own
-  picture views. When a limit is used up, say which reads were skipped.
+- **Reading costs points; no picture is made.** Each read is priced by
+  **_conventions** rule 12 — said before the big read in step 4 and added up
+  at the finish. Looking at pictures is free. Reading also uses the
+  workspace's daily research limits, and each account read adds its own
+  picture views. When a limit or the points run out, say which reads were
+  skipped.
 - **Safe to run twice.** Compare against what is saved, mark each thing new,
   changed or unchanged, and write only what changed. A second run must never
   leave a brand with two voices.

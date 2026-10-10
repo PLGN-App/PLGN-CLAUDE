@@ -46,7 +46,9 @@ This campaign: <its constraints, or "none">.
 
 **No references saved.** Say so; offer stand-ins from `web_search` and
 `social_fetch` on the category's best accounts (`S1`, `S2`, never saved) or
-`/plgn brandkit` first.
+`/plgn brandkit` first. Those reads cost points: the offer says roughly how
+many (0.2 a search, 3 an account, 5 for Instagram), and nothing is read
+before a yes.
 
 **Talking it through.** Say once that nothing is saved or spent while you
 talk. Before the first ideas, print the numbered reference titles, one line

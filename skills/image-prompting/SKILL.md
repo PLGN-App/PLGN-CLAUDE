@@ -139,16 +139,42 @@ Spending no points is a valid outcome. Report it as a decision, not a failure.
 `generate_image` **returns a job number, not an image.** Treat it as a job to
 check on.
 
-1. Call `generate_image` — keep the job number it returns.
-2. Check with `check_generation` every **5 seconds**.
-3. Stop checking after about **90 seconds** (about 18 checks) per image — but
-   read what the last check said before deciding what that means.
+1. **Start every picture of the request first.** Call `generate_image` (or
+   `generate_image_from_image`) for each one and keep each job number. Check
+   on none of them until all are started.
+2. **Then check them all in one call:**
+   `check_generation(job_ids: [<every job number>], wait_s: 20)`. plgn waits
+   on its side and answers as soon as one of them finishes, or after 20
+   seconds. One call takes up to 20 job numbers; with more, send them in
+   calls of 20.
+3. **Repeat with the ones still pending.** The answer ends with
+   `Still pending: <ids>.` while any are. Call `check_generation` again with
+   exactly those ids as `job_ids`, and `wait_s: 20`, until each one has
+   succeeded or failed.
+4. Stop checking a job once its line says about **3 minutes** since it was
+   submitted — but read what the last check said before deciding what that
+   means.
+
+An answer looks like this — a count line, then each job's own lines:
+
+```
+OK: 3 jobs -- 1 succeeded, 1 failed, 1 pending -- waited 3s
+OK: job <id> succeeded -- url: <url> (public_id: <public_id>)
+OK: job <id> failed -- <reason>
+FAILED: <reason>
+OK: job <id> is still pending -- phase: generating -- 41s since submitted
+Still pending: <id>. Check them again with job_ids and wait_s 20.
+```
 
 `check_generation` reports `pending` with a **phase**. `waiting` or `queuing`
 means the job is in line at the image service and can take several minutes;
-`generating` means it is nearly done. A job that is still `pending` after 90
-seconds **has not failed** — the points are already committed and the picture
+`generating` means it is nearly done. A job that is still `pending` after 3
+minutes **has not failed** — the points are already committed and the picture
 will usually arrive. Only a `failed` result is a failure.
+
+A line `ERROR: job <id> -- <reason>` means that one job could not be checked
+this time; the rest of the answer still counts. Put its id in the next call
+once more, and if it still cannot be checked, report it with its reason.
 
 If it is still pending when you stop checking:
 
@@ -167,12 +193,12 @@ looks exactly like a post nobody wanted a picture for.
 
 ## Doing many at once
 
-When making images for several posts, start **all** of them first, then check on
-them. Going make → check → make → check one at a time turns a 90-second worst
-case into half an hour.
+When making images for several posts, start **all** of them first, then wait
+for the whole batch together, as the waiting cycle says. Going make → wait →
+make → wait one at a time turns a one-minute wait into half an hour.
 
-Apply the same 90-second check window per image from the moment *that* image started,
-not from when you began checking.
+The 3-minute window counts from when *each* picture started, not from when
+you began checking.
 
 ## Points are real money
 

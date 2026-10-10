@@ -282,7 +282,13 @@ browser, and no key is ever pasted into the terminal.
 need a plgn workspace, which is a paid subscription with a 14-day trial and no
 card required. Image generation spends points from your workspace balance; every
 command that would spend them states the cost and waits for your confirmation
-first. Pricing is at [useplgn.com](https://useplgn.com).
+first. Reading the web through plgn spends points too: in a new brand's first
+7 days only what plgn pays for each read (often under 1 point), after that 0.2
+a search, 0.5 a site, 1 a Google Maps place and 3 an account's posts (5 for
+Instagram). A copy plgn read in the last 7 days and a failed read cost
+nothing. Commands say roughly what a batch of reads costs before reading and
+what it cost after — including `audit` and `competitors` when plgn is
+connected. Pricing is at [useplgn.com](https://useplgn.com).
 
 **Organic posts only.** plgn writes, illustrates and schedules organic social
 posts for a brand's own accounts. It does not buy, target or manage ads.

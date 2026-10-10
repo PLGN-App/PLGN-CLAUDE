@@ -487,10 +487,14 @@ or not in this brand), send the call again, and name in the report a post
 left with no picture this way.
 
 **Making an image takes time.** `generate_image` and `generate_image_from_image`
-both return a job number, not an image. Check with `check_generation` on the
-schedule in the **image-prompting** skill.
+both return a job number, not an image. Start every picture of the run first
+and keep each job number; check on none until all are started. Check with
+`check_generation` once for all of them — every job number as `job_ids` (20
+at most a call) and `wait_s: 20` — then again with the ids its
+`Still pending:` line names, until each one has succeeded or failed, as the
+**image-prompting** skill's waiting cycle sets out.
 
-If it takes too long, leave the image out for now, note the post for the
+If one takes too long, leave the image out for now, note the post for the
 report as **still running** (never as failed, while the check still says
 waiting, queuing or generating), and **carry on** — a missing image never
 blocks scheduling. A post that goes out text-only is fine; a month that stalls

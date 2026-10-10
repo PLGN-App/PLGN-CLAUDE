@@ -62,9 +62,11 @@ time, each with only that account's links. Two accounts' pictures in one
 reading come back as an average of two looks.
 
 **A picture at a link** is opened with `image_view`: up to 6 links per call,
-and it shows the pictures themselves. Twelve pictures is two calls. A link it
-could not open is named in its reply. `social_fetch` links expire after a
-few days, so when most fail, run `social_fetch` again for fresh ones.
+and it shows the pictures themselves, at no cost in points. Twelve pictures
+is two calls. A link it could not open is named in its reply. `social_fetch`
+links expire after a few days, so when most fail, run `social_fetch` again
+for fresh ones — a read costs points (roughly 3 an account, 5 for
+Instagram), so say so in one line first.
 
 **A local file or a screenshot** is read directly with `Read`, which shows the
 image.

@@ -104,11 +104,13 @@ leaving <n>.`
 
 Only after the yes, call `generate_image_from_image(prompt: <grid_prompt>,
 input_urls: <the photo links>, aspect_ratio: <the agent's aspect_ratio>)`.
-Then follow the **image-prompting** skill's waiting cycle with
-`check_generation`. The grid's address is the finished picture's `url` and
-`public_id`: where the client waits for the picture, `check_generation`
-reports them; where a sheet job makes the picture, the job's answer
-carries them. Keep both; section 7 sends the `url` as `secure_url`.
+Then follow the **image-prompting** skill's waiting cycle:
+`check_generation(job_ids: [<its job number>], wait_s: 20)`, and the same
+call again while it is still pending, until it succeeds or fails. The
+grid's address is the finished picture's `url` and `public_id`: where the
+client waits for the picture, `check_generation` reports them; where a
+sheet job makes the picture, the job's answer carries them. Keep both;
+section 7 sends the `url` as `secure_url`.
 
 ## 6. Check every cell
 
@@ -119,9 +121,9 @@ and a mark for each.
 
 Any cell it marks `failed`: make one more picture whose prompt is the
 agent's `retry` text alone (it is the whole new sheet text; never add it to
-`grid_prompt`), and send the check job again as "second look", unless
-section 4 said the balance covers one picture: then that cell is
-`needs_real_photo` and no second picture is made. On the second look a cell
+`grid_prompt`), wait for it the same way, and send the check job again as
+"second look", unless section 4 said the balance covers one picture: then
+that cell is `needs_real_photo` and no second picture is made. On the second look a cell
 that still fails is `needs_real_photo`.
 Never a third picture. A second picture is paid for with the points the quote
 stated.

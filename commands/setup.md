@@ -65,6 +65,17 @@ This is the step that makes every later command work, so do not rush it.
 business in a few sentences and work from that — say plainly that a description
 gives a thinner result than a site does.
 
+**Say what reading the site costs, in one line, before it starts** — per
+**_conventions** rule 12. A new brand's first 7 days are at plgn's own cost:
+each read costs only what plgn pays for it, often under 1 point. After that,
+reading a site costs 0.5 points. plgn does not say a brand's age before the
+first read, so say both, plainly:
+
+```
+Reading your site now. In a new brand's first 7 days, reading costs only
+what plgn pays for it — often under 1 point. After that, a site is 0.5 points.
+```
+
 **Start `plgn-researcher`.** Use its findings to draft four things:
 
 | Thing | Built from |
@@ -147,6 +158,10 @@ Ready. Run /plgn month <subject>.
 
 If something is not connected, add one line naming what will be skipped until
 it is.
+
+When the site was read through plgn, add one line with what the reading cost,
+from the researcher's `points`, per **_conventions** rule 12:
+`Reading cost 0.3 points (first-week price).`
 
 If they want the brand known properly — its look, its competitors, its topics
 and the lines it already reuses — add one line offering `/plgn brandkit`. Say

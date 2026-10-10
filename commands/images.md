@@ -388,8 +388,11 @@ yes / pick / no
 On yes, send those same calls again with `accept_warnings: true`. On no,
 skip them and name them in section 8. See **gate-recovery**.
 
-Then follow the **image-prompting** skill's waiting cycle exactly — point at
-it, do not restate it here.
+Start every frame of the run before checking on any. Check with
+`check_generation` once for all of them — every job number as `job_ids`,
+and `wait_s: 20` — then again with the ids its `Still pending:` line names,
+until each picture has succeeded or failed. That is the **image-prompting**
+skill's waiting cycle: follow it exactly, including when to stop.
 
 ## 7. Attach
 

@@ -27,6 +27,11 @@ Use every rung available, best first.
 | 4 | The top five competitors — found with `web_search`, confirmed by the user, then `site_read` and `social_fetch` (20 posts each) | Contrast, gaps, what is crowded — **never voice** |
 | 5 | The user's own answers | Only what no source can show |
 
+Rungs 1, 2, 3b and 4 cost the workspace points: in a new brand's first 7
+days only what plgn pays for each read, then the prices in **_conventions**
+rule 12. Say what a batch costs before reading it and what it cost after, and
+read each source once per run.
+
 A brand's accounts live in one `channels` knowledge entry (website, instagram,
 tiktok, facebook, x, linkedin). Find them once — `site_read`'s `socials:` line,
 then ask for what is missing — save them with the Business pass after the

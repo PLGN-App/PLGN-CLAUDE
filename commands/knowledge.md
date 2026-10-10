@@ -74,7 +74,9 @@ For each gap, suggest specific replacement text — not "add more detail".
 
 Where a website is available, offer to read it again with `plgn-researcher` and
 draft entries from the current copy, exactly as `/plgn setup` does. A brand that
-repositioned six months ago needs a fresh read, not an edit.
+repositioned six months ago needs a fresh read, not an edit. The offer says
+what the read costs (0.5 points for a site, per **_conventions** rule 12),
+and the drafts say what it cost.
 
 **Show every suggested entry in full, then ask once for the whole list:**
 

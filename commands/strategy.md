@@ -12,7 +12,8 @@ with it.
 
 ## No account needed
 
-Call **zero** plgn tools. Reading sites uses web fetches only.
+Call **zero** plgn tools. Reading sites uses web fetches only — say so in
+`plgn-researcher`'s prompt, since plgn's own reads cost points.
 
 ## Argument
 
