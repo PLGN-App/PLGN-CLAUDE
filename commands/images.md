@@ -360,9 +360,9 @@ designer gave a frame `asset_ids`, call `generate_image_from_image` with
 those as `asset_ids` — alongside the canonical reference in `input_urls`
 when there is one, and on their own when there is not. The server adds each
 asset's main picture itself; never paste an asset's URL into `input_urls`.
-See **brand-assets**. A logo among them is a colour reference only — its
-colours may be used, the mark is never drawn in, and no other brand's logo
-ever — per the logo rule in **brand-assets**. If the call refuses an asset,
+See **brand-assets**. A logo among them goes on the picture exactly as it is
+— never redrawn, only its colour may change, and no other brand's logo ever —
+per the logo rule in **brand-assets**. If the call refuses an asset,
 it says which and why: say so in one line, make that frame without it, and
 carry on.
 

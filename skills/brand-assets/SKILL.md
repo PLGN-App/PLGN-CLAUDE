@@ -111,13 +111,17 @@ Characters, places, elements and people with consent start as usable.
 The owner's rule (2026-10-08), and the only place it is written — every
 command and role points here instead of copying it:
 
-- The logo is handed to the image model as a **colour reference only**. Its
-  colours may be used — on an accent, a plate, a surface, the grade.
-- The mark itself is **never drawn, placed or redrawn** in the picture. Not
-  "in its place with its clear space", not small in a corner, not on the
-  product. A frame that shows the mark fails.
+- The brand's own logo **goes on the picture as it is**: from its saved
+  file, exactly as drawn — the same symbol, letters, layout and proportions.
+  It sits where the brand's picture rules or the person put it (a corner, a
+  footer), at a size that reads.
+- It is **never redrawn**, restyled, rearranged or simplified. **Only its
+  colour may change**, to one flat colour that stands out from the
+  background.
 - **No other brand's logo, ever** — not a partner's, not a platform's, not
   a competitor's — and nothing invents one the brand has not saved.
+- No logo on a picture when the logo is marked NOT for AI pictures, or the
+  person switched the logo off.
 
 Whoever sends the picture writes this rule into the image text; the
 designer carries it as given and never rewrites it. A product's own label is

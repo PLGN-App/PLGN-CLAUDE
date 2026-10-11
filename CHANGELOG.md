@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.19.2 (2026-10-11)
+
+- The logo goes on the picture again. The brand's own logo is placed exactly as it is, from its saved file: never redrawn, restyled or simplified, and only its colour may change so it stands out. It sits where the brand's picture rules or the person put it. No other brand's logo, ever, and no logo when it is marked not for AI pictures or switched off. 1.18.3 had written this rule as "a colour reference only, never drawn or placed", so the designer refused every frame that showed the logo, even when the brand's rules asked for it.
+
 ## 1.19.1 (2026-10-10)
 
 - A product's own saved photos are used for its pictures from the first try. With no approved product sheet, the photos saved on the product are its real look: the art director names them as the product source, and `/plgn images` passes them to the picture, with no extra request. A product is never redrawn from words. Needs the plgn server whose context lists each product's own photos.

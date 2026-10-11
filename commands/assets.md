@@ -127,9 +127,9 @@ there, so send the existing pictures with the new one.
 Saved: <names>. /plgn images now builds pictures around them.
 ```
 
-If a logo was saved, add one line: in generated pictures the logo is a
-colour reference only — its colours may be used, the mark itself is never
-drawn in — per the logo rule in **brand-assets**.
+If a logo was saved, add one line: generated pictures carry the logo exactly
+as it is — never redrawn, only its colour may change — per the logo rule in
+**brand-assets**.
 
 ## Notes
 

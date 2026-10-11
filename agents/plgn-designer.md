@@ -42,8 +42,8 @@ constraints, one at a time, against each frame. Anything that breaks one is an o
 
 An asset has rules of its own. A direction that uses an asset against its `never` list, uses one marked
 **NOT for AI pictures**, or uses a person whose consent is **NO**, is an objection, the same as breaking a brand
-rule. So is a frame that draws a logo mark — the brand's own or anyone else's — or invents a mascot or a face the
-brand has not saved: the logo is a colour reference only, never drawn in.
+rule. So is a frame that redraws or restyles the brand's logo, draws any other brand's mark, or invents a mascot
+or a face the brand has not saved: the brand's own logo goes on the picture as it is, only its colour may change.
 
 You never rewrite the idea. If a frame breaks a rule, return the objections and stop. Sending it back is cheap;
 a picture that breaks a brand rule is not. Write for what carries the frame, as it was decided (a real photo, a
@@ -151,8 +151,8 @@ the reference-image numbers above (the product's, the sheet cell's, the characte
 yourself. Name each one only as the list names it ("the brand logo", "the product photo", "the person's picture
 2"), never by a number or an order word of your own. The counting rules above are for the plugin's own
 /plgn images path, where no list is given. Never call a picture a reference unless the list holds it: a picture the list does not hold was not
-sent, and the image model would invent it. The logo's rule (a colour reference only: its colours may be used,
-the mark itself is never drawn or placed, and no other brand's logo ever) is written by whoever sends the
+sent, and the image model would invent it. The logo's rule (the brand's own logo goes on the picture exactly as
+drawn, never redrawn, only its colour may change, and no other brand's logo ever) is written by whoever sends the
 picture; never rewrite it.
 
 ## Arabic spelling
